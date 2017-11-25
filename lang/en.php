@@ -1,0 +1,73 @@
+<?php
+$lang["navbar"]["login"] = "Login";
+$lang["navbar"]["register"] = "Register";
+$lang["navbar"]["home"] = "Home";
+$lang["navbar"]["search"] = "Search";
+$lang["navbar"]["setting"] = "Option";
+$lang["navbar"]["new_set"] = "New Flashcard";
+$lang["navbar"]["logout"] = "Logout";
+
+$lang["index"]["welcome"] = "Welcome to Lazylearn";
+$lang["index"]["recent_add"] = "Recently Created";
+$lang["index"]["recent_learn"] = "Recently Studied";
+$lang["index"]["on_facebook"] = "Lazylearn on Facebook";
+$lang["index"]["msg_facebook"] = "Send a message to us";
+$lang["index"]["browse_all"] = "Browse All";
+$lang["index"]["by"] = "by";
+$lang["index"]["cards"] = "cards";
+$lang["index"]["studied"] = "studied";
+$lang["index"]["created"] = "created";
+
+$lang['timeago']['next_sec'] = "next seconds";
+$lang['timeago']['secs_ago'] = "seconds ago";
+$lang['timeago']['min_ago'] = "one minute ago";
+$lang['timeago']['mins_ago'] = "minutes ago";
+$lang['timeago']['hour_ago'] = "an hour ago";
+$lang['timeago']['hours_ago'] = "hours ago";
+$lang['timeago']['yesterday'] = "yesterday";
+$lang['timeago']['days_ago'] = "days ago";
+$lang['timeago']['week_ago'] = "a week ago";
+$lang['timeago']['weeks_ago'] = "weeks ago";
+$lang['timeago']['month_ago'] = "a month ago";
+$lang['timeago']['months_ago'] = "months ago";
+$lang['timeago']['year_ago'] = "one year ago";
+$lang['timeago']['years_ago'] = "years ago";
+
+$lang["set"]["add_card"] = "Add a card";
+$lang["set"]["export"] = "Export";
+$lang["set"]["import"] = "Import";
+$lang["set"]["edit"] = "Edit";
+$lang["set"]["delete"] = "Delete";
+$lang["set"]["study"] = "Study";
+$lang["set"]["review"] = "Review All";
+$lang["set"]["loading"] = "Loading...";
+$lang["set"]["created"] = "Created";
+$lang["set"]["by"] = "by";
+$lang["set"]["card_count"] = "card";
+$lang["set"]["cards_count"] = "cards";
+
+$lang["user"]["today"] = "Today's Repetition";
+$lang["user"]["expired"] = "expired";
+$lang["user"]["correct"] = "correct";
+$lang["user"]["incorrect"] = "incorrect";
+$lang["user"]["now"] = "now";
+$lang["user"]["day"] = "day";
+$lang["user"]["days"] = "days";
+$lang["user"]["week"] = "week";
+$lang["user"]["month"] = "month";
+$lang["user"]["cards"] = "cards";
+$lang["user"]["categories"] = "Categories";
+$lang["user"]["no_data"] = "No data";
+$lang["user"]["flashcards"] = "Flashcards";
+$lang["user"]["created"] = "created";
+
+$lang["flashcard"]["new"]["title"] = "Create a Flashcard";
+$lang["flashcard"]["new"]["h1"] =  "Create a Flashcard";
+$lang["flashcard"]["new"]["name"] =  "Name";
+$lang["flashcard"]["new"]["show_options"] =  "Show options";
+$lang["flashcard"]["new"]["hide_options"] =  "Hide options";
+$lang["flashcard"]["new"]["category"] =  "Category";
+$lang["flashcard"]["new"]["private"] =  "Private";
+$lang["flashcard"]["new"]["import_data"] =  "Import data";
+$lang["flashcard"]["new"]["optional"] =  "optional";
+$lang["flashcard"]["new"]["create"] =  "Create";
