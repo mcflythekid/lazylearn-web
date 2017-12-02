@@ -18,8 +18,8 @@
 
 	<div id="about_me">
 		<br>
-		Automatic Flashcards System. A new instance of flashcarddb[.]com<br>
-		Built in 2015 by <a href="https://fb.com/mcflykid">@mcflykid</a>, visit my <a href="https://github.com/mcflykid">GitHub</a>
+		An automatic Flashcards System be long to McFly the Kid<br>
+		<a href="https://fb.com/mcflythekid">Facebook</a>, <a href="https://github.com/mcflythekid">GitHub</a>
 	</div>
 	
 	<!-- Histats.com  (div with counter)<div id="histats_counter"></div>
