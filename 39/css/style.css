@@ -1631,6 +1631,8 @@ div#study_stats div#back{padding-right:70px;padding-top:33px;text-align:right;}
 div#study_commands button#next{margin-left:5px;}
 div#study_commands button#shuffle{margin-left:22px;}
 div#study_commands button#reverse{margin-left:8px;}
+div#study_commands button#edit{margin-left:8px;}
+div#study_commands button#delete{margin-left:8px;}
 div#study_commands button#end{float:right;}
 div#study_flashcards div#card_status {display: none;}
 div#study_flashcards table#display {height:100%;width:97%;margin:0 auto;}

@@ -1,8 +1,8 @@
 // Sizing
 jQuery(document).ready(function(){
-	$("#studysession").resizable({ 
-		handles: 'all', minHeight: 386, minWidth:588, alsoResize: '#study_flashcards' 
-	});
+	//$("#studysession").resizable({ 
+	//	handles: 'all', minHeight: 386, minWidth:588, alsoResize: '#study_flashcards' 
+	//});
 	adj_studysession_ht();
 	jQuery(window).resize(function(){
 		adj_studysession_ht();
@@ -62,6 +62,9 @@ var sessionactive = true;
 var flipped = false;
 var edit_mode = false;
 var total_num_of_cards = theCardset.length - 1;
+//alert(total_num_of_cards);
+//alert(theCardset.length);
+var reverse_mode = false;
 var total_correct = 0;
 var total_incorrect = 0;
 var total_unanswered = 0;
@@ -346,6 +349,15 @@ function next_unanswered_card_or_end_session() {
 
 
 function reverse() {
+	reverse_mode = !reverse_mode;
+	if (reverse_mode){
+		$('#edit').hide();
+	}else {
+		$('#edit').show();
+	}
+	
+	
+	
   if (edit_mode) return false;
   for (var i=1;i<=total_num_of_cards;i++) {
     var tempf = theCardset[i].card_front;

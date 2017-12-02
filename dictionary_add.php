@@ -20,6 +20,10 @@ $set_id = $set['id'];
 $stmt = mysqli_prepare($con, "INSERT INTO cards (username, front, back, set_id) VALUES(?,?,?,?);");
 mysqli_stmt_bind_param($stmt, "sssi", $username, $front, $back, $set_id);
 mysqli_stmt_execute($stmt);
+$new_id = mysqli_insert_id($con);
+$stmt = mysqli_prepare($con, "UPDATE sets SET cards = cards + 1 WHERE id = ?;");
+mysqli_stmt_bind_param($stmt, "i", $set_id);
+mysqli_stmt_execute($stmt);
 echo json_encode(['ok'=> 1]);
 
 function quit($x){
