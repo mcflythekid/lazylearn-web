@@ -113,3 +113,12 @@ CREATE TABLE `users` (
   PRIMARY KEY (`username`),
   UNIQUE KEY `user_email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=ascii;
+
+-- ----------------------------
+-- Table structure for ev
+-- ----------------------------
+CREATE TABLE `ev` (
+  `en` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `vi` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`en`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
