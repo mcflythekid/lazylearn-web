@@ -3,7 +3,7 @@
 <div id="ftrbar">
 
 	<style type="text/css">
-		div.ssl_logo { float:left; display: inline-block; }
+		div.ssl_logo { float:left; display: inline-block;  }
 		div.ssl_logo img{ margin-top: -18px; }
 		.clearBoth { clear:both; }
 		div#histats_counter { float:right; display: inline-block;}
