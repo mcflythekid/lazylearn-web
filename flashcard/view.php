@@ -236,7 +236,7 @@
 				</tr>
 			</tbody></table>
 		</div>
-		<?php } else {?>
+		<?php } else if (!isset($_GET["compose"])) {?>
 		<div class="cardlist_card" id="card-new">
 			<a href="/flashcard/view.php?id=<?= $set["id"] ?>&compose"><?=$lang["set"]["enable_compose"]?></a>
 		</div>
