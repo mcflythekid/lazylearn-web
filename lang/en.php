@@ -47,7 +47,7 @@ $lang["set"]["created"] = "Created";
 $lang["set"]["by"] = "by";
 $lang["set"]["card_count"] = "card";
 $lang["set"]["cards_count"] = "cards";
-$lang["set"]["enable_compose"] = "Click hereto view or edit Flashcard";
+$lang["set"]["enable_compose"] = "Click here to view or edit Flashcard";
 
 $lang["user"]["today"] = "Today's Repetition";
 $lang["user"]["expired"] = "expired";
