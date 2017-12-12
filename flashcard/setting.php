@@ -79,7 +79,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Edit: <?php echo noHTML($set["name"]); ?></title>
+<title>Setting: <?php echo noHTML($set["name"]); ?></title>
 <link rel="shortcut icon" href="/favicon.ico"  />
 <link rel="stylesheet" href="<?php echo $ASSET?>/css/style.css">
 </head>
@@ -92,7 +92,7 @@
 
 
 <div id="set_new_edit" class="greybox">
-	<h1>Edit: <?php echo noHTML($set["name"]); ?></h1>
+	<h1>Setting: <?php echo noHTML($set["name"]); ?></h1>
 	<form method="post" id="form" enctype="multipart/form-data">
 		<p><label for="name">Name:</label><br><input name="name" size="60" value="<?php echo noHTML($set["name"]); ?>"/><br><span class="error" id="error_name"></span></p>
 		<p>

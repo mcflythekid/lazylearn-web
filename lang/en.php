@@ -36,7 +36,8 @@ $lang['timeago']['years_ago'] = "years ago";
 $lang["set"]["add_card"] = "Add a card";
 $lang["set"]["export"] = "Export";
 $lang["set"]["import"] = "Import";
-$lang["set"]["edit"] = "Edit";
+$lang["set"]["compose"] = "Compose";
+$lang["set"]["setting"] = "Setting";
 $lang["set"]["delete"] = "Delete";
 $lang["set"]["study"] = "Study";
 $lang["set"]["study_old"] = "Study (Skip fresh cards)";
@@ -46,6 +47,7 @@ $lang["set"]["created"] = "Created";
 $lang["set"]["by"] = "by";
 $lang["set"]["card_count"] = "card";
 $lang["set"]["cards_count"] = "cards";
+$lang["set"]["enable_compose"] = "Click hereto view or edit Flashcard";
 
 $lang["user"]["today"] = "Today's Repetition";
 $lang["user"]["expired"] = "expired";

@@ -376,7 +376,7 @@ window.onclick = function(event) {
 </style>
 
 <style>
-	.oxford_link{
+	.oxford_link, .oxford_link *{
 		cursor:pointer;
 		color:blue;
 		text-decoration:underline;
@@ -399,6 +399,8 @@ window.onclick = function(event) {
 		if (is_english($('#card_front'))) $el = $('#card_front');
 		if (is_english($('#card_back'))) $el = $('#card_back');
 		if (!$el) return;
+		$('#card_front').parent().removeClass('oxford_link');
+		$('#card_back').parent().removeClass('oxford_link');
 		$el.parent().addClass('oxford_link');
 		$el.parent().click(function(){
 			var win = window.open('https://www.oxfordlearnersdictionaries.com/us/definition/english/' + $el.text(), '_blank');

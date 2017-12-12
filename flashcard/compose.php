@@ -116,14 +116,8 @@
 		<div id="topbar">
 			<div id="bc"></div>
 			<div id="topcmd">
-			
-				<?php if (isset($_GET["compose"])){ ?>
 				<img alt="Add a card" src="<?php echo $ASSET; ?>/img/add-icon.png">
 				<a href="#new_front" class="actionlink"><?=$lang["set"]["add_card"]?></a>
-				<?php } else {?>
-				<img alt="Compose" src="<?php echo $ASSET; ?>/img/edit-icon.png">
-				<a href="/flashcard/view.php?id=<?= $set["id"] ?>&compose" class="actionlink"><?=$lang["set"]["compose"]?></a>
-				<?php } ?>
 				
 				<img alt="Export" src="<?php echo $ASSET; ?>/img/arrow_down.png">
 				<a href="/flashcard/export.php?id=<?php echo $set["id"]; ?>" class="actionlink"><?=$lang["set"]["export"]?></a>
@@ -217,7 +211,7 @@
 		<a id="port"></a>
 	
 		<!-- New card form-->
-		<?php if ($is_owner && isset($_GET["compose"])){ ?>
+		<?php if ($is_owner){ ?>
 		<div class="cardlist_card" id="card-new">
 			<table class="card_container"><tbody>
 				<tr>
@@ -236,11 +230,7 @@
 				</tr>
 			</tbody></table>
 		</div>
-		<?php } else {?>
-		<div class="cardlist_card" id="card-new">
-			<a href="/flashcard/view.php?id=<?= $set["id"] ?>&compose"><?=$lang["set"]["enable_compose"]?></a>
-		</div>
-		<?php }?>
+		<?php } ?>
 		<!-- End new card form-->
 
 	<!-- End card list -->
@@ -294,7 +284,7 @@
 <?php if ($is_owner){ ?><script src="//code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script><?php } ?>
 <script>
 	var theCardset = [];	
-	<?php if (isset($cards) and isset($_GET["compose"])){	
+	<?php if (isset($cards) and true){	
 		$i = 0;
 		foreach($cards as $card){
 			echo sprintf('theCardset[%u] = {card_id: %u, card_front: "%s", card_back: "%s"};', $i, $card["id"], cardSide($card["front"]), cardSide($card["back"]));

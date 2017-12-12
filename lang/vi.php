@@ -36,7 +36,8 @@ $lang['timeago']['years_ago'] = "năm trước";
 $lang["set"]["add_card"] = "Thêm thẻ";
 $lang["set"]["export"] = "Tải xuống";
 $lang["set"]["import"] = "Nhập dữ liệu";
-$lang["set"]["edit"] = "Sửa";
+$lang["set"]["compose"] = "Biên tập";
+$lang["set"]["setting"] = "Cài đặt";
 $lang["set"]["delete"] = "Xóa";
 $lang["set"]["study"] = "Xem Flashcard";
 $lang["set"]["study_old"] = "Xem Flashcard (Bỏ qua thẻ mới)";
@@ -46,6 +47,7 @@ $lang["set"]["created"] = "Tạo";
 $lang["set"]["by"] = "bởi";
 $lang["set"]["card_count"] = "thẻ";
 $lang["set"]["cards_count"] = "thẻ";
+$lang["set"]["enable_compose"] = "Nhấn vào đây để xem hoặc thêm flashcard";
 
 $lang["user"]["today"] = "Số thẻ phải học hôm nay";
 $lang["user"]["expired"] = "tới hạn";
