@@ -218,10 +218,8 @@ function show_hide_card_back() {
 
 function update_card_content() {
     $('#card_front').html(theCardset[currcard].card_front);
-	
-
-	
     $('#card_back').html(theCardset[currcard].card_back);
+	$(document).trigger('oxford.check');
     $('#card_position').text(currcard + ' / ' + total_num_of_cards);
 }
 

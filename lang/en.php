@@ -39,6 +39,7 @@ $lang["set"]["import"] = "Import";
 $lang["set"]["edit"] = "Edit";
 $lang["set"]["delete"] = "Delete";
 $lang["set"]["study"] = "Study";
+$lang["set"]["study_old"] = "Study (Skip fresh cards)";
 $lang["set"]["review"] = "Review All";
 $lang["set"]["loading"] = "Loading...";
 $lang["set"]["created"] = "Created";

@@ -39,6 +39,7 @@ $lang["set"]["import"] = "Nhập dữ liệu";
 $lang["set"]["edit"] = "Sửa";
 $lang["set"]["delete"] = "Xóa";
 $lang["set"]["study"] = "Xem Flashcard";
+$lang["set"]["study_old"] = "Xem Flashcard (Bỏ qua thẻ mới)";
 $lang["set"]["review"] = "Kiểm tra hết";
 $lang["set"]["loading"] = "Đang tải...";
 $lang["set"]["created"] = "Tạo";

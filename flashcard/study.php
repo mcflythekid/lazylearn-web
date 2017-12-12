@@ -40,8 +40,10 @@
 	
 	$is_owner = isset($_SESSION["username"]) === true && $_SESSION["username"] === $set["username"];
 	
-	if (isset($_GET["all"])){
+	if (isset($_GET["review_all"])){
 		$stmt = mysqli_prepare($con, "SELECT id, front, back FROM cards WHERE set_id = ?;");
+	}else if (isset($_GET["study_old"])){
+		$stmt = mysqli_prepare($con, "SELECT id, front, back FROM cards WHERE set_id = ? AND step <> 5 AND (weakup <= NOW() AND weakup IS NOT NULL) ORDER BY step DESC, id;");
 	}else{
 		$stmt = mysqli_prepare($con, "SELECT id, front, back FROM cards WHERE set_id = ? AND step <> 5 AND (weakup <= NOW() OR weakup IS NULL) ORDER BY step DESC, id;");
 	}
@@ -87,7 +89,7 @@
 
 	<!-- Title -->
 	<table id="study_title"><tbody><tr>
-		<td><h1>Studying: <?php echo noHTML($set["name"]); ?></h1></td>
+		<td><h1 id="set_name">Studying: <?php echo noHTML($set["name"]); ?></h1></td>
 		<td id="back"><a href="/flashcard/<?php echo $set["url"];?><?php echo $set["id"];?>" class="actionlink"><< Go to card set details</a></td>
 	</tr></tbody></table>
 	<!-- End title -->
@@ -373,7 +375,38 @@ window.onclick = function(event) {
 }
 </style>
 
+<style>
+	.oxford_link{
+		cursor:pointer;
+		color:blue;
+		text-decoration:underline;
+	}
+</style>
+<script>
+	$(document).ready(function(){
+		oxford_check();
+	});
+	$(document).on('oxford.check' , function(){
+		oxford_check();
+	});
+	var oxford_check = function(){
+		var is_english = function($el){
+			return $el.text().match(/^[a-z]+$/);
+		};
+		var set_name = $('#set_name').text();
+		if (!set_name.includes("[oxford]")) return;
+		var $el = null;
+		if (is_english($('#card_front'))) $el = $('#card_front');
+		if (is_english($('#card_back'))) $el = $('#card_back');
+		if (!$el) return;
+		$el.parent().addClass('oxford_link');
+		$el.parent().click(function(){
+			var win = window.open('https://www.oxfordlearnersdictionaries.com/us/definition/english/' + $el.text(), '_blank');
+			win.focus();
+		});
+	};
 
+</script>
 
 </body>
 </html>

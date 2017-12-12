@@ -1,7 +1,7 @@
 <?php
 	require_once __DIR__ . '/deploy.php';
 	date_default_timezone_set("UTC");
-	$ASSET =  "/39";
+	$ASSET =  "/40";
 	$REMEMBER_ME_DAY = 30;
 	$FORGET_PASSWORD_DAY = 1;
 	$LEITNER[1] = 86400;

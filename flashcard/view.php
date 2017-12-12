@@ -92,14 +92,18 @@
 		
 		<!-- Study options -->
 		<table id="studyopt" border="0" cellspacing="0" cellpadding="0"><tbody><tr valign="top">
+			
+			<td>
+			  <a href="/flashcard/study.php?id=<?php echo $set["id"]; ?>&study_old" class="actionlink"><img alt="Study Old Card" src="<?php echo $ASSET; ?>/img/study_old.png" class="study_opt"><?=$lang["set"]["study_old"]?></a>
+			</td>
+			
 			<td>
 			  <a href="/flashcard/study.php?id=<?php echo $set["id"]; ?>" class="actionlink"><img alt="Spaced Repetition" src="<?php echo $ASSET; ?>/img/leitner_system_icon.png" class="study_opt"><?=$lang["set"]["study"]?></a>
 			</td>
-			
 
 			
 			<td>
-			  <a href="/flashcard/study.php?id=<?php echo $set["id"]; ?>&all" class="actionlink"><img alt="All Flashcards" src="<?php echo $ASSET; ?>/img/world.png" class="study_opt"><?=$lang["set"]["review"]?></a>
+			  <a href="/flashcard/study.php?id=<?php echo $set["id"]; ?>&review_all" class="actionlink"><img alt="All Flashcards" src="<?php echo $ASSET; ?>/img/world.png" class="study_opt"><?=$lang["set"]["review"]?></a>
 			</td>
 			
 
