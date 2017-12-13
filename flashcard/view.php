@@ -157,7 +157,7 @@
 				<?php if (isset($_SESSION["username"]) && $_SESSION["username"] == $ROOT) { ?>
 					<!-- Delete form -->
 					<div id="dialog-confirm" title="Delete this card set?"></div>
-					<form name="delete" action="/flashcard/delete.php" method="post" onSubmdit="return confirm('Are you sure?');">
+					<form name="delete" action="/flashcard/delete.php" method="post" onSubmdit="return confirm('Are you sure?');" style="display: none;">
 						<input type="hidden" name="id" value="<?php echo $set["id"]; ?>">
 					</form>
 					<!-- End delete form -->
