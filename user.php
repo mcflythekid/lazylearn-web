@@ -345,7 +345,6 @@ for ($i = 1; $i <= $LEITNER_SIZE + 2; $i++) {
 				
 				<?php if ($set["repetition"] > 0){ ?>
 					<img src="<?php echo $ASSET; ?>/img/alarm.png" class="lock" alt="Time up" title="Time up">
-					<?=$set["repetition"]?>
 				<?php } ?>
 				
 				<span class="card_count"><?=$set["cards"]?> <?=$lang["user"]["cards"]?></span>
