@@ -82,7 +82,6 @@
 		<h1 id="title"><?php echo noHTML($set["name"]); ?></h1>	
 		
 		<?php if ($is_owner){?>
-		
 		<!-- Delete form -->
 		<div id="dialog-confirm" title="Delete this card set?"></div>
 		<form name="delete" action="/flashcard/delete.php" method="post" onSubmdit="return confirm('Are you sure?');">
@@ -154,6 +153,19 @@
 			<div id="topcmd">
 				<img alt="Save" src="<?php echo $ASSET; ?>/img/heart_add.png">
 				<a href="/flashcard/clone.php?id=<?php echo $id;?>" class="actionlink">Save to my flashcards & Learn</a>
+				
+				<?php if (isset($_SESSION["username"]) && $_SESSION["username"] == $ROOT) { ?>
+					<!-- Delete form -->
+					<div id="dialog-confirm" title="Delete this card set?"></div>
+					<form name="delete" action="/flashcard/delete.php" method="post" onSubmdit="return confirm('Are you sure?');">
+						<input type="hidden" name="id" value="<?php echo $set["id"]; ?>">
+					</form>
+					<!-- End delete form -->
+					
+					<img alt="Delete" src="<?php echo $ASSET; ?>/img/cross.gif">
+					<a href="javascript:delete_confirm()" class="actionlink"><?=$lang["set"]["delete"]?></a>
+				<?php } ?>
+				
 			</div>
 		</div>
 		<!-- End other options -->

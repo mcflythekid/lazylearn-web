@@ -31,7 +31,7 @@
 		mysqli_close($con);
 		die();
 	}
-	if ($_SESSION["username"] !== $set["username"]){
+	if ($_SESSION["username"] !== $set["username"] && $_SESSION["username"] !== $ROOT){
 		echo "Forbidden";
 		mysqli_close($con);
 		die();
