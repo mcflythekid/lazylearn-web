@@ -52,7 +52,7 @@
 	
 	
 	
-	for ($i = 1; $i <= 4; $i++) {
+	for ($i = 1; $i <= 6; $i++) {
 		
 		/* Left (Expired) */
 		$stmt = mysqli_prepare($con, "SELECT COUNT(*) AS data FROM cards WHERE username = ? AND step = ? AND weakup <= NOW();");
@@ -136,6 +136,70 @@
 
 
 
+<style>
+
+
+#vertgraph dl dd.a00-blank  { left: 24px; background-color: #cbcbcb; background-position: -0px bottom !important; }
+#vertgraph dl dd.a00 { left: 24px; background-color: #fad163; background-position: -0px bottom !important; }
+#vertgraph dl dt.a00 { left: 14px; background-position: -0px bottom !important; }
+
+#vertgraph dl dd.a10-blank  { left: 201px; background-color: #cbcbcb; background-position: -28px bottom !important; }
+#vertgraph dl dd.a10 { left: 201px; background-color: #fad163; background-position: -28px bottom !important; }
+#vertgraph dl dt.a10 { left: 191px; background-position: -28px bottom !important; }
+
+#vertgraph dl dd.a20-blank  { left: 378px; background-color: #cbcbcb; background-position: -56px bottom !important; }
+#vertgraph dl dd.a20 { left: 378px; background-color: #fad163; background-position: -56px bottom !important; }
+#vertgraph dl dt.a20 { left: 368px; background-position: -56px bottom !important; }
+
+#vertgraph dl dd.a30-blank  { left: 555px; background-color: #cbcbcb; background-position: -84px bottom !important; }
+#vertgraph dl dd.a30 { left: 555px; background-color: #fad163; background-position: -84px bottom !important; }
+#vertgraph dl dt.a30 { left: 545px; background-position: -84px bottom !important; }
+
+#vertgraph dl dd.a40-blank  { left: 732px; background-color: #cbcbcb; background-position: -112px bottom !important; }
+#vertgraph dl dd.a40 { left: 732px; background-color: #fad163; background-position: -112px bottom !important; }
+#vertgraph dl dt.a40 { left: 722px; background-position: -112px bottom !important; }
+
+#vertgraph dl dd.a50-blank  { left: 732px; background-color: #cbcbcb; background-position: -112px bottom !important; }
+#vertgraph dl dd.a50 { left: 732px; background-color: #fad163; background-position: -112px bottom !important; }
+#vertgraph dl dt.a50 { left: 722px; background-position: -112px bottom !important; }
+
+#vertgraph dl dd.a60-blank  { left: 732px; background-color: #cbcbcb; background-position: -112px bottom !important; }
+#vertgraph dl dd.a60 { left: 732px; background-color: #fad163; background-position: -112px bottom !important; }
+#vertgraph dl dt.a60 { left: 722px; background-position: -112px bottom !important; }
+
+
+
+#vertgraph dl dd.a01-blank  { left: 102px; background-color: #cbcbcb; background-position: -0px bottom !important; }
+#vertgraph dl dd.a01 { left: 102px; background-color: #ff3333; background-position: -0px bottom !important; }
+#vertgraph dl dt.a01 { left: 14px; background-position: -0px bottom !important; }
+
+#vertgraph dl dd.a11-blank  { left: 279px; background-color: #cbcbcb; background-position: -28px bottom !important; }
+#vertgraph dl dd.a11 { left: 279px; background-color: #66cc66; background-position: -28px bottom !important; }
+#vertgraph dl dt.a11 { left: 191px; background-position: -28px bottom !important; }
+
+#vertgraph dl dd.a21-blank  { left: 456px; background-color: #cbcbcb; background-position: -56px bottom !important; }
+#vertgraph dl dd.a21 { left: 456px; background-color: #66cc66; background-position: -56px bottom !important; }
+#vertgraph dl dt.a21 { left: 368px; background-position: -56px bottom !important; }
+
+#vertgraph dl dd.a31-blank  { left: 633px; background-color: #cbcbcb; background-position: -84px bottom !important; }
+#vertgraph dl dd.a31 { left: 633px; background-color: #66cc66; background-position: -84px bottom !important; }
+#vertgraph dl dt.a31 { left: 545px; background-position: -84px bottom !important; }
+
+#vertgraph dl dd.a41-blank { left: 810px; background-color: #cbcbcb; background-position: -112px bottom !important; }
+#vertgraph dl dd.a41 { left: 810px; background-color: #66cc66; background-position: -112px bottom !important; }
+#vertgraph dl dt.a41 { left: 722px; background-position: -112px bottom !important; }
+
+#vertgraph dl dd.a51-blank { left: 810px; background-color: #cbcbcb; background-position: -112px bottom !important; }
+#vertgraph dl dd.a51 { left: 810px; background-color: #66cc66; background-position: -112px bottom !important; }
+#vertgraph dl dt.a51 { left: 722px; background-position: -112px bottom !important; }
+
+#vertgraph dl dd.a61-blank { left: 810px; background-color: #cbcbcb; background-position: -112px bottom !important; }
+#vertgraph dl dd.a61 { left: 810px; background-color: #66cc66; background-position: -112px bottom !important; }
+#vertgraph dl dt.a61 { left: 722px; background-position: -112px bottom !important; }
+
+</style>
+
+
 
 <h1 id="username"><?php=noHtml( $_GET["id"]) ?></h1>
 
@@ -156,10 +220,12 @@
 			<dt class="a20">3 <?=$lang["user"]["days"]?></dt>
 			<dt class="a30">1 <?=$lang["user"]["week"]?></dt>
 			<dt class="a40">1 <?=$lang["user"]["month"]?></dt>
+			<dt class="a50">4 <?=$lang["user"]["month"]?></dt>
+			<dt class="a60">24 <?=$lang["user"]["month"]?></dt>
 						
 			<?php
 				for ($i = 0; $i <= 1; $i++){
-					for ($j = 0; $j <= 4; $j++){
+					for ($j = 0; $j <= 6; $j++){
 						
 						$card_number = $data[$j][$i];
 						

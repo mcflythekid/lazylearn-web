@@ -1478,7 +1478,7 @@ span#incorrect{background:#ff3333}
 #vertgraph dl dt { position: absolute; width: 177px; height: 25px; bottom: 0px; padding: 0 !important; margin: 0 !important; text-align: center; color: #444444; font-size: .8em;}
 
 
-/** ---------Orange, left, expired--------- **/
+/** ---------Orange, left, expired--------- 
 #vertgraph dl dd.a00-blank  { left: 24px; background-color: #cbcbcb; background-position: -0px bottom !important; }
 #vertgraph dl dd.a00 { left: 24px; background-color: #fad163; background-position: -0px bottom !important; }
 #vertgraph dl dt.a00 { left: 14px; background-position: -0px bottom !important; }
@@ -1498,9 +1498,17 @@ span#incorrect{background:#ff3333}
 #vertgraph dl dd.a40-blank  { left: 732px; background-color: #cbcbcb; background-position: -112px bottom !important; }
 #vertgraph dl dd.a40 { left: 732px; background-color: #fad163; background-position: -112px bottom !important; }
 #vertgraph dl dt.a40 { left: 722px; background-position: -112px bottom !important; }
+
+#vertgraph dl dd.a50-blank  { left: 732px; background-color: #cbcbcb; background-position: -112px bottom !important; }
+#vertgraph dl dd.a50 { left: 732px; background-color: #fad163; background-position: -112px bottom !important; }
+#vertgraph dl dt.a50 { left: 722px; background-position: -112px bottom !important; }
+
+#vertgraph dl dd.a60-blank  { left: 732px; background-color: #cbcbcb; background-position: -112px bottom !important; }
+#vertgraph dl dd.a60 { left: 732px; background-color: #fad163; background-position: -112px bottom !important; }
+#vertgraph dl dt.a60 { left: 722px; background-position: -112px bottom !important; }
 /*-------------------------------------------*/
 
-/** ---------Green (Red at first), right, Correct (Wrong at first)--------- **/
+/** ---------Green (Red at first), right, Correct (Wrong at first)--------- 
 #vertgraph dl dd.a01-blank  { left: 102px; background-color: #cbcbcb; background-position: -0px bottom !important; }
 #vertgraph dl dd.a01 { left: 102px; background-color: #ff3333; background-position: -0px bottom !important; }
 #vertgraph dl dt.a01 { left: 14px; background-position: -0px bottom !important; }
@@ -1520,6 +1528,14 @@ span#incorrect{background:#ff3333}
 #vertgraph dl dd.a41-blank { left: 810px; background-color: #cbcbcb; background-position: -112px bottom !important; }
 #vertgraph dl dd.a41 { left: 810px; background-color: #66cc66; background-position: -112px bottom !important; }
 #vertgraph dl dt.a41 { left: 722px; background-position: -112px bottom !important; }
+
+#vertgraph dl dd.a51-blank { left: 810px; background-color: #cbcbcb; background-position: -112px bottom !important; }
+#vertgraph dl dd.a51 { left: 810px; background-color: #66cc66; background-position: -112px bottom !important; }
+#vertgraph dl dt.a51 { left: 722px; background-position: -112px bottom !important; }
+
+#vertgraph dl dd.a61-blank { left: 810px; background-color: #cbcbcb; background-position: -112px bottom !important; }
+#vertgraph dl dd.a61 { left: 810px; background-color: #66cc66; background-position: -112px bottom !important; }
+#vertgraph dl dt.a61 { left: 722px; background-position: -112px bottom !important; }
 /*-------------------------------------------*/
 
 
