@@ -1590,3 +1590,34 @@ div#study_flashcards div#card_back {display: none;}
 div#flip button{padding-left:20px;padding-right:20px;}
 div#mark {display: none;}
 button#wrong {margin-left:7px;}
+
+
+
+.card_count{
+	background: #66cc66;
+    color: white;
+    margin: 0 .5em 0 0;
+    padding: .1em .4em .1em .4em;
+    text-align: center;
+	font-size: .8em;
+	
+}
+.set_category{
+	background: #a8bbe3;
+    color: white !important;
+    margin: 0 .5em 0 0;
+    padding: .1em .4em .1em .4em;
+    text-align: center;
+	font-size: .8em;
+	text-decoration: none;
+}
+
+table.home_line {
+	width: 100%;
+}
+tr.home_line td {
+  border-bottom:1pt dashed black;
+}
+tr.home_line.first td {
+  border-top:1pt dashed black;
+}

@@ -4,8 +4,9 @@ $lang["navbar"]["register"] = "Đăng ký";
 $lang["navbar"]["home"] = "Trang chủ";
 $lang["navbar"]["search"] = "Tìm kiếm";
 $lang["navbar"]["setting"] = "Cài đặt";
-$lang["navbar"]["new_set"] = "Thêm Flashcard";
+$lang["navbar"]["new_set"] = "+ Tạo mới";
 $lang["navbar"]["logout"] = "Thoát";
+$lang["navbar"]["browse"] = "Danh mục";
 
 $lang["index"]["welcome"] = "Chào mừng bạn đến với Lazylearn Ahihi";
 $lang["index"]["recent_add"] = "Mới thêm vào";

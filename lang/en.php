@@ -4,8 +4,9 @@ $lang["navbar"]["register"] = "Register";
 $lang["navbar"]["home"] = "Home";
 $lang["navbar"]["search"] = "Search";
 $lang["navbar"]["setting"] = "Option";
-$lang["navbar"]["new_set"] = "New Flashcard";
+$lang["navbar"]["new_set"] = "+ New";
 $lang["navbar"]["logout"] = "Logout";
+$lang["navbar"]["browse"] = "Browse";
 
 $lang["index"]["welcome"] = "Welcome to Lazylearn";
 $lang["index"]["recent_add"] = "Recently Created";

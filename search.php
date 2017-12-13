@@ -12,23 +12,11 @@
 	
 	$con = open_con();
 	
-	if (isset($_GET["page"]) && is_numeric($_GET["page"]) && $_GET["page"] > 0){
-		$page = $_GET["page"];
-		$start_from = ($_GET["page"] - 1) * 20;
-	} else{
-		$page = 1;
-		$start_from = 0;
-	}
 	
 	$q = mysqli_real_escape_string($con,$_GET["q"]);
 	
-	$stmt = mysqli_prepare($con, "SELECT COUNT(*) AS total_set FROM searches WHERE name like '%" . $q  . "%';");
-	mysqli_stmt_execute($stmt);
-	$result = mysqli_stmt_get_result($stmt);
-	$total_set = mysqli_fetch_assoc($result)["total_set"];
-	$total_page = ceil($total_set / 20);
 	
-	$stmt = mysqli_prepare($con, "SELECT id, name FROM searches WHERE name like '%" . $q  . "%';");
+	$stmt = mysqli_prepare($con, "SELECT id, name FROM searches WHERE name like '%" . $q  . "%' LIMIT 30;");
 	mysqli_stmt_execute($stmt);
 	$result = mysqli_stmt_get_result($stmt);
 	if (mysqli_num_rows($result) > 0) {
@@ -54,55 +42,24 @@
 <?php require_once("./private/navbar.php"); ?>
 <div id="main">
 
-	<h1 id="title">Search Result <small>(<?php echo $total_set; ?> Flashcards)</small></h1>
-			<!-- Data -->
-			<table><tbody>
-<?php 
-if(isset($sets)){
-	foreach ($sets as $set){
-?>
-				<tr>
-					<td class="cardsetlist_name set_name">
-						<span class="cardsetlist_name">
-							<a href="/flashcard/view.php?id=<?php echo $set["id"]; ?>">
-								<?php echo noHTML($set["name"]); ?> 
-							</a>
-						</span>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" class="line">&nbsp;</td>
-				</tr>
-<?php
-	}
-}
-?>
-			</tbody></table>
+	<h1 id="">Search Result</h1>
+
+	<!-- Data -->
+	<table class="home_line"><tbody >
+	<?php $first = true;if(isset($sets)){foreach ($sets as $set){ ?>
+		<tr class="home_line <?php if ($first) {$first = false; echo " first"; }?>">
+			<td>
+				<span class="cardsetlist_name">
+					<a href="/flashcard/<?php echo $set["url"]; ?><?php echo $set["id"]; ?>">
+						<?php echo noHTML($set["name"]); ?>
+					</a>
+				</span>
+			</td>
 			
+		</tr>
+	<?php }} ?>
+	</tbody></table>
 			
-			<!-- Paging -->
-			<div class="pagination">
-<?php
-if ($total_page > 0){
-	if ($page == 1 && $page < $total_page) {
-?>
-				<span class="disabled prev_page">« Previous</span>
-				<a class="next_page" href="./?page=<?php echo $page + 1; ?>">Next »</a>
-<?php 
-	} else if ($page < $total_page) {
-?>
-				<a class="prev_page" href="./?page=<?php echo $page - 1; ?>">« Previous</a>
-				<a class="next_page" href="./?page=<?php echo $page + 1; ?>">Next »</a>
-<?php 
-	} else if ($page == $total_page && $page > 1) {
-?>
-				<a class="prev_page" href="./?page=<?php echo $page - 1; ?>">« Previous</a>
-				<span class="disabled next_page">Next »</span>
-<?php 
-	}
-}
-?>
-			</div>
 			
 </div>	
 </div>

@@ -22,7 +22,7 @@
 	$total_set = mysqli_fetch_assoc($result)["total_set"];
 	$total_page = ceil($total_set / 20);
 	
-	$stmt = mysqli_prepare($con, "SELECT id, name, public, cards, category, username, UNIX_TIMESTAMP(created) AS created, url FROM sets ORDER BY created DESC LIMIT 20 OFFSET ?;");
+	$stmt = mysqli_prepare($con, "SELECT id, name, cards, username, category, UNIX_TIMESTAMP(created) AS created, url FROM sets WHERE public = 1 ORDER BY created DESC LIMIT 20 OFFSET ?;");
 	mysqli_stmt_bind_param($stmt, "i", $start_from);
 	mysqli_stmt_execute($stmt);
 	$result = mysqli_stmt_get_result($stmt);
@@ -68,75 +68,62 @@
 <?php require_once("../private/navbar.php"); ?>
 <div id="main">
 	
-			<h1 id="title">Recently Created <?php if ($page > 1) echo "- Page $page"; ?></h1>
+	<h1 ><?=$lang["navbar"]["browse"] ?><?php if ($page > 1) echo " #$page"; ?></h1>
+	
+	<!-- Data -->
+	<table class="home_line"><tbody >
+	<?php $first = true;if(isset($sets)){foreach ($sets as $set){ ?>
+		<tr class="home_line <?php if ($first) {$first = false; echo " first"; }?>">
+			<td>
+				<span class="cardsetlist_name">
+					<a href="/flashcard/<?php echo $set["url"]; ?><?php echo $set["id"]; ?>">
+						<?php echo noHTML($set["name"]); ?>
+					</a>
+				</span>
+				<div class="cardsetlist_details">
+				
+					<span class="card_count"><?=$set["cards"]?> <?=$lang["user"]["cards"]?></span>
+				
+					<?php if ($set["category"] != "" ){ ?>
+						<a class="set_category" href="/flashcard/category.php?id=<?=noHTML($set["category"])?>">
+							<?=$set["category"]?>
+						</a>
+					<?php } ?>
+					
+					
+					<?=$lang["index"]["created"] ?> <?php echo timeAgo($set["created"]); ?> <?=$lang["index"]["by"] ?> <a class="userlink" href="/user/<?php echo $set["username"]; ?>"><?php echo $set["username"]; ?></a>
+
+				</div>
+			</td>
 			
-			<!-- Data -->
-			<table><tbody>
-<?php 
-if(isset($sets)){
-	foreach ($sets as $set){
-?>
-				<tr>
-					<td class="cardsetlist_name set_name">
-						<span class="cardsetlist_name">
-							<?php if ($set["public"] == 0){ ?><img src="<?php echo $ASSET; ?>/img/lock.gif" class="lock"><?php } ?>
-							<a href="/flashcard/<?php echo $set["url"]; ?><?php echo $set["id"]; ?>"><?php echo noHTML($set["name"]); ?> 
-								<span dir="ltr"><small>(<?php echo $set["cards"]; ?> cards)</small></span>
-							</a>
-						</span>
-					</td>
-					<td>
-						<div class="cardsetlist_details">
-							created  <?php echo timeAgo($set["created"]); ?> by <a class="userlink" href="/user/<?php echo $set["username"]; ?>"><?php echo $set["username"]; ?></a>
-						</div>
-					</td>
-				</tr>
-<?php 
-		if($set["category"]){
-?>
-				<tr>
-					<td colspan="2" class="set_category">
-						<small><?php echo noHTML($set["category"]); ?></small>
-					</td>
-				</tr
-<?php 
+		</tr>
+	<?php }} ?>
+	</tbody></table>
+			
+			
+	<!-- Paging -->
+	<div class="pagination">
+		<?php
+		if ($total_page > 0){
+			if ($page == 1 && $page < $total_page) {
+		?>
+						<span class="disabled prev_page">« Previous</span>
+						<a class="next_page" href="./?page=<?php echo $page + 1; ?>">Next »</a>
+		<?php 
+			} else if ($page < $total_page) {
+		?>
+						<a class="prev_page" href="./?page=<?php echo $page - 1; ?>">« Previous</a>
+						<a class="next_page" href="./?page=<?php echo $page + 1; ?>">Next »</a>
+		<?php 
+			} else if ($page == $total_page && $page > 1) {
+		?>
+						<a class="prev_page" href="./?page=<?php echo $page - 1; ?>">« Previous</a>
+						<span class="disabled next_page">Next »</span>
+		<?php 
+			}
 		}
-?>
-				<tr>
-					<td colspan="2" class="line">&nbsp;</td>
-				</tr>
-<?php
-	}
-}else{
-	echo "<i>No data</i>";
-}
-?>
-			</tbody></table>
-			
-			
-			<!-- Paging -->
-			<div class="pagination">
-<?php
-if ($total_page > 0){
-	if ($page == 1 && $page < $total_page) {
-?>
-				<span class="disabled prev_page">« Previous</span>
-				<a class="next_page" href="./?page=<?php echo $page + 1; ?>">Next »</a>
-<?php 
-	} else if ($page < $total_page) {
-?>
-				<a class="prev_page" href="./?page=<?php echo $page - 1; ?>">« Previous</a>
-				<a class="next_page" href="./?page=<?php echo $page + 1; ?>">Next »</a>
-<?php 
-	} else if ($page == $total_page && $page > 1) {
-?>
-				<a class="prev_page" href="./?page=<?php echo $page - 1; ?>">« Previous</a>
-				<span class="disabled next_page">Next »</span>
-<?php 
-	}
-}
-?>
-			</div>
+		?>
+	</div>
 			
 </div>	
 </div>

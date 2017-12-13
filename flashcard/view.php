@@ -258,29 +258,20 @@
 <div id="sidebar-right-cs">
 	<div class="box sidebar-right-box">
 
-		<h3>Created:</h3>
-		<?php echo timeAgo($set["created"]); ?> by <a class="userlink" href="/user/<?php echo $set["username"]; ?>"><?php echo $set["username"]; ?></a>
-		<br><br>
-		<div style="float:left"><h3>Number of cards: </h3></div><div style="float:left" id="cardcnt"><?php echo $set["cards"]; ?></div>
-		<br><br>
-		<h3>Category:</h3>
+		<?=$lang["set"]["created"] ?>
+		<?php echo timeAgo($set["created"]); ?> 
+		<?=$lang["index"]["by"] ?>
+		<a class="userlink" href="/user/<?php echo $set["username"]; ?>"><?php echo $set["username"]; ?></a>
+		<br>
+		<span class="card_count"><?=$set["cards"]?> <?=$lang["user"]["cards"]?></span>
 		
-		<?php 
-		if (!empty($set["category"])){
-			if($is_owner === false){
-		?>
-				<a class="taglink" href="/category/<?php echo noHTML($set["category"]); ?>"><?php echo noHTML($set["category"]); ?></a>
-		<?php
-			} else {
-		?>
-				<a class="taglink"  href="/user/<?=$set["username"]?>?cat=<?=noHTML($set["category"])?>#flashcard_category"><?php echo noHTML($set["category"]); ?></a>
-		<?php
-			}
-		}
-		?>
+		<?php if ($set["category"] != "" ){ ?>
+			<a class="set_category" href="/flashcard/category.php?id=<?=noHTML($set["category"])?>">
+				<?=$set["category"]?>
+			</a>
+		<?php } ?>
 	</div>
 				
-	<!--<div id="ga1" class="box sidebar-right-box"></div> -->
 	
 </div>
 <!-- End right column -->

@@ -8,15 +8,13 @@ RedirectMatch 404 /\.git
 RedirectMatch 404 /\.gitignore
 
 RewriteRule ^search$ /search.php
-RewriteRule ^about$ /about.php
-RewriteRule ^contact$ /contact.php
 RewriteRule ^login$ /login.php
-RewriteRule ^privacy$ /privacy.php
 RewriteRule ^recovery$ /recovery.php
 RewriteRule ^signup$ /signup.php
-RewriteRule ^terms$ /terms.php
 RewriteRule ^user/([0-9a-z]+)$ /user.php?id=$1
 RewriteRule ^user/([0-9a-z]+)/(.+)$ /flashcard/category.php?username=$1&id=$2
-RewriteRule ^category/(.+)$ /flashcard/category.php?id=$1
+
 RewriteRule ^flashcard/([0-9a-z\-]*)\-([\d]+)$ /flashcard/view.php?id=$2
 RewriteRule ^flashcard/([\d]+)$ /flashcard/view.php?id=$1
+
+RewriteRule ^res_([0-9]+)/(.+)$ /res/$2

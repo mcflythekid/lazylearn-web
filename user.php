@@ -79,13 +79,15 @@
 	}
 	
 	/* Get sets data */
-	if (!isset($_GET["cat"])){
-		$stmt = mysqli_prepare($con, "SELECT id, name, public, cards, UNIX_TIMESTAMP(created) AS created, url, category FROM sets WHERE username = ? ORDER BY created DESC;");
-		mysqli_stmt_bind_param($stmt, "s", $username);
-	} else {
-		$stmt = mysqli_prepare($con, "SELECT id, name, public, cards, UNIX_TIMESTAMP(created) AS created, url, category FROM sets WHERE username = ? AND category = ? ORDER BY created DESC;");
-		mysqli_stmt_bind_param($stmt, "ss", $username, $_GET["cat"]);
-	}
+	$stmt = mysqli_prepare($con, "SELECT
+	 s.id, s.name, s.public, s.cards, UNIX_TIMESTAMP(s.created) AS created, s.url, s.category, COUNT(c.id) as repetition
+     FROM sets s
+	 LEFT JOIN cards c ON s.id = c.set_id AND c.step <= ? AND (c.weakup <= NOW() OR c.weakup IS NULL)
+	 WHERE s.username = ? AND s.category LIKE ? 
+	 GROUP BY s.id, s.name, s.public, s.cards, s.created, s.url, s.category 
+	 ORDER BY created DESC;");
+	$cat = isset($_GET["cat"]) ? $_GET["cat"] : '%';
+	mysqli_stmt_bind_param($stmt, "iss", $LEITNER_SIZE, $username, $cat);
 	mysqli_stmt_execute($stmt);
 	$result = mysqli_stmt_get_result($stmt);
 	if (mysqli_num_rows($result) > 0) {
@@ -323,66 +325,49 @@ for ($i = 1; $i <= $LEITNER_SIZE + 2; $i++) {
 </div>
 <!-- End graph -->
 
-<!-- Categories -->
-<div id="ucs-taglist" class="box">
-	<h2 id="flashcard_category"><?=$lang["user"]["categories"]?></h2>
 
-	<a class="taglink" href="/user/<?=$username?>#flashcard_category"><strong>All Flashcards</strong></a>&nbsp;&nbsp;
-	
-	<?php  if (!empty($categories) ){ foreach($categories as $category){ ?>
-	<!--<a class="taglink" href="/user/<?php echo $username; ?>/<?php echo noHTML($category); ?>"><?php echo noHTML($category); ?></a>&nbsp;&nbsp;-->
-	<a class="taglink" href="/user/<?=$username?>?cat=<?=noHTML($category)?>#flashcard_category"><?php echo noHTML($category); ?></a>&nbsp;&nbsp;
-	<?php } } else { echo '<i>' . $lang["user"]["no_data"] . '</i>'; } ?>
-
-</div>
-<!-- End categories -->
-
-
-<!-- Sets -->
-<style>
-.taglink.taglink2{
-	line-height:1em !important;
-}
-span.private_set{
-	color: #cc3334;
-}
-a{
-	text-decoration: none !important;
-}
-</style>
+<br>
 <div class="box">
-	<h2>
-	<?=isset($_GET["cat"]) ? noHtml($_GET["cat"]) : ""?>
-	<?=$lang["user"]["flashcards"]?>
-	</h2>
+	<h2><?=$lang["user"]["flashcards"]?></h2>
 
 	<table><tbody>
 		<?php  if(isset($sets)){ foreach ($sets as $set){ ?>
 		<tr><td>
 		
 			<span class="cardsetlist_name">
-			
-				<?php $set_css_class = $set["public"] == 0 ? "private_set" : ""?>
-			
-				<a href="/flashcard/<?php echo $set["url"]; ?><?php echo $set["id"]; ?>">
-					<span class="<?=$set_css_class?>"><?=noHtml($set["name"])?></span>
-					<span dir="ltr"><small>(<?=$set["cards"]?> <?=$lang["user"]["cards"]?>)</small></span>
-				</a>
 				
-				<!--<?php if ($set["public"] == 0){ ?><img src="<?php echo $ASSET; ?>/img/lock.gif" class="lock"><?php } ?>-->
-				
-				<?php if ($set["category"] != "" && !isset($_GET["cat"])){ ?>
-				<a class="taglink taglink2" href="/user/<?php echo $username; ?>/<?=noHTML($set["category"]); ?>"><?= noHTML($set["category"]); ?></a>
+
+				<?php if ($set["public"] == 0){ ?>
+					<img src="<?php echo $ASSET; ?>/img/lock.gif" class="lock" alt="Private" title="Private">
+				<?php } else {?>
+					<img src="<?php echo $ASSET; ?>/img/world.png" class="lock" alt="Public" title="Public">
 				<?php } ?>
 				
+				<?php if ($set["repetition"] > 0){ ?>
+					<img src="<?php echo $ASSET; ?>/img/alarm.png" class="lock" alt="Time up" title="Time up">
+					<?=$set["repetition"]?>
+				<?php } ?>
+				
+				<span class="card_count"><?=$set["cards"]?> <?=$lang["user"]["cards"]?></span>
+				
+				<?php if ($set["category"] != "" ){ ?>
+					<a class="set_category" href="/flashcard/category.php?id=<?=noHTML($set["category"])?>">
+						<?=$set["category"]?>
+					</a>
+				<?php } ?>
+				
+				
+				<a href="/flashcard/<?php echo $set["url"]; ?><?php echo $set["id"]; ?>">
+					<span><?=noHtml($set["name"])?></span>
+				</a>
+
 			</span>
 			
-			<!--<div class="cardsetlist_details"><?=$lang["user"]["created"]?> <?php echo timeAgo($set["created"]);?></div>-->
 		</td></tr>
-		<?php } }else{ echo "<i>No data</i>"; } ?>
+		<?php } }else{ echo "<i></i>"; } ?>
 						
 	</tbody></table>
-				
+		
 </div>
 <!-- End sets -->
 
