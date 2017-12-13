@@ -6,7 +6,7 @@
 	$con = open_con();
 
 	/* Get recent created */
-	$stmt = mysqli_prepare($con, "SELECT id, name, cards, category, username, UNIX_TIMESTAMP(created) AS created, url FROM sets WHERE cards > 0 AND public = 1 ORDER BY created DESC LIMIT 10;");
+	$stmt = mysqli_prepare($con, "SELECT id, name, cards, category, username, UNIX_TIMESTAMP(created) AS created, url FROM sets WHERE cards > 0 AND public = 1 ORDER BY created DESC LIMIT 20;");
 	mysqli_stmt_execute($stmt);
 	$result = mysqli_stmt_get_result($stmt);
 	if (mysqli_num_rows($result) > 0) {
@@ -17,7 +17,7 @@
 	}
 
 	/* Get recent studied*/
-	$stmt = mysqli_prepare($con, "SELECT id, name, cards, category, username, UNIX_TIMESTAMP(last_used) AS last_used, url FROM sets WHERE cards > 0 AND last_used IS NOT NULL AND public = 1 ORDER BY last_used DESC LIMIT 10;");
+	$stmt = mysqli_prepare($con, "SELECT id, name, cards, category, username, UNIX_TIMESTAMP(last_used) AS last_used, url FROM sets WHERE cards > 0 AND last_used IS NOT NULL AND public = 1 ORDER BY last_used DESC LIMIT 20;");
 	mysqli_stmt_execute($stmt);
 	$result = mysqli_stmt_get_result($stmt);
 	if (mysqli_num_rows($result) > 0) {
