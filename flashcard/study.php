@@ -42,12 +42,15 @@
 	
 	if (isset($_GET["review_all"])){
 		$stmt = mysqli_prepare($con, "SELECT id, front, back FROM cards WHERE set_id = ?;");
+		mysqli_stmt_bind_param($stmt, "i", $id);
 	}else if (isset($_GET["study_old"])){
-		$stmt = mysqli_prepare($con, "SELECT id, front, back FROM cards WHERE set_id = ? AND step <> 5 AND (weakup <= NOW() AND weakup IS NOT NULL) ORDER BY step DESC, id;");
+		$stmt = mysqli_prepare($con, "SELECT id, front, back FROM cards WHERE set_id = ? AND step <= ? AND weakup <= NOW() ORDER BY step DESC, id;");
+		mysqli_stmt_bind_param($stmt, "ii", $id, $LEITNER_SIZE);
 	}else{
-		$stmt = mysqli_prepare($con, "SELECT id, front, back FROM cards WHERE set_id = ? AND step <> 5 AND (weakup <= NOW() OR weakup IS NULL) ORDER BY step DESC, id;");
+		$stmt = mysqli_prepare($con, "SELECT id, front, back FROM cards WHERE set_id = ? AND step <= ? AND (weakup <= NOW() OR weakup IS NULL) ORDER BY step DESC, id;");
+		mysqli_stmt_bind_param($stmt, "ii", $id, $LEITNER_SIZE);
 	}
-	mysqli_stmt_bind_param($stmt, "i", $id);
+	
 	mysqli_stmt_execute($stmt);
 	$result = mysqli_stmt_get_result($stmt);
 	$cards = array();

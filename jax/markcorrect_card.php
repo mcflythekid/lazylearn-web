@@ -36,15 +36,14 @@
 	
 	/* Change step */
 	$card["step"]++;
-	if ($card["step"] == 5){
-		$stmt = mysqli_prepare($con, "UPDATE cards SET step = 5, weakup = NOW() WHERE id = ?;");
-		mysqli_stmt_bind_param($stmt, "i", $id);
+	if ($card["step"] == $LEITNER_SIZE + 1){
+		$cards["weakup"] = time() + $LEITNER[$LEITNER_SIZE] * 5;
 	} else {
 		$cards["weakup"] = time() + $LEITNER[$card["step"]];
-		$stmt = mysqli_prepare($con, "UPDATE cards SET step = ?, weakup = FROM_UNIXTIME(?) WHERE id = ?;");
-		mysqli_stmt_bind_param($stmt, "iii", $card["step"], $cards["weakup"], $id);
 	}
 	
+	$stmt = mysqli_prepare($con, "UPDATE cards SET step = ?, weakup = FROM_UNIXTIME(?) WHERE id = ?;");
+	mysqli_stmt_bind_param($stmt, "iii", $card["step"], $cards["weakup"], $id);
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_close($stmt);
 	mysqli_close($con);
