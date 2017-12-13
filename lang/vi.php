@@ -7,7 +7,7 @@ $lang["navbar"]["setting"] = "Cài đặt";
 $lang["navbar"]["new_set"] = "Thêm Flashcard";
 $lang["navbar"]["logout"] = "Thoát";
 
-$lang["index"]["welcome"] = "Chào mừng bạn đến với Lazylearn";
+$lang["index"]["welcome"] = "Chào mừng bạn đến với Lazylearn Ahihi";
 $lang["index"]["recent_add"] = "Mới thêm vào";
 $lang["index"]["recent_learn"] = "Mới học xong";
 $lang["index"]["on_facebook"] = "Facebook Page";
