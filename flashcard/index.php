@@ -16,7 +16,7 @@
 		$start_from = 0;
 	}
 	
-	$stmt = mysqli_prepare($con, "SELECT COUNT(*) AS total_set from sets;");
+	$stmt = mysqli_prepare($con, "SELECT COUNT(*) AS total_set from sets WHERE public = 1;");
 	mysqli_stmt_execute($stmt);
 	$result = mysqli_stmt_get_result($stmt);
 	$total_set = mysqli_fetch_assoc($result)["total_set"];
