@@ -288,7 +288,7 @@
 </div>	
 </div>
 <?php require_once("../private/footer.php"); ?>
-<?php if ($is_owner){ ?><script src="//code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script><?php } ?>
+<script src="//code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
 <script>
 	var theCardset = [];	
 	<?php if (isset($cards) and isset($_GET["compose"])){	
