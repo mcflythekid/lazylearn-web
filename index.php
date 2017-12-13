@@ -68,7 +68,7 @@
 						<span class="card_count"><?=$set["cards"]?> <?=$lang["user"]["cards"]?></span>
 						<?php if ($set["category"] != "" ){ ?>
 							<a class="set_category" href="/flashcard/category.php?id=<?=noHTML($set["category"])?>">
-								<?=$set["category"]?>
+								<?=noHTML($set["category"])?>
 							</a>
 						<?php } ?>
 						<?=$lang["index"]["created"] ?> <?php echo timeAgo($set["created"]); ?> <?=$lang["index"]["by"] ?> <a class="userlink" href="/user/<?php echo $set["username"]; ?>"><?php echo $set["username"]; ?></a>
@@ -97,8 +97,8 @@
 					<div class="cardsetlist_details">
 						<span class="card_count"><?=$set["cards"]?> <?=$lang["user"]["cards"]?></span>
 						<?php if ($set["category"] != "" ){ ?>
-							<a class="set_category" href="/category/<?=noHTML($set["category"])?>">
-								<?=$set["category"]?>
+							<a class="set_category" href="/flashcard/category.php?id=<?=noHTML($set["category"])?>">
+								<?=noHTML($set["category"])?>
 							</a>
 						<?php } ?>
 						<?=$lang["index"]["studied"] ?> <?php echo timeAgo($set["last_used"]); ?> <?=$lang["index"]["by"] ?> <a class="userlink" href="/user/<?php echo $set["username"]; ?>"><?php echo $set["username"]; ?></a>
