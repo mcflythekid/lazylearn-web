@@ -60,7 +60,7 @@
 <title><?php echo noHTML($set["name"]); ?></title>
 <link rel="shortcut icon" href="/favicon.ico"  />
 <link rel="stylesheet" href="<?php echo $ASSET?>/css/style.css">
-<?php if ($is_owner){ ?><link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/start/jquery-ui.min.css"><?php } ?>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/start/jquery-ui.min.css">
 <meta name="description" content="<?php echo noHTML($set["name"]); ?>" />
 <meta name="canonical" content="https://lazylearn.com/flashcard/<?php echo $set['url']; ?><?php echo $set['id']; ?>"/>
 
