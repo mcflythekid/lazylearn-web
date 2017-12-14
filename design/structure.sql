@@ -27,6 +27,7 @@ CREATE TABLE `cards` (
   `back` varchar(1024) COLLATE utf8_bin DEFAULT NULL,
   `step` tinyint(3) unsigned DEFAULT '0',
   `weakup` timestamp NULL DEFAULT NULL,
+  `learned` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `card_username` (`username`),
   KEY `card_set_id` (`set_id`)
