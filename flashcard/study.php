@@ -398,7 +398,7 @@ window.onclick = function(event) {
 		$('#card_back').parent().removeClass('oxford_link').off();
 		$el.parent().addClass('oxford_link');
 		$el.parent().click(function(){
-			var win = window.open('https://www.oxfordlearnersdictionaries.com/us/definition/american_english/' + $el.text(), '_blank');
+			var win = window.open('https://www.oxfordlearnersdictionaries.com/us/definition/english/' + $el.text(), '_blank');
 			win.focus();
 		});
 	};
