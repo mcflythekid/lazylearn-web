@@ -300,7 +300,7 @@ for ($i = 1; $i <= $LEITNER_SIZE + 2; $i++) {
 
 
 
-<h1 id="username"><?php=noHtml( $_GET["id"]) ?></h1>
+<h1 id="username"><?=noHtml( $_GET["id"]) ?></h1>
 
 <!-- Graph -->
 <div id="vertgraph-father">
