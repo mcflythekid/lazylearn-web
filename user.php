@@ -381,7 +381,7 @@ for ($i = 1; $i <= $LEITNER_SIZE + 2; $i++) {
 				<?php } ?>
 				
 				<?php if ($sets_learned[$i]['learned'] == $sets_timeup[$i]['timeup']){ ?>
-					<img src="<?php echo $ASSET; ?>/img/learned.png" class="lock" alt="Learned today!" title="Learned today!">
+					<img src="<?php echo $ASSET; ?>/img/learned.png" class="lock" alt="Learned all today!" title="Learned all today!">
 				<?php } ?>					
 				
 				<?php if ($set["repetition"] > 0){ ?>
