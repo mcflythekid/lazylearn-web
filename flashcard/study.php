@@ -77,6 +77,7 @@
 <head>
 <title>Studying: <?php echo noHTML($set["name"]); ?></title>
 <link rel="shortcut icon" href="/favicon.ico"  />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/start/jquery-ui.min.css">
 <link rel="stylesheet" href="<?php echo $ASSET?>/css/style.css">
 </head>
 <body>
@@ -240,6 +241,7 @@
 	?>
 </script>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
 <script src="https://www.google.com/jsapi"></script>
 <script src="<?php echo $ASSET?>/js/cardsets_study.js"></script>
 <?php if (sizeof($cards) == 0){ ?><script>end_session();</script><?php } ?>	

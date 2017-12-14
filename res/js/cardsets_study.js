@@ -71,7 +71,6 @@ var total_unanswered = 0;
 
 // Start
 studystart();
-play_sound();
 
 
 // Report
@@ -168,35 +167,7 @@ function mark_incorrect() {
 	next_unanswered_card_or_end_session();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function play_sound(){
-		if (sound) {
-			var name = jQuery(jQuery.parseHTML(theCardset[currcard].card_front)).text();
-				
-			$("div#sound").
-			html( "<embed src=\"http://tts-api.com/tts.mp3?q="+name+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" />");
-		}
-}
-
-
 function display_card(with_delay) {
-	
-	play_sound();
-	
-	
   flipped=false;
   show_hide_card_back();
   update_card_content();
@@ -224,27 +195,21 @@ function update_card_content() {
 }
 
 function update_card_status() {
-  show_hide_card_back();
-  if (theCardset[currcard].answered && theCardset[currcard].correct)
-    {
-    $('#card_status').text('CORRECT');
-    $('#card_status').css('color','#66cc66'); // style.color='#66cc66';
-    $('#card_status').show();
-    show_marking_buttons();
-    }
-    else if(theCardset[currcard].answered)
-    {
-    $('#card_status').text('INCORRECT');
-    $('#card_status').css('color','#ff3333');
-    $('#card_status').show();
-    show_marking_buttons();
-    }
-    else
-    {
-    $('#card_status').text('');
-    //$('#card_status').style.background='';
-    $('#card_status').hide();
-    show_flip_button();
+	show_hide_card_back();
+	if (theCardset[currcard].answered && theCardset[currcard].correct) {
+		$('#card_status').text('CORRECT');
+		$('#card_status').css('color','#66cc66');
+		$('#card_status').show();
+		show_marking_buttons();
+    } else if(theCardset[currcard].answered) {
+		$('#card_status').text('INCORRECT');
+		$('#card_status').css('color','#ff3333');
+		$('#card_status').show();
+		show_marking_buttons();
+    } else {
+		$('#card_status').text('');
+		$('#card_status').hide();
+		show_flip_button();
     }
 }
 
