@@ -34,7 +34,7 @@
 	}
 	
 	/* Update */
-	$stmt = mysqli_prepare($con, "UPDATE cards SET step = 0, weakup = NOW() WHERE id = ?;");
+	$stmt = mysqli_prepare($con, "UPDATE cards SET step = 0, weakup = NOW(), learned = NOW() WHERE id = ?;");
 	mysqli_stmt_bind_param($stmt, "i", $id);
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_close($stmt);

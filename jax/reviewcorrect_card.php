@@ -37,7 +37,7 @@
 	$card["step"]++;
 	if ($card["step"] == 1){
 		$cards["weakup"] = time() + $LEITNER[$card["step"]];
-		$stmt = mysqli_prepare($con, "UPDATE cards SET step = ?, weakup = FROM_UNIXTIME(?) WHERE id = ?;");
+		$stmt = mysqli_prepare($con, "UPDATE cards SET step = ?, weakup = FROM_UNIXTIME(?), learned = NOW() WHERE id = ?;");
 		mysqli_stmt_bind_param($stmt, "iii", $card["step"], $cards["weakup"], $id);
 		mysqli_stmt_execute($stmt);
 		mysqli_stmt_close($stmt);

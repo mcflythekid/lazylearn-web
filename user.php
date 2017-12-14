@@ -83,11 +83,10 @@
 	 s.id, s.name, s.public, s.cards, UNIX_TIMESTAMP(s.created) AS created, s.url, s.category, COUNT(c.id) as repetition
      FROM sets s
 	 LEFT JOIN cards c ON s.id = c.set_id AND c.step <= ? AND (c.weakup <= NOW() OR c.weakup IS NULL)
-	 WHERE s.username = ? AND s.category LIKE ? 
+	 WHERE s.username = ?
 	 GROUP BY s.id, s.name, s.public, s.cards, s.created, s.url, s.category 
 	 ORDER BY created DESC;");
-	$cat = isset($_GET["cat"]) ? $_GET["cat"] : '%';
-	mysqli_stmt_bind_param($stmt, "iss", $LEITNER_SIZE, $username, $cat);
+	mysqli_stmt_bind_param($stmt, "is", $LEITNER_SIZE, $username);
 	mysqli_stmt_execute($stmt);
 	$result = mysqli_stmt_get_result($stmt);
 	if (mysqli_num_rows($result) > 0) {
@@ -99,6 +98,44 @@
 			$sets[] = $row;
 		}
 
+	}
+	mysqli_stmt_close($stmt);
+	
+	/* Get time up data */
+	$stmt = mysqli_prepare($con, "SELECT COUNT(c.id) AS timeup
+     FROM sets s
+	 LEFT JOIN cards c ON s.id = c.set_id AND c.step <= ? AND (c.weakup <= NOW() OR c.weakup IS NULL)
+	 WHERE s.username = ?
+	 GROUP BY s.id
+	 ORDER BY created DESC;");
+	mysqli_stmt_bind_param($stmt, "is", $LEITNER_SIZE, $username);
+	mysqli_stmt_execute($stmt);
+	$result = mysqli_stmt_get_result($stmt);
+	if (mysqli_num_rows($result) > 0) {
+		/* Create array */
+		$sets_timeup = array();
+		while($row = mysqli_fetch_assoc($result)) {
+			$sets_timeup[] = $row;
+		}
+	}
+	mysqli_stmt_close($stmt);
+	
+	/* Get learned today count*/
+	$stmt = mysqli_prepare($con, "SELECT COUNT(c.id) AS learned
+     FROM sets s
+	 LEFT JOIN cards c ON s.id = c.set_id AND c.step = 0 AND (c.weakup <= NOW() OR c.weakup IS NULL) AND (c.learned IS NOT NULL AND DATE(learned) = CURDATE())
+	 WHERE s.username = ?
+	 GROUP BY s.id
+	 ORDER BY created DESC;");
+	mysqli_stmt_bind_param($stmt, "s", $username);
+	mysqli_stmt_execute($stmt);
+	$result = mysqli_stmt_get_result($stmt);
+	if (mysqli_num_rows($result) > 0) {
+		/* Create array */
+		$sets_learned = array();
+		while($row = mysqli_fetch_assoc($result)) {
+			$sets_learned[] = $row;
+		}
 	}
 	mysqli_stmt_close($stmt);
 	
@@ -331,7 +368,7 @@ for ($i = 1; $i <= $LEITNER_SIZE + 2; $i++) {
 	<h2><?=$lang["user"]["flashcards"]?></h2>
 
 	<table><tbody>
-		<?php  if(isset($sets)){ foreach ($sets as $set){ ?>
+		<?php  if(isset($sets)){ for ($i = 0; $i < sizeof($sets); $i++){ $set = $sets[$i];?>
 		<tr><td>
 		
 			<span class="cardsetlist_name">
@@ -343,9 +380,15 @@ for ($i = 1; $i <= $LEITNER_SIZE + 2; $i++) {
 					<img src="<?php echo $ASSET; ?>/img/world.png" class="lock" alt="Public" title="Public">
 				<?php } ?>
 				
+				<?php if ($sets_learned[$i]['learned'] == $sets_timeup[$i]['timeup']){ ?>
+					<img src="<?php echo $ASSET; ?>/img/learned.png" class="lock" alt="Learned today!" title="Learned today!">
+				<?php } ?>					
+				
 				<?php if ($set["repetition"] > 0){ ?>
 					<img src="<?php echo $ASSET; ?>/img/alarm.png" class="lock" alt="Time up" title="Time up">
 				<?php } ?>
+				
+			
 				
 				<span class="card_count"><?=$set["cards"]?> <?=$lang["user"]["cards"]?></span>
 				
