@@ -85,7 +85,7 @@
 			<li><a class="<?php echo $new_class; ?>" href="/flashcard/new.php"><?=$lang["navbar"]["new_set"] ?></a></li>
 		<?php } else { ?>
 		<?php } ?>
-			<li><a href="https://pair.lazylearn.com" target="_blank">Minimum Pairs</a></li>
+			<li><a href="https://pair.lazylearn.com" >Minimum Pairs</a></li>
 	</ul>
 	<div id="nav_search">
 		<form id="cse-search-box" action="/search" accept-charset="UTF-8">

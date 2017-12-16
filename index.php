@@ -120,7 +120,7 @@
 	<div id="front-taglist" class="yellow">
 		<div class="tags">
 			We have just added the Minimum Pair Hacking system.
-			Try it now at <a href="https://pair.lazylearn.com/" target="_blank">https://pair.lazylearn.com/</a>
+			Try it now at <a href="https://pair.lazylearn.com/" >https://pair.lazylearn.com/</a>
 		</div>
 	</div>
 
