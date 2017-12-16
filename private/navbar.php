@@ -78,15 +78,14 @@
  
 <div id="navbar">
 	<ul>
-		<?php  if (isset($_SESSION["username"])){ ?>
 			<li><a class="<?php echo $home_class; ?>" href="/"><?=$lang["navbar"]["home"] ?></a></li>
 			<li><a class="<?php echo $browse_class; ?>" href="/flashcard"><?=$lang["navbar"]["browse"] ?></a></li>
+		<?php  if (isset($_SESSION["username"])){ ?>
 			<li><a class="<?php echo $my_class; ?>" href="/user/<?php echo $_SESSION['username']; ?>"><?php echo $_SESSION['username']; ?></a></li>
 			<li><a class="<?php echo $new_class; ?>" href="/flashcard/new.php"><?=$lang["navbar"]["new_set"] ?></a></li>
 		<?php } else { ?>
-			<li><a class="<?php echo $home_class; ?>" href="/"><?=$lang["navbar"]["home"] ?></a></li>
-			<li><a class="<?php echo $browse_class; ?>" href="/flashcard"><?=$lang["navbar"]["browse"] ?></a></li>
 		<?php } ?>
+			<li><a href="https://pair.lazylearn.com" target="_blank">Minimum Pairs</a></li>
 	</ul>
 	<div id="nav_search">
 		<form id="cse-search-box" action="/search" accept-charset="UTF-8">
