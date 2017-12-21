@@ -46,7 +46,7 @@
 	}else if (isset($_GET["study_old"])){
 		$stmt = mysqli_prepare($con, "SELECT id, front, back FROM cards WHERE set_id = ? AND step <= ? AND weakup <= NOW() ORDER BY step DESC, id;");
 		mysqli_stmt_bind_param($stmt, "ii", $id, $LEITNER_SIZE);
-	}else if (isset($_GET["study_new"])){
+	}else if (isset($_GET["study_fresh"])){
 		$stmt = mysqli_prepare($con, "SELECT id, front, back FROM cards WHERE set_id = ? AND step <= ? AND weakup IS NULL ORDER BY step DESC, id;");
 		mysqli_stmt_bind_param($stmt, "ii", $id, $LEITNER_SIZE);
 	}else{ // study
