@@ -76,7 +76,7 @@
 
 <h1 id="username">Flashcards: <?php echo noHTML($set["name"]); ?></h1>	
 
-<?php graph($_SESSION["username"], $id); ?>
+<?php graph($set["username"], $id); ?>
 
 <!-- Left column-->
 <div id="cs">
