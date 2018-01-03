@@ -147,23 +147,43 @@ function shuffle() {
 	if (theCardset[currcard].answered) {next_unanswered_card_or_end_session();}
 }
 
-// Right
-function mark_correct() {
-	theCardset[currcard].answered = true;
-	theCardset[currcard].correct = true;
+function send_correct(){
 	if (!sa) {
 		$.post("/jax/markcorrect_card.php", {id : theCardset[currcard].card_id} );
 	} else{
 		$.post("/jax/reviewcorrect_card.php", {id : theCardset[currcard].card_id} );
 	}
+}
+
+function send_incorrect(){
+	$.post("/jax/markincorrect_card.php", {id : theCardset[currcard].card_id} );
+}
+
+// Right
+function mark_correct() {
+	if (!theCardset[currcard].answered){
+		send_correct();
+	} else {
+		if (!theCardset[currcard].correct){
+			send_correct();
+		}
+	}
+	theCardset[currcard].answered = true;
+	theCardset[currcard].correct = true;
 	next_unanswered_card_or_end_session();
 }
 
 // Wrong
 function mark_incorrect() {
+	if (!theCardset[currcard].answered){
+		send_incorrect();
+	} else {
+		if (theCardset[currcard].correct){
+			send_incorrect();
+		}
+	}
 	theCardset[currcard].answered = true;
 	theCardset[currcard].correct = false;
-	$.post("/jax/markincorrect_card.php", {id : theCardset[currcard].card_id} );
 	next_unanswered_card_or_end_session();
 }
 
