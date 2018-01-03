@@ -1,8 +1,8 @@
 # 127.0.0.1 lazylearn.localhost
 <VirtualHost *:80>
-	DocumentRoot "C:\Users\HP\Documents\private\lazylearn"
+	DocumentRoot "C:\app\project\lazylearn"
 	ServerName lazylearn.localhost
-	<Directory "C:\Users\HP\Documents\private\lazylearn">
+	<Directory "C:\app\project\lazylearn">
         Options Indexes FollowSymLinks
         AllowOverride all
         Order Deny,Allow
