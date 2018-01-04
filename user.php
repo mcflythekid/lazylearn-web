@@ -34,7 +34,7 @@
 	 LEFT JOIN cards c ON s.id = c.set_id AND c.step <= ? AND (c.weakup <= NOW() OR c.weakup IS NULL)
 	 WHERE s.username = ?
 	 GROUP BY s.id, s.name, s.public, s.cards, s.created, s.url, s.category 
-	 ORDER BY s.name ASC;");
+	 ORDER BY s.category ASC, s.name ASC;");
 	mysqli_stmt_bind_param($stmt, "is", $LEITNER_SIZE, $username);
 	mysqli_stmt_execute($stmt);
 	$result = mysqli_stmt_get_result($stmt);
