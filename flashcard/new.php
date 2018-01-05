@@ -22,6 +22,11 @@
 		}else{
 			$public = 1;
 		}
+		if (isset($_POST["fluent"]) && $_POST["fluent"] == "on"){
+			$fluent = 1;
+		}else{
+			$fluent = 0;
+		}
 
 		
 		if (preg_match("/^(.{1,250})$/", $name) &&  preg_match("/^([^\/\?\&]{0,30})$/", $category)){
@@ -36,11 +41,30 @@
 			if (strlen($url) > 0) { $url.= "-"; }
 			
 			$con = open_con();
-			$stmt = mysqli_prepare($con, "INSERT INTO sets (name,category,username, public, url) value (?,?,?,?, ?);");
-			mysqli_stmt_bind_param($stmt, "sssis", $name, $category , $_SESSION["username"], $public, $url);
-			mysqli_stmt_execute($stmt);
+			
+			if ($fluent == 0){
+				$stmt = mysqli_prepare($con, "INSERT INTO sets (name,category,username, public, url) value (?,?,?,?, ?);");
+				mysqli_stmt_bind_param($stmt, "sssis", $name, $category , $_SESSION["username"], $public, $url);
+				mysqli_stmt_execute($stmt);
+				$new_set_id = mysqli_insert_id($con);
+			} else {
+				$stmt = mysqli_prepare($con, "INSERT INTO sets (name,category,username, public, url, is_fluent, fluent_is_parent) value (?,?,?,?,?, 1, 1);");
+				mysqli_stmt_bind_param($stmt, "sssis", $name, $category , $_SESSION["username"], $public, $url);
+				mysqli_stmt_execute($stmt);
+				$new_set_id = mysqli_insert_id($con);
 				
-			$new_set_id = mysqli_insert_id($con);
+				$stmt = mysqli_prepare($con, "INSERT INTO sets (name,category,username, public, url, is_fluent, fluent_is_parent, fluent_id, fluent_parent_id) value (?,?,?,?,?, 1, 0, 1, ?);");
+				mysqli_stmt_bind_param($stmt, "sssisi", $name, $category , $_SESSION["username"], $public, $url, $new_set_id);
+				mysqli_stmt_execute($stmt);
+				
+				$stmt = mysqli_prepare($con, "INSERT INTO sets (name,category,username, public, url, is_fluent, fluent_is_parent, fluent_id, fluent_parent_id) value (?,?,?,?,?, 1, 0, 2, ?);");
+				mysqli_stmt_bind_param($stmt, "sssisi", $name, $category , $_SESSION["username"], $public, $url, $new_set_id);
+				mysqli_stmt_execute($stmt);
+				
+				$stmt = mysqli_prepare($con, "INSERT INTO sets (name,category,username, public, url, is_fluent, fluent_is_parent, fluent_id, fluent_parent_id) value (?,?,?,?,?, 1, 0, 3, ?);");
+				mysqli_stmt_bind_param($stmt, "sssisi", $name, $category , $_SESSION["username"], $public, $url, $new_set_id);
+				mysqli_stmt_execute($stmt);
+			}
 			
 			if ($public == 1){
 				$stmt = mysqli_prepare($con, "INSERT INTO searches (id, name) value (?,?);");
@@ -94,6 +118,7 @@
 <title><?=$lang["flashcard"]["new"]["title"]?></title>
 <link rel="shortcut icon" href="/favicon.ico"  />
 <link rel="stylesheet" href="<?php echo $ASSET?>/css/style.css">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -112,9 +137,21 @@
 			<p>
 				<label for="category"><strong><?=$lang["flashcard"]["new"]["category"]?> </strong>(<small><?=$lang["flashcard"]["new"]["optional"]?></small>)<br><input name="category" size="30" value="<?php if (isset($_POST['category'])) {echo trim($_POST['category']);} ?>"/>
 				<input name="private" id="private" type="checkbox"><label id="private" for="private"><strong><?=$lang["flashcard"]["new"]["private"]?> </strong>(<small><?=$lang["flashcard"]["new"]["optional"]?></small>)</label>
+				<input name="fluent" id="fluent" type="checkbox"><label id="fluent" for="fluent"><strong>Fluent </strong>(<small><?=$lang["flashcard"]["new"]["optional"]?></small>)</label>
+				<script>
+					$('#fluent').change(function(){
+						if ($(this).prop('checked')){
+							$('#import').hide();
+						} else {
+							$('#import').show();
+						}
+					});
+				
+				</script>
+				
 				<br><span class="error" id="error_category"></span>
 			</p>
-			<p>
+			<p id="import">
 				<label id="file" for="file"><strong><?=$lang["flashcard"]["new"]["import_data"]?> </strong>(<small><?=$lang["flashcard"]["new"]["optional"]?></small>)</label><br><input name="file" id="file" type="file" accept="text/plain">
 			</p>
 		</div>
@@ -128,7 +165,7 @@
 </div>	
 </div>
 <?php require_once("../private/footer.php"); ?>
-<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
 <script src="<?php echo $ASSET?>/js/cardsets_new_edit.js"></script>
 <?php if ($new_failed){  ?><script>check_name();check_category();</script><?php } ?>
 </body>
