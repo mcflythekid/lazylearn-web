@@ -29,13 +29,12 @@
 	
 	/* Get sets data */
 	$stmt = mysqli_prepare($con, "SELECT
-	 s.id, s.name, s.public, s.cards, UNIX_TIMESTAMP(s.created) AS created, s.url, s.category, s.is_fluent, s.fluent_is_parent, s.fluent_id, s.fluent_parent_id, COUNT(c.id) as repetition
+	 s.id, s.name, s.public, s.cards, UNIX_TIMESTAMP(s.created) AS created, s.url, s.category, COUNT(c.id) as repetition
      FROM sets s
 	 LEFT JOIN cards c ON s.id = c.set_id AND c.step <= ? AND (c.weakup <= NOW() OR c.weakup IS NULL)
-	
-	 WHERE s.username = ? 
-	 GROUP BY s.id, s.name, s.public, s.cards, s.created, s.url, s.category, s.is_fluent, s.fluent_is_parent, s.fluent_id, s.fluent_parent_id
-	 ORDER BY s.category ASC, s.name ASC, s.fluent_id;");
+	 WHERE s.username = ?
+	 GROUP BY s.id, s.name, s.public, s.cards, s.created, s.url, s.category 
+	 ORDER BY s.category ASC, s.name ASC;");
 	mysqli_stmt_bind_param($stmt, "is", $LEITNER_SIZE, $username);
 	mysqli_stmt_execute($stmt);
 	$result = mysqli_stmt_get_result($stmt);
@@ -144,19 +143,13 @@
 		<?php  if(isset($sets)){ for ($i = 0; $i < sizeof($sets); $i++){ $set = $sets[$i];?>
 		<tr><td>
 		
-			<?php if ($set["is_fluent"] == 1 && $set["fluent_is_parent"] == 0){ ?>
-				<span style="margin-left: 40px; float: left">&nbsp;</span>
-			<?php } ?>
-		
 			<span class="cardsetlist_name">
 				
-				
-				<?php if ($set["is_fluent"] == 0 || $set["fluent_is_parent"] == 1){ ?>
+
 				<?php if ($set["public"] == 0){ ?>
 					<img src="<?php echo $ASSET; ?>/img/lock.gif" class="lock" alt="Private" title="Private">
 				<?php } else {?>
 					<img src="<?php echo $ASSET; ?>/img/world.png" class="lock" alt="Public" title="Public">
-				<?php } ?>
 				<?php } ?>
 				
 				<?php if ($sets_learned[$i]['learned'] == $sets_timeup[$i]['timeup']){ ?>
