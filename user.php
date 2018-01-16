@@ -161,27 +161,18 @@
 				<?php } ?>
 				
 			
-				<?php if ($set["is_fluent"] == 0 || $set["fluent_is_parent"] == 1){ ?>
-					<span class="card_count"><?=$set["cards"]?> <?=$lang["user"]["cards"]?></span>
-					<?php if ($set["category"] != "" ){ ?>
-						<a class="set_category" href="/flashcard/category.php?id=<?=noHTML($set["category"])?>">
-							<?=$set["category"]?>
-						</a>
-					<?php } ?>				
-				<?php } ?>
 				
-
+				<span class="card_count"><?=$set["cards"]?> <?=$lang["user"]["cards"]?></span>
+				
+				<?php if ($set["category"] != "" ){ ?>
+					<a class="set_category" href="/flashcard/category.php?id=<?=noHTML($set["category"])?>">
+						<?=$set["category"]?>
+					</a>
+				<?php } ?>
 				
 				
 				<a href="/flashcard/<?php echo $set["url"]; ?><?php echo $set["id"]; ?>">
-				
-					<?php if ($set["is_fluent"] == 1 && $set["fluent_is_parent"] == 0){ ?>
-						<?php if ($set['fluent_id'] == 1){?>Know<?php }?>
-						<?php if ($set['fluent_id'] == 2){?>Speak<?php }?>
-						<?php if ($set['fluent_id'] == 3){?>Write<?php }?>
-					<?php } else {?>
-						<span><?=noHtml($set["name"])?></span>
-					<?php } ?>
+					<span><?=noHtml($set["name"])?></span>
 				</a>
 
 			</span>
