@@ -68,26 +68,7 @@
 		}
 	}
 	mysqli_stmt_close($stmt);
-	
-	/* Get learned today count*/
-	$stmt = mysqli_prepare($con, "SELECT COUNT(c.id) AS learned
-     FROM sets s
-	 LEFT JOIN cards c ON s.id = c.set_id AND c.step = 0 AND (c.weakup <= NOW() OR c.weakup IS NULL) AND (c.learned IS NOT NULL AND DATE(learned) = CURDATE())
-	 WHERE s.username = ?
-	 GROUP BY s.id
-	 ORDER BY created DESC;");
-	mysqli_stmt_bind_param($stmt, "s", $username);
-	mysqli_stmt_execute($stmt);
-	$result = mysqli_stmt_get_result($stmt);
-	if (mysqli_num_rows($result) > 0) {
-		/* Create array */
-		$sets_learned = array();
-		while($row = mysqli_fetch_assoc($result)) {
-			$sets_learned[] = $row;
-		}
-	}
-	mysqli_stmt_close($stmt);
-	
+		
 	/* Get categories */
 	$stmt = mysqli_prepare($con, "SELECT DISTINCT(category) AS name FROM sets WHERE username = ?;");
 	mysqli_stmt_bind_param($stmt, "s", $username);
@@ -151,11 +132,7 @@
 				<?php } else {?>
 					<img src="<?php echo $ASSET; ?>/img/world.png" class="lock" alt="Public" title="Public">
 				<?php } ?>
-				
-				<?php if ($sets_learned[$i]['learned'] == $sets_timeup[$i]['timeup']){ ?>
-					<img src="<?php echo $ASSET; ?>/img/learned.png" class="lock" alt="Learned today" title="Learned today">
-				<?php } ?>					
-				
+								
 				<?php if ($set["repetition"] > 0){ ?>
 					<img src="<?php echo $ASSET; ?>/img/leitner_system_icon.png" class="lock" alt="Available for study" title="Available for study">
 				<?php } ?>
