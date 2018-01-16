@@ -119,25 +119,16 @@
 
 <div class="box">
 	<h2><?=$lang["user"]["flashcards"]?></h2>
-
+	<style>img.cc{float: none !important; margin-right: 5px;}</style>
 	<table><tbody>
 		<?php  if(isset($sets)){ for ($i = 0; $i < sizeof($sets); $i++){ $set = $sets[$i];?>
 		<tr><td>
 		
 			<span class="cardsetlist_name">
-				
-
-				<?php if ($set["public"] == 0){ ?>
-					<img src="<?php echo $ASSET; ?>/img/lock.gif" class="lock" alt="Private" title="Private">
-				<?php } else {?>
-					<img src="<?php echo $ASSET; ?>/img/world.png" class="lock" alt="Public" title="Public">
-				<?php } ?>
 								
 				<?php if ($set["repetition"] > 0){ ?>
 					<img src="<?php echo $ASSET; ?>/img/leitner_system_icon.png" class="lock" alt="Available for study" title="Available for study">
 				<?php } ?>
-				
-			
 				
 				<span class="card_count"><?=$set["cards"]?> <?=$lang["user"]["cards"]?></span>
 				
@@ -149,6 +140,10 @@
 				
 				
 				<a href="/flashcard/<?php echo $set["url"]; ?><?php echo $set["id"]; ?>">
+					
+					<?php if ($set["public"] == 0){ ?>
+						<span><img class="cc" src="<?php echo $ASSET; ?>/img/lock.gif"></span>
+					<?php } ?>
 					<span><?=noHtml($set["name"])?></span>
 				</a>
 
