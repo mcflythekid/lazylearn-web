@@ -178,18 +178,22 @@ function graph($username, $set_id = null){
 
 /* Air space */
 #vertgraph dl dd.background{ height: 110px;background: none; }
+#legendleft{
+	font-size: 11px;
+}
+
 </style>
 <!-- Graph -->
 <div id="vertgraph-father">
 	<div id="vertgraph">
 		<div id="legend">
-			<div id="legendleft">
+			<!--<div id="legendleft">
 				<?=$lang["user"]["today"]?>: <span class="green">
 				<?=( + $data[0][1] + $data[1][0] + $data[2][0] + $data[3][0] + $data[4][0] + $data[5][0] + $data[6][0] - 0)?>
 				</span>
-			</div>
+			</div>-->
 			
-			<div id="legendright">
+			<div id="legendleft">
 				<?=$lang["user"]["fresh"]?>: <span class="legsp" style="background: #a8bbe3;">
 				<?=$data[0][0]?></span>
 				

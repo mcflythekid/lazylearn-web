@@ -99,8 +99,9 @@
 
 <style>
 .slideContainer {
-    overflow-x: scroll;
+    overflow-x: auto;
     white-space: nowrap;
+	width: 100%;
 }
 .slide {
     display: inline-block;
