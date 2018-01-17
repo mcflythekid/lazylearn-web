@@ -111,46 +111,46 @@
 </style>
 
 <div class="slideContainer">
-<div class="slide">
-<?php graph($username); ?>
-</div>
+	<div class="slide">
+		<?php graph($username); ?>
+	</div>
 </div>
 
-	<h2><?=$lang["user"]["flashcards"]?></h2>
-	<style>img.cc{float: none !important; margin-right: 5px;}</style>
-	<table><tbody>
-		<?php  if(isset($sets)){ for ($i = 0; $i < sizeof($sets); $i++){ $set = $sets[$i];?>
-		<tr><td>
-		
-			<span class="cardsetlist_name">
-								
-				<?php if ($set["repetition"] > 0){ ?>
-					<img src="<?php echo $ASSET; ?>/img/leitner_system_icon.png" class="lock" alt="Available for study" title="Available for study">
-				<?php } ?>
-				
-				<span class="card_count"><?=$set["cards"]?> <?=$lang["user"]["cards"]?></span>
-				
-				<?php if ($set["category"] != "" ){ ?>
-					<a class="set_category" href="/flashcard/category.php?id=<?=noHTML($set["category"])?>">
-						<?=$set["category"]?>
-					</a>
-				<?php } ?>
-				
-				
-				<a href="/flashcard/<?php echo $set["url"]; ?><?php echo $set["id"]; ?>">
-					
-					<?php if ($set["public"] == 0){ ?>
-						<span><img class="cc" src="<?php echo $ASSET; ?>/img/lock.gif"></span>
-					<?php } ?>
-					<span><?=noHtml($set["name"])?></span>
-				</a>
-
-			</span>
+<h2><?=$lang["user"]["flashcards"]?></h2>
+<style>img.cc{float: none !important; margin-right: 5px;}</style>
+<table><tbody>
+	<?php  if(isset($sets)){ for ($i = 0; $i < sizeof($sets); $i++){ $set = $sets[$i];?>
+	<tr><td>
+	
+		<span class="cardsetlist_name">
+							
+			<?php if ($set["repetition"] > 0){ ?>
+				<img src="<?php echo $ASSET; ?>/img/leitner_system_icon.png" class="lock" alt="Available for study" title="Available for study">
+			<?php } ?>
 			
-		</td></tr>
-		<?php } }else{ echo "<i></i>"; } ?>
-						
-	</tbody></table>
+			<span class="card_count"><?=$set["cards"]?> <?=$lang["user"]["cards"]?></span>
+			
+			<?php if ($set["category"] != "" ){ ?>
+				<a class="set_category" href="/flashcard/category.php?id=<?=noHTML($set["category"])?>">
+					<?=$set["category"]?>
+				</a>
+			<?php } ?>
+			
+			
+			<a href="/flashcard/<?php echo $set["url"]; ?><?php echo $set["id"]; ?>">
+				
+				<?php if ($set["public"] == 0){ ?>
+					<span><img class="cc" src="<?php echo $ASSET; ?>/img/lock.gif"></span>
+				<?php } ?>
+				<span><?=noHtml($set["name"])?></span>
+			</a>
+
+		</span>
+		
+	</td></tr>
+	<?php } }else{ echo "<i></i>"; } ?>
+					
+</tbody></table>
 		
 
 

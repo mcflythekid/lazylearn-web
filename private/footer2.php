@@ -2,37 +2,26 @@
     </div> <!-- /container -->
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+	
+	
+<footer class="bd-footer text-muted">
+  <div class="container">
+    <ul class="bd-footer-links">
+      <li><a href="https://github.com/mcflythekid">GitHub</a></li>
+      <li><a href="https://twitter.com/mcflythekid">Twitter</a></li>
+      <li><a href="https://facebook.com/mcflythekid">Facebook</a></li>
+      <li><a href="https://freelancer.com/u/tdtminhtuan.html">Freelancer</a></li>
+    </ul>
+    <p>Designed and built with all the love in the world by <a href="https://facebook.com/mcflythekid" target="_blank">@mcflythekid</a></p>
+  </div>
+</footer>
+	
+	
+	
+	
   </body>
 </html>
 
 
 
-
-<!--
-<div id="ftrframe">
-<div id="ftr">
-<div id="ftrbar">
-
-
-
-	<div id="about_me">
-		<a href="https://fb.com/mcflythekid">McFly the Kid © <?=date("Y")?></a>
-	</div>
-	
-
-
-	<br class="clearBoth">
-
-</div>
-</div>
-</div>
-<script>document.getElementById('cse-search-box').onsubmit = function() {   return document.getElementById('cse-search-field').value !== "";}</script>
--->

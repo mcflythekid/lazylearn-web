@@ -53,6 +53,7 @@
 	</style>
 	
 	<link rel="stylesheet" href="<?php echo $ASSET?>/css/style2.css">
+	<link rel="stylesheet" href="<?php echo $ASSET?>/css/docs.min.css">
 	
 
 	
