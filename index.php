@@ -29,113 +29,23 @@
 
 	mysqli_close($con);
 ?>
-<!DOCTYPE html>
-<html>
-<head>
 
-<?php if (isset($_SESSION["username"])){ ?>
-<title>Lazylearn</title>
-<?php } else { ?>
-<title><?=$lang["index"]["welcome"] ?></title>
-<?php } ?>
+<?php require_once("./private/navbar2.php"); ?>
 
-<link rel="shortcut icon" href="/favicon.ico"  />
-<link rel="stylesheet" href="<?php echo $ASSET?>/css/style.css">
-<meta name="description" content="Lazylearn help you learning faster with flashcard." />
-<meta name="canonical" content="https://lazylearn.com"/>
-</head>
-<body>
-<div id="wrapper">
-<?php require_once("./private/navbar.php"); ?>
-<div id="main">
-
-<!-- Left column-->
-<div id="front-left">
-
-	<!-- By created time-->
-	<div id="created-cslist" class="box">
-		<h2><?=$lang["index"]["recent_add"] ?></h2>
-		<table class="home_line"><tbody >
-		<?php $first = true;if(isset($sets_1)){foreach ($sets_1 as $set){ ?>
-			<tr class="home_line <?php if ($first) {$first = false; echo " first"; }?>">
-				<td>
-					<span class="cardsetlist_name">
-						<a href="/flashcard/<?php echo $set["url"]; ?><?php echo $set["id"]; ?>">
-							<?php echo noHTML($set["name"]); ?>
-						</a>
-					</span>
-					<div class="cardsetlist_details">
-						<span class="card_count"><?=$set["cards"]?> <?=$lang["user"]["cards"]?></span>
-						<?php if ($set["category"] != "" ){ ?>
-							<a class="set_category" href="/flashcard/category.php?id=<?=noHTML($set["category"])?>">
-								<?=noHTML($set["category"])?>
-							</a>
-						<?php } ?>
-						<?=$lang["index"]["created"] ?> <?php echo timeAgo($set["created"]); ?> <?=$lang["index"]["by"] ?> <a class="userlink" href="/user/<?php echo $set["username"]; ?>"><?php echo $set["username"]; ?></a>
-						
-					</div>
-				</td>
-				
-			</tr>
-		<?php }} ?>
-		</tbody></table>
+<div class="row">
+	<div class="col-xs-8">
+		<blockquote>
+				<h2>Minimum Pairs</h2>
+				<p>We have just added the Minimum Pair Hacking system. Which can help people quickly have ability to Listen to English.
+				<p>
+				  <a class="btn btn-lg btn-primary" href="https://pair.lazylearn.com/" role="button">Try it now »</a>
+				</p>
+		</blockquote>
 	</div>
-	<!-- End by created time-->
-
-	<!-- By studied time-->
-	<div id="studied-cslist" class="box">
-		<h2 ><?=$lang["index"]["recent_learn"] ?></h2>
-		<table class="home_line"><tbody >
-		<?php $first = true;if(isset($sets_2)){foreach ($sets_2 as $set){ ?>
-			<tr class="home_line <?php if ($first) {$first = false; echo " first"; }?>">
-				<td>
-					<span class="cardsetlist_name">
-						<a href="/flashcard/<?php echo $set["url"]; ?><?php echo $set["id"]; ?>">
-							<?php echo noHTML($set["name"]); ?> 
-						</a>
-					</span>
-					<div class="cardsetlist_details">
-						<span class="card_count"><?=$set["cards"]?> <?=$lang["user"]["cards"]?></span>
-						<?php if ($set["category"] != "" ){ ?>
-							<a class="set_category" href="/flashcard/category.php?id=<?=noHTML($set["category"])?>">
-								<?=noHTML($set["category"])?>
-							</a>
-						<?php } ?>
-						<?=$lang["index"]["studied"] ?> <?php echo timeAgo($set["last_used"]); ?> <?=$lang["index"]["by"] ?> <a class="userlink" href="/user/<?php echo $set["username"]; ?>"><?php echo $set["username"]; ?></a>
-					</div>
-					
-				</td>
-				
-			</tr>
-		<?php }} ?>
-		</tbody></table>
+	<div class="col-xs-4">
+		<div class="fb-page" data-href="https://www.facebook.com/lazylearn/" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/lazylearn/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/lazylearn/">Lazylearn</a></blockquote></div>
 	</div>
-	<!-- End by studied time-->
-
 </div>
-<!-- End left column-->
 
-<!-- Right column -->
-<div>
-	<div id="front-taglist" class="yellow">
-		<div class="tags">
-			We have just added the Minimum Pair Hacking system.
-			Try it now at <a href="https://pair.lazylearn.com/" >https://pair.lazylearn.com/</a>
-		</div>
-	</div>
 
-	<div  id="featured" style="border:1px solid #ccc;">
-		<div id ="featuredz" class="fb-page" data-href="https://www.facebook.com/lazylearn/" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/lazylearn/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/lazylearn/">Lazylearn</a></blockquote></div>
-	</div>
-	
-	
-</div>
-<!-- End right column -->
-
-<div class="clearboth"></div>
-
-</div>
-</div>
-<?php require_once("./private/footer.php"); ?>
-</body>
-</html>
+<?php require_once("./private/footer2.php"); ?>

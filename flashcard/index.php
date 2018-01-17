@@ -35,38 +35,8 @@
 	
 	mysqli_close($con);
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-<title>All Flashcards <?php if ($page > 1) echo "[$page]"; ?></title>
-<link rel="shortcut icon" href="/favicon.ico"  />
-<link rel="stylesheet" href="<?php echo $ASSET?>/css/style.css">
-<meta name="description" content="Browse flashcards" />
+<?php require_once("../private/navbar2.php"); ?>
 
-<!-- Noindex or Index -->
-<?php if ($page == 1){ ?>
-<meta name="canonical" content="https://lazylearn.com/flashcard/"/>
-<?php } else { ?>
-<meta name="robots" content="noindex">
-<?php } ?>
-<!-- End noindex or Index -->
-
-<!-- Paginaion -->
-<?php if ($total_page > 0){ if ($page == 1 && $page < $total_page) { ?>
-<link rel="next" href="https://lazylearn.com/flashcard/?page=<?php echo $page + 1; ?>" />
-<?php  } else if ($page < $total_page) { ?>
-<link rel="prev" href="https://lazylearn.com/flashcard/?page=<?php echo $page - 1; ?>" />
-<link rel="next" href="https://lazylearn.com/flashcard/?page=<?php echo $page + 1; ?>" />
-<?php  } else if ($page == $total_page && $page > 1) { ?>
-<link rel="prev" href="https://lazylearn.com/flashcard/?page=<?php echo $page - 1; ?>" />
-<?php  } } ?>
-<!-- End paginaion -->
-
-</head>
-<body>
-<div id="wrapper">
-<?php require_once("../private/navbar.php"); ?>
-<div id="main">
 	
 	<h1 ><?=$lang["navbar"]["browse"] ?><?php if ($page > 1) echo " #$page"; ?></h1>
 	
@@ -125,8 +95,5 @@
 		?>
 	</div>
 			
-</div>	
-</div>
-<?php require_once("../private/footer.php"); ?>
-</body>
-</html>
+
+<?php require_once("../private/footer2.php"); ?>
