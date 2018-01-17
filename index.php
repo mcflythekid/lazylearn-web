@@ -33,7 +33,7 @@
 <?php require_once("./private/navbar2.php"); ?>
 
 <div class="row">
-	<div class="col-xs-8">
+	<div class="col-lg-8">
 		<blockquote>
 				<h2>Minimum Pairs</h2>
 				<p>We have just added the Minimum Pair Hacking system. Which can help people quickly have ability to Listen to English.
@@ -42,7 +42,7 @@
 				</p>
 		</blockquote>
 	</div>
-	<div class="col-xs-4">
+	<div class="col-lg-4">
 		<div class="fb-page" data-href="https://www.facebook.com/lazylearn/" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/lazylearn/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/lazylearn/">Lazylearn</a></blockquote></div>
 	</div>
 </div>
