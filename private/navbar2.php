@@ -36,6 +36,10 @@
 
     <title>Navbar Template for Bootstrap</title>
 
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="//code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/start/jquery-ui.min.css">
+	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -49,6 +53,8 @@
 	</style>
 	
 	<link rel="stylesheet" href="<?php echo $ASSET?>/css/style2.css">
+	
+
 	
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

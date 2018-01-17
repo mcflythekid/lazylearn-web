@@ -90,27 +90,9 @@
 	mysqli_close($con);
 	
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-<title>
-	<?=isset($_GET["cat"]) ? noHtml($_GET["cat"]) . " Flashcards | " : ""?>
-	<?php echo $username; ?>
-</title>
-<link rel="shortcut icon" href="/favicon.ico"  />
-<link rel="stylesheet" href="<?php echo $ASSET?>/css/style.css">
-<meta name="description" content="Flashcards of <?php echo $username; ?>" />
-<meta name="canonical" content="https://lazylearn.com/user/<?php echo $username; ?>"/>
-
-
-
-
-
-</head>
-<body>
-<div id="wrapper">
-<?php require_once("./private/navbar.php"); ?>
 <?php require_once("./private/graph.php"); ?>
+<?php require_once("./private/navbar2.php"); ?>
+
 <div id="main">
 
 <h1 id="username"><?=noHtml( $_GET["id"]) ?></h1>
@@ -155,13 +137,5 @@
 	</tbody></table>
 		
 </div>
-<!-- End sets -->
 
-
-
-
-</div>
-</div>
-<?php require_once("./private/footer.php"); ?>
-</body>
-</html>
+<?php require_once("./private/footer2.php"); ?>
