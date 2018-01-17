@@ -93,13 +93,13 @@
 <?php require_once("./private/graph.php"); ?>
 <?php require_once("./private/navbar2.php"); ?>
 
-<div id="main">
+
 
 <h1 id="username"><?=noHtml( $_GET["id"]) ?></h1>
 
-<?php graph($username); ?>
+<?php //graph($username); ?>
 
-<div class="box">
+
 	<h2><?=$lang["user"]["flashcards"]?></h2>
 	<style>img.cc{float: none !important; margin-right: 5px;}</style>
 	<table><tbody>
@@ -136,6 +136,6 @@
 						
 	</tbody></table>
 		
-</div>
+
 
 <?php require_once("./private/footer2.php"); ?>
