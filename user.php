@@ -97,8 +97,23 @@
 
 <h1 id="username"><?=noHtml( $_GET["id"]) ?></h1>
 
-<?php //graph($username); ?>
+<style>
+.slideContainer {
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+.slide {
+    display: inline-block;
+    width: 100%;
+    white-space: normal;
+}
+</style>
 
+<div class="slideContainer">
+<div class="slide">
+<?php graph($username); ?>
+</div>
+</div>
 
 	<h2><?=$lang["user"]["flashcards"]?></h2>
 	<style>img.cc{float: none !important; margin-right: 5px;}</style>
