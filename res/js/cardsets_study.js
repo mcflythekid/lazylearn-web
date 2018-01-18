@@ -18,6 +18,12 @@ function adj_studysession_ht() {
 
 // Stop studying
 function end_session() {
+	
+	$('#in').hide();
+	$('#out').show();
+	$('#board').hide();
+	$('#card_position').hide();
+	
 	drawChart();
 	$('#flip').hide();
 	$('#mark').hide();

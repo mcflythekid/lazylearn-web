@@ -112,61 +112,75 @@
 </div>
 <!-- End studying result -->
 
+<div id="in">
+	<div class="row">
+		<div class="col-lg-6 col-lg-offset-3 col-xs-12">
+			<div class="btn-group btn-group-justified" role="group" aria-label="Justified button group with nested dropdown">
+				<a class="btn btn-default" role="button" onclick="prev_card();return false;">Previous</a>
+				<a class="btn btn-default" role="button" id="next" onclick="next_card();return false;">Next</a>
+				<a class="btn btn-default" role="button" id="shuffle" onclick="shuffle();return false;">Shuffle</a>
+				<a class="btn btn-default" role="button" id="reverse" onclick="reverse();return false;">Reverse</a>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-6 col-lg-offset-3 col-xs-12">
+			<div class="btn-group btn-group-justified" role="group" aria-label="Justified button group with nested dropdown">
+				<a onclick="end_session();return false;" class="btn btn-default" role="button">End</a>
+				<a class="btn btn-default" role="button" id="edit" onclick="edit_card();return false;" style="display: none;">Edit</a>
+				<a class="btn btn-default" role="button" id="delete" onclick="delete_card();return false;">Delete</a>
+			</div>
+		</div>
+	</div>
+</div>
 
-<div class="row">
-	<div class="col-lg-6 col-lg-offset-3 col-xs-12">
-		<div class="btn-group btn-group-justified" role="group" aria-label="Justified button group with nested dropdown">
-			<a class="btn btn-default" role="button" onclick="prev_card();return false;">Previous</a>
-			<a class="btn btn-default" role="button" id="next" onclick="next_card();return false;">Next</a>
-			<a class="btn btn-default" role="button" id="shuffle" onclick="shuffle();return false;">Shuffle</a>
-			<a class="btn btn-default" role="button" id="reverse" onclick="reverse();return false;">Reverse</a>
+<div id="out" style="display: none;">
+	<div class="row">
+		<div class="col-lg-6 col-lg-offset-3 col-xs-12">
+			<div class="btn-group btn-group-justified" role="group" aria-label="Justified button group with nested dropdown">
+				<a href="/flashcard/<?php echo $set["url"];?><?php echo $set["id"];?>" class="btn btn-default" role="button">Return</a>
+			</div>
 		</div>
 	</div>
 </div>
-<div class="row">
-	<div class="col-lg-6 col-lg-offset-3 col-xs-12">
-		<div class="btn-group btn-group-justified" role="group" aria-label="Justified button group with nested dropdown">
-			<a href="/flashcard/<?php echo $set["url"];?><?php echo $set["id"];?>" class="btn btn-default" role="button">End</a>
-			<a class="btn btn-default" role="button" id="edit" onclick="edit_card();return false;" style="display: none;">Edit</a>
-			<a class="btn btn-default" role="button" id="delete" onclick="delete_card();return false;">Delete</a>
-		</div>
-	</div>
-</div>
+
 
 <br>
-		<!-- Display -->
-		<div id="study_flashcards">
-			<div id="card_status"></div>
-			<table id="display"><tbody>
-				<tr>
-					<td id="card_front" class="studycard"><span class="ib"><p><?php if(sizeof ($cards) > 0) echo cardSide($cards[0]["front"]); ?></p></span></td>
-				</tr>
-				<tr>
-					<td class="studycard">
-					<div id="card_back"><span class="ib"><p><?php if(sizeof ($cards) > 0) echo cardSide($cards[0]["back"]); ?></p></span></div></td>
-				</tr>
-			</tbody></table>
-		</div>
-		<!-- End display -->
-		
-		<!-- Answer -->
-		<div id="study_controls">
-		
-			<div id="flip">
-				<button class="studybutton" onclick="flip();return false;"><table cellspacing="0"><tbody><tr><td><img src="<?php echo $ASSET; ?>/img/arrow_flip.png"></td><td>Show answer</td></tr></tbody></table></button>
-			</div>
-			
-			<div id="mark">
-				<button class="studybutton" onclick="mark_correct();return false;"><table cellspacing="0"><tbody><tr><td><img src="<?php echo $ASSET; ?>/img/markcorrect.png" border="0"></td><td> I was right</td></tr></tbody></table></button>
-				<button class="studybutton" id="wrong" onclick="mark_incorrect();return false;"><table cellspacing="0"><tbody><tr><td><img src="<?php echo $ASSET; ?>/img/markincorrect.png" border="0"></td><td> I was wrong</td></tr></tbody></table></button>
-			</div>
-			
-			<!-- <div id="grade" style="display: none;"></div> -->
-		</div>
-		<!-- End answer -->
-		
+
+<div id="board">
+	<!-- Display -->
+	<div id="study_flashcards">
+		<div id="card_status"></div>
+		<table id="display"><tbody>
+			<tr>
+				<td id="card_front" class="studycard"><span class="ib"><p><?php if(sizeof ($cards) > 0) echo cardSide($cards[0]["front"]); ?></p></span></td>
+			</tr>
+			<tr>
+				<td class="studycard">
+				<div id="card_back"><span class="ib"><p><?php if(sizeof ($cards) > 0) echo cardSide($cards[0]["back"]); ?></p></span></div></td>
+			</tr>
+		</tbody></table>
 	</div>
+	<!-- End display -->
+	
+	<!-- Answer -->
+	<div id="study_controls">
+	
+		<div id="flip">
+			<button class="studybutton" onclick="flip();return false;"><table cellspacing="0"><tbody><tr><td><img src="<?php echo $ASSET; ?>/img/arrow_flip.png"></td><td>Show answer</td></tr></tbody></table></button>
+		</div>
+		
+		<div id="mark">
+			<button class="studybutton" onclick="mark_correct();return false;"><table cellspacing="0"><tbody><tr><td><img src="<?php echo $ASSET; ?>/img/markcorrect.png" border="0"></td><td> I was right</td></tr></tbody></table></button>
+			<button class="studybutton" id="wrong" onclick="mark_incorrect();return false;"><table cellspacing="0"><tbody><tr><td><img src="<?php echo $ASSET; ?>/img/markincorrect.png" border="0"></td><td> I was wrong</td></tr></tbody></table></button>
+		</div>
+		
+		<!-- <div id="grade" style="display: none;"></div> -->
+	</div>
+	<!-- End answer -->
+	
 </div>
+
 
 
 
