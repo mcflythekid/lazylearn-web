@@ -76,6 +76,26 @@
 <?php require_once("../private/navbar2.php"); ?>
 
 
+<style>
+.slideContainer {
+    overflow-x: auto;
+    white-space: nowrap;
+	width: 100%;
+}
+.slide {
+    display: inline-block;
+    width: 100%;
+    white-space: normal;
+}
+</style>
+<div class="slideContainer">
+	<div class="slide">
+		<div id="pie_div"></div>
+	</div>
+</div>
+
+
+
 		
 <!-- Studying result -->
 <div class="row">
@@ -107,7 +127,7 @@
 	<div class="col-lg-6 col-lg-offset-3 col-xs-12">
 		<div class="btn-group btn-group-justified" role="group" aria-label="Justified button group with nested dropdown">
 			<a href="/flashcard/<?php echo $set["url"];?><?php echo $set["id"];?>" class="btn btn-default" role="button">End</a>
-			<!--<a class="btn btn-default" role="button" id="edit" onclick="edit_card();return false;">Edit</a>-->
+			<a class="btn btn-default" role="button" id="edit" onclick="edit_card();return false;" style="display: none;">Edit</a>
 			<a class="btn btn-default" role="button" id="delete" onclick="delete_card();return false;">Delete</a>
 		</div>
 	</div>

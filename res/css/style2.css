@@ -991,7 +991,7 @@ a.startlink,a.startlink:visited{
 	height:1.8em;
 	margin:0 2px 0 2px;
 	padding-top:2px;
-	padding-bottom:5px
+	padding-bottom:23px
 }
 
 #study_controls img{
@@ -1597,7 +1597,7 @@ div#study_commands button#end{float:right;}
 div#study_flashcards div#card_status {display: none;}
 div#study_flashcards table#display {height:100%;width:97%;margin:0 auto;}
 div#study_flashcards div#card_back {display: none;}
-div#flip button{padding-left:20px;padding-right:20px;}
+div#flip button{padding-left:20px;padding-right:20px; padding-bottom:23px;}
 div#mark {display: none;}
 button#wrong {margin-left:7px;}
 
