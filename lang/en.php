@@ -42,14 +42,14 @@ $lang["set"]["setting"] = "Setting";
 $lang["set"]["delete"] = "Delete";
 $lang["set"]["study"] = "Study&nbsp;";
 $lang["set"]["study_old"] = "Study (old)&nbsp;";
-$lang["set"]["study_fresh"] = "Study (fresh)&nbsp;";
+$lang["set"]["study_fresh"] = "Study (new)&nbsp;";
 $lang["set"]["review"] = "Review&nbsp;";
 $lang["set"]["loading"] = "Loading...";
 $lang["set"]["created"] = "Created";
 $lang["set"]["by"] = "by";
 $lang["set"]["card_count"] = "card";
 $lang["set"]["cards_count"] = "cards";
-$lang["set"]["enable_compose"] = "Click here to view or edit Flashcard";
+$lang["set"]["enable_compose"] = "Add";
 
 $lang["user"]["today"] = "Today's Repetition";
 $lang["user"]["fresh"] = "fresh";

@@ -794,10 +794,10 @@ a.startlink,a.startlink:visited{
 	border-radius:5px
 }
 
-#card-list-container{
+/*#card-list-container{
 	float:left;
 	width:690px
-}
+}*/
 
 #nocards{
 	font-weight:bold;

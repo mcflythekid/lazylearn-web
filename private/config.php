@@ -22,8 +22,8 @@
 	}
 	$LEITNER_SIZE = sizeof($LEITNER);
 	function is_localhost() {
-		$whitelist = array( '127.0.0.1', '::1' );
-		if( in_array( $_SERVER['REMOTE_ADDR'], $whitelist) )
+		$whitelist = array( '127.0.0.1', 'localhost', 'lazylearn.localhost' );
+		if( in_array( $_SERVER['SERVER_NAME'], $whitelist) )
 			return true;
 		return false;
 	}
