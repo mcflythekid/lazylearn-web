@@ -22,7 +22,7 @@ function end_session() {
 	$('#in').hide();
 	$('#out').show();
 	$('#board').hide();
-	$('#card_position').hide();
+	$('#study_info').hide();
 	
 	drawChart();
 	$('#flip').hide();
