@@ -72,56 +72,14 @@
 	mysqli_close($con);
 	
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-<!DOCTYPE html>
-<html>
-<head>
-<title>Studying: <?php echo noHTML($set["name"]); ?></title>
-<link rel="shortcut icon" href="/favicon.ico"  />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/start/jquery-ui.min.css">
-<link rel="stylesheet" href="<?php echo $ASSET?>/css/style.css">
-</head>
-<body>
-<div id="wrapper">
-<?php require_once("../private/navbar.php"); ?>
-<div id="main">
+
+<?php require_once("../private/navbar2.php"); ?>
 
 
-
-
-<!-- Left -->
-<div id="leftdiv">
-
-	<!-- Title -->
-	<table id="study_title"><tbody><tr>
-		<td><h1 id="set_name">Studying: <?php echo noHTML($set["name"]); ?></h1></td>
-		<td id="back"><a href="/flashcard/<?php echo $set["url"];?><?php echo $set["id"];?>" class="actionlink"><< Go to card set details</a></td>
-	</tr></tbody></table>
-	<!-- End title -->
-	
-	<div id="studysession">
-	
-		<!-- Ending result -->
-		<div id="study_stats" class="bluegrey">
-			<h1>Session Results</h1>
-			<table><tbody><tr>
-				<td><b>Total number of cards</b></td><td id="resultst" class="results"><?php echo sizeof($cards); ?></td>
-				<td id="correct"><b>Correct</b></td><td id="resultsc" class="results">0</td>
-				<td id="incorrect"><b>Incorrect</b></td><td id="resultsi" class="results">0</td>
-				<td id="unanswered"><b>Unanswered</b></td><td id="resultsu" class="results"><?php echo sizeof($cards); ?></td>
-			</tr></tbody></table>
-			<div id="pie_div"></div>
-			<div id="summary">
-				<div id="back">
-					<b><a href="/flashcard/<?php echo $set["url"];?><?php echo $set["id"];?>" class="actionlink">Return to Card Set >></a></b>
-				</div>
-			</div>
-		</div>
-		<!-- End ending result -->
 		
-		<!-- Studying result -->
+<!-- Studying result -->
+<div class="row">
+	<div class="col-lg-6 col-lg-offset-3 col-xs-12">
 		<div id="study_info">
 			<span id="card_position" class="floatleft">1 / <?php echo sizeof($cards); ?></span>
 			<table id="cardset_status" class="floatright"><tbody><tr>
@@ -130,23 +88,32 @@
 				<td>incorrect: </td><td><div id="totali">0</div></td>
 			</tr></tbody></table>
 		</div>
-		<!-- End studying result -->
-		
-		<!-- Commands -->
-		<div id="study_commands">
-			<button class="smallbutton" onclick="prev_card();return false;"><table cellspacing="0"><tbody><tr><td><img src="<?php echo $ASSET; ?>/img/arrow_left.png"></td><td></td></tr></tbody></table></button>
-			<button class="smallbutton" id="next" onclick="next_card();return false;"><table cellspacing="0"><tbody><tr><td><img src="<?php echo $ASSET; ?>/img/arrow_right.png"></td><td></td></tr></tbody></table></button>
-			<button class="smallbutton" id="shuffle" onclick="shuffle();return false;"><table cellspacing="0"><tbody><tr><td><img src="<?php echo $ASSET; ?>/img/arrow_switch.png"></td><td>&nbsp;Shuffle!</td></tr></tbody></table></button>
-			<button class="smallbutton" id="reverse" onclick="reverse();return false;"><table cellspacing="0"><tbody><tr><td><img src="<?php echo $ASSET; ?>/img/arrow_refresh.png"></td><td>&nbsp;Reverse front &amp; back</td></tr></tbody></table></button>
-			
-			<button class="smallbutton" id="edit" onclick="edit_card();return false;"><table cellspacing="0"><tbody><tr><td><img src="<?php echo $ASSET; ?>/img/edit-icon.png"></td><td>&nbsp;Edit</td></tr></tbody></table></button>
-			<button class="smallbutton" id="delete" onclick="delete_card();return false;"><table cellspacing="0"><tbody><tr><td><img src="<?php echo $ASSET; ?>/img/cross.gif"></td><td>&nbsp;Delete</td></tr></tbody></table></button>
-						
-			
-			<button class="smallbutton" id="end" onclick="end_session();return false;"><table cellspacing="0"><tbody><tr><td><img src="<?php echo $ASSET; ?>/img/stop.png"></td><td>&nbsp;End session</td></tr></tbody></table></button>
+	</div>
+</div>
+<!-- End studying result -->
+
+
+<div class="row">
+	<div class="col-lg-6 col-lg-offset-3 col-xs-12">
+		<div class="btn-group btn-group-justified" role="group" aria-label="Justified button group with nested dropdown">
+			<a class="btn btn-default" role="button" onclick="prev_card();return false;">Previous</a>
+			<a class="btn btn-default" role="button" id="next" onclick="next_card();return false;">Next</a>
+			<a class="btn btn-default" role="button" id="shuffle" onclick="shuffle();return false;">Shuffle</a>
+			<a class="btn btn-default" role="button" id="reverse" onclick="reverse();return false;">Reverse</a>
 		</div>
-		<!-- End commands -->
-		
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-6 col-lg-offset-3 col-xs-12">
+		<div class="btn-group btn-group-justified" role="group" aria-label="Justified button group with nested dropdown">
+			<a href="/flashcard/<?php echo $set["url"];?><?php echo $set["id"];?>" class="btn btn-default" role="button">End</a>
+			<a class="btn btn-default" role="button" id="edit" onclick="edit_card();return false;">Edit</a>
+			<a class="btn btn-default" role="button" id="delete" onclick="delete_card();return false;">Delete</a>
+		</div>
+	</div>
+</div>
+
+<br>
 		<!-- Display -->
 		<div id="study_flashcards">
 			<div id="card_status"></div>
@@ -180,46 +147,9 @@
 		
 	</div>
 </div>
-<!-- End left -->
-
-
-<!-- Right -->
-<div id="sidebar-right-study">
-	<div class="box sidebar-right-box">
-
-		<?=$lang["set"]["created"] ?>
-		<?php echo timeAgo($set["created"]); ?> 
-		<?=$lang["index"]["by"] ?>
-		<a class="userlink" href="/user/<?php echo $set["username"]; ?>"><?php echo $set["username"]; ?></a>
-		<br>
-		<span class="card_count"><?=$set["cards"]?> <?=$lang["user"]["cards"]?></span>
-		
-		<?php if ($set["category"] != "" ){ ?>
-			<a class="set_category" href="/flashcard/category.php?id=<?=noHTML($set["category"])?>">
-				<?=$set["category"]?>
-			</a>
-		<?php } ?>
-	</div>
-	<div class="box sidebar-right-box" style="line-height:25px;">
-		<h3>Keyboard controls:</h3>
-		Show Answer = Right Arrow<br>"I was right" = Up Arrow<br>"I was wrong" = Down Arrow<br>Go Back / Forward = Left <i>or</i> Right Arrow
-	</div>
-	<!--<div class="box sidebar-right-box">
-		<a id="right_banner" href="https://www.vultr.com/?ref=6833778"><img src="https://www.vultr.com/media/160x600_02.gif" width="160" height="600" class="no-zoom"></a>
-	</div>-->
-</div>
-<!-- End right -->
-
-
-<br class="clearboth">
-<div id="sound"></div>
 
 
 
-
-</div>
-</div>
-<?php require_once("../private/footer.php"); ?>
 <script>
 	var em = false;
 	var li = false;
@@ -410,5 +340,9 @@ window.onclick = function(event) {
 
 </script>
 
-</body>
-</html>
+
+
+
+
+
+<?php require_once("../private/footer2.php"); ?>

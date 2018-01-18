@@ -826,7 +826,7 @@ a.startlink,a.startlink:visited{
 	overflow:hidden
 }
 
-#studysession{
+/*#studysession{
 	position:relative;
 	float:left;
 	background-color:#eee;
@@ -837,7 +837,7 @@ a.startlink,a.startlink:visited{
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 	border-radius:5px
-}
+}*/
 
 .flashcard{
 	border-bottom:3px solid #cecece;
@@ -954,11 +954,21 @@ a.startlink,a.startlink:visited{
 	position:relative;
 	background-color:#fff;
 	border:1px solid #cecece;
+	height:100%;
+	max-width:566px;
+	margin:0 auto;
+	padding:10px
+}
+
+/*#study_flashcards,#study_flashcards_edit{
+	position:relative;
+	background-color:#fff;
+	border:1px solid #cecece;
 	height:270px;
 	width:566px;
 	margin:0 auto;
 	padding:10px
-}
+}*/
 
 #card_front,#edit_front{
 	border-bottom:1px solid #e2edeb
