@@ -214,6 +214,15 @@
 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 			</button>
 		</div>
+		
+		<div class="btn-group-vertical lzcard_editor pull-right nonedisplay" role="group" aria-label="Basic example">
+			<button type="submit" class="btn btn-success edit">
+				<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+			</button>
+			<button type="submit" class="btn btn-danger delete">
+				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+			</button>
+		</div>
 
 	</div>
 	<?php } ?>
@@ -224,6 +233,16 @@
 
 <script>
 var $setview = (function(e){
+	e.quill_modules = {
+		  modules: {
+			toolbar: [
+			  ['bold', 'italic', 'underline'],
+			  ['image', 'code-block']
+			]
+		  },
+		  placeholder: '',
+		  theme: 'snow'  // or 'bubble'
+	};
 	e.init = ()=>{
 		$(document).ready(()=>{
 			e.new_front = new Quill('#new_front', {
@@ -258,8 +277,13 @@ var $setview = (function(e){
 			//}
 
 		});		
-		$(document).on('click', '.lzcard_control .edit', ()=>{
-			alert('edit');
+		$(document).on('click', '.lzcard_control .edit', function(){
+			var card_id = $(this).attr('data-lzcard_id');
+			var lzcard_node = $('.lzcard[data-lzcard_id="'+card_id+'"]');
+			lzcard_node.find('.lzcard_control').hide();
+			lzcard_node.find('.lzcard_editor').show();
+			lzcard_node.data('quill.front', new Quill(lzcard_node.find('.front').get(0), e.quill_modules));
+			lzcard_node.data('quill.back', new Quill(lzcard_node.find('.back').get(0), e.quill_modules));
 		});
 	};
 	var download = (set_id) =>{
