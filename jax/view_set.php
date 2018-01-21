@@ -3,6 +3,8 @@
 	require_once("../private/config.php"); 
 	require_once("../private/lib.php");
 		
+		
+		
 	// validate
 	if (!isset($_GET["id"])){
 		error('id is null');

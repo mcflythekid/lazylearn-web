@@ -172,7 +172,11 @@
     border-left: 1px solid #d8d8d8;
     border-right: 1px solid #cecece;
     border-top: 1px solid #d8d8d8;
-    height: 6em;
+    min-height: 6em;
+}
+.lzcard_side img{
+	max-width:100%;
+	max-height:100%;
 }
 .lzcard{
 	margin-bottom:10px;

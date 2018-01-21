@@ -121,11 +121,13 @@
 	}
 	
 	function error($data){
+		header('Content-Type: application/json');
 		echo jsonresponse_error($data);
 		die;
 	}
 	
 	function ok($data){
+		header('Content-Type: application/json');
 		echo jsonresponse_ok($data);
 		die;
 	}
