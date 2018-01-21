@@ -120,9 +120,6 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="btn-group btn-group-justified" role="group" aria-label="Justified button group with nested dropdown">
-				<?php if (!isset($_GET["compose"])) { ?>
-					<a href="/flashcard/view.php?id=<?= $set["id"] ?>&compose"  class="btn btn-default" role="button"><?=$lang["set"]["enable_compose"]?></a>
-				<?php } ?>
 				<a href="/flashcard/export.php?id=<?php echo $set["id"]; ?>"  class="btn btn-default" role="button"><?=$lang["set"]["export"]?></a>
 				<a href="/flashcard/import.php?id=<?php echo $set["id"]; ?>"  class="btn btn-default" role="button"><?=$lang["set"]["import"]?></a>
 				<a href="/flashcard/setting.php?id=<?php echo $set["id"]; ?>" class="btn btn-default" role="button"><?=$lang["set"]["setting"]?></a>
@@ -133,19 +130,26 @@
 	
 	<br>
 	
-	<?php if (isset($_GET["compose"])){ ?>
-		<div class="row">
-			<div class="form-group col-xs-6">
-				<textarea class="form-control" id="new_front" rows="3"></textarea>
-			</div>
-			<div class="form-group col-xs-6">
-				<textarea class="form-control" id="new_back"  rows="3"></textarea>
-			</div>
-			<div class="form-group col-lg-12">
-				<button type="submit" id="new_submit" class="btn btn-primary pull-right"><?=$lang["set"]["add_card"]?></button>
+
+	<div class="row" id="lzcard_newform">
+		<div class="col-lg-11">
+			<div class="row">
+				<div class="col-xs-6">
+					<div id="new_front"></div>
+				</div>
+				<div class="col-xs-6">
+					<div id="new_back"></div>
+				</div>
 			</div>
 		</div>
-	<?php } ?>
+		<div class="col-lg-1">
+			<button type="submit" id="new_submit" class="btn btn-success pull-right">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+			</button>
+		</div>
+	</div>
+	
+
 	
 <?php } else { /** not is owner **/?>
 	<div class="row">
@@ -156,47 +160,237 @@
 			<?php } ?>
 		</div>
 	</div>
+	<br>
 <?php }?>
 
-<div class="row">
-	<div class="col-lg-12 hidden-xs hidden-sm">
-		<div id="card-list-container">
-			<div id="card-list">
-				<div class="cardlist_card" id="loading">
-					<table class="card_container"><tbody>
-						<?=$lang["set"]["loading"]?>
-					</tbody></table>
-				</div>
-				<a id="port"></a>
+<style>
+.lzcard_side {
+	padding-left: 10px;
+	padding-right: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #cecece;
+    border-left: 1px solid #d8d8d8;
+    border-right: 1px solid #cecece;
+    border-top: 1px solid #d8d8d8;
+    height: 6em;
+}
+.lzcard{
+	margin-bottom:10px;
+}
+#lzcard_newform{
+	margin-bottom:30px;
+}
+#lzcard_sample{
+	display: none;
+}
+</style>
+
+
+
+<div class="row lzcard" id="lzcard_sample">
+	<div class="col-lg-11">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="front lzcard_side"></div>
+			</div>
+			<div class="col-lg-6">
+				<div class="back lzcard_side"></div>
 			</div>
 		</div>
 	</div>
+	
+	<?php if ($is_owner){?>
+	<div class="col-lg-1">
+	
+		<div class="btn-group-vertical lzcard_control pull-right" role="group" aria-label="Basic example">
+			<button type="submit" class="btn btn-default edit">
+				<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+			</button>
+			<button type="submit" class="btn btn-default delete">
+				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+			</button>
+		</div>
+
+	</div>
+	<?php } ?>
 </div>
+<div id="lzcard_all"></div>
 
-
+<!-- Initialize Quill editor -->
 
 <script>
-	var theCardset = [];	
-	<?php if (isset($cards) and isset($_GET["compose"])){	
-		$i = 0;
-		foreach($cards as $card){
-			echo sprintf('theCardset[%u] = {card_id: %u, card_front: "%s", card_back: "%s"};', $i, $card["id"], cardSide($card["front"]), cardSide($card["back"]));
-			echo "\r\n";
-			$i++;
-	} } ?>
+var $setview = (function(e){
+	e.init = ()=>{
+		$(document).ready(()=>{
+			e.new_front = new Quill('#new_front', {
+			  modules: {
+				toolbar: [
+				  ['bold', 'italic', 'underline'],
+				  ['image', 'code-block']
+				]
+			  },
+			  placeholder: 'Front side...',
+			  theme: 'snow'  // or 'bubble'
+			});
+			e.new_back = new Quill('#new_back', {
+			  modules: {
+				toolbar: [
+				  ['bold', 'italic', 'underline'],
+				  ['image', 'code-block']
+				]
+			  },
+			  placeholder: 'Back side...',
+			  theme: 'snow'  // or 'bubble'
+			});
+			download(set_id);
+		});
+		$(document).on('click', '.lzcard_control .delete', function(){
+			//if (confirm("Are you sure you want to delete")) {
+				var card_id = $(this).attr('data-lzcard_id');
+				$('.lzcard[data-lzcard_id="'+card_id+'"').remove();
+				$.post("/jax/delete_card.php", {id : card_id}, function(){
+					
+				});
+			//}
 
-	<?php if ($is_owner){ ?>
-	var sample = 
-	
-	'<div class="cardlist_card" id="card-xxx"><table class="card_container" id="card_display-xxx"><tbody><tr><td class="card_container_leftcol"><img alt="Change info" src="<?php echo $ASSET; ?>/img/edit-icon.png" class="cardlist_card_data_edit" id="cardlist_card_data_edit-xxx"><br><br><img alt="Delete"src="<?php echo $ASSET; ?>/img/cross.gif" class="cardlist_card_data_delete"id="cardlist_card_data_delete-xxx"></td><td class="cardlist_card_data"><span class="ib"><p id="card-front-xxx">front-xxx</p></span></td><td class="cardlist_card_middle"></td><td class="cardlist_card_data"><span class="ib"><p id="card-back-xxx">back-xxx</p></span></td><td class="card_container_rightcol"></td></tr></tbody></table><table class="card_container_hidden" id="card_edit-xxx"><tbody><tr><td class="card_container_leftcol"><img alt="Delete" src="<?php echo $ASSET; ?>/img/cross.gif"class="cardlist_card_data_delete"id="cardlist_card_data_delete-xxx"></td><td class="cardlist_card_data"><textarea class="card_edit_field" id="edit_front-xxx"></textarea></td><td class="cardlist_card_middle"></td><td class="cardlist_card_data"><textarea class="card_edit_field" id="edit_back-xxx"></textarea></td><td class="card_container_rightcol"></td></tr><tr><td class="card_container_leftcolopt"></td><td colspan="2" align="left"><button  class="new_edit_submit" id="edit_submit-xxx">Update</button> or <a href="javascript:void(0)" id="edit_cancel-xxx">Cancel</a></td><td id="edit_error-16249" class="error"></td></tr></tbody></table></div>';		
-	<?php }else { ?>
-	var sample = '<div class="cardlist_card" id="card-xxx"><table class="card_container" id="card_display-xxx"><tbody><tr><td class="card_container_leftcol"></td><td class="cardlist_card_data"><span class="ib"><p id="card-front-xxx">front-xxx</p></span></td><td class="cardlist_card_middle"></td><td class="cardlist_card_data"><span class="ib"><p id="card-back-xxx">back-xxx</p></span></td><td class="card_container_rightcol"></td></tr></tbody></table></div>';		
-	<?php } ?>
-	
-	var set_id = <?php echo $id; ?> ;
+		});		
+		$(document).on('click', '.lzcard_control .edit', ()=>{
+			alert('edit');
+		});
+	};
+	var download = (set_id) =>{
+		axios.get('/jax/view_set.php?id=' + set_id)
+			.then(function (response) {
+				if (response.data.status !== 'error'){
+					for(var i = 0; i < response.data.data.length; i++) {
+						var obj = response.data.data[i];
+						renderAppend(obj);
+					}
+				}else{
+					flash(0, 'Error');
+					console.log(response.data);
+				}
+			}).catch(function (error) {
+				flash(0, 'Error');
+				console.log(error);
+			});
+	};
+	var clone = (card)=>{
+		var node = $('#lzcard_sample').clone().removeAttr('id');
+		node.find('.front').html(card.front);
+		node.find('.back').html(card.back);
+		node.attr('data-lzcard_id', card.id);
+		node.find('.edit').attr('data-lzcard_id', card.id);
+		node.find('.delete').attr('data-lzcard_id', card.id);
+		return node;
+	};
+	var renderAppend = (card)=>{
+		$('#lzcard_all').append(clone(card));
+	};
+	var renderPrepend = (card)=>{
+		$('#lzcard_all').prepend(clone(card));
+	};
+	e.create = (set_id, front, back)=>{
+		if (!front || !back){
+			flash(0, 'Invalid data');
+			return;
+		}
+		axios.post("/jax/new_card.php", {
+			set_id : set_id,
+			front : front, 
+			back : back
+		}).then(function (response) {
+			if (response.data.status !== 'error'){
+				renderPrepend({
+					id: response.data,
+					front: front,
+					back: back
+				});
+			}else{
+				flash(0, 'Error');
+				console.log(response.data);
+			}
+		}).catch(function (error) {
+			flash(0, 'Error');
+			console.log(error);
+		});
+	};
+	return e;
+})({});
+$setview.init();
+
+
+
+var set_id = <?php echo $id; ?> ;
+
+
+
+
+function delete_confirm(){
+	$( "#dialog-confirm" ).dialog({
+		resizable: false,
+		height:140,
+		modal: true,
+		buttons: {
+		"Delete": function() {
+			document.delete.submit();
+			$(this).dialog("close");
+		},
+		Cancel: function() {
+			$(this).dialog("close");
+		}
+		}
+	});
+}
+
+$('body').delegate('button[id^="edit_submit-"]', "click", function( event ) {
+	$("#edit_error-" + id).html("");
+	var id = this.id.substring(12);
+	var front = $("textarea#edit_front-" + id).val();
+	var back = $("textarea#edit_back-" + id).val();
+	front = $.trim(front);
+	back = $.trim(back);
+	if (!front || !back || !/^(.{1,1024})$/.test(front) || !/^(.{1,1024})$/.test(back)){
+		$("#edit_error-" + id).html("Card size can't be blank or greater than 1024.");
+		return;
+	}
+	$("p#card-front-" + id).text(front);
+	$("p#card-back-" + id).text(back);
+	$("table#card_display-" + id).css("display", "table");
+	$("table#card_edit-" + id).css("display", "none");
+	$.post("/jax/update_card.php", {id : id, front : front, back : back},  function(result){
+	});
+}); 
+
+$('body').delegate('button#new_submit', "click", function( event ) {
+	$setview.create(set_id, $("#new_front .ql-editor").html().trim(), $("#new_back .ql-editor").html().trim());
+	$("#new_front .ql-editor").html('');
+	$("#new_back .ql-editor").html('');
+}); 
+
+
+$('body').delegate('a[id^="edit_cancel-"]', "click", function( event ) {
+	var id = this.id.substring(12);
+	$("table#card_display-" + id).css("display", "table");
+	$("table#card_edit-" + id).css("display", "none");
+}); 
+$('body').delegate('img[id^="cardlist_card_data_edit-"]', "click", function( event ) {
+	var id = this.id.substring(24);
+	$("table#card_display-" + id).css("display", "none");
+	$("textarea#edit_front-" + id).val($("p#card-front-" + id).text());
+	$("textarea#edit_back-" + id).val($("p#card-back-" + id).text());
+	$("table#card_edit-" + id).css("display", "table");
+}); 
+
+
+
+
+
+
+
+
+
 </script>
-
-<script src="<?php echo $ASSET?>/js/cardsets_view.js"></script>
 
 
 

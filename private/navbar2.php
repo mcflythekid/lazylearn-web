@@ -52,10 +52,55 @@
 	}
 	</style>
 	
+	<script>
+	function flash(type,content){
+		if($('#wrapperShowHide').length==0){
+			var wrapper = '<div id="wrapperShowHide" style="width: 300px;top:5%; left:69%;position: fixed;z-index:10000; font-size:13px"></div>';
+			$('body').before(wrapper);
+		}
+		var count=0;
+		while($('#showHideMessage'+count).length>0){
+			count++;
+		}
+		var messageType="";
+		var header="";
+		switch(type) {
+			case 1:
+				messageType="alert-success";
+				header="";
+				break;
+			case 2:
+				messageType="alert-info";
+				header="";
+				break;
+			case 3:
+				messageType="alert-warning";
+				header="Cảnh báo! ";
+				break;
+			default:
+				messageType="alert-danger";
+				header="Lỗi! ";
+		}
+		var content = '<div class="alert '+messageType+'" id="showHideMessage'+count+'" style="width: 400px;"><button type="button" class="close" data-dismiss="alert">x</button><strong>'+header+'</strong>'+content+'</div>';
+		$("#wrapperShowHide").append(content);
+		
+		$("#showHideMessage"+count).fadeTo(5000, 1500).fadeOut(1000, function(){
+			$(this).alert('close');
+			if($('#wrapperShowHide > div').length==0){
+				$('#wrapperShowHide').remove();
+			}
+		});   
+	}
+	</script>
+	
 	<link rel="stylesheet" href="<?php echo $ASSET?>/css/style2.css">
 	<link rel="stylesheet" href="<?php echo $ASSET?>/css/docs.min.css">
 	
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
+	
+	<!-- Include the Quill library -->
+	<link href="https://cdn.quilljs.com/1.3.4/quill.snow.css" rel="stylesheet">
+	<script src="https://cdn.quilljs.com/1.3.4/quill.js"></script>
 	
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

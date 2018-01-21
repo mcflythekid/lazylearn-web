@@ -21,6 +21,7 @@
 		return str_replace("\n", '\n', str_replace('"', '\"', addcslashes(str_replace("\r", '', (string)$string), "\0..\37'\\"))); 
 	} 
 	function cardSide($input){
+		return $input;
 		return escapeJavaScriptText(strip_tags($input, "<b></br>"));
 	}
 	function timeAgo($time_ago){
@@ -99,5 +100,33 @@
 		
 		
 		return !in_array(strtolower($username), $list);
+	}
+	
+	function post_2_json(){
+		return json_decode(file_get_contents('php://input'), true);
+	}
+
+	function jsonresponse_ok($data){
+		return json_encode([
+			'status' => 'ok',
+			'data' => $data
+		]);
+	}
+	
+	function jsonresponse_error($data){
+		return json_encode([
+			'status' => 'error',
+			'data' => $data
+		]);
+	}
+	
+	function error($data){
+		echo jsonresponse_error($data);
+		die;
+	}
+	
+	function ok($data){
+		echo jsonresponse_ok($data);
+		die;
 	}
 ?>

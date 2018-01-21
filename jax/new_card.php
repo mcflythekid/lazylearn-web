@@ -2,33 +2,35 @@
 	session_start();
 	require_once("../private/config.php"); 
 	require_once("../private/lib.php");
-	
-	/* Accept post and authenticated user */
+		
+	// require post ans session
 	if ($_SERVER['REQUEST_METHOD'] !== "POST" || !isset($_SESSION["username"])){
-		die();
+		error('Login is required / Wrong method');
 	}
 	
-	/* Get data */
-	if (!isset($_POST["set_id"])){
-		die();
+	// require fields
+	$post = post_2_json();
+	if (!isset($post["set_id"])){
+		error('set_id is null');
 	}
-	if (!isset($_POST["front"])){
-		die();
+	if (!isset($post["front"])){
+		error('front is null');
 	}
-	if (!isset($_POST["back"])){
-		die();
-	}
-	$set_id = $_POST["set_id"];
-	$front = trim($_POST["front"]);
-	$back = trim($_POST["back"]);
-	if (empty($front) || empty($back) || strlen($front) > 1024 ||  strlen($back) > 1024){
-		die();
+	if (!isset($post["back"])){
+		error('back is null');
 	}
 	
-	/* Open database */
+	// validate fields
+	
+	$set_id = $post["set_id"];
+	$front = trim($post["front"]);
+	$back = trim($post["back"]);
+	if (empty($front) || empty($back) || strlen($front) > 1000000 ||  strlen($back) > 1000000){
+		error();
+	}
+	
+	/* Check owner */
 	$con = open_con();
-	
-	/* Check username */
 	$stmt = mysqli_prepare($con, "SELECT username FROM sets WHERE id = ?;");
 	mysqli_stmt_bind_param($stmt, "i", $set_id);
 	mysqli_stmt_execute($stmt);
@@ -38,13 +40,13 @@
 		if ($_SESSION["username"] !== $set["username"]){
 			mysqli_stmt_close($stmt);
 			mysqli_close($con);
-			die();
+			error();
 		}
 	}else{
-		die();
+		error();
 	}
 	
-	/* Change step */
+	/* Insert */
 	$stmt = mysqli_prepare($con, "INSERT INTO cards (username, front, back, set_id) VALUES(?,?,?,?);");
 	mysqli_stmt_bind_param($stmt, "sssi", $_SESSION["username"], $front, $back, $set_id);
 	mysqli_stmt_execute($stmt);
@@ -54,6 +56,4 @@
 	mysqli_stmt_execute($stmt);
 	mysqli_close($con);
 	echo $new_id;
-	
-
 ?>

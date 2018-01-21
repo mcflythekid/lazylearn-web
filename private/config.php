@@ -3,7 +3,7 @@
 	
 	// configurations
 	date_default_timezone_set("UTC");
-	$VERSION = 52;
+	$VERSION = 53;
 	$ROOT = "mcflythekid";
 	$REMEMBER_ME_DAY = 30;
 	$FORGET_PASSWORD_DAY = 1;
