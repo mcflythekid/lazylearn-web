@@ -53,6 +53,12 @@
 		$is_owner = false;
 	}
 	
+	if (!$is_authenticated || !$is_owner){
+		error("fuck you, it's not yours");
+	}
+	
+	$title = $set["name"];
+	
 ?>
 
 <?php require_once("../private/navbar2.php"); ?>
@@ -76,9 +82,9 @@
 
 
 
-<h1>Flashcards: <?php echo noHTML($set["name"]); ?></h1>	
+<h1><?=$set["name"]?></h1>	
 
-<a class="fb-share-button" id="face_share"  data-href="https://lazylearn.com/flashcard/<?php echo $set["url"]; ?><?php echo $set["id"]; ?>" data-layout="button_count"></a><br><br>
+
 
 <div class="slideContainer">
 	<div class="slide">

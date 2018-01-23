@@ -1,7 +1,33 @@
+.navbar-static-top {
+	margin-bottom: 19px;
+}
+.nav>li.ui--in{
+	display: none;
+}
+.nav>li.ui--out{
+	display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**********************************************************************************/
 /********************************** suck my dick************************************* */
 /**************************************************************************************/
-html,body{
+/*html,body{
 	background:#f1f1f1;
 	margin:0;
 	font-family:'Lucida Grande',Trebuchet,Helvetica,sans-serif;
@@ -48,6 +74,10 @@ input[type=text],input[type=password]{
 
 input.focused,input[type=text]:focus,input[type=password]:focus,textarea:focus{
 	background-color:#ffd
+}*/
+
+.nonedisplay{
+	display: none;
 }
 
 a.actionlink:link,a.actionlink:visited{
@@ -281,7 +311,7 @@ a.startlink,a.startlink:visited{
 	font-size:13px
 }
 
-#navbar{
+/*#navbar{
 	background:#a8bbe3;
 	list-style-type:none;
 	margin:0 auto;
@@ -328,7 +358,7 @@ a.startlink,a.startlink:visited{
 #navbar a:hover{
 	background:#cadcea;
 	color:#224081
-}
+}*/
 
 #main{
 	position:relative;
@@ -717,6 +747,7 @@ a.startlink,a.startlink:visited{
 	cursor:move
 }
 
+/*
 .cardlist_card{
 	background-color:#eee;
 	overflow:hidden;
@@ -733,7 +764,7 @@ a.startlink,a.startlink:visited{
 .cardlist_card p{
 	text-align:left;
 	padding:0 16px
-}
+}*/
 
 .cardlist_card_editable:hover{
 	background:#edf3fe
@@ -794,10 +825,10 @@ a.startlink,a.startlink:visited{
 	border-radius:5px
 }
 
-#card-list-container{
+/*#card-list-container{
 	float:left;
 	width:690px
-}
+}*/
 
 #nocards{
 	font-weight:bold;
@@ -826,7 +857,7 @@ a.startlink,a.startlink:visited{
 	overflow:hidden
 }
 
-#studysession{
+/*#studysession{
 	position:relative;
 	float:left;
 	background-color:#eee;
@@ -837,7 +868,7 @@ a.startlink,a.startlink:visited{
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 	border-radius:5px
-}
+}*/
 
 .flashcard{
 	border-bottom:3px solid #cecece;
@@ -954,11 +985,21 @@ a.startlink,a.startlink:visited{
 	position:relative;
 	background-color:#fff;
 	border:1px solid #cecece;
+	height:100%;
+	max-width:566px;
+	margin:0 auto;
+	padding:10px
+}
+
+/*#study_flashcards,#study_flashcards_edit{
+	position:relative;
+	background-color:#fff;
+	border:1px solid #cecece;
 	height:270px;
 	width:566px;
 	margin:0 auto;
 	padding:10px
-}
+}*/
 
 #card_front,#edit_front{
 	border-bottom:1px solid #e2edeb
@@ -981,7 +1022,7 @@ a.startlink,a.startlink:visited{
 	height:1.8em;
 	margin:0 2px 0 2px;
 	padding-top:2px;
-	padding-bottom:5px
+	padding-bottom:23px
 }
 
 #study_controls img{
@@ -1558,7 +1599,7 @@ textarea.card_edit_field{
 	height: 100%;
 }
 
-table.card_container{width: 670px;}
+/*table.card_container{width: 670px;}*/
 table.card_container_hidden{width: 670px; display: none;}
 td.card_container_leftcol{height: 77px; width: 25px; padding: 0;}
 td.card_container_leftcolopt{width: 25px; padding: 0;}
@@ -1587,7 +1628,7 @@ div#study_commands button#end{float:right;}
 div#study_flashcards div#card_status {display: none;}
 div#study_flashcards table#display {height:100%;width:97%;margin:0 auto;}
 div#study_flashcards div#card_back {display: none;}
-div#flip button{padding-left:20px;padding-right:20px;}
+div#flip button{padding-left:20px;padding-right:20px; padding-bottom:23px;}
 div#mark {display: none;}
 button#wrong {margin-left:7px;}
 

@@ -5,11 +5,10 @@
 	require_once("./private/remember.php");
 	
 
-	if (!isset($_GET["id"])){
-		header("Location: /");
-		die();
-	}
-	$username = $_GET["id"];
+	if (!isset($_SESSION["username"])) error('fuck it, u need to login');
+	
+	$username = $_SESSION["username"];
+	$title = 'Dashboard';
 	
 	$con = open_con();
 	
@@ -89,13 +88,14 @@
 	
 	mysqli_close($con);
 	
+	
 ?>
 <?php require_once("./private/graph.php"); ?>
 <?php require_once("./private/navbar2.php"); ?>
 
 
 
-<h1 id="username"><?=noHtml( $_GET["id"]) ?></h1>
+
 
 <style>
 .slideContainer {
