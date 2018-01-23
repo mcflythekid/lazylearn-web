@@ -22,9 +22,10 @@ $sql=
  group by deck.id, deck.name, deck.create_on, deck.update_on
  order by $sort $order limit $limit offset $offset 
  ";
-
+$count = db_count("select count(*) from deck where deck.user_id = '$user_id' $condition");
 $list = db_list($sql);
 json([
 	'rows' => $list,
-	'status' => 'ok'
+	'status' => 'ok',
+	'total' => $count
 ]);
