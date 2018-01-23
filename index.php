@@ -3,18 +3,56 @@ require_once 'core.php';
 title('Dashboard');
 top();
 ?>
+<style>
+#toolbar{
+	width: 300px;
+}
+</style>
 <div class="row">
 	<div class="col-lg-12">
+		
 		<div id="toolbar">
-			<button id="create" class="btn btn-primary">
-				<i class="glyphicon glyphicon-plus"></i> Create
-			</button>
+			<form id="newdeck">
+				<div class="input-group" >
+					<input type="text" class="form-control deckname" required placeholder="Deck name...">
+					<span class="input-group-btn">
+						<button class="btn btn-primary" type="submit">Create</button>
+					</span>	
+				</div>
+			</form>
 		</div>
+		
 		<table id="data"></table>
 	</div>
 </div>
 <script>
 $app.require_authed();
+
+$('#newdeck').submit((event)=>{
+	event.preventDefault();
+	var deckname = $('#newdeck .deckname').val();
+	$tool.lock();
+	$tool.axios.post(ctx + "/deck/api.create.php", {
+		name : deckname
+	}).then((res)=>{
+		$tool.unlock();
+		if (res.data.status ==='ok'){
+			$('#newdeck .deckname').val('');
+			$tool.flash(1,'Success');
+			$('#data').bootstrapTable('refresh');
+		} else {
+			console.log(res.data);
+			$tool.flash(0,res.data.data);
+		}
+	}).catch((err)=>{
+		$tool.unlock();
+		console.log(err);
+		$tool.flash(0,'ERROR');
+	});
+});
+
+
+
 $('#data').bootstrapTable({
 	url: ctx + '/deck/api.php',
 	cache: false,
