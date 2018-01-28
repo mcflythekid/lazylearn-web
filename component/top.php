@@ -1,7 +1,8 @@
 <?php 
 function top(){ 
-	global $title;
+	global $TITLE;
 	global $ASSET;
+	global $CTX;
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +13,7 @@ function top(){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <link rel="icon" href="/res/img/favicon.ico">
-    <title><?=$title?></title>
+    <title><?=$TITLE?></title>
 
 	<!-- jquery -->
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -24,7 +25,7 @@ function top(){
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<!-- Footer -->
-	<link rel="stylesheet" href="<?php echo $ASSET?>/footer.css">
+	<link rel="stylesheet" href="<?php echo $ASSET?>/external/footer.css">
 	
 	<!-- axios -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
@@ -46,8 +47,10 @@ function top(){
 	
 	<!-- app -->
 	<link rel="stylesheet" href="<?=$ASSET?>/app.css">
-	<script src="<?=$ASSET?>/tool.js"></script>
-	<script src="<?=$ASSET?>/app.js"></script>
+    <script>var ctx = '<?=$CTX?>';</script>
+    <script src="<?=$ASSET?>/tool.js"></script>
+    <script src="<?=$ASSET?>/app.js"></script>
+
 </head>
 <body>
 
@@ -56,7 +59,7 @@ require 'user/login.php';
 
 
 ?>
-  
+
  <!-- Static navbar -->
     <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
@@ -94,33 +97,22 @@ require 'user/login.php';
       </div>
     </nav>
 	<script>
-	var $top = ((e)=>{
-		e.renderIn = (data)=>{
-			if (data) {
-				$('.navbar-static-top .email').text(data.email);
-			}
-			$('.ui--in').show();
-			$('.ui--out').hide();
-		};
-		e.renderOut = ()=>{
-			$('.ui--in').hide();
-			$('.ui--out').show();
-		};
-		e.init = ()=>{
-			if ($app.getData().token){
-				e.renderIn($app.getData().email); 
-			}else {
-				e.renderOut();
-			}
-			
-			$('#logout').click((event)=>{
-				event.preventDefault();
-				$app.logout();
-			});
-		};
-		return e;
-	})({});
-	//$top.init();
+	(()=>{
+        $('#logout').click((event)=>{
+            event.preventDefault();
+            $app.logout();
+        });
+
+        var auth = $tool.getData('auth');
+        if (auth){
+            $('.navbar-static-top .email').text(auth.email);
+            $('.ui--in').show();
+            $('.ui--out').hide();
+        }else {
+            $('.ui--in').hide();
+            $('.ui--out').show();
+        }
+	})();
 	</script>
 	
   

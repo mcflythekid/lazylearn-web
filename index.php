@@ -25,9 +25,7 @@ top();
 		<table id="data"></table>
 	</div>
 </div>
-<script>
-$app.require_authed();
-
+<scripts>
 $('#newdeck').submit((event)=>{
 	event.preventDefault();
 	var deckname = $('#newdeck .deckname').val();
@@ -94,5 +92,5 @@ $('#data').bootstrapTable({
 	]
 
 });
-</script>
+</scripts>
 <?=bottom()?>

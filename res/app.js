@@ -1,15 +1,36 @@
-var ctx = "";
-
 var $app = ((e)=>{
+    e.ctx = "";
     e.endpoint = "http://localhost:8088";
-    e.api =  axios.create({
+    var getBearerToken = ()=>{
+
+        var auth = $tool.getData('auth');
+        if (auth){
+            return "Bearer " + auth.token;
+        }
+        return "";
+    };
+    e.api = axios.create({
         baseURL: e.endpoint,
-        headers: {'Bearer': $tool.getData("token")}
+        headers: {
+            'Authorization': getBearerToken(),
+            'Access-Control-Allow-Origin': '*',
+        }
     });
-    e.apisync =  axios.create({
+    e.apisync = axios.create({
         baseURL: e.endpoint,
-        headers: {'Bearer': $tool.getData("token")}
+        headers: {
+            'Authorization': getBearerToken(),
+            'Access-Control-Allow-Origin': '*',
+        }
     });
+    e.logout = ()=>{
+        $tool.removeData('auth');
+        window.location.replace(ctx + "/login.php");
+    };
+    var publicPages = [
+        "/login.php",
+        "/register.php",
+    ]
     var initApisync = ()=>{
         e.apisync.interceptors.request.use(function (config) {
             $tool.lock();
@@ -26,9 +47,20 @@ var $app = ((e)=>{
             return Promise.reject(error);
         });
     };
+    var ping = function(){
+        if (publicPages.includes(location.pathname)) return;
+        e.api.get("/ping").then(()=>{}).catch((err)=>{
+            if (err.response && err.response.status == 401){
+                e.logout();
+            }
+        });
+    };
     (()=>{
         initApisync();
+        ping();
+        setInterval(()=>{
+            ping();
+        }, 5000);
     })();
-	return e;
+    return e;
 })({});
-//$app.init();
