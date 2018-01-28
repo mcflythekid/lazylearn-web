@@ -1,6 +1,8 @@
-var $app = ((e)=>{
+var $app = ((endpoint)=>{
+    var e = {};
+
     e.ctx = "";
-    e.endpoint = "http://localhost:8088";
+    e.endpoint = endpoint;
     var getBearerToken = ()=>{
 
         var auth = $tool.getData('auth');
@@ -77,4 +79,4 @@ var $app = ((e)=>{
         lockOnlyPublicPages();
     })();
     return e;
-})({});
+})(endpoint);

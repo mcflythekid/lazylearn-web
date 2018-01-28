@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . '/config.php';
 $VERSION = 53;
 $CTX = "";
 $TITLE = "Lazylearn";

@@ -3,6 +3,7 @@ function top(){
 	global $TITLE;
 	global $ASSET;
 	global $CTX;
+	global $ENDPOINT;
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +48,10 @@ function top(){
 	
 	<!-- app -->
 	<link rel="stylesheet" href="<?=$ASSET?>/app.css">
-    <script>var ctx = '<?=$CTX?>';</script>
+    <script>
+        var ctx = '<?=$CTX?>';
+        var endpoint = '<?=$ENDPOINT?>';
+    </script>
     <script src="<?=$ASSET?>/tool.js"></script>
     <script src="<?=$ASSET?>/app.js"></script>
 
