@@ -80,14 +80,14 @@ require 'user/login.php';
 			</ul>
 
           <ul class="nav navbar-nav navbar-right">
-			<li class="ui--out"><a href="/user/register.php">Register</a></li>
-			<li class="ui--out" ><a data-toggle="modal" data-target="#user__login--modal" href="#">Login</a></li>
+			<li class="ui--out"><a href="/register.php">Register</a></li>
+			<li class="ui--out" ><a href="/login.php">Login</a></li>
 			<li class="dropdown ui--in">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 					<span class="email"></span> <span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
-					<li class="ui--in"><a href="/user/password.php">Change password</a></li>
+					<li class="ui--in"><a href="/change-password.php">Change password</a></li>
 					<li class="ui--in"><a href="#" id="logout">Logout</a></li>									
 				</ul>
 			</li>			
