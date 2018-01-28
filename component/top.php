@@ -76,7 +76,6 @@ require 'user/login.php';
 
 			<ul class="nav navbar-nav">
 				<li class="ui--in"><a href="/">Dashboard</a></li>
-				<li><a href="https://pair.lazylearn.com" >Minpair</a></li>
 			</ul>
 
           <ul class="nav navbar-nav navbar-right">

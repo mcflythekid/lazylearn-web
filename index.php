@@ -11,7 +11,7 @@ top();
 <div class="row">
 	<div class="col-lg-12">
 		
-		<div id="toolbar">
+		<!--<div id="toolbar">
 			<form id="newdeck">
 				<div class="input-group" >
 					<input type="text" class="form-control deckname" required placeholder="Deck name...">
@@ -23,8 +23,10 @@ top();
 		</div>
 		
 		<table id="data"></table>
+		-->
 	</div>
 </div>
+<!--
 <scripts>
 $('#newdeck').submit((event)=>{
 	event.preventDefault();
@@ -93,4 +95,5 @@ $('#data').bootstrapTable({
 
 });
 </scripts>
+-->
 <?=bottom()?>
