@@ -1,62 +1,34 @@
 var ctx = "";
 
 var $app = ((e)=>{
-	
-	// storage-------------------------
-	e.getData = ()=>{
-		var data = JSON.parse(localStorage.getItem('data'));
-		if (data) return data;
-		return {};
-	};
-	e.setData = (data)=>{
-		localStorage.setItem('data', JSON.stringify(data));
-	};
-	
-	// init -----------------------------------------
-	e.init = ()=>{
-		$(document).ready(()=>{
-			initPing();
-		});
-	};
-	var initPing = ()=>{
-		var ping = (in_cb, out_cb)=>{
-			$tool.axios(ctx + "/user/ping.api.php").then((res)=>{
-				if (res.data.status === 'ok'){
-					in_cb(res.data.data);
-				} else if (res.data.status === 'error'){
-					out_cb();
-				}
-			}).catch((err)=>{
-				console.log(err);
-			});
-		};
-		ping($top.renderIn, $top.renderOut);
-		setInterval(()=>{
-			ping($top.renderIn, $top.renderOut);
-		}, 10000);
-	};
-	
-	// auth ----------------------------
-	e.logout = ()=>{
-		$tool.axios.post(ctx + "/user/logout.api.php").then((res)=>{
-			if (res.data.status === 'ok'){
-				e.setData({});
-				$top.renderOut();
-				window.location = ctx + "/user/login.php";
-			}
-		}).catch((err)=>{
-			console.log(err);
-		});
-	};
-	e.require_authed = ()=>{
-		if (!e.getData().token){
-			window.location = ctx + "/user/login.php";
-		}
-	};
-
-
-	
+    e.endpoint = "http://localhost:8088";
+    e.api =  axios.create({
+        baseURL: e.endpoint,
+        headers: {'Bearer': $tool.getData("token")}
+    });
+    e.apisync =  axios.create({
+        baseURL: e.endpoint,
+        headers: {'Bearer': $tool.getData("token")}
+    });
+    var initApisync = ()=>{
+        e.apisync.interceptors.request.use(function (config) {
+            $tool.lock();
+            return config;
+        }, function (error) {
+            $tool.unlock();
+            return Promise.reject(error);
+        });
+        e.apisync.interceptors.response.use(function (response) {
+            $tool.unlock();
+            return response;
+        }, function (error) {
+            $tool.unlock();
+            return Promise.reject(error);
+        });
+    };
+    (()=>{
+        initApisync();
+    })();
 	return e;
-	
 })({});
-$app.init();
+//$app.init();

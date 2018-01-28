@@ -58,13 +58,14 @@ var $tool = ((e)=>{
 	e.unlock= function(){
 		e.lock(false);
 	};
-	
-	// axios  ----------------------------------------------------------
-	e.axios =  axios.create({
-	  baseURL: '',
-	  headers: {'Bearer': $app.getData().token}
-	});
-	
+
+    e.getData = (key)=>{
+        return JSON.parse(localStorage.getItem(key));
+    };
+    e.setData = (key, val)=>{
+        return localStorage.setItem(key, JSON.stringify(val));
+    };
+
 	// url -------------------------------------
 	e.param = function(name) {
 	  return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;

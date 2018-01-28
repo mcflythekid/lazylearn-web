@@ -1,2 +1,0 @@
-git checkout origin/config_production -- .htaccess
-git checkout origin/config_production -- private/deploy.php

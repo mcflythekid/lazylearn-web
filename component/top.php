@@ -46,11 +46,16 @@ function top(){
 	
 	<!-- app -->
 	<link rel="stylesheet" href="<?=$ASSET?>/app.css">
-	<script src="<?=$ASSET?>/app.js"></script>
 	<script src="<?=$ASSET?>/tool.js"></script>
+	<script src="<?=$ASSET?>/app.js"></script>
 </head>
 <body>
 
+<?php
+require 'user/login.php';
+
+
+?>
   
  <!-- Static navbar -->
     <nav class="navbar navbar-default navbar-static-top">
@@ -73,7 +78,7 @@ function top(){
 
           <ul class="nav navbar-nav navbar-right">
 			<li class="ui--out"><a href="/user/register.php">Register</a></li>
-			<li class="ui--out"><a href="/user/login.php">Login</a></li>			
+			<li class="ui--out" ><a data-toggle="modal" data-target="#user__login--modal" href="#">Login</a></li>
 			<li class="dropdown ui--in">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 					<span class="email"></span> <span class="caret"></span>
@@ -115,7 +120,7 @@ function top(){
 		};
 		return e;
 	})({});
-	$top.init();
+	//$top.init();
 	</script>
 	
   

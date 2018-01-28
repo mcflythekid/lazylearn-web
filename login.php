@@ -1,9 +1,8 @@
 <?php
-	require_once '../core.php';
+	require_once 'core.php';
 	title('Login');
 	top();
 ?>
-
 <div class="row">
 	<div class="col-lg-3"></div>
 	<div class="col-lg-6">
@@ -17,11 +16,24 @@
 			<input type="password" required class="form-control" id="password" placeholder="Password">
 		  </div>
 		  <button type="submit" class="btn btn-primary">Login</button>
-		  <a class="btn btn-warning" href="./forget.php">Forget</a>
+		  <a class="btn btn-warning" href="./forget-password.php">Forget</a>
 		</form>
 	</div>
 </div>
 <script>
+
+(()=>{
+	$("#login").submit((e)=>{
+        e.preventDefault();
+        $app.apisync.post("/login", {
+            email: $('#email').val(),
+            password: $('#password').val(),
+        }).then((r)=>{
+            alert(r.data);
+        });
+    });
+	
+})();
 $login = ((e)=>{
 	e.init = ()=>{
 		$('#login').on('submit', function(e){
@@ -62,7 +74,6 @@ $login = ((e)=>{
 	
 	return e;
 })({});
-$login.init();
 
 </script>
 

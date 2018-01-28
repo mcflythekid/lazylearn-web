@@ -1,5 +1,0 @@
-
-RewriteEngine On
-
-RewriteRule ^([\d]+)$ /flashcard/view.php?id=$1&
-RewriteRule ^[0-9a-z\-]*\-([\d]+)$ /flashcard/view.php?id=$1&

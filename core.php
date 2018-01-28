@@ -1,6 +1,4 @@
 <?php
-// Deploy data---------------------------------------------------------------------------------------------------
-require_once __DIR__ . '/config.php';
 
 // Configurations---------------------------------------------------------------------------------------------------
 $TIMEZONE = 'UTC';
@@ -26,8 +24,6 @@ $LEITNER_SIZE = sizeof($LEITNER);
 
 
 // Load files---------------------------------------------------------------------------------------------------
-require_once __DIR__ . '/component/auth.php';
-require_once __DIR__ . '/component/db.php';
 require_once __DIR__ . '/component/top.php';
 require_once __DIR__ . '/component/bottom.php';
 
@@ -52,7 +48,7 @@ function is_post(){
 	return $_SERVER['REQUEST_METHOD'] == "POST";
 }
 function is_dev() {
-	$whitelist = array( '127.0.0.1', 'localhost', 'lazylearn.localhost' );
+	$whitelist = array( '127.0.0.1', 'localhost', 'lazylearn-web' );
 	if( in_array( $_SERVER['SERVER_NAME'], $whitelist) )
 		return true;
 	return false;
