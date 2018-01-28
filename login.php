@@ -32,9 +32,6 @@
             window.location.replace(ctx + "/");
         });
     });
-	if ($tool.getData('auth')){
-        window.location.replace(ctx + "/");
-    }
 })();
 </script>
 <?=bottom()?>

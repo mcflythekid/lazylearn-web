@@ -29,8 +29,21 @@ var $app = ((e)=>{
     };
     var publicPages = [
         "/login.php",
+        "/forget-password.php",
+        "/reset-password.php",
         "/register.php",
-    ]
+    ];
+    var onlyPublicPages = [
+        "/login.php",
+        "/forget-password.php",
+        "/reset-password.php",
+        "/register.php",
+    ];
+    var lockOnlyPublicPages = ()=>{
+        if ($tool.getData('auth') && onlyPublicPages.includes(location.pathname)){
+            window.location.replace(ctx + "/");
+        }
+    };
     var initApisync = ()=>{
         e.apisync.interceptors.request.use(function (config) {
             $tool.lock();
@@ -61,6 +74,7 @@ var $app = ((e)=>{
         setInterval(()=>{
             ping();
         }, 5000);
+        lockOnlyPublicPages();
     })();
     return e;
 })({});
