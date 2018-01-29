@@ -31,7 +31,9 @@ top();
             name : $('#deck__create--name').val()
         }).then(()=>{
             $('#deck__create--name').val('');
-            $('#data').bootstrapTable('refresh');
+            $('#data').bootstrapTable('refresh',{
+                silent: true
+            });
         });
     });
 })();
