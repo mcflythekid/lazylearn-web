@@ -19,7 +19,7 @@
     (()=>{
         $("#reset").submit((e)=>{
             e.preventDefault();
-            $app.apisync.put("/user/by-forget-password/" + $tool.param('id'), {
+            $app.apisync.put("/user/by-forget-password/" + $tool.param('id')+ "/password", {
                 password: $('#password').val()
             }).then((r)=>{
                 $tool.flash(1, 'Please login');
