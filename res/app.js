@@ -65,6 +65,9 @@ var $app = ((endpoint)=>{
     var ping = function(){
         if (publicPages.includes(location.pathname)) return;
         e.api.get("/ping").then(()=>{}).catch((err)=>{
+            if (err.message === 'Network Error'){
+                e.logout();
+            }
             if (err.response && err.response.status == 401){
                 e.logout();
             }
