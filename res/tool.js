@@ -1,5 +1,25 @@
 var $tool = ((e)=>{
 
+    e.confirm =  function(msg, cb){
+        BootstrapDialog.confirm({
+            title: 'Are you sure',
+            message: msg,
+            type: BootstrapDialog.TYPE_WARNING, // <-- Default value is BootstrapDialog.TYPE_PRIMARY
+            closable: true, // <-- Default value is false
+            draggable: true, // <-- Default value is false
+            btnCancelLabel: 'Cancel', // <-- Default value is 'Cancel',
+            btnOKLabel: 'Confirm', // <-- Default value is 'OK',
+            btnOKClass: 'btn-warning', // <-- If you didn't specify it, dialog type will be used,
+            callback: function(result) {
+                // result will be true if button was click, while it will be false if users close the dialog directly.
+                if(result) {
+                    cb();
+                }else {
+                }
+            }
+        });
+    };
+
     // ui ----------------------------------------------------------
     e.flash = (type,content)=>{
         if($('#wrapperShowHide').length==0){

@@ -18,9 +18,7 @@ function top(){
 
 	<!-- jquery -->
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script src="//code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/start/jquery-ui.min.css">
-	
+
 	<!-- bootstrap -->
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -34,7 +32,11 @@ function top(){
 	<!-- Include the Quill library -->
 	<link href="//cdn.quilljs.com/1.3.4/quill.snow.css" rel="stylesheet">
 	<script src="//cdn.quilljs.com/1.3.4/quill.js"></script>
-	
+
+    <!-- bootstrap dialog -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -54,15 +56,8 @@ function top(){
     </script>
     <script src="<?=$ASSET?>/tool.js"></script>
     <script src="<?=$ASSET?>/app.js"></script>
-
 </head>
 <body>
-
-<?php
-require 'user/login.php';
-
-
-?>
 
  <!-- Static navbar -->
     <nav class="navbar navbar-default navbar-static-top">
