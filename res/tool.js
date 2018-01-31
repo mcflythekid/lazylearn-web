@@ -1,5 +1,27 @@
 var $tool = ((e)=>{
 
+    e.quillIsBlank = (quill)=>{
+        var html = quill.root.innerHTML;
+        if (html === '<p><br></p>' ||
+            (!quill.getText().trim() && !html.includes('img'))
+        ) {
+            return true;
+        }
+        return false;
+    };
+
+    e.quillGetHtml=(quill)=>{
+        return quill.root.innerHTML;
+    };
+
+    e.quillSetHtml=(quill, html)=>{
+        quill.root.innerHTML = html;
+    };
+
+    e.quillClear=(quill)=>{
+        e.quillSetHtml(quill, '<p><br></p>');
+    }
+
     e.confirm =  function(msg, cb){
         BootstrapDialog.confirm({
             title: 'Are you sure',

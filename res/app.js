@@ -81,5 +81,25 @@ var $app = ((endpoint)=>{
         }, 5000);
         lockOnlyPublicPages();
     })();
+    e.quillFrontConf = {
+        modules: {
+            toolbar: [
+                ['bold', 'italic', 'underline'],
+                ['image', 'code-block']
+            ]
+        },
+        placeholder: 'Front side...',
+        theme: 'snow'  // or 'bubble'
+    };
+    e.quillBackConf = {
+        modules: {
+            toolbar: [
+                ['bold', 'italic', 'underline'],
+                ['image', 'code-block']
+            ]
+        },
+        placeholder: 'Back side...',
+        theme: 'snow'  // or 'bubble'
+    };
     return e;
 })(endpoint);

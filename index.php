@@ -46,7 +46,7 @@ require 'modal/deck-edit.php';
     $(document).on('click', '.deck__cmd--delete', function(e){
         var deckId = $(this).data('deck-id');
         $tool.confirm("This will remove this deck and cannot be undone!!!", function(){
-            $app.apisync.delete("/user/" + $tool.getData('auth').userId + "/deck/" + deckId).then(()=>{
+            $app.apisync.delete("/deck/" + deckId).then(()=>{
                 refresh();
             });
         });
@@ -86,7 +86,7 @@ require 'modal/deck-edit.php';
                 field: 'id',
                 formatter: (obj, row)=>{
                     return '<div class="btn-group">'+
-                        '<button data-deck-id="'+obj+'" data-deck-name="'+row.name+'" data-toggle="modal" data-target="#deck__modal__edit" class="btn btn-sm btn-success deck__cmd--edit">Edit</button>'+
+                        '<button data-deck-id="'+obj+'" data-deck-name="'+row.name+'" data-toggle="modal" data-target="#deck__modal__edit" class="btn btn-sm btn-success">Edit</button>'+
                         '<button data-deck-id="'+obj+'" class="btn btn-sm btn-danger deck__cmd--delete">Delete</button>'+
                         '</div>';
                 }
