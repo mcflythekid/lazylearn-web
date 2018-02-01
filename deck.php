@@ -1,6 +1,6 @@
 <?php
 require_once 'core.php';
-title('Loading...');
+title('loading...');
 top();
 require 'modal/card-edit.php';
 ?>
@@ -57,13 +57,22 @@ require 'modal/card-edit.php';
 
 <div class="row">
     <div class="col-lg-12">
-        <div id="toolbar"></div>
+        <div id="toolbar">
+            <div class="btn-group">
+                    <button class="btn btn-primary card__learn--link" data-learn-type="learn">Lean</button>
+                    <button class="btn btn-primary card__learn--link" data-learn-type="review">Review</button>
+            </div>
+        </div>
         <table id="card__list"></table>
     </div>
 </div>
 
 <script>
     (()=>{
+
+        $(document).on('click', '.card__learn--link', function(){
+            window.location.href = "./learn.php?id=" + $tool.param('id') + "&type=" + $(this).data('learn-type');
+        });
 
         var quill_modules = {
             modules: {

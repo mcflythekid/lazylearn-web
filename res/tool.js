@@ -120,7 +120,22 @@ var $tool = ((e)=>{
         return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
     };
 
-
+    e.info = (msg, cb)=>{
+        BootstrapDialog.show({
+            closable: true, // <-- Default value is false
+            draggable: true, // <-- Default value is false
+            message: msg,
+            onhide: function(dialogRef){
+                if (cb) cb();
+            },
+            buttons: [{
+                label: 'Close',
+                action: function(dialogRef) {
+                    dialogRef.close();
+                }
+            }]
+        });
+    };
 
     return e;
 })({});
