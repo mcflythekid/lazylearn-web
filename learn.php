@@ -78,6 +78,15 @@ require 'modal/card-edit.php';
 var $learn = ((e)=>{
     var deckId, learnType, arr, arrIndex, arrLength, isReverse;
 
+    e.str = ()=>{
+        return{
+            arr: arr,
+            arrLength: arrLength,
+            arrIndex: arrIndex,
+            isReverse: isReverse
+        };
+    }
+
     e.init = ()=>{
         deckId = $tool.param('id');
         learnType = $tool.param('type');
@@ -97,14 +106,24 @@ var $learn = ((e)=>{
         $(document).on('click', '#learn__cmd--delete', ()=>{
             $tool.confirm("This will remove this card and cannot be undone!!!", function(){
                 $app.apisync.delete("/card/" + arr[arrIndex].id).then(()=>{
-                    alert('cl');
+                    if (arrLength == 1){
+                        returnToDeck();
+                        return;
+                    }
+                    arr.splice(arrIndex, 1);
+                    if (arrIndex == arrLength - 1){
+                        arrIndex--;
+                    }
+                    arrLength--;
+                    refreshCount();
+                    ask(arrIndex);
                 });
             });
         });
         $(document).on('click', '#learn__cmd--shuffle', ()=>{
             arr = $tool.shuffle(arr);
             ask(0);
-            alert('shuffled');
+            $('#learn__data').effect('pulsate', {}, 60);
         });
 
         $app.apisync.get("/learn/" + deckId + "/by-" + learnType).then((r)=>{
