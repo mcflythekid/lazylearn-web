@@ -9,62 +9,66 @@ require 'modal/card-edit.php';
     <div class="col-lg-6 col-lg-offset-3 col-xs-12">
 
         <div class="row">
-            <div id="learn__status">
-                <span id="learn__status--position" class="pull-left">loading...</span>
-                <span id="learn__status--count" class="pull-right">
-                    unanswered: <span id="learn__status--unanswered">loading...</span>
-                    correct: <span id="learn__status--correct">loading...</span>
-                    incorrect: <span id="learn__status--incorrect">loading...</span>
+            <div id="learnstatus">
+                <span id="learnstatus__position" class="pull-left">loading...</span>
+                <span class="pull-right">
+                    unanswered: <span class="learnstatus__count" id="learnstatus__count--unanswered">loading...</span>
+                    correct: <span class="learnstatus__count" id="learnstatus__count--correct">loading...</span>
+                    incorrect: <span class="learnstatus__count" id="learnstatus__count--incorrect">loading...</span>
                 </span>
             </div>
         </div>
 
         <div class="row">
-            <div id="learn__cmd" class="btn-group btn-group-justified" role="group" aria-label="Command">
-                <a class="btn btn-default btn-sm" role="button" id="learn__cmd--back" title="Previous">
+            <div id="learncmd" class="btn-group btn-group-justified" role="group" aria-label="Command">
+                <a class="btn btn-default btn-sm" role="button" id="learncmd__back" title="Previous">
                     <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-default btn-sm" role="button" id="learn__cmd--next" title="Next">
+                <a class="btn btn-default btn-sm" role="button" id="learncmd__next" title="Next">
                     <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-default btn-sm" role="button" id="learn__cmd--shuffle" title="Shuffle">
+                <a class="btn btn-default btn-sm" role="button" id="learncmd__shuffle" title="Shuffle">
                     <span class="glyphicon glyphicon-random" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-default btn-sm" role="button" id="learn__cmd--reverse" title="Reverse sides">
+                <a class="btn btn-default btn-sm" role="button" id="learncmd__reverse" title="Reverse sides">
                     <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-default btn-sm" role="button" id="learn__cmd--edit" title="Edit card">
+                <a class="btn btn-default btn-sm" role="button" id="learncmd__edit" title="Edit card">
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-default btn-sm" role="button" id="learn__cmd--delete" title="Delete card">
+                <a class="btn btn-default btn-sm" role="button" id="learncmd__delete" title="Delete card">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-default btn-sm" role="button" id="learn__cmd--end" title="End session">
+                <a class="btn btn-default btn-sm" role="button" id="learncmd__end" title="End session">
                     <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
                 </a>
             </div>
         </div>
 
         <div class="row">
-            <div id="learn__data">
-                <div id="learn__data--front">
-                    <div id="learn__data--result">CORRECT</div>
+            <div id="learndata">
+                <div id="learndata__front">
+                    <div id="learndata__front--result-correct" class="learndata__front--result" style="display: none;">CORRECT</div>
+                    <div id="learndata__front--result-incorrect" class="learndata__front--result" style="display: none;">INCORRECT</div>
+                    <div id="learndata__front--data"></div>
                 </div>
-                <div id="learn__data--back"></div>
+                <div id="learndata__back">
+                    <div id="learndata__back--data"></div>
+                </div>
             </div>
         </div>
 
         <div class="row">
-            <div id="learn__answer">
-                <button id="learn__answer--flip" class="btn btn-primary">
+            <div id="learnanswer">
+                <button id="learnanswer__flip" class="learnanswer btn btn-primary" style="display: none;">
                     <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                     Show answer
                 </button>
-                <button id="learn__answer--right" class="btn btn-success">
+                <button id="learnanswer__right" class="learnanswer btn btn-success" style="display: none;">
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                     I was right
                 </button>
-                <button id="learn__answer--wrong" class="btn btn-danger">
+                <button id="learnanswer__wrong" class="learnanswer btn btn-danger" style="display: none;">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                     I was wrong
                 </button>
@@ -94,13 +98,16 @@ var $learn = ((e)=>{
         arrIndex = 0;
         isReverse = false;
 
-        $(document).on('click', '#learn__cmd--end', returnToDeck);
-        $(document).on('click', '#learn__cmd--next', next);
-        $(document).on('click', '#learn__cmd--back', back);
-        $(document).on('click', '#learn__cmd--reverse', reverse);
-        $(document).on('click', '#learn__cmd--edit', edit);
-        $(document).on('click', '#learn__cmd--delete', delete_);
-        $(document).on('click', '#learn__cmd--shuffle', shuffle);
+        $(document).on('click', '#learncmd__end', returnToDeck);
+        $(document).on('click', '#learncmd__next', next);
+        $(document).on('click', '#learncmd__back', back);
+        $(document).on('click', '#learncmd__reverse', reverse);
+        $(document).on('click', '#learncmd__edit', edit);
+        $(document).on('click', '#learncmd__delete', delete_);
+        $(document).on('click', '#learncmd__shuffle', shuffle);
+        $(document).on('click', '#learnanswer__flip', flip);
+        $(document).on('click', '#learnanswer__right', right);
+        $(document).on('click', '#learnanswer__wrong', wrong);
 
         $app.apisync.get("/learn/" + deckId + "/by-" + learnType).then((r)=>{
             document.title = r.data.deck.name;
@@ -123,24 +130,31 @@ var $learn = ((e)=>{
         });
     };
     var ask = (index)=>{
-        $('#learn__status--position').text((index - 0 + 1) +  "/" + arrLength);
+        $('#learnstatus__position').text((index - 0 + 1) +  "/" + arrLength);
+
+        $('.learndata__front--result').hide();
+        $('.learnanswer').hide();
+        $('#learndata__back--data').addClass('hidden');
 
         if(arr[index].answered){
-            $('#learn__answer--flip').hide();
-            $('#learn__answer--right').show();
-            $('#learn__answer--wrong').show();
+            $('#learnanswer__right').show();
+            $('#learnanswer__wrong').show();
+            $('#learndata__back--data').removeClass('hidden');
+            if (arr[index].correct){
+                $('#learndata__front--result-correct').show();
+            } else {
+                $('#learndata__front--result-incorrect').show();
+            }
         } else {
-            $('#learn__answer--flip').show();
-            $('#learn__answer--right').hide();
-            $('#learn__answer--wrong').hide();
+            $('#learnanswer__flip').show();
         }
         
         if (!isReverse){
-            $('#learn__data--front').html(arr[index].front);
-            $('#learn__data--back').html(arr[index].back);
+            $('#learndata__front--data').html(arr[index].front);
+            $('#learndata__back--data').html(arr[index].back);
         } else {
-            $('#learn__data--front').html(arr[index].back);
-            $('#learn__data--back').html(arr[index].front);
+            $('#learndata__front--data').html(arr[index].back);
+            $('#learndata__back--data').html(arr[index].front);
         }
     };
 
@@ -157,9 +171,7 @@ var $learn = ((e)=>{
                 }
                 arrLength--;
                 refreshCount();
-                $('#learn__data').effect('pulsate', {}, 60, ()=>{
-                    ask(arrIndex);
-                });
+                ask(arrIndex);
             });
         });
     };
@@ -173,9 +185,26 @@ var $learn = ((e)=>{
             return valA - valB;
         });
         arrIndex = 0;
-        $('#learn__data').effect('pulsate', {}, 60, ()=>{
+        $('#learndata').effect('pulsate', {}, 60, ()=>{
             ask(arrIndex);
         });
+    };
+
+    var flip = ()=>{
+        $('#learndata__back--data').removeClass('hidden');
+        $('#learnanswer__flip').hide();
+        $('#learnanswer__right').show();
+        $('#learnanswer__wrong').show();
+    };
+
+    var right = ()=>{
+        arr[arrIndex].answered = true;
+        arr[arrIndex].correct = true;
+    };
+
+    var wrong = ()=>{
+        arr[arrIndex].answered = true;
+        arr[arrIndex].correct = false;
     };
 
     var edit = ()=>{
@@ -188,7 +217,9 @@ var $learn = ((e)=>{
 
     var reverse = ()=>{
         isReverse = !isReverse;
-        ask(arrIndex);
+        $('#learndata').effect('highlight', {}, 60, ()=>{
+            ask(arrIndex);
+        });
     };
 
     var refreshCount =()=>{
@@ -204,9 +235,9 @@ var $learn = ((e)=>{
                 }
             }
         });
-        $('#learn__status--unanswered').text(unanswered);
-        $('#learn__status--incorrect').text(incorrect);
-        $('#learn__status--correct').text(correct);
+        $('#learnstatus__count--unanswered').text(unanswered);
+        $('#learnstatus__count--incorrect').text(incorrect);
+        $('#learnstatus__count--correct').text(correct);
     };
 
     var returnToDeck = ()=>{window.location.href = "./deck.php?id=" + deckId;}

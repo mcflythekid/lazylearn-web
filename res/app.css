@@ -1,43 +1,72 @@
-#learn__status{
+/***********************************************************************/
+/***********************************************************************/
+/***********************************************************************/
+.hidden{
+    visibility: hidden;
+}
+.nonedisplay{
+    display: none;
+}
+/***********************************************************************/
+/***********************************************************************/
+/***********************************************************************/
+#learnstatus{
     margin-bottom: 25px;
     font-size:13px;
     font-weight:bold
 }
-#learn__status--count > span{
+.learnstatus__count {
     margin:0 2px 0 0;
     padding:0 .4em 0 .4em;
     text-align:center
 }
-#learn__status--unanswered{
+#learnstatus__count--unanswered{
     border:2px solid #fad163
 }
-#learn__status--correct{
+#learnstatus__count--correct{
     border:2px solid #66cc66
 }
-#learn__status--incorrect{
+#learnstatus__count--incorrect{
     border:2px solid #ff3333
 }
-#learn__cmd{
+/***********************************************************************/
+/***********************************************************************/
+/***********************************************************************/
+#learncmd{
     margin-bottom: 10px;
 }
-#learn__data{
+/***********************************************************************/
+/***********************************************************************/
+/***********************************************************************/
+#learndata{
     margin-bottom: 10px;
-}
-#learn__answer{
-    text-align: center;
-}
-#learn__data{
     border:1px solid #cecece;
 }
-#learn__data--result{
-    text-align:center;
+#learndata__front{
+    height:150px;
+    position: relative;
+    border-bottom: 1px solid #e2edeb;
+}
+.learndata__front--result{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top: 10px;
     font-size:18px;
     font-weight:bold;
 }
-#learn__data--front{
-    height:150px;;
+#learndata__front--result-correct{
+    color: #66cc66;
 }
-#learn__data--back{
+#learndata__front--result-incorrect{
+    color: #ff3333;
+}
+#learndata__back{
     height:150px;
-    border-top: 1px solid #e2edeb;
+}
+/***********************************************************************/
+/***********************************************************************/
+/***********************************************************************/
+#learnanswer{
+    text-align: center;
 }
