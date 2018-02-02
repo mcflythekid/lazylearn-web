@@ -125,17 +125,23 @@ var $learn = ((e)=>{
     var ask = (index)=>{
         $('#learn__status--position').text((index - 0 + 1) +  "/" + arrLength);
 
-       $('#learn__answer--flip').show();
-       $('#learn__answer--right').hide();
-       $('#learn__answer--wrong').hide();
-
-       if (!isReverse){
-           $('#learn__data--front').html(arr[index].front);
-           $('#learn__data--back').html(arr[index].back);
-       } else {
-           $('#learn__data--front').html(arr[index].back);
-           $('#learn__data--back').html(arr[index].front);
-       }
+        if(arr[index].answered){
+            $('#learn__answer--flip').hide();
+            $('#learn__answer--right').show();
+            $('#learn__answer--wrong').show();
+        } else {
+            $('#learn__answer--flip').show();
+            $('#learn__answer--right').hide();
+            $('#learn__answer--wrong').hide();
+        }
+        
+        if (!isReverse){
+            $('#learn__data--front').html(arr[index].front);
+            $('#learn__data--back').html(arr[index].back);
+        } else {
+            $('#learn__data--front').html(arr[index].back);
+            $('#learn__data--back').html(arr[index].front);
+        }
     };
 
     var delete_ = ()=>{
