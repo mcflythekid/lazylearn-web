@@ -130,6 +130,8 @@ var $learn = ((e)=>{
         });
     };
     var ask = (index)=>{
+        refreshCount();
+
         $('#learnstatus__position').text((index - 0 + 1) +  "/" + arrLength);
 
         $('.learndata__front--result').hide();
@@ -174,7 +176,6 @@ var $learn = ((e)=>{
                     arrIndex--;
                 }
                 arrLength--;
-                refreshCount();
                 ask(arrIndex);
             });
         });
