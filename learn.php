@@ -98,7 +98,7 @@ var $learn = ((e)=>{
         arrIndex = 0;
         isReverse = false;
 
-        $(document).on('click', '#learncmd__end', returnToDeck);
+        $(document).on('click', '#learncmd__end', end);
         $(document).on('click', '#learncmd__next', next);
         $(document).on('click', '#learncmd__back', back);
         $(document).on('click', '#learncmd__reverse', reverse);
@@ -158,6 +158,10 @@ var $learn = ((e)=>{
         }
     };
 
+    var end = ()=>{
+        returnToDeck();
+    };
+
     var delete_ = ()=>{
         $tool.confirm("This will remove this card and cannot be undone!!!", function(){
             $app.apisync.delete("/card/" + arr[arrIndex].id).then(()=>{
@@ -200,11 +204,13 @@ var $learn = ((e)=>{
     var right = ()=>{
         arr[arrIndex].answered = true;
         arr[arrIndex].correct = true;
+        goNextUnanswered();
     };
 
     var wrong = ()=>{
         arr[arrIndex].answered = true;
         arr[arrIndex].correct = false;
+        goNextUnanswered();
     };
 
     var edit = ()=>{
@@ -238,6 +244,26 @@ var $learn = ((e)=>{
         $('#learnstatus__count--unanswered').text(unanswered);
         $('#learnstatus__count--incorrect').text(incorrect);
         $('#learnstatus__count--correct').text(correct);
+    };
+
+    var goNextUnanswered = function(){
+        var getNextUnansweredIndex = ()=>{
+            for (var i = arrIndex + 1; i <= arrLength - 1; i++){
+                if (!arr[i].answered) return i;
+            }
+            for (var i = 0; i < arrIndex; i++){
+                if (!arr[i].answered) return i;
+            }
+            return -1;
+        };
+        var nextIndex = getNextUnansweredIndex();
+        if (nextIndex == -1){
+            end();
+        } else {
+            arrIndex = nextIndex;
+            ask(arrIndex);
+        }
+
     };
 
     var returnToDeck = ()=>{window.location.href = "./deck.php?id=" + deckId;}
