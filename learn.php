@@ -98,40 +98,9 @@ var $learn = ((e)=>{
         $(document).on('click', '#learn__cmd--next', next);
         $(document).on('click', '#learn__cmd--back', back);
         $(document).on('click', '#learn__cmd--reverse', reverse);
-        $(document).on('click', '#learn__cmd--edit', ()=>{
-            $card__modal__edit.edit(arr[arrIndex].id, (front, back)=>{
-                arr[arrIndex].front = front;
-                arr[arrIndex].back = back;
-                $('#learn__data').effect('pulsate', {}, 60, ()=>{
-                    ask(arrIndex);
-                });
-            });
-        });
-        $(document).on('click', '#learn__cmd--delete', ()=>{
-            $tool.confirm("This will remove this card and cannot be undone!!!", function(){
-                $app.apisync.delete("/card/" + arr[arrIndex].id).then(()=>{
-                    if (arrLength == 1){
-                        returnToDeck();
-                        return;
-                    }
-                    arr.splice(arrIndex, 1);
-                    if (arrIndex == arrLength - 1){
-                        arrIndex--;
-                    }
-                    arrLength--;
-                    refreshCount();
-                    $('#learn__data').effect('pulsate', {}, 60, ()=>{
-                        ask(arrIndex);
-                    });
-                });
-            });
-        });
-        $(document).on('click', '#learn__cmd--shuffle', ()=>{
-            arr = $tool.shuffle(arr);
-            $('#learn__data').effect('pulsate', {}, 60, ()=>{
-                ask(0);
-            });
-        });
+        $(document).on('click', '#learn__cmd--edit', edit);
+        $(document).on('click', '#learn__cmd--delete', delete_);
+        $(document).on('click', '#learn__cmd--shuffle', shuffle);
 
         $app.apisync.get("/learn/" + deckId + "/by-" + learnType).then((r)=>{
             document.title = r.data.deck.name;
@@ -167,13 +136,54 @@ var $learn = ((e)=>{
            $('#learn__data--front').html(arr[index].back);
            $('#learn__data--back').html(arr[index].front);
        }
+    };
 
+    var delete_ = ()=>{
+        $tool.confirm("This will remove this card and cannot be undone!!!", function(){
+            $app.apisync.delete("/card/" + arr[arrIndex].id).then(()=>{
+                if (arrLength == 1){
+                    returnToDeck();
+                    return;
+                }
+                arr.splice(arrIndex, 1);
+                if (arrIndex == arrLength - 1){
+                    arrIndex--;
+                }
+                arrLength--;
+                refreshCount();
+                $('#learn__data').effect('pulsate', {}, 60, ()=>{
+                    ask(arrIndex);
+                });
+            });
+        });
+    };
+
+    var shuffle = ()=>{
+        if (arrLength == 1) return;
+        arr = $tool.shuffle(arr);
+        arr.sort((a, b)=>{
+            var valA = a.answered ? 1 : 0;
+            var valB = b.answered ? 1 : 0;
+            return valA - valB;
+        });
+        arrIndex = 0;
+        $('#learn__data').effect('pulsate', {}, 60, ()=>{
+            ask(arrIndex);
+        });
+    };
+
+    var edit = ()=>{
+        $card__modal__edit.edit(arr[arrIndex].id, (front, back)=>{
+            arr[arrIndex].front = front;
+            arr[arrIndex].back = back;
+            ask(arrIndex);
+        });
     };
 
     var reverse = ()=>{
         isReverse = !isReverse;
         ask(arrIndex);
-    }
+    };
 
     var refreshCount =()=>{
         var unanswered = 0, correct = 0, incorrect = 0;
