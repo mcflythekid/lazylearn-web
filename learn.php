@@ -99,8 +99,10 @@ var $learn = ((e)=>{
         $(document).on('click', '#learn__cmd--back', back);
         $(document).on('click', '#learn__cmd--reverse', reverse);
         $(document).on('click', '#learn__cmd--edit', ()=>{
-            $card__modal__edit.edit(arr[arrIndex].id, ()=>{
-                alert('cc');
+            $card__modal__edit.edit(arr[arrIndex].id, (front, back)=>{
+                arr[arrIndex].front = front;
+                arr[arrIndex].back = back;
+                ask(arrIndex);
             });
         });
         $(document).on('click', '#learn__cmd--delete', ()=>{

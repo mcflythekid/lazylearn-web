@@ -40,7 +40,7 @@
             }).then((res)=>{
                 $('#card__modal__edit').on('hidden.bs.modal', function(){
                     $(this).off('hidden.bs.modal');
-                    cb();
+                    cb($tool.quillGetHtml(quillFront), $tool.quillGetHtml(quillBack));
                 }).modal('hide');
             });
         });
