@@ -55,16 +55,16 @@ require 'modal/card-edit.php';
         </div>
 
         <div class="row">
-            <div id="learn__answer--mark">
-                <button class="btn btn-primary">
+            <div id="learn__answer">
+                <button id="learn__answer--flip" class="btn btn-primary">
                     <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                     Show answer
                 </button>
-                <button class="btn btn-success">
+                <button id="learn__answer--right" class="btn btn-success">
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                     I was right
                 </button>
-                <button class="btn btn-danger">
+                <button id="learn__answer--wrong" class="btn btn-danger">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                     I was wrong
                 </button>
@@ -74,75 +74,111 @@ require 'modal/card-edit.php';
     </div>
 </div>
 
+<script>
+var $learn = ((e)=>{
+    var deckId, learnType, arr, arrIndex, arrLength, isReverse;
 
+    e.init = ()=>{
+        deckId = $tool.param('id');
+        learnType = $tool.param('type');
+        arr = [];
+        arrIndex = 0;
+        isReverse = false;
 
-
-
-
-
-
-
-
-    <script>
-
-    var em = false;
-    var li = false;
-    //var sa = $tool.param('type') === 'review' ? true : false;
-    var ucs = false;
-    var cs = 291738;
-    var theCardset = [];
-
-    var $learn = ((e)=>{
-        var data;
-        var deckId = $tool.param('id');
-        var learnType = $tool.param('type');
-
-        console.log(deckId);
-        console.log(learnType);
-
-        e.setPosition = (position)=>{
-            $('#learn__status--position').text(position + "/" + data.cards.length);
-        };
-        e.setUnanswered = (unanswered)=>{
-            $('#learn__status--unanswered').text(unanswered);
-        };
-        e.setCorect = (correct)=>{
-            $('#learn__status--correct').text(correct);
-        };
-        e.setIncorrect = (incorrect)=>{
-            $('#learn__status--incorrect').text(incorrect);
-        };
+        $(document).on('click', '#learn__cmd--end', returnToDeck);
+        $(document).on('click', '#learn__cmd--next', next);
+        $(document).on('click', '#learn__cmd--back', back);
+        $(document).on('click', '#learn__cmd--reverse', reverse);
+        $(document).on('click', '#learn__cmd--edit', ()=>{
+            $card__modal__edit.edit(arr[arrIndex].id, ()=>{
+                alert('cc');
+            });
+        });
+        $(document).on('click', '#learn__cmd--delete', ()=>{
+            $tool.confirm("This will remove this card and cannot be undone!!!", function(){
+                $app.apisync.delete("/card/" + arr[arrIndex].id).then(()=>{
+                    alert('cl');
+                });
+            });
+        });
 
         $app.apisync.get("/learn/" + deckId + "/by-" + learnType).then((r)=>{
-            data = r.data;
-            document.title = data.deck.name;
-            if (!data.cards.length){
-                $tool.info('This deck has no card.', ()=>{
-                    window.location.href = "./deck.php?id=" + deckId;
-                });
+            document.title = r.data.deck.name;
+            if (!r.data.cards.length){
+                $tool.info('This deck has no card.', e.returnToDeck);
                 return;
             }
-            $.each(data.cards, (index, obj)=>{
-                theCardset[index + 1] = {
-                    card_id: obj.id,
-                    card_front: obj.front,
-                    card_back: obj.back,
+            $.each(r.data.cards, (index, obj)=>{
+                arr[index] = {
+                    id: obj.id,
+                    front: obj.front,
+                    back: obj.back,
                     answered: false,
                     correct: false
                 };
+                arrLength = arr.length;
             });
-            e.setPosition(1);
-            e.setUnanswered(data.cards.length);
-            e.setIncorrect(0);
-            e.setCorect(0);
-            console.log(theCardset);
+            ask(0);
+            refreshCount();
         });
-    })({});
+    };
+    var ask = (index)=>{
+        $('#learn__status--position').text((index - 0 + 1) +  "/" + arrLength);
 
+       $('#learn__answer--flip').show();
+       $('#learn__answer--right').hide();
+       $('#learn__answer--wrong').hide();
 
+       if (!isReverse){
+           $('#learn__data--front').html(arr[index].front);
+           $('#learn__data--back').html(arr[index].back);
+       } else {
+           $('#learn__data--front').html(arr[index].back);
+           $('#learn__data--back').html(arr[index].front);
+       }
 
+    };
 
+    var reverse = ()=>{
+        isReverse = !isReverse;
+        ask(arrIndex);
+    }
+
+    var refreshCount =()=>{
+        var unanswered = 0, correct = 0, incorrect = 0;
+        $.each(arr, (index, obj)=>{
+            if (!obj.answered) {
+                unanswered++
+            } else {
+                if (!obj.correct) {
+                    incorrect++;
+                } else {
+                    correct++;
+                }
+            }
+        });
+        $('#learn__status--unanswered').text(unanswered);
+        $('#learn__status--incorrect').text(incorrect);
+        $('#learn__status--correct').text(correct);
+    };
+
+    var returnToDeck = ()=>{window.location.href = "./deck.php?id=" + deckId;}
+
+    var back = ()=>{
+        if(arrIndex > 0){
+            arrIndex--;
+            ask(arrIndex);
+        }
+    };
+
+    var next = ()=>{
+        if(arrIndex < arrLength - 1){
+            arrIndex++;
+            ask(arrIndex);
+        }
+    };
+    return e;
+})({});
+$learn.init();
 </script>
-<script src="<?=$ASSET?>/learn.js"></script>
-<?php
-bottom();
+<?php bottom();

@@ -38,8 +38,10 @@
                 front: $tool.quillGetHtml(quillFront),
                 back: $tool.quillGetHtml(quillBack)
             }).then((res)=>{
-                $('#card__modal__edit').modal('hide');
-                cb();
+                $('#card__modal__edit').on('hidden.bs.modal', function(){
+                    $(this).off('hidden.bs.modal');
+                    cb();
+                }).modal('hide');
             });
         });
 
