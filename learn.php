@@ -102,7 +102,9 @@ var $learn = ((e)=>{
             $card__modal__edit.edit(arr[arrIndex].id, (front, back)=>{
                 arr[arrIndex].front = front;
                 arr[arrIndex].back = back;
-                ask(arrIndex);
+                $('#learn__data').effect('pulsate', {}, 60, ()=>{
+                    ask(arrIndex);
+                });
             });
         });
         $(document).on('click', '#learn__cmd--delete', ()=>{
@@ -118,14 +120,17 @@ var $learn = ((e)=>{
                     }
                     arrLength--;
                     refreshCount();
-                    ask(arrIndex);
+                    $('#learn__data').effect('pulsate', {}, 60, ()=>{
+                        ask(arrIndex);
+                    });
                 });
             });
         });
         $(document).on('click', '#learn__cmd--shuffle', ()=>{
             arr = $tool.shuffle(arr);
-            ask(0);
-            $('#learn__data').effect('pulsate', {}, 60);
+            $('#learn__data').effect('pulsate', {}, 60, ()=>{
+                ask(0);
+            });
         });
 
         $app.apisync.get("/learn/" + deckId + "/by-" + learnType).then((r)=>{
