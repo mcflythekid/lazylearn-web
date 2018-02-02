@@ -101,6 +101,11 @@ var $learn = ((e)=>{
                 });
             });
         });
+        $(document).on('click', '#learn__cmd--shuffle', ()=>{
+            arr = $tool.shuffle(arr);
+            ask(0);
+            alert('shuffled');
+        });
 
         $app.apisync.get("/learn/" + deckId + "/by-" + learnType).then((r)=>{
             document.title = r.data.deck.name;
