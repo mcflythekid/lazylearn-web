@@ -16,6 +16,9 @@ function top(){
     <link rel="icon" href="/res/img/favicon.ico">
     <title><?=$TITLE?></title>
 
+
+    <script type="text/javascript" src="//www.gstatic.com/charts/loader.js"></script>
+
 	<!-- jquery -->
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="//code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>

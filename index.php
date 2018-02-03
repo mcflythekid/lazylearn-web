@@ -3,12 +3,20 @@ require_once 'core.php';
 title('Dashboard');
 top();
 require 'modal/deck-edit.php';
+require 'component/chart.php';
 ?>
 <style>
 #toolbar{
 	width: 300px;
 }
 </style>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div id="userchart"></div>
+    </div>
+</div>
+
 <div class="row">
 	<div class="col-lg-12">
 		<div id="toolbar">
@@ -27,10 +35,16 @@ require 'modal/deck-edit.php';
 <script>
 (()=>{
 
+    var drawChart = ()=>{
+        chart.drawUser($tool.getData('auth').userId, 'userchart');
+    };
+    drawChart();
+
     var refresh = ()=>{
         $('#deck__list').bootstrapTable('refresh',{
             silent: true
         });
+        drawChart();
     };
 
     $('#deck__create--form').submit((event)=> {

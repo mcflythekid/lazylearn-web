@@ -3,109 +3,64 @@ require_once 'core.php';
 title('loading...');
 top();
 require 'modal/card-edit.php';
+require 'component/chart.php';
 ?>
-
-<style>
-    #toolbar{
-        width: 300px;
-    }
-</style>
-
-    <style>
-        .lzcard_side {
-            padding-left: 10px;
-            padding-right: 10px;
-            background-color: #fff;
-            border-bottom: 1px solid #cecece;
-            border-left: 1px solid #d8d8d8;
-            border-right: 1px solid #cecece;
-            border-top: 1px solid #d8d8d8;
-            min-height: 6em;
-        }
-        #card__list img{
-            max-width:100%;
-            max-height:100%;
-        }
-        .lzcard{
-            margin-bottom:10px;
-        }
-        #lzcard_newform{
-            margin-bottom:30px;
-        }
-        #lzcard_sample{
-            display: none;
-        }
-    </style>
-
-    <div class="row" id="lzcard_newform">
-        <div class="col-lg-11">
-            <div class="row">
-                <div class="col-xs-6">
-                    <div id="card__create--front"></div>
-                </div>
-                <div class="col-xs-6">
-                    <div id="card__create--back"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-1">
-            <button type="submit" id="card__create--submit" class="btn btn-success pull-right">
-                Create
-            </button>
-        </div>
-    </div>
 
 <div class="row">
     <div class="col-lg-12">
-        <div id="toolbar">
-            <div class="btn-group">
-                    <button class="btn btn-primary card__learn--link" data-learn-type="learn">Lean</button>
-                    <button class="btn btn-primary card__learn--link" data-learn-type="review">Review</button>
-            </div>
-        </div>
-        <table id="card__list"></table>
+        <div id="deckchart"></div>
     </div>
 </div>
 
+<div class="row" id="cardcreate">
+    <div class="col-lg-11">
+        <div class="row">
+            <div class="col-xs-6">
+                <div id="cardcreate__front"></div>
+            </div>
+            <div class="col-xs-6">
+                <div id="cardcreate__back"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-1">
+        <button type="submit" id="cardcreate__submit" class="btn btn-success pull-right">Create</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div id="cardcreate__toolbar">
+            <div class="btn-group">
+                    <button class="btn btn-primary cardlearn" data-learn-type="learn">Lean</button>
+                    <button class="btn btn-primary cardlearn" data-learn-type="review">Review</button>
+            </div>
+        </div>
+        <table id="cardlist"></table>
+    </div>
+</div>
+
+
 <script>
     (()=>{
+        var deckId = $tool.param('id');
 
-        $(document).on('click', '.card__learn--link', function(){
-            window.location.href = "./learn.php?id=" + $tool.param('id') + "&type=" + $(this).data('learn-type');
+        $(document).on('click', '.cardcmd__delete', function(){
+            var cardId = $(this).data('card-id');
+            $tool.confirm("This will remove this card and cannot be undone!!!", function(){
+                $app.apisync.delete("/card/" + cardId).then(()=>{
+                    refresh();
+                });
+            });
         });
-
-        var quill_modules = {
-            modules: {
-                toolbar: [
-                    ['bold', 'italic', 'underline'],
-                    ['image', 'code-block']
-                ]
-            },
-            placeholder: '',
-            theme: 'snow'  // or 'bubble'
-        };
-        var new_front = new Quill('#card__create--front', {
-            modules: {
-                toolbar: [
-                    ['bold', 'italic', 'underline'],
-                    ['image', 'code-block']
-                ]
-            },
-            placeholder: 'Front side...',
-            theme: 'snow'  // or 'bubble'
+        $(document).on('click', '.cardcmd__edit', function(e){
+            var cardId = $(this).data('card-id');
+            $card__modal__edit.edit(cardId, refresh);
         });
-        var new_back = new Quill('#card__create--back', {
-            modules: {
-                toolbar: [
-                    ['bold', 'italic', 'underline'],
-                    ['image', 'code-block']
-                ]
-            },
-            placeholder: 'Back side...',
-            theme: 'snow'  // or 'bubble'
+        $('.cardlearn',).click(function(){
+            window.location.href = "./learn.php?id=" + deckId + "&type=" + $(this).data('learn-type');
         });
-
-        $('#card__create--submit').click((event)=> {
+        $('#cardcreate__submit').click(()=> {
             if ($tool.quillIsBlank(new_front) || $tool.quillIsBlank(new_back)){
                 return;
             }
@@ -119,42 +74,46 @@ require 'modal/card-edit.php';
             });
         });
 
-
-        var deckId = $tool.param('id');
-
+        var new_front = new Quill('#cardcreate__front', {
+            modules: {
+                toolbar: [
+                    ['bold', 'italic', 'underline'],
+                    ['image', 'code-block']
+                ]
+            },
+            placeholder: 'Front side...',
+            theme: 'snow'  // or 'bubble'
+        });
+        var new_back = new Quill('#cardcreate__back', {
+            modules: {
+                toolbar: [
+                    ['bold', 'italic', 'underline'],
+                    ['image', 'code-block']
+                ]
+            },
+            placeholder: 'Back side...',
+            theme: 'snow'  // or 'bubble'
+        });
         var refresh = ()=>{
-            $('#card__list').bootstrapTable('refresh',{
+            $('#cardlist').bootstrapTable('refresh',{
                 silent: true
             });
+            chart.drawDeck(deckId, 'deckchart')
         };
 
+        chart.drawDeck(deckId, 'deckchart');
         $app.api.get("/deck/" + deckId).then((r)=>{
             var deck = r.data;
             document.title = deck.name;
         }).catch((e)=>{
             $tool.flash(0, 'Cannot get deck');
         });
-
-        $(document).on('click', '.card__cmd--delete', function(e){
-            var cardId = $(this).data('card-id');
-            $tool.confirm("This will remove this card and cannot be undone!!!", function(){
-                $app.apisync.delete("/card/" + cardId).then(()=>{
-                    refresh();
-                });
-            });
-        });
-
-        $(document).on('click', '.card__cmd--edit', function(e){
-            var cardId = $(this).data('card-id');
-            $card__modal__edit.edit(cardId, refresh);
-        });
-
-        $('#card__list').bootstrapTable({
+        $('#cardlist').bootstrapTable({
             url: $app.endpoint + "/deck/" + deckId + "/card/by-search",
             classes: 'table',
             cache: false,
             striped: false,
-            toolbar: '#toolbar',
+            toolbar: '#cardcreate__toolbar',
             sidePagination: 'server',
             sortName: 'createdOn',
             sortOrder: 'DESC',
@@ -191,8 +150,8 @@ require 'modal/card-edit.php';
                     formatter: (obj, row)=>{
                         return '<div class="btn-group">'+
 
-                            '<button data-card-id="'+obj+'" class="btn btn-sm btn-success card__cmd--edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>'+
-                            '<button data-card-id="'+obj+'" class="btn btn-sm btn-danger card__cmd--delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>'+
+                            '<button data-card-id="'+obj+'" class="btn btn-sm btn-success cardcmd__edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>'+
+                            '<button data-card-id="'+obj+'" class="btn btn-sm btn-danger cardcmd__delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>'+
                             '</div>';
                     },
                     width: '10%'
