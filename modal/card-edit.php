@@ -34,7 +34,7 @@
             if ($tool.quillIsBlank(quillFront) || $tool.quillIsBlank(quillBack)){
                 return;
             }
-            $app.apisync.put("/card/" + cardId, {
+            $app.apisync.patch("/card/" + cardId, {
                 front: $tool.quillGetHtml(quillFront),
                 back: $tool.quillGetHtml(quillBack)
             }).then((res)=>{

@@ -109,7 +109,7 @@ var $learn = ((e)=>{
         $(document).on('click', '#learnanswer__right', right);
         $(document).on('click', '#learnanswer__wrong', wrong);
 
-        $app.apisync.get("/learn/" + deckId + "/by-" + learnType).then((r)=>{
+        $app.apisync.get("/deck/" + deckId + "/learn-data?type=" + learnType).then((r)=>{
             document.title = r.data.deck.name;
             if (!r.data.cards.length){
                 $tool.info('This deck has no card.', e.returnToDeck);
@@ -203,12 +203,16 @@ var $learn = ((e)=>{
     };
 
     var right = ()=>{
+        if (learnType === 'learn'){
+            $app.api.patch("/card/" + arr[arrIndex].id + "/correct");
+        }
         arr[arrIndex].answered = true;
         arr[arrIndex].correct = true;
         goNextUnanswered();
     };
 
     var wrong = ()=>{
+        $app.api.patch("/card/" + arr[arrIndex].id + "/incorrect");
         arr[arrIndex].answered = true;
         arr[arrIndex].correct = false;
         goNextUnanswered();

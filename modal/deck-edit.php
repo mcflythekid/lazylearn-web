@@ -35,7 +35,7 @@
     });
     $('#deck__modal__edit--form').submit(function(e){
         e.preventDefault();
-        $app.apisync.put("/deck/" + $('#deck__modal__edit--id').val(),{
+        $app.apisync.patch("/deck/" + $('#deck__modal__edit--id').val(),{
             name: $('#deck__modal__edit--name').val().trim()
         }).then(()=>{
             $('#deck__modal__edit').modal('hide');
