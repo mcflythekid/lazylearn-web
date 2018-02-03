@@ -112,7 +112,7 @@ var $learn = ((e)=>{
         $app.apisync.get("/deck/" + deckId + "/learn-data?type=" + learnType).then((r)=>{
             document.title = r.data.deck.name;
             if (!r.data.cards.length){
-                $tool.info('This deck has no card.', e.returnToDeck);
+                $tool.info('This deck has no card.', returnToDeck);
                 return;
             }
             $.each(r.data.cards, (index, obj)=>{
