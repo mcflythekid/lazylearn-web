@@ -90,6 +90,16 @@ require 'component/chart.php';
                 }
             },
             {
+                field: 'totalCard',
+                title: 'Cards',
+                sortable: true,
+            },
+            {
+                field: 'totalTimeupCard',
+                title: 'Timeups',
+                sortable: true,
+            },
+            {
                 field: 'createdOn',
                 title: 'Create',
                 sortable: true,
