@@ -22,8 +22,8 @@ var $tool = ((e)=>{
         e.quillSetHtml(quill, '<p><br></p>');
     }
 
-    e.confirm =  function(msg, cb){
-        BootstrapDialog.confirm({
+    e.confirm =  function(msg, cb, onhiddenCb){
+        var x = BootstrapDialog.confirm({
             title: 'Are you sure',
             message: msg,
             type: BootstrapDialog.TYPE_WARNING, // <-- Default value is BootstrapDialog.TYPE_PRIMARY
@@ -35,11 +35,11 @@ var $tool = ((e)=>{
             callback: function(result) {
                 // result will be true if button was click, while it will be false if users close the dialog directly.
                 if(result) {
-                    cb();
-                }else {
-                }
-            }
+                    if (cb) cb();
+                }else {}
+            },
         });
+        x.options.onhidden =  onhiddenCb;
     };
 
     // ui ----------------------------------------------------------

@@ -80,7 +80,7 @@ require 'modal/card-edit.php';
 
 <script>
 var $learn = ((e)=>{
-    var deckId, learnType, arr, arrIndex, arrLength, isReverse;
+    var deckId, learnType, arr, arrIndex, arrLength, isReverse, isEditing, isFlipped;
 
     e.str = ()=>{
         return{
@@ -89,7 +89,7 @@ var $learn = ((e)=>{
             arrIndex: arrIndex,
             isReverse: isReverse
         };
-    }
+    };
 
     e.init = ()=>{
         deckId = $tool.param('id');
@@ -97,6 +97,22 @@ var $learn = ((e)=>{
         arr = [];
         arrIndex = 0;
         isReverse = false;
+        isEditing = false;
+        isFlipped = false;
+
+        $(document).on('keydown', function(event){
+            if(event.keyCode == 40 && !isEditing ) {event.preventDefault(); wrong();} // Down
+            if(event.keyCode == 38 && !isEditing ) {;event.preventDefault(); right()} // Up
+            if(event.keyCode == 37 && !isEditing ) {;event.preventDefault(); back();} // Left
+            if(event.keyCode == 39 && !isEditing ) { // Right
+                event.preventDefault();
+                if (arr[arrIndex].answered || isFlipped) {
+                    next();
+                } else {
+                    flip();
+                }
+            }
+        });
 
         $(document).on('click', '#learncmd__end', end);
         $(document).on('click', '#learncmd__next', next);
@@ -132,6 +148,7 @@ var $learn = ((e)=>{
     };
     var ask = (index)=>{
         refreshCount();
+        isFlipped = false;
 
         $('#learnstatus__position').text((index - 0 + 1) +  "/" + arrLength);
 
@@ -165,7 +182,19 @@ var $learn = ((e)=>{
         returnToDeck();
     };
 
+    var edit = ()=>{
+        isEditing = true;
+        $card__modal__edit.edit(arr[arrIndex].id, (front, back)=>{
+            arr[arrIndex].front = front;
+            arr[arrIndex].back = back;
+            ask(arrIndex);
+        }, ()=>{
+            isEditing = false;
+        });
+    };
+
     var delete_ = ()=>{
+        isEditing = true;
         $tool.confirm("This will remove this card and cannot be undone!!!", function(){
             $app.apisync.delete("/card/" + arr[arrIndex].id).then(()=>{
                 if (arrLength == 1){
@@ -179,6 +208,8 @@ var $learn = ((e)=>{
                 arrLength--;
                 ask(arrIndex);
             });
+        }, ()=>{
+            isEditing = false;
         });
     };
 
@@ -197,6 +228,7 @@ var $learn = ((e)=>{
     };
 
     var flip = ()=>{
+        isFlipped = true;
         $('#learndata__back--data').removeClass('hidden');
         $('#learnanswer__flip').hide();
         $('#learnanswer__right').show();
@@ -221,14 +253,6 @@ var $learn = ((e)=>{
         arr[arrIndex].answered = true;
         arr[arrIndex].correct = false;
         goNextUnanswered();
-    };
-
-    var edit = ()=>{
-        $card__modal__edit.edit(arr[arrIndex].id, (front, back)=>{
-            arr[arrIndex].front = front;
-            arr[arrIndex].back = back;
-            ask(arrIndex);
-        });
     };
 
     var reverse = ()=>{
@@ -295,4 +319,3 @@ var $learn = ((e)=>{
 })({});
 $learn.init();
 </script>
-<?php bottom();

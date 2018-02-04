@@ -27,7 +27,9 @@
 <script>
     var $card__modal__edit = ((e)=>{
         var cardId = null;
-        var cb = null;
+        var successCb = null;
+        var closeCb = null;
+
         var quillFront = new Quill('#card__modal__edit--front', $app.quillFrontConf);
         var quillBack = new Quill('#card__modal__edit--back', $app.quillBackConf);
         $(document).on('click', '#card__modal__edit--submit', function(e){
@@ -38,20 +40,29 @@
                 front: $tool.quillGetHtml(quillFront),
                 back: $tool.quillGetHtml(quillBack)
             }).then((res)=>{
-                $('#card__modal__edit').on('hidden.bs.modal', function(){
+                $('#card__modal__edit').off('hidden.bs.modal').on('hidden.bs.modal', function(){
                     $(this).off('hidden.bs.modal');
-                    cb($tool.quillGetHtml(quillFront), $tool.quillGetHtml(quillBack));
+                    successCb($tool.quillGetHtml(quillFront), $tool.quillGetHtml(quillBack));
+                    if (closeCb) closeCb();
                 }).modal('hide');
+            }).catch((err)=>{
+                if (closeCb) closeCb();
             });
         });
 
-        e.edit = (argCardId, argCb)=>{
+        e.edit = (argCardId, argSuccessCb, argCloseCb)=>{
             cardId = argCardId;
-            cb = argCb;
+            successCb = argSuccessCb;
+            closeCb = argCloseCb;
             $app.apisync.get("/card/" + cardId).then((res)=>{
                 $tool.quillSetHtml(quillFront, res.data.front);
                 $tool.quillSetHtml(quillBack, res.data.back);
-                $('#card__modal__edit').modal('show');
+                $('#card__modal__edit').modal('show').off('hidden.bs.modal').on('hidden.bs.modal', function(){
+                    $(this).off('hidden.bs.modal');
+                    if (closeCb) closeCb();
+                });
+            }).catch((err)=>{
+                if (argCloseCb) argCloseCb();
             });
         };
 
