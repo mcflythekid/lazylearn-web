@@ -5,7 +5,7 @@ top();
 require 'modal/card-edit.php';
 ?>
 
-<div class="row">
+<div class="row" id="learn">
     <div class="col-lg-6 col-lg-offset-3 col-xs-12">
 
         <div class="row">
