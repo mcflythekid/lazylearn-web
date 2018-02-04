@@ -118,6 +118,7 @@ var $learn = ((e)=>{
             $.each(r.data.cards, (index, obj)=>{
                 arr[index] = {
                     id: obj.id,
+                    step: obj.step,
                     front: obj.front,
                     back: obj.back,
                     answered: false,
@@ -205,6 +206,10 @@ var $learn = ((e)=>{
     var right = ()=>{
         if (learnType === 'learn'){
             $app.api.patch("/card/" + arr[arrIndex].id + "/correct");
+        } else if (learnType === 'review'){
+            if (arr[arrIndex].step == 0){
+                $app.api.patch("/card/" + arr[arrIndex].id + "/correct");
+            }
         }
         arr[arrIndex].answered = true;
         arr[arrIndex].correct = true;
