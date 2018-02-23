@@ -82,8 +82,13 @@ var $app = ((endpoint)=>{
         modules: {
             toolbar: [
                 ['bold', 'italic', 'underline'],
-                ['image', 'code-block']
-            ]
+                [{align: ''}, {align: 'center'}, {align: 'right'}, {align: 'justify'}],
+                ['link', 'image', 'code-block']
+            ],
+            imageResize: {
+                // See optional "config" below
+            },
+            magicUrl: true
         },
         placeholder: 'Front side...',
         theme: 'snow'  // or 'bubble'
@@ -92,10 +97,15 @@ var $app = ((endpoint)=>{
         modules: {
             toolbar: [
                 ['bold', 'italic', 'underline'],
-                ['image', 'code-block']
-            ]
+                [{align: ''}, {align: 'center'}, {align: 'right'}, {align: 'justify'}],
+                ['link', 'image', 'code-block']
+            ],
+            imageResize: {
+                // See optional "config" below
+            },
+            magicUrl: true
         },
-        placeholder: 'Back side...',
+        placeholder: 'Front side...',
         theme: 'snow'  // or 'bubble'
     };
     return e;

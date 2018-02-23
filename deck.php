@@ -74,34 +74,8 @@ require 'component/chart.php';
             });
         });
 
-        var new_front = new Quill('#cardcreate__front', {
-            modules: {
-                toolbar: [
-                    ['bold', 'italic', 'underline'],
-                    ['image', 'code-block']
-                ],
-                imageResize: {
-                    // See optional "config" below
-                },
-                magicUrl: true
-            },
-            placeholder: 'Front side...',
-            theme: 'snow'  // or 'bubble'
-        });
-        var new_back = new Quill('#cardcreate__back', {
-            modules: {
-                toolbar: [
-                    ['bold', 'italic', 'underline'],
-                    ['image', 'code-block']
-                ],
-                imageResize: {
-                    // See optional "config" below
-                },
-                magicUrl: true
-            },
-            placeholder: 'Back side...',
-            theme: 'snow'  // or 'bubble'
-        });
+        var new_front = new Quill('#cardcreate__front', $app.quillFrontConf);
+        var new_back = new Quill('#cardcreate__back',   $app.quillBackConf);
         var refresh = ()=>{
             $('#cardlist').bootstrapTable('refresh',{
                 silent: true
