@@ -79,7 +79,11 @@ require 'component/chart.php';
                 toolbar: [
                     ['bold', 'italic', 'underline'],
                     ['image', 'code-block']
-                ]
+                ],
+                imageResize: {
+                    // See optional "config" below
+                },
+                magicUrl: true
             },
             placeholder: 'Front side...',
             theme: 'snow'  // or 'bubble'
@@ -89,7 +93,11 @@ require 'component/chart.php';
                 toolbar: [
                     ['bold', 'italic', 'underline'],
                     ['image', 'code-block']
-                ]
+                ],
+                imageResize: {
+                    // See optional "config" below
+                },
+                magicUrl: true
             },
             placeholder: 'Back side...',
             theme: 'snow'  // or 'bubble'

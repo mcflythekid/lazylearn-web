@@ -61,6 +61,8 @@ function top(){
     </script>
     <script src="<?=$ASSET?>/tool.js"></script>
     <script src="<?=$ASSET?>/app.js"></script>
+    <script src="<?=$ASSET?>/external/quill-magic-url.min.js"></script>
+    <script src="<?=$ASSET?>/external/image-resize.min.js"></script>
 </head>
 <body>
 
