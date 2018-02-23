@@ -42,8 +42,12 @@
     margin-bottom: 10px;
     border:1px solid #cecece;
 }
+#learndata img{
+    max-width:100%;
+    max-height:100%;
+}
 #learndata__front{
-    height:150px;
+    min-height:150px;
     position: relative;
     border-bottom: 1px solid #e2edeb;
 }
@@ -62,7 +66,7 @@
     color: #ff3333;
 }
 #learndata__back{
-    height:150px;
+    min-height:150px;
 }
 #learndata__front--data, #learndata__back--data{
     padding: 5px;
