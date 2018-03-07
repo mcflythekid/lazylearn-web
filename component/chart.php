@@ -38,6 +38,7 @@
             bar: { groupWidth: '75%' },
             isStacked: true,
             colors: ['#fad163', '#66cc66' ],
+            backgroundColor: '#eff0f1'
         };
         return e;
     })({});

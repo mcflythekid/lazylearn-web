@@ -13,7 +13,7 @@ require 'component/chart.php';
 
 <div class="row">
     <div class="col-lg-12">
-        <div id="userchart"></div>
+        <div class="lazychart" id="lazychart__user"></div>
     </div>
 </div>
 
@@ -36,7 +36,7 @@ require 'component/chart.php';
 (()=>{
 
     var drawChart = ()=>{
-        chart.drawUser($tool.getData('auth').userId, 'userchart');
+        chart.drawUser($tool.getData('auth').userId, 'lazychart__user');
     };
     drawChart();
 

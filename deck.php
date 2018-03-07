@@ -8,7 +8,7 @@ require 'component/chart.php';
 
 <div class="row">
     <div class="col-lg-12">
-        <div id="deckchart"></div>
+        <div class="lazychart" id="lazychart__deck"></div>
     </div>
 </div>
 
@@ -80,10 +80,10 @@ require 'component/chart.php';
             $('#cardlist').bootstrapTable('refresh',{
                 silent: true
             });
-            chart.drawDeck(deckId, 'deckchart')
+            chart.drawDeck(deckId, 'lazychart__deck')
         };
 
-        chart.drawDeck(deckId, 'deckchart');
+        chart.drawDeck(deckId, 'lazychart__deck');
         $app.api.get("/deck/" + deckId).then((r)=>{
             var deck = r.data;
             document.title = deck.name;
