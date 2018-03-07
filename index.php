@@ -100,11 +100,6 @@ require 'component/chart.php';
                 sortable: true,
             },
             {
-                field: 'createdOn',
-                title: 'Create',
-                sortable: true,
-            },
-            {
                 width: 150,
                 align: 'center',
                 field: 'id',
