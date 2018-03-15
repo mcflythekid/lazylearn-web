@@ -18,8 +18,10 @@
                         timeup += obj.timeup;
                     });
                     data.addColumn('string','Step name');
-                    data.addColumn('number','Timeup (' + timeup + ')');
-                    data.addColumn('number','Correct (' + correct + ')');
+                    data.addColumn('number','Need to learn');
+                    //data.addColumn('number','Need to learn (' + timeup + ')');
+                    data.addColumn('number','Remembered');
+                    //data.addColumn('number','Remembered (' + correct + ')');
                     data.addRows(r.data.length);
                     $.each(r.data, (index, obj)=>{
                         data.setCell(index, 0, obj.stepName);
@@ -33,12 +35,18 @@
         }
         var options = {
             width: '100%',
-            height: 200,
+            height: 120,
             legend: { position: 'top', maxLines: 3 },
             bar: { groupWidth: '75%' },
             isStacked: true,
-            colors: ['#fad163', '#66cc66' ],
-            backgroundColor: '#eff0f1'
+            colors: ['#F39C12', '#66cc66' ],
+            backgroundColor: '#fff',
+            vAxis: {
+                gridlines: {
+                    color: 'transparent'
+                },
+                textPosition: 'none'
+            }
         };
         return e;
     })({});

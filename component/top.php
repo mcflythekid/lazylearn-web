@@ -13,9 +13,8 @@ function top(){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <link rel="icon" href="/res/img/favicon.ico">
+    <link rel="icon" href="<?=$ASSET?>/img/ico48.png">
     <title><?=$TITLE?></title>
-
 
     <script type="text/javascript" src="//www.gstatic.com/charts/loader.js"></script>
 
@@ -28,9 +27,6 @@ function top(){
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<!-- Footer -->
-	<link rel="stylesheet" href="<?php echo $ASSET?>/external/footer.css">
-	
 	<!-- axios -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
 	
@@ -55,6 +51,9 @@ function top(){
 	
 	<!-- app -->
 	<link rel="stylesheet" href="<?=$ASSET?>/app.css">
+	<link rel="stylesheet" href="<?=$ASSET?>/external/concu/css/concu.css">
+
+
     <script>
         var ctx = '<?=$CTX?>';
         var endpoint = '<?=$ENDPOINT?>';
@@ -67,7 +66,7 @@ function top(){
 <body>
 
  <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav id="menu" class="navbar navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -76,25 +75,28 @@ function top(){
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">LAZYLEARN</a>
+          <a href="/">
+              <img alt="" src="<?=$ASSET?>/img/ico48.png" class="img-logo">
+          </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
 
 			<ul class="nav navbar-nav">
-				<li class="ui--in"><a href="/">Dashboard</a></li>
+				<li class="ui--in" style="background: #2980b9;"><a style="color : #FFF;" href="/">DECK</a></li>
+				<li class="ui--in"><a href="/hyper-deck.php">VOCABULARY</a></li>
 			</ul>
 
           <ul class="nav navbar-nav navbar-right">
 			<li class="ui--out"><a href="/register.php">Register</a></li>
 			<li class="ui--out" ><a href="/login.php">Login</a></li>
 			<li class="dropdown ui--in">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-					<span class="email"></span> <span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<li class="ui--in"><a href="/change-password.php">Change password</a></li>
+<!--				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">-->
+<!--					<span class="email"></span> <span class="caret"></span>-->
+<!--				</a>-->
+<!--				<ul class="dropdown-menu">-->
+					<li class="ui--in"><a href="/change-password.php">Option</a></li>
 					<li class="ui--in"><a href="#" id="logout">Logout</a></li>									
-				</ul>
+<!--				</ul>-->
 			</li>			
           </ul>
 			

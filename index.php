@@ -1,6 +1,6 @@
 <?php
 require_once 'core.php';
-title('Dashboard');
+title('Deck');
 top();
 require 'modal/deck-edit.php';
 require 'component/chart.php';
@@ -13,7 +13,12 @@ require 'component/chart.php';
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="lazychart" id="lazychart__user"></div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Stats</div>
+            <div class="panel-body">
+                <div class="lazychart" id="lazychart__user"></div>
+            </div>
+        </div>
     </div>
 </div>
 
