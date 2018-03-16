@@ -6,24 +6,41 @@ require 'modal/deck-edit.php';
 require 'component/chart.php';
 ?>
 <style>
-#toolbar{
-	width: 300px;
+#toolbar {
+    width: 300px;
+}
+.panel-heading a:after {
+    font-family:'Glyphicons Halflings';
+    content:"\e114";
+    float: right;
+    color: grey;
+}
+.panel-heading a.collapsed:after {
+    content:"\e080";
 }
 </style>
 
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
-            <div class="panel-heading">Stats</div>
-            <div class="panel-body">
-                <div class="lazychart" id="lazychart__user"></div>
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-target="#collapseOne" href="#" class="a-no-underline display-block">
+                        Statistics Chart
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse out">
+                <div class="panel-body">
+                    <div class="lazychart" id="lazychart__user"></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <div class="row">
-	<div class="col-lg-12">
+	<div class="col-lg-6">
 		<div id="toolbar">
 			<form id="deck__create--form">
 				<div class="input-group" >
@@ -72,12 +89,14 @@ require 'component/chart.php';
     });
 
     $('#deck__list').bootstrapTable({
+        classes: 'table table-hover table-bordered table-condensed table-responsive bg-white',
         url: $app.endpoint + "/user/" + $tool.getData('auth').userId + "/deck/by-search",
         cache: false,
-        striped: true,
+        striped: false,
         toolbar: '#toolbar',
         sidePagination: 'server',
         sortName: 'name',
+        pageSize: 5,
         search: true,
         ajaxOptions: {
             headers: {
@@ -88,29 +107,31 @@ require 'component/chart.php';
         columns: [
             {
                 field: 'name',
-                title: 'Name',
+                title: 'Deck',
                 sortable: true,
                 formatter: (obj,row)=>{
                     return '<a href="'+ctx+'/deck.php?id='+row.id+'">'+obj+'</a>';
                 }
             },
             {
+                width: 100,
                 field: 'totalCard',
                 title: 'Cards',
                 sortable: true,
             },
-            {
+            /*{
                 field: 'totalTimeupCard',
                 title: 'Timeups',
                 sortable: true,
-            },
+            },*/
             {
-                width: 150,
+                width: '190px',
                 align: 'center',
                 field: 'id',
                 formatter: (obj, row)=>{
                     return '<div class="btn-group">'+
-                        '<button data-deck-id="'+obj+'" data-deck-name="'+row.name+'" data-toggle="modal" data-target="#deck__modal__edit" class="btn btn-sm btn-success">Edit</button>'+
+                        '<button data-deck-id="'+obj+'" data-deck-name="'+row.name+'" data-toggle="modal" data-target="#deck__modal__edit" class="btn btn-sm btn-info">Learn</button>'+
+                        '<button data-deck-id="'+obj+'" data-deck-name="'+row.name+'" data-toggle="modal" data-target="#deck__modal__edit" class="btn btn-sm btn-success">Rename</button>'+
                         '<button data-deck-id="'+obj+'" class="btn btn-sm btn-danger deck__cmd--delete">Delete</button>'+
                         '</div>';
                 }

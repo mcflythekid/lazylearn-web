@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/config.php';
-$VERSION = 64 ;
+$VERSION = 66 ;
 $CTX = "";
 $TITLE = "Lazylearn";
 date_default_timezone_set("UTC");

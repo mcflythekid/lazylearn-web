@@ -35,7 +35,7 @@
                         </li>
                         <li>Facebook: <a href="http://fb.com/mcflythekid">McFly.the.Kid</a>
                         </li>
-                        <li>Mobile: <a href="tel:+84967736764">+84 96 773 6764</a>
+                        <li><a href="http://github.com/mcflythekid">GitHub</a>
                         </li>
                     </ul>
                 </div>
