@@ -30,7 +30,7 @@ require 'component/chart.php';
                     </a>
                 </h4>
             </div>
-            <div id="collapseOne" class="panel-collapse collapse out">
+            <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body">
                     <div class="lazychart" id="lazychart__user"></div>
                 </div>
