@@ -83,7 +83,7 @@ function top(){
 
 			<ul class="nav navbar-nav">
 				<li class="ui--in" style="background: #2980b9;"><a style="color : #FFF;" href="/">DECK</a></li>
-				<li class="ui--in"><a href="/hyper-deck.php">VOCABULARY</a></li>
+				
 			</ul>
 
           <ul class="nav navbar-nav navbar-right">
