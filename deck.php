@@ -92,7 +92,7 @@ require 'component/chart.php';
         });
         $('#cardlist').bootstrapTable({
             url: $app.endpoint + "/deck/" + deckId + "/card/by-search",
-            classes: 'table',
+            classes: 'table bg-white',
             cache: false,
             striped: false,
             toolbar: '#cardcreate__toolbar',
