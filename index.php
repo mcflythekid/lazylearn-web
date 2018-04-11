@@ -96,7 +96,7 @@ require 'component/chart.php';
         toolbar: '#toolbar',
         sidePagination: 'server',
         sortName: 'name',
-        pageSize: 5,
+        pageSize: 20,
         search: true,
         ajaxOptions: {
             headers: {
