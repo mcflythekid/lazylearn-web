@@ -1,6 +1,6 @@
 <?php
 require_once 'core.php';
-title('Deck test113');
+title('Deck');
 top();
 require 'modal/deck-edit.php';
 require 'component/chart.php';
