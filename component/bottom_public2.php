@@ -1,4 +1,4 @@
-<?php function bottom(){ ?>
+<?php function bottom_public(){ ?>
 
     </div> <!-- /container -->
 

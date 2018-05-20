@@ -1,7 +1,7 @@
 <?php
 	require 'core.php';
 	title('Register');
-	top();
+	top_public();
 ?>
 
 <div class="row">
@@ -36,4 +36,4 @@
 </script>
 
 
-<?=bottom()?>
+<?=bottom_public()?>

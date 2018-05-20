@@ -1,7 +1,7 @@
 <?php
 require_once 'core.php';
 title('loading...');
-top();
+top_public();
 require 'modal/card-edit.php';
 require 'component/chart.php';
 ?>
@@ -144,4 +144,4 @@ require 'component/chart.php';
 
     })();
 </script>
-<?=bottom()?>
+<?=bottom_public()?>

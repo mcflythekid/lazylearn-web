@@ -13,8 +13,10 @@ if (is_dev()){
 }
 ///////////////////////////////////////////////////////////////////////////////////////
 date_default_timezone_set($TIMEZONE);
-require_once __DIR__ . '/component/top.php';
-require_once __DIR__ . '/component/bottom.php';
+require_once __DIR__ . '/component/top_private.php';
+require_once __DIR__ . '/component/bottom_private.php';
+require_once __DIR__ . '/component/top_public.php';
+require_once __DIR__ . '/component/bottom_public.php';
 ////////////////////////////////////////////////////////////////////////////////////////
 function is_dev() {
 	$whitelist = array( '127.0.0.1', 'localhost', 'lazylearn.local' );

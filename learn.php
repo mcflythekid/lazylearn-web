@@ -1,7 +1,7 @@
 <?php
 require 'core.php';
 title('loading...');
-top();
+top_public();
 require 'modal/card-edit.php';
 ?>
 

@@ -1,5 +1,5 @@
 <?php 
-function top(){ 
+function top_public(){
 	global $TITLE;
 	global $ASSET;
 	global $CTX;

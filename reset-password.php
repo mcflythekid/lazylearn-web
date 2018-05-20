@@ -1,7 +1,7 @@
 <?php
 	require 'core.php';
 	title('Reset password');
-	top();
+	top_public();
 ?>
 <div class="row">
 	<div class="col-lg-3"></div>
@@ -28,4 +28,4 @@
         });
     })();
 </script>
-<?=bottom()?>
+<?=bottom_public()?>
