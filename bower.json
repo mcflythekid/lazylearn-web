@@ -1,0 +1,24 @@
+{
+  "name": "lazylearn-web",
+  "description": "Frontend of Lazylearn",
+  "main": "index.js",
+  "authors": [
+    "McFly the Kid <odopoc@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/mcflythekid/lazylearn-web",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "admin-lte": "^2.4.3"
+  },
+  "resolutions": {
+    "jquery": "^3.2.1"
+  }
+}
