@@ -16,7 +16,7 @@
 			<input type="password" required class="form-control" id="password" placeholder="Password">
 		  </div>
 		  <button type="submit" class="btn btn-primary">Login</button>
-		  <a class="btn btn-warning" href="./forget-password.php">Forget</a>
+		  <a class="btn btn-warning pull-right" href="./forget-password.php">Forget Password</a>
 		</form>
 	</div>
 </div>

@@ -17,6 +17,7 @@
 			<input type="password" required class="form-control" id="password" placeholder="Password">
 		  </div>
 		  <button type="submit" class="btn btn-primary">Register</button>
+          <a class="btn btn-warning pull-right" href="/login.php">Login</a>
 		</form>
 	</div>
 </div>
