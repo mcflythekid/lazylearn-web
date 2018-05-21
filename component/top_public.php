@@ -17,7 +17,7 @@ function top_public(){
         <meta name="author" content="">
         <link rel="icon" href="../../favicon.ico">
 
-        <title>Justified Nav Template for Bootstrap</title>
+        <title><?=$TITLE?></title>
 
         <!-- Bootstrap core CSS -->
         <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -36,7 +36,7 @@ function top_public(){
         <!-- The justified navigation menu is meant for single line per list item.
              Multiple lines will require custom code not provided by Bootstrap. -->
         <div class="masthead">
-            <h3 class="text-muted">Lazylearn</h3>
+<!--            <h3 class="text-muted">Lazylearn</h3>-->
             <nav>
                 <ul class="nav nav-justified">
                     <li><a href="/">Home</a></li>
@@ -47,7 +47,11 @@ function top_public(){
                 </ul>
             </nav>
         </div>
-
+        <style>
+            .masthead{
+                margin-bottom: 20px;
+            }
+        </style>
 
 
 <?php } ?>
