@@ -6,7 +6,7 @@ $TIMEZONE = "UTC";
 //////////////////////////////////////////////////////////////////////////////////////
 if (is_dev()){
 	$ASSET =  "/res_" . rand(1,10000);
-	$ENDPOINT = 'http://localhost:8088';
+	$ENDPOINT = 'http://localhost:8888/lazylearn-api';
 } else {
 	$ASSET =  "/res_" . $VERSION;
 	$ENDPOINT = 'https://beathim.com:8080/lazylearn-api';
