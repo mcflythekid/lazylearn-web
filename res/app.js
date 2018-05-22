@@ -29,21 +29,23 @@ var $app = ((endpoint)=>{
         $tool.removeData('auth');
         window.location.replace(ctx + "/login.php");
     };
-    var publicPages = [
+    var publicPages = [  // Not ping
         "/login.php",
         "/forget-password.php",
         "/reset-password.php",
         "/register.php",
+        "/"
     ];
-    var onlyPublicPages = [
+    var onlyPublicPages = [  // Cannot see when logged in
         "/login.php",
         "/forget-password.php",
         "/reset-password.php",
         "/register.php",
+        "/"
     ];
     var lockOnlyPublicPages = ()=>{
         if ($tool.getData('auth') && onlyPublicPages.includes(location.pathname)){
-            window.location.replace(ctx + "/");
+            window.location.replace(ctx + "/dashboard.php");
         }
     };
     var initApisync = ()=>{
