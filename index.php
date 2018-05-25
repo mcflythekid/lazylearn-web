@@ -1,33 +1,73 @@
 <?php
+//header('Location: /login.php');
 require_once 'core.php';
 title('Lazylearn');
 top_public();
 ?>
-<!-- Jumbotron -->
-<div class="jumbotron">
-    <h1>Forget about forgeting!</h1>
-    <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
-    <p><a class="btn btn-lg btn-success" href="/register.php" role="button">Get started today</a></p>
-</div>
 
-<!-- Example row of columns -->
-<div class="row">
-    <div class="col-lg-4">
-        <h2>Safari bug warning!</h2>
-        <p class="text-danger">As of v9.1.2, Safari exhibits a bug in whig errors in the justified nav that are cleared upon refreshing.</p>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus comllis euis odio dui. </p>
-        <!--                <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>-->
-    </div>
-    <div class="col-lg-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <!--                <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>-->
-    </div>
-    <div class="col-lg-4">
-        <h2>Heading</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-        <!--                <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>-->
-    </div>
-</div>
+    <!-- Jumbotron Header -->
+    <header class="jumbotron my-4">
+        <h1 class="display-3">Forget about forgeting!</h1>
+        <p class="lead">With Lazylearn, you will not forget your knowledge. Useful for student, specialist, teacher,
+            or anyone who want to hack their memory.</p>
+        <a href="/register.php" class="btn btn-primary btn-lg">I Want To Forget Now</a>
+    </header>
 
+    <!-- Page Features -->
+<!--    <div class="row text-center">-->
+<!---->
+<!--        <div class="col-lg-3 col-md-6 mb-4">-->
+<!--            <div class="card">-->
+<!--                <img class="card-img-top" src="http://placehold.it/500x325" alt="">-->
+<!--                <div class="card-body">-->
+<!--                    <h4 class="card-title">Card title</h4>-->
+<!--                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>-->
+<!--                </div>-->
+<!--                <div class="card-footer">-->
+<!--                    <a href="#" class="btn btn-primary">Login now!</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="col-lg-3 col-md-6 mb-4">-->
+<!--            <div class="card">-->
+<!--                <img class="card-img-top" src="http://placehold.it/500x325" alt="">-->
+<!--                <div class="card-body">-->
+<!--                    <h4 class="card-title">Card title</h4>-->
+<!--                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>-->
+<!--                </div>-->
+<!--                <div class="card-footer">-->
+<!--                    <a href="#" class="btn btn-primary">Find Out More!</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="col-lg-3 col-md-6 mb-4">-->
+<!--            <div class="card">-->
+<!--                <img class="card-img-top" src="http://placehold.it/500x325" alt="">-->
+<!--                <div class="card-body">-->
+<!--                    <h4 class="card-title">Card title</h4>-->
+<!--                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>-->
+<!--                </div>-->
+<!--                <div class="card-footer">-->
+<!--                    <a href="#" class="btn btn-primary">Find Out More!</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="col-lg-3 col-md-6 mb-4">-->
+<!--            <div class="card">-->
+<!--                <img class="card-img-top" src="http://placehold.it/500x325" alt="">-->
+<!--                <div class="card-body">-->
+<!--                    <h4 class="card-title">Card title</h4>-->
+<!--                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>-->
+<!--                </div>-->
+<!--                <div class="card-footer">-->
+<!--                    <a href="#" class="btn btn-primary">Find Out More!</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+    </div>
+    <!-- /.row -->
 <?=bottom_public()?>

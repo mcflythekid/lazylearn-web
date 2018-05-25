@@ -4,9 +4,12 @@
 	top_public();
 ?>
 
-<div class="row">
+<div class="row public-container">
 	<div class="col-lg-3"></div>
 	<div class="col-lg-6">
+        <p>
+            Create your free account, or <a href="/login.php">login</a>
+        </p>
 		<form id="register">
 		  <div class="form-group">
 			<label for="email">Email</label>
@@ -17,7 +20,6 @@
 			<input type="password" required class="form-control" id="password" placeholder="Password">
 		  </div>
 		  <button type="submit" class="btn btn-primary">Register</button>
-          <a class="btn btn-warning pull-right" href="/login.php">Login</a>
 		</form>
 	</div>
 </div>

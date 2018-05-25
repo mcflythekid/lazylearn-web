@@ -3,9 +3,12 @@
 	title('Login');
 	top_public();
 ?>
-<div class="row">
+<div class="row public-container">
 	<div class="col-lg-3"></div>
 	<div class="col-lg-6">
+        <p>
+            Please login to continue. Or you can <a href="/register.php">create a free account</a>
+        </p>
 		<form id="login">
 		  <div class="form-group">
 			<label for="email">Email</label>
@@ -16,7 +19,7 @@
 			<input type="password" required class="form-control" id="password" placeholder="Password">
 		  </div>
 		  <button type="submit" class="btn btn-primary">Login</button>
-		  <a class="btn btn-warning pull-right" href="./forget-password.php">Forget Password</a>
+		  <a class="btn btn-warning" href="./forget-password.php">Forget Password</a>
 		</form>
 	</div>
 </div>

@@ -3,9 +3,12 @@
 	title('Reset password');
 	top_public();
 ?>
-<div class="row">
+<div class="row public-container">
 	<div class="col-lg-3"></div>
 	<div class="col-lg-6">
+        <p>
+            Reset your password
+        </p>
 		<form id="reset">
 		  <div class="form-group">
 			<label for="email">New password</label>
