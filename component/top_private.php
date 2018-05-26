@@ -216,7 +216,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a href="/deck.php">
+                    <a href="/deck-dashboard.php">
                         <i class="fa fa-folder-open-o"></i> <span>Deck</span>
                     </a>
                 </li>

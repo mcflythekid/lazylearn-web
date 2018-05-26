@@ -1,7 +1,7 @@
 <?php
 require 'core.php';
 title('loading...');
-top_public();
+top_private();
 require 'modal/card-edit.php';
 ?>
 
@@ -319,3 +319,5 @@ var $learn = ((e)=>{
 })({});
 $learn.init();
 </script>
+
+<?=bottom_private()?>
