@@ -29,6 +29,22 @@ function top_public(){
         <!-- Custom styles for this template -->
         <link href="../node_modules/startbootstrap-heroic-features/css/heroic-features.css" rel="stylesheet">
 
+
+        <script type="text/javascript" src="//www.gstatic.com/charts/loader.js"></script>
+
+        <!-- jquery -->
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <!-- axios -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
+
+        <script>
+            var ctx = '<?=$CTX?>';
+            var endpoint = '<?=$ENDPOINT?>';
+        </script>
+
+        <script src="<?=$ASSET?>/tool.js"></script>
+        <script src="<?=$ASSET?>/app.js"></script>
+
     </head>
 
     <body>
