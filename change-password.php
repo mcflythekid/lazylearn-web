@@ -1,7 +1,7 @@
 <?php
 	require 'core.php';
 	title('Change password');
-	top_public();
+	top_private();
 ?>
 <div class="row">
 	<div class="col-lg-3"></div>
@@ -36,4 +36,4 @@
         });
     })();
 </script>
-<?=bottom_public()?>
+<?=bottom_private()?>
