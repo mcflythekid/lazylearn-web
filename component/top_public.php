@@ -43,11 +43,12 @@ function top_public(){
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/register.php">Register</a>
-                    </li>
-                    <li class="nav-item active">
                         <a class="nav-link" href="/login.php">Login</a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/register.php">Register</a>
+                    </li>
+
                 </ul>
             </div>
         </div>
