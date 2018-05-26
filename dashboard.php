@@ -1,1 +1,8 @@
-<h1>Under construction</h1>
+<?php
+require 'core.php';
+title('Dashboard');
+top_private();
+?>
+<?php
+bottom_private();
+?>
