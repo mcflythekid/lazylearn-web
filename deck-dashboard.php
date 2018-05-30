@@ -63,6 +63,20 @@ require 'modal/deck-edit.php';
             });
         });
 
+        $(document).on('click', '.deck__cmd--archive', function(e){
+            var deckId = $(this).data('deck-id');
+            $app.apisync.post("/deck/archive/" + deckId).then(()=>{
+                refresh();
+            });
+        });
+
+        $(document).on('click', '.deck__cmd--unarchive', function(e){
+            var deckId = $(this).data('deck-id');
+            $app.apisync.post("/deck/unarchive/" + deckId).then(()=>{
+                refresh();
+            });
+        });
+
         $('#deck__list').bootstrapTable({
             classes: 'table table-hover table-bordered table-condensed table-responsive bg-white',
             url: $app.endpoint + "/user/" + $tool.getData('auth').userId + "/deck/by-search",
@@ -89,6 +103,14 @@ require 'modal/deck-edit.php';
                     }
                 },
                 {
+                    field: 'archived',
+                    title: 'Status',
+                    sortable: true,
+                    formatter: (obj,row)=>{
+                        return obj == 1 ? "Archived" : "Active";
+                    }
+                },
+                {
                     width: 100,
                     field: 'totalCard',
                     title: 'Cards',
@@ -105,6 +127,8 @@ require 'modal/deck-edit.php';
                     field: 'id',
                     formatter: (obj, row)=>{
                         return '<div class="btn-group">'+
+                            '<button data-deck-id="'+obj+'" class="btn btn-sm btn-info deck__cmd--archive">Archive</button>'+
+                            '<button data-deck-id="'+obj+'" class="btn btn-sm btn-info deck__cmd--unarchive">Active</button>'+
                             '<button data-deck-id="'+obj+'" data-deck-name="'+row.name+'" data-toggle="modal" data-target="#deck__modal__edit" class="btn btn-sm btn-info">Learn</button>'+
                             '<button data-deck-id="'+obj+'" data-deck-name="'+row.name+'" data-toggle="modal" data-target="#deck__modal__edit" class="btn btn-sm btn-success">Rename</button>'+
                             '<button data-deck-id="'+obj+'" class="btn btn-sm btn-danger deck__cmd--delete">Delete</button>'+
