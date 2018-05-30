@@ -44,6 +44,7 @@ require 'component/chart.php';
 <script>
     (()=>{
         var deckId = $tool.param('id');
+        var enableChart = true;
 
         $(document).on('click', '.cardcmd__delete', function(){
             var cardId = $(this).data('card-id');
@@ -80,13 +81,15 @@ require 'component/chart.php';
             $('#cardlist').bootstrapTable('refresh',{
                 silent: true
             });
-            chart.drawDeck(deckId, 'lazychart__deck')
+            if (enableChart) chart.drawDeck(deckId, 'lazychart__deck')
         };
 
-        chart.drawDeck(deckId, 'lazychart__deck');
         $app.api.get("/deck/" + deckId).then((r)=>{
             var deck = r.data;
+            if (deck.archived == 1) enableChart = false;
+            if (enableChart) chart.drawDeck(deckId, 'lazychart__deck');
             document.title = deck.name;
+
         }).catch((e)=>{
             $tool.flash(0, 'Cannot get deck');
         });
