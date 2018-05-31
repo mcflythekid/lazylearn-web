@@ -83,15 +83,7 @@ require 'modal/deck-edit.php';
                     title: 'Deck',
                     sortable: true,
                     formatter: (obj,row)=>{
-                        return '<a href="'+ctx+'/deck.php?id='+row.id+'">'+obj+'</a>';
-                    }
-                },
-                {
-                    field: 'archived',
-                    title: 'Status',
-                    sortable: true,
-                    formatter: (obj,row)=>{
-                        return obj == 1 ? "Archived" : "Active";
+                        return '<a href="'+ctx+'/deck.php?id='+row.id+'">'+obj+'</a> ' + row.archived == 1 ? "Archived" : "Active";
                     }
                 },
                 {
