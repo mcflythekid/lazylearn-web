@@ -84,6 +84,7 @@
     <!-- AdminLTE for demo purposes -->
     <script src="/bower_components/admin-lte/dist/js/demo.js"></script>
 
+
     <!--    ------------------------------------------------------------------------------------------------------------------------>
     <script type="text/javascript" src="//www.gstatic.com/charts/loader.js"></script>
 
@@ -116,6 +117,7 @@
     <!-- bootstrap table -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+    <script src="/bower_components/bootstrap-table-contextmenu/dist/bootstrap-table-contextmenu.min.js"></script>
 
 
     <!-- app -->

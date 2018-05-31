@@ -26,13 +26,12 @@
     </div>
 </div>
 <script>
-    $('#deck__modal__edit').on('show.bs.modal', function(e){
-        var deckId = $(e.relatedTarget).data('deck-id');
-        var deckName = $(e.relatedTarget).data('deck-name');
+    var deckrename = function(deckId, deckName){
         $('#deck__modal__edit--title').text(deckName);
         $('#deck__modal__edit--name').val(deckName);
         $('#deck__modal__edit--id').val(deckId);
-    });
+        $('#deck__modal__edit').modal('show');
+    };
     $('#deck__modal__edit--form').submit(function(e){
         e.preventDefault();
         $app.apisync.patch("/deck/" + $('#deck__modal__edit--id').val(),{

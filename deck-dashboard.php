@@ -33,6 +33,13 @@ require 'modal/deck-edit.php';
             </form>
         </div>
         <table id="deck__list"></table>
+        <!-- context menu -->
+        <ul id="context-menu" class="dropdown-menu">
+            <li data-item="archive"><a>Archive</a></li>
+            <li data-item="unarchive"><a>Unarchive</a></li>
+            <li data-item="rename"><a>Rename</a></li>
+            <li data-item="delete"><a>Delete</a></li>
+        </ul>
     </div>
 </div>
 <script>
@@ -50,29 +57,6 @@ require 'modal/deck-edit.php';
                 name : $('#deck__create--name').val().trim()
             }).then(()=>{
                 $('#deck__create--name').val('');
-                refresh();
-            });
-        });
-
-        $(document).on('click', '.deck__cmd--delete', function(e){
-            var deckId = $(this).data('deck-id');
-            $tool.confirm("This will remove this deck and cannot be undone!!!", function(){
-                $app.apisync.delete("/deck/" + deckId).then(()=>{
-                    refresh();
-                });
-            });
-        });
-
-        $(document).on('click', '.deck__cmd--archive', function(e){
-            var deckId = $(this).data('deck-id');
-            $app.apisync.post("/deck/archive/" + deckId).then(()=>{
-                refresh();
-            });
-        });
-
-        $(document).on('click', '.deck__cmd--unarchive', function(e){
-            var deckId = $(this).data('deck-id');
-            $app.apisync.post("/deck/unarchive/" + deckId).then(()=>{
                 refresh();
             });
         });
@@ -122,23 +106,41 @@ require 'modal/deck-edit.php';
                     sortable: true,
                 },*/
                 {
-                    width: '190px',
-                    align: 'center',
-                    field: 'id',
-                    formatter: (obj, row)=>{
-                        return '<div class="btn-group">'+
-                            '<button data-deck-id="'+obj+'" class="btn btn-sm btn-info deck__cmd--archive">Archive</button>'+
-                            '<button data-deck-id="'+obj+'" class="btn btn-sm btn-info deck__cmd--unarchive">Active</button>'+
-                            '<button data-deck-id="'+obj+'" data-deck-name="'+row.name+'" data-toggle="modal" data-target="#deck__modal__edit" class="btn btn-sm btn-info">Learn</button>'+
-                            '<button data-deck-id="'+obj+'" data-deck-name="'+row.name+'" data-toggle="modal" data-target="#deck__modal__edit" class="btn btn-sm btn-success">Rename</button>'+
-                            '<button data-deck-id="'+obj+'" class="btn btn-sm btn-danger deck__cmd--delete">Delete</button>'+
-                            '</div>';
+                    width: 40,
+                    formatter: (obj,row)=>{
+                        return "<button class='btn btn-sm context-menu-button'><span class='glyphicon glyphicon-menu-hamburger'></span></button>";
                     }
                 },
-            ]
-
+            ],
+            contextMenu: '#context-menu',
+            contextMenuButton: '.context-menu-button',
+            contextMenuAutoClickRow: true,
+            onContextMenuItem: function(row, $el) {
+                if ($el.data("item") == "rename") {
+                    deckrename(row.id, row.name);
+                } else if ($el.data("item") == "delete") {
+                    $tool.confirm("This will remove this deck and cannot be undone!!!", function () {
+                        $app.apisync.delete("/deck/" + row.id).then(() => {
+                            refresh();
+                        });
+                    });
+                } else if ($el.data("item") == "archive") {
+                    $app.apisync.post("/deck/archive/" + row.id).then(() => {
+                        refresh();
+                    });
+                } else if ($el.data("item") == "unarchive") {
+                    $app.apisync.post("/deck/unarchive/" + row.id).then(() => {
+                        refresh();
+                    });
+                }
+            }
         });
 
     })();
 </script>
 <?=bottom_private()?>
+
+
++
+'<button data-deck-id="'+obj+'" data-deck-name="'+row.name+'" data-toggle="modal" data-target="#deck__modal__edit" class="btn btn-sm btn-success">Rename</button>'+
+
