@@ -3,7 +3,7 @@ require_once 'core.php';
 title('Deck');
 $HEADER = "Deck";
 $PATHS = [
-    "Decks"
+    "Deck"
 ];
 
 top_private();
