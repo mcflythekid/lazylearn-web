@@ -213,7 +213,7 @@
         <section class="sidebar">
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="active">
+                <li>
                     <a href="/dashboard.php">
                         <i class="fa fa-th"></i> <span>Home</span>
                     </a>
@@ -223,16 +223,16 @@
                         <i class="fa fa-folder-open-o"></i> <span>Deck</span>
                     </a>
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-folder-open-o"></i> <span>Deck</span>
-                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Manage</a></li>
-                        <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Create new deck</a></li>
-                    </ul>
-                </li>
+<!--                <li class="treeview">-->
+<!--                    <a href="#">-->
+<!--                        <i class="fa fa-folder-open-o"></i> <span>Deck</span>-->
+<!--                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>-->
+<!--                    </a>-->
+<!--                    <ul class="treeview-menu">-->
+<!--                        <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Manage</a></li>-->
+<!--                        <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Create new deck</a></li>-->
+<!--                    </ul>-->
+<!--                </li>-->
 
             </ul>
         </section>
