@@ -75,7 +75,8 @@ require 'modal/deck-edit.php';
             toolbar: '#toolbar',
             sidePagination: 'server',
             sortName: 'name',
-            pageSize: 5,
+            pageSize: 20,
+            pageList: [20, 50, 100],
             search: true,
             ajaxOptions: {
                 headers: {
