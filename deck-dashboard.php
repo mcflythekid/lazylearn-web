@@ -99,9 +99,10 @@ require 'modal/deck-edit.php';
                     sortable: true,
                 },*/
                 {
-                    width: 40,
+                    width: 100,
                     formatter: (obj,row)=>{
-                        return "<button class='btn btn-sm context-menu-button'><span class='glyphicon glyphicon-menu-hamburger'></span></button>";
+                        return "<a class='btn btn-sm btn-info pull-left' href='/learn.php?type=learn&id=" + row.id + "'>Learn</a>" +
+                         " <button class='btn btn-sm context-menu-button pull-right'><span class='glyphicon glyphicon-menu-hamburger'></span></button>";
                     }
                 },
             ],
