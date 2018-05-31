@@ -1,8 +1,14 @@
 <?php
 require_once 'core.php';
 title('Deck');
+$HEADER = "Deck";
+$PATHS = [
+    "Decks"
+];
+
 top_private();
 require 'modal/deck-edit.php';
+
 ?>
 <style>
     #toolbar {

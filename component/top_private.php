@@ -2,6 +2,7 @@
     global $TITLE;
     global $HEADER;
     global $HEADER2;
+    global $PATHS;
     global $ASSET;
     global $CTX;
     global $ENDPOINT;
@@ -214,7 +215,7 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="active">
                     <a href="/dashboard.php">
-                        <i class="fa fa-th"></i> <span>Dashboard</span>
+                        <i class="fa fa-th"></i> <span>Home</span>
                     </a>
                 </li>
                 <li class="">
@@ -222,34 +223,49 @@
                         <i class="fa fa-folder-open-o"></i> <span>Deck</span>
                     </a>
                 </li>
-<!--                <li class="treeview">-->
-<!--                    <a href="#">-->
-<!--                        <i class="fa fa-folder-open-o"></i> <span>Deck</span>-->
-<!--                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>-->
-<!--                    </a>-->
-<!--                    <ul class="treeview-menu">-->
-<!--                        <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Manage</a></li>-->
-<!--                        <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Create new deck</a></li>-->
-<!--                    </ul>-->
-<!--                </li>-->
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-folder-open-o"></i> <span>Deck</span>
+                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Manage</a></li>
+                        <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Create new deck</a></li>
+                    </ul>
+                </li>
 
             </ul>
         </section>
         <!-- /.sidebar -->
     </aside>
 
-    <!-- Content Wrapper. Contains page content -->
+        <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
                 <?=$HEADER?>
                 <small><?=$HEADER2?></small>
             </h1>
+
+            <?php if(is_array($PATHS)) { ?>
+            <ol class="breadcrumb">
+
+                <li><a href="/dashboard.php"><i class="fa fa-th"></i> Home</a></li>
+
+                <?php foreach($PATHS as $key=>$path) { ?>
+                    <?php if ($key < sizeof($PATHS) - 1){ ?>
+                    <li><a href="<?=$path[0]?>"><?=$path[1]?></a></li>
+                    <?php } else { ?>
+                    <li class="active"><?=$path?></li>
+                    <?php } ?>
+                <?php }?>
+
+            </ol>
+            <?php }?>
         </section>
 
         <!-- Main content -->
         <section class="content">
-
-
 <?php } ?>
