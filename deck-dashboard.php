@@ -115,6 +115,16 @@ require 'modal/deck-edit.php';
             contextMenu: '#context-menu',
             contextMenuButton: '.context-menu-button',
             contextMenuAutoClickRow: true,
+            beforeContextMenuRow: function(e,row,buttonElement){
+                if (row.archived == 0){
+                    $('#context-menu li[data-item="archive"]').show();
+                    $('#context-menu li[data-item="unarchive"]').hide();
+                } else {
+                    $('#context-menu li[data-item="archive"]').hide();
+                    $('#context-menu li[data-item="unarchive"]').show();
+                }
+                return true;
+            },
             onContextMenuItem: function(row, $el) {
                 if ($el.data("item") == "rename") {
                     deckrename(row.id, row.name);
