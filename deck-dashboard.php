@@ -83,7 +83,8 @@ require 'modal/deck-edit.php';
                     title: 'Deck',
                     sortable: true,
                     formatter: (obj,row)=>{
-                        return '<a href="'+ctx+'/deck.php?id='+row.id+'">'+obj+'</a> ' + (row.archived == 1 ? "Archived" : "Active");
+                        return '<a href="'+ctx+'/deck.php?id='+row.id+'">'+obj+'</a>' +
+                            (row.archived == 1 ? ' <span class="archived">Archived</span>' : '');
                     }
                 },
                 {
@@ -143,6 +144,6 @@ require 'modal/deck-edit.php';
 <?=bottom_private()?>
 
 
-+
-'<button data-deck-id="'+obj+'" data-deck-name="'+row.name+'" data-toggle="modal" data-target="#deck__modal__edit" class="btn btn-sm btn-success">Rename</button>'+
+<!--+-->
+<!--'<button data-deck-id="'+obj+'" data-deck-name="'+row.name+'" data-toggle="modal" data-target="#deck__modal__edit" class="btn btn-sm btn-success">Rename</button>'+-->
 
