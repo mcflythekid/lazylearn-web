@@ -12,7 +12,7 @@ if (is_dev()){
 	$ENDPOINT = 'http://localhost:8888/lazylearn-api';
 } else {
 	$ASSET =  "/res_" . $VERSION;
-	$ENDPOINT = 'https://beathim.com:8080/lazylearn-api';
+	$ENDPOINT = 'https://beathim.com:8081/lazylearn-api';
 }
 ///////////////////////////////////////////////////////////////////////////////////////
 date_default_timezone_set($TIMEZONE);
