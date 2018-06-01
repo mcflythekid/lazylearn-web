@@ -29,13 +29,6 @@ var $app = ((endpoint)=>{
         $tool.removeData('auth');
         window.location.replace(ctx + "/login.php");
     };
-    var publicPages = [  // Not ping
-        "/login.php",
-        "/forget-password.php",
-        "/reset-password.php",
-        "/register.php",
-        "/"
-    ];
     var onlyPublicPages = [  // Cannot see when logged in
         "/login.php",
         "/forget-password.php",
@@ -64,20 +57,8 @@ var $app = ((endpoint)=>{
             return Promise.reject(error);
         });
     };
-    var ping = function(){
-        if (publicPages.includes(location.pathname)) return;
-        e.api.get("/ping").then(()=>{}).catch((err)=>{
-            if (err.response && err.response.status == 401){
-                e.logout();
-            }
-        });
-    };
     (()=>{
         initApisync();
-        ping();
-        setInterval(()=>{
-            ping();
-        }, 5000);
         lockOnlyPublicPages();
     })();
     e.quillFrontConf = {
