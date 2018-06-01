@@ -11,15 +11,6 @@ top_private();
     #toolbar {
         width: 300px;
     }
-    .panel-heading a:after {
-        font-family:'Glyphicons Halflings';
-        content:"\e114";
-        float: right;
-        color: grey;
-    }
-    .panel-heading a.collapsed:after {
-        content:"\e080";
-    }
 </style>
 
 
