@@ -27,12 +27,22 @@
 (()=>{
 	$("#login").submit((e)=>{
         e.preventDefault();
-        $app.apisync.post("/login", {
+        $tool.lock();
+        $app.axiosInstance.post("<?=$ENDPOINT?>/login", {
             email: $('#email').val(),
             password: $('#password').val(),
         }).then((r)=>{
             $tool.setData('auth', r.data);
-            window.location.replace(ctx + "/");
+            window.location.replace(ctx + "/dashboard.php");
+        }).catch(function(err){
+            if (err.response && err.response.data && err.response.data.errorMsg === '401'){
+                $tool.flash(0, 'Your email/password is incorrect');
+            } else {
+                $tool.flash(0, $app.axiosErrorMsg);
+            }
+            console.log(JSON.stringify(err));
+        }).finally(function(){
+            $tool.unlock();
         });
     });
 })();

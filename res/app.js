@@ -1,6 +1,9 @@
 var $app = ((endpoint)=>{
     var e = {};
 
+    e.axiosErrorMsg = 'Cannot process request';
+    e.axiosTimeout = 30000;
+
     e.ctx = "";
     e.endpoint = endpoint;
     var getBearerToken = ()=>{
@@ -11,7 +14,10 @@ var $app = ((endpoint)=>{
         }
         return "";
     };
+    e.axiosInstance = axios.create();
+    e.axiosInstance.defaults.timeout = e.axiosTimeout;
     e.api = axios.create({
+        timeout: e.axiosTimeout,
         baseURL: e.endpoint,
         headers: {
             'Authorization': getBearerToken(),
@@ -19,6 +25,7 @@ var $app = ((endpoint)=>{
         }
     });
     e.apisync = axios.create({
+        timeout: e.axiosTimeout,
         baseURL: e.endpoint,
         headers: {
             'Authorization': getBearerToken(),
@@ -47,6 +54,7 @@ var $app = ((endpoint)=>{
             return config;
         }, function (error) {
             $tool.unlock();
+            $tool.flash(0, e.axiosErrorMsg);
             return Promise.reject(error);
         });
         e.apisync.interceptors.response.use(function (response) {
@@ -54,6 +62,7 @@ var $app = ((endpoint)=>{
             return response;
         }, function (error) {
             $tool.unlock();
+            $tool.flash(0, e.axiosErrorMsg);
             return Promise.reject(error);
         });
     };
