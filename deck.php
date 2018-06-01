@@ -108,7 +108,7 @@ require 'modal/deck-edit.php';
                 {
                     width: 100,
                     formatter: (obj,row)=>{
-                        return "<a class='btn btn-sm btn-info pull-left' href='/learn.php?type=learn&id=" + row.id + "'>Learn</a>" +
+                        return "<a class='btn btn-sm btn-info pull-left' href='/deck-learn.php?type=learn&id=" + row.id + "'>Learn</a>" +
                          " <button class='btn btn-sm context-menu-button pull-right'><span class='glyphicon glyphicon-menu-hamburger'></span></button>";
                     }
                 },
