@@ -85,18 +85,8 @@
     <!-- AdminLTE for demo purposes -->
     <script src="/bower_components/admin-lte/dist/js/demo.js"></script>
 
-
     <!--    ------------------------------------------------------------------------------------------------------------------------>
     <script type="text/javascript" src="//www.gstatic.com/charts/loader.js"></script>
-
-    <!-- jquery -->
-<!--    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>-->
-<!--    <script src="//code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>-->
-<!--    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/start/jquery-ui.min.css">-->
-
-    <!-- bootstrap -->
-<!--    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >-->
-<!--    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 
     <!-- axios -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
@@ -120,10 +110,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
     <script src="/bower_components/bootstrap-table-contextmenu/dist/bootstrap-table-contextmenu.min.js"></script>
 
-
     <!-- app -->
     <link rel="stylesheet" href="<?=$ASSET?>/app.css">
-
 
     <script>
         var ctx = '<?=$CTX?>';
@@ -133,28 +121,6 @@
     <script src="<?=$ASSET?>/app.js"></script>
     <script src="<?=$ASSET?>/external/quill-magic-url.min.js"></script>
     <script src="<?=$ASSET?>/external/image-resize.min.js"></script>
-
-    <script>
-        (()=>{
-            $(document).on('click', '#logout', function(event){
-                event.preventDefault();
-                $app.logout();
-            });
-
-            var auth = $tool.getData('auth');
-            if (auth){
-                $('.navbar-static-top .email').text(auth.email);
-                $('.ui--in').show();
-                $('.ui--out').hide();
-            }else {
-                $('.ui--in').hide();
-                $('.ui--out').show();
-            }
-        })();
-    </script>
-
-
-
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -181,16 +147,13 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="/bower_components/admin-lte/dist/img/avatar04.png" class="user-image" alt="User Image">
-                            <span class="hidden-xs">odopoc@gmail.com</span>
+                            <span class="hidden-xs app__user_email"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
                                 <img src="/bower_components/admin-lte/dist/img/avatar04.png" class="img-circle" alt="User Image">
-
-                                <p>
-                                    odopoc@gmail.com
-                                </p>
+                                <p class="app__user_email"></p>
                             </li>
 
                             <li class="user-footer">
@@ -223,26 +186,37 @@
                         <i class="fa fa-folder-open-o"></i> <span>Deck</span>
                     </a>
                 </li>
-<!--                <li class="">-->
-<!--                    <a href="/admin.php">-->
-<!--                        <i class="fa fa-folder-open-o"></i> <span>Admin</span>-->
-<!--                    </a>-->
-<!--                </li>-->
-<!--                <li class="treeview">-->
-<!--                    <a href="#">-->
-<!--                        <i class="fa fa-folder-open-o"></i> <span>Deck</span>-->
-<!--                        <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>-->
-<!--                    </a>-->
-<!--                    <ul class="treeview-menu">-->
-<!--                        <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> Manage</a></li>-->
-<!--                        <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Create new deck</a></li>-->
-<!--                    </ul>-->
-<!--                </li>-->
-
+                <li id="admin_menu" style="display: none">
+                    <a href="/admin.php">
+                        <i class="fa fa-folder-open-o"></i> <span>Admin</span>
+                    </a>
+                </li>
             </ul>
         </section>
         <!-- /.sidebar -->
     </aside>
+
+    <script>
+        (()=>{
+            $(document).on('click', '#logout', function(event){
+                event.preventDefault();
+                $app.logout();
+            });
+
+            var auth = $tool.getData('auth');
+            if (auth){
+                $('.app__user_email').text(auth.email);
+                if (auth.email === 'odopoc@gmail.com'){
+                    $('#admin_menu').show();
+                }
+                $('.ui--in').show();
+                $('.ui--out').hide();
+            }else {
+                $('.ui--in').hide();
+                $('.ui--out').show();
+            }
+        })();
+    </script>
 
         <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
