@@ -223,11 +223,11 @@
                         <i class="fa fa-folder-open-o"></i> <span>Deck</span>
                     </a>
                 </li>
-                <li class="">
-                    <a href="/admin.php">
-                        <i class="fa fa-folder-open-o"></i> <span>Admin</span>
-                    </a>
-                </li>
+<!--                <li class="">-->
+<!--                    <a href="/admin.php">-->
+<!--                        <i class="fa fa-folder-open-o"></i> <span>Admin</span>-->
+<!--                    </a>-->
+<!--                </li>-->
 <!--                <li class="treeview">-->
 <!--                    <a href="#">-->
 <!--                        <i class="fa fa-folder-open-o"></i> <span>Deck</span>-->
