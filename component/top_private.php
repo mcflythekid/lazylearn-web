@@ -188,7 +188,7 @@
                 </li>
                 <li id="admin_menu" style="display: none">
                     <a href="/admin.php">
-                        <i class="fa fa-folder-open-o"></i> <span>Admin</span>
+                        <i class="fa fa-group"></i> <span>Admin</span>
                     </a>
                 </li>
             </ul>
