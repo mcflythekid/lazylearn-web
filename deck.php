@@ -1,82 +1,108 @@
 <?php
 require_once 'core.php';
-title('Deck');
-$HEADER = "Deck";
-$PATHS = [
-    "Deck"
-];
-
+title('loading...');
 top_private();
-require 'modal/deck-edit.php';
-
+require 'modal/card-edit.php';
+require 'component/chart.php';
 ?>
-<style>
-    #toolbar {
-        width: 300px;
-    }
-    .panel-heading a:after {
-        font-family:'Glyphicons Halflings';
-        content:"\e114";
-        float: right;
-        color: grey;
-    }
-    .panel-heading a.collapsed:after {
-        content:"\e080";
-    }
-</style>
-
 
 <div class="row">
     <div class="col-lg-12">
-        <div id="toolbar">
-            <form id="deck__create--form">
-                <div class="input-group" >
-                    <input type="text" class="form-control" id="deck__create--name" required placeholder="Deck name...">
-                    <span class="input-group-btn">
-						<button class="btn btn-primary" type="submit">Create</button>
-					</span>
-                </div>
-            </form>
-        </div>
-        <table id="deck__list"></table>
-        <!-- context menu -->
-        <ul id="context-menu" class="dropdown-menu">
-            <li data-item="archive"><a>Archive</a></li>
-            <li data-item="unarchive"><a>Unarchive</a></li>
-            <li data-item="rename"><a>Rename</a></li>
-            <li data-item="delete"><a>Delete</a></li>
-        </ul>
+        <div class="lazychart" id="lazychart__deck"></div>
     </div>
 </div>
+
+<div class="row" id="cardcreate">
+    <div class="col-lg-11">
+        <div class="row">
+            <div class="col-xs-6">
+                <div id="cardcreate__front"></div>
+            </div>
+            <div class="col-xs-6">
+                <div id="cardcreate__back"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-1">
+        <button type="submit" id="cardcreate__submit" class="btn btn-success pull-right">Create</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div id="cardcreate__toolbar">
+            <div class="btn-group">
+                    <button class="btn btn-primary cardlearn" data-learn-type="learn">Lean</button>
+                    <button class="btn btn-primary cardlearn" data-learn-type="review">Review</button>
+            </div>
+        </div>
+        <table id="cardlist"></table>
+    </div>
+</div>
+
+
 <script>
     (()=>{
+        var deckId = $tool.param('id');
+        var enableChart = true;
 
-        var refresh = ()=>{
-            $('#deck__list').bootstrapTable('refresh',{
-                silent: true
+        $(document).on('click', '.cardcmd__delete', function(){
+            var cardId = $(this).data('card-id');
+            $tool.confirm("This will remove this card and cannot be undone!!!", function(){
+                $app.apisync.delete("/card/" + cardId).then(()=>{
+                    refresh();
+                });
             });
-        };
-
-        $('#deck__create--form').submit((event)=> {
-            event.preventDefault();
-            $app.apisync.post("/user/" + $tool.getData('auth').userId + "/deck", {
-                name : $('#deck__create--name').val().trim()
+        });
+        $(document).on('click', '.cardcmd__edit', function(e){
+            var cardId = $(this).data('card-id');
+            $card__modal__edit.edit(cardId, refresh);
+        });
+        $('.cardlearn',).click(function(){
+            window.location.href = "./learn.php?id=" + deckId + "&type=" + $(this).data('learn-type');
+        });
+        $('#cardcreate__submit').click(()=> {
+            if ($tool.quillIsBlank(new_front) || $tool.quillIsBlank(new_back)){
+                return;
+            }
+            $app.apisync.post("/deck/" + deckId + "/card", {
+                front : $tool.quillGetHtml(new_front),
+                back : $tool.quillGetHtml(new_back)
             }).then(()=>{
-                $('#deck__create--name').val('');
+                $tool.quillClear(new_front);
+                $tool.quillClear(new_back);
                 refresh();
             });
         });
 
-        $('#deck__list').bootstrapTable({
-            classes: 'table table-hover table-bordered table-condensed table-responsive bg-white',
-            url: $app.endpoint + "/user/" + $tool.getData('auth').userId + "/deck/by-search",
+        var new_front = new Quill('#cardcreate__front', $app.quillFrontConf);
+        var new_back = new Quill('#cardcreate__back',   $app.quillBackConf);
+        var refresh = ()=>{
+            $('#cardlist').bootstrapTable('refresh',{
+                silent: true
+            });
+            if (enableChart) chart.drawDeck(deckId, 'lazychart__deck')
+        };
+
+        $app.api.get("/deck/" + deckId).then((r)=>{
+            var deck = r.data;
+            if (deck.archived == 1) enableChart = false;
+            if (enableChart) chart.drawDeck(deckId, 'lazychart__deck');
+            document.title = deck.name;
+
+        }).catch((e)=>{
+            $tool.flash(0, 'Cannot get deck');
+        });
+        $('#cardlist').bootstrapTable({
+            url: $app.endpoint + "/deck/" + deckId + "/card/by-search",
+            classes: 'table bg-white',
             cache: false,
             striped: false,
-            toolbar: '#toolbar',
+            toolbar: '#cardcreate__toolbar',
             sidePagination: 'server',
-            sortName: 'name',
-            pageSize: 20,
-            pageList: [20, 50, 100],
+            sortName: 'createdOn',
+            sortOrder: 'DESC',
+            showHeader: false,
             search: true,
             ajaxOptions: {
                 headers: {
@@ -86,72 +112,39 @@ require 'modal/deck-edit.php';
             pagination: true,
             columns: [
                 {
-                    field: 'name',
-                    title: 'Deck',
+                    field: 'front',
+                    title: 'Front',
                     sortable: true,
-                    formatter: (obj,row)=>{
-                        return ''+ctx+'<a href="/deck-view.php?id=">'+row.id+''+obj+'</a>' +
-                            (row.archived == 1 ? ' <span class="archived">Archived</span>' : '');
-                    }
+                    formatter: (obj)=>{
+                        return obj;
+                    },
+                    width: '45%'
                 },
                 {
-                    width: 100,
-                    field: 'totalCard',
-                    title: 'Cards',
+                    field: 'back',
+                    title: 'Back',
                     sortable: true,
+                    formatter: (obj)=>{
+                        return obj;
+                    },
+                    width: '45%'
                 },
-                /*{
-                    field: 'totalTimeupCard',
-                    title: 'Timeups',
-                    sortable: true,
-                },*/
                 {
-                    width: 100,
-                    formatter: (obj,row)=>{
-                        return "<a class='btn btn-sm btn-info pull-left' href=" + row.id + "'/deck-learn.php?type=learn&id='>Learn</a>" +
-                         " <button class='btn btn-sm context-menu-button pull-right'><span class='glyphicon glyphicon-menu-hamburger'></span></button>";
-                    }
+                    align: 'center',
+                    field: 'id',
+                    formatter: (obj, row)=>{
+                        return '<div class="btn-group">'+
+
+                            '<button data-card-id="'+obj+'" class="btn btn-sm btn-success cardcmd__edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>'+
+                            '<button data-card-id="'+obj+'" class="btn btn-sm btn-danger cardcmd__delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>'+
+                            '</div>';
+                    },
+                    width: '10%'
                 },
-            ],
-            contextMenu: '#context-menu',
-            contextMenuButton: '.context-menu-button',
-            contextMenuAutoClickRow: true,
-            beforeContextMenuRow: function(e,row,buttonElement){
-                if (row.archived == 0){
-                    $('#context-menu li[data-item="archive"]').show();
-                    $('#context-menu li[data-item="unarchive"]').hide();
-                } else {
-                    $('#context-menu li[data-item="archive"]').hide();
-                    $('#context-menu li[data-item="unarchive"]').show();
-                }
-                return true;
-            },
-            onContextMenuItem: function(row, $el) {
-                if ($el.data("item") == "rename") {
-                    deckrename(row.id, row.name);
-                } else if ($el.data("item") == "delete") {
-                    $tool.confirm("This will remove this deck and cannot be undone!!!", function () {
-                        $app.apisync.delete("/deck/" + row.id).then(() => {
-                            refresh();
-                        });
-                    });
-                } else if ($el.data("item") == "archive") {
-                    $app.apisync.post("/deck/archive/" + row.id).then(() => {
-                        refresh();
-                    });
-                } else if ($el.data("item") == "unarchive") {
-                    $app.apisync.post("/deck/unarchive/" + row.id).then(() => {
-                        refresh();
-                    });
-                }
-            }
+            ]
+
         });
 
     })();
 </script>
 <?=bottom_private()?>
-
-
-<!--+-->
-<!--'<button data-deck-id="'+obj+'" data-deck-name="'+row.name+'" data-toggle="modal" data-target="#deck__modal__edit" class="btn btn-sm btn-success">Rename</button>'+-->
-
