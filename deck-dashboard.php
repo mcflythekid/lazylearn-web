@@ -90,7 +90,7 @@ require 'modal/deck-edit.php';
                     title: 'Deck',
                     sortable: true,
                     formatter: (obj,row)=>{
-                        return '<a href="'+ctx+'/deck.php?id='+row.id+'">'+obj+'</a>' +
+                        return '<a href="'+ctx+'/deck-view.php?id='+row.id+'">'+obj+'</a>' +
                             (row.archived == 1 ? ' <span class="archived">Archived</span>' : '');
                     }
                 },
