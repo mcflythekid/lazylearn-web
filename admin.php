@@ -56,11 +56,7 @@ top_private();
             },
             pagination: true,
             columns: [
-                {
-                    field: 'id',
-                    title: 'id',
-                    sortable: true,
-                },
+        
                 {
                     field: 'email',
                     title: 'email',
