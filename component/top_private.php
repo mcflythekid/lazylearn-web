@@ -108,7 +108,6 @@
     <!-- bootstrap table -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
-    <script src="/bower_components/bootstrap-table-contextmenu/dist/bootstrap-table-contextmenu.min.js"></script>
 
     <!-- app -->
     <link rel="stylesheet" href="<?=$ASSET?>/app.css">

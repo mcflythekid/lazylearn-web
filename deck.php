@@ -10,6 +10,7 @@ top_private();
 require 'modal/deck-edit.php';
 
 ?>
+<script src="/bower_components/bootstrap-table-contextmenu/dist/bootstrap-table-contextmenu.min.js"></script>
 <style>
     #toolbar {
         width: 300px;
