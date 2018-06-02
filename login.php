@@ -27,7 +27,7 @@
 (()=>{
 	$("#login").submit((e)=>{
         e.preventDefault();
-        $app.apisync.post("<?=$ENDPOINT?>/login", {
+        $app.apisync.post("/login", {
             email: $('#email').val(),
             password: $('#password').val(),
         }).then((r)=>{

@@ -58,18 +58,17 @@ var $app = ((endpoint)=>{
         if (error.response && error.response.data && error.response.data.msg){
             $tool.flash(0, error.response.data.msg);
         } else if (error.response && error.response.data && error.response.data.error === 'invalid_token') {
-            e.logout();
+            $tool.removeData('auth');
+            window.location.replace(ctx + "/login.php");
         } else{
             $tool.flash(0, e.axiosErrorMsg);
         }
     };
+    initApisync();
+    initApi();
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
-    e.logout = ()=>{
-        $tool.removeData('auth');
-        window.location.replace(ctx + "/login.php");
-    };
     var publicPages = [  // Cannot see when logged in
         "/login.php",
         "/forget-password.php",
@@ -78,25 +77,29 @@ var $app = ((endpoint)=>{
         "/"
     ];
     var checkPrivatePublicSite = ()=>{
-        if ($tool.getData('auth') && publicPages.includes(location.pathname)){
+        if ($tool.getData('auth') && publicPages.includes(location.pathname)){ // login: ban public
             window.stop();
             window.location.replace(ctx + "/dashboard.php");
+            return;
         }
-        if (!$tool.getData('auth') && !publicPages.includes(location.pathname)){
+        if (!$tool.getData('auth') && !publicPages.includes(location.pathname)){ // guest: ban private
             window.stop();
             window.location.replace(ctx + "/login.php");
+            return;
+        }
+        if ($tool.getData('auth')){ // perform a ping (Force login if token is invalid)
+            e.api.post("/ping");
         }
     };
+    checkPrivatePublicSite();
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
-
-    (()=>{
-        initApisync();
-        initApi();
-        checkPrivatePublicSite();
-    })();
-
-
+    e.logout = function(){
+        e.apisync.post("/revoke-token").then(function(res){
+            $tool.removeData('auth');
+            window.location.replace(ctx + "/login.php");
+        });
+    };
     ///////////////////////////////////////////////////////////////////////////////////////////////
     e.quillFrontConf = {
         modules: {
