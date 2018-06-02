@@ -1,7 +1,6 @@
 var $app = ((endpoint)=>{
     var e = {};
     e.axiosErrorMsg = 'Cannot process request';
-    e.axiosTimeout = 30000;
     e.ctx = "";
     e.endpoint = endpoint;
 
@@ -14,7 +13,6 @@ var $app = ((endpoint)=>{
         return "";
     };
     e.api = axios.create({
-        timeout: e.axiosTimeout,
         baseURL: e.endpoint,
         headers: {
             'Authorization': getBearerToken(),
@@ -22,7 +20,6 @@ var $app = ((endpoint)=>{
         }
     });
     e.apisync = axios.create({
-        timeout: e.axiosTimeout,
         baseURL: e.endpoint,
         headers: {
             'Authorization': getBearerToken(),
