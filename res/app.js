@@ -1,20 +1,18 @@
 var $app = ((endpoint)=>{
     var e = {};
-
     e.axiosErrorMsg = 'Cannot process request';
     e.axiosTimeout = 30000;
-
     e.ctx = "";
     e.endpoint = endpoint;
-    var getBearerToken = ()=>{
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    var getBearerToken = ()=>{
         var auth = $tool.getData('auth');
         if (auth){
             return "Bearer " + auth.token;
         }
         return "";
     };
-
     e.api = axios.create({
         timeout: e.axiosTimeout,
         baseURL: e.endpoint,
@@ -31,26 +29,6 @@ var $app = ((endpoint)=>{
             'Access-Control-Allow-Origin': '*',
         }
     });
-
-
-    e.logout = ()=>{
-        $tool.removeData('auth');
-        window.location.replace(ctx + "/login.php");
-    };
-    var onlyPublicPages = [  // Cannot see when logged in
-        "/login.php",
-        "/forget-password.php",
-        "/reset-password.php",
-        "/register.php",
-        "/"
-    ];
-    var lockOnlyPublicPages = ()=>{
-        if ($tool.getData('auth') && onlyPublicPages.includes(location.pathname)){
-            window.location.replace(ctx + "/dashboard.php");
-        }
-    };
-
-
     var initApisync = ()=>{
         e.apisync.interceptors.request.use(function (config) {
             $tool.lock();
@@ -79,19 +57,47 @@ var $app = ((endpoint)=>{
     var processError = function(error){
         if (error.response && error.response.data && error.response.data.msg){
             $tool.flash(0, error.response.data.msg);
-        } else {
+        } else if (error.response && error.response.data && error.response.data.error === 'invalid_token') {
+            e.logout();
+        } else{
             $tool.flash(0, e.axiosErrorMsg);
         }
     };
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    e.logout = ()=>{
+        $tool.removeData('auth');
+        window.location.replace(ctx + "/login.php");
+    };
+    var publicPages = [  // Cannot see when logged in
+        "/login.php",
+        "/forget-password.php",
+        "/reset-password.php",
+        "/register.php",
+        "/"
+    ];
+    var checkPrivatePublicSite = ()=>{
+        if ($tool.getData('auth') && publicPages.includes(location.pathname)){
+            window.stop();
+            window.location.replace(ctx + "/dashboard.php");
+        }
+        if (!$tool.getData('auth') && !publicPages.includes(location.pathname)){
+            window.stop();
+            window.location.replace(ctx + "/login.php");
+        }
+    };
+    ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
     (()=>{
         initApisync();
         initApi();
-        lockOnlyPublicPages();
+        checkPrivatePublicSite();
     })();
 
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////
     e.quillFrontConf = {
         modules: {
             toolbar: [
