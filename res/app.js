@@ -14,8 +14,7 @@ var $app = ((endpoint)=>{
         }
         return "";
     };
-    e.axiosInstance = axios.create();
-    e.axiosInstance.defaults.timeout = e.axiosTimeout;
+
     e.api = axios.create({
         timeout: e.axiosTimeout,
         baseURL: e.endpoint,
@@ -32,6 +31,8 @@ var $app = ((endpoint)=>{
             'Access-Control-Allow-Origin': '*',
         }
     });
+
+
     e.logout = ()=>{
         $tool.removeData('auth');
         window.location.replace(ctx + "/login.php");
@@ -48,13 +49,14 @@ var $app = ((endpoint)=>{
             window.location.replace(ctx + "/dashboard.php");
         }
     };
+
+
     var initApisync = ()=>{
         e.apisync.interceptors.request.use(function (config) {
             $tool.lock();
             return config;
         }, function (error) {
             $tool.unlock();
-            $tool.flash(0, e.axiosErrorMsg);
             return Promise.reject(error);
         });
         e.apisync.interceptors.response.use(function (response) {
@@ -62,14 +64,34 @@ var $app = ((endpoint)=>{
             return response;
         }, function (error) {
             $tool.unlock();
-            $tool.flash(0, e.axiosErrorMsg);
+            processError(error);
             return Promise.reject(error);
         });
     };
+    var initApi = ()=>{
+        e.api.interceptors.response.use(function (response) {
+            return response;
+        }, function (error) {
+            processError(error);
+            return Promise.reject(error);
+        });
+    };
+    var processError = function(error){
+        if (error.response && error.response.data && error.response.data.msg){
+            $tool.flash(0, error.response.data.msg);
+        } else {
+            $tool.flash(0, e.axiosErrorMsg);
+        }
+    };
+
+
     (()=>{
         initApisync();
+        initApi();
         lockOnlyPublicPages();
     })();
+
+
     e.quillFrontConf = {
         modules: {
             toolbar: [
