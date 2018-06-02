@@ -1,5 +1,5 @@
 <?php
-$VERSION = 69 ;
+$VERSION = 70 ;
 $CTX = "";
 $HEADER = "";
 $HEADER2 = "";
