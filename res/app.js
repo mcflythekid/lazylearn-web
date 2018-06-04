@@ -91,7 +91,8 @@ var $app = ((endpoint)=>{
     checkPrivatePublicSite();
     ///////////////////////////////////////////////////////////////////////////////////////////////
     e.loginFacebook = function(accessToken){
-        e.apisync.post("/login-facebook", accessToken).then((r)=>{
+        e.apisync.post("/login-facebook", {accessToken: accessToken}).then((r)=>{
+            $tool.lock();
             $tool.setData('auth', r.data);
             window.location.replace(ctx + "/dashboard.php");
         });

@@ -22,7 +22,31 @@
 		  <a class="btn btn-warning" href="./forget-password.php">Forget Password</a>
 		</form>
 
-        <div class="btn fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
+        <br>
+        <button id="login-facebook-btn" class="btn btn-primary">
+            <i class="fa fa-facebook-official" aria-hidden="true"></i>
+            Login with Facebook
+        </button>
+        <button id="logout-facebook-btn" class="btn btn-danger">
+            <i class="fa fa-facebook-official" aria-hidden="true"></i>
+            Logout
+        </button>
+
+        <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>
+
+        <script>
+
+            $('#login-facebook-btn').click(()=>{
+                FB.login(function(response) {
+                    if (response.status= "connected"){
+                        console.log(response.authResponse.accessToken);
+                        $app.loginFacebook(response.authResponse.accessToken);
+                    }
+                });
+            });
+
+        </script>
+
 	</div>
 </div>
 <script>

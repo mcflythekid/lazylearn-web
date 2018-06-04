@@ -23,6 +23,9 @@ function top_public(){
             }
         </style>
 
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
+
         <!-- Bootstrap core CSS -->
         <link href="../node_modules/startbootstrap-heroic-features/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -62,7 +65,7 @@ function top_public(){
 
             FB.getLoginStatus(function(response) {
                 console.log(response.authResponse.accessToken);
-                alert(JSON.stringify(response));
+                //alert(JSON.stringify(response));
             });
 
         };
