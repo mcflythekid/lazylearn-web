@@ -27,7 +27,7 @@
 (()=>{
     $("#register").submit((e)=>{
         e.preventDefault();
-        $app.apisync.post("/user", {
+        $app.apisync.post("/register", {
             email: $('#email').val(),
             password: $('#password').val()
         }).then((r)=>{

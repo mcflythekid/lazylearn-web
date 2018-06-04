@@ -90,7 +90,12 @@ var $app = ((endpoint)=>{
     };
     checkPrivatePublicSite();
     ///////////////////////////////////////////////////////////////////////////////////////////////
-
+    e.loginFacebook = function(accessToken){
+        e.apisync.post("/login-facebook", accessToken).then((r)=>{
+            $tool.setData('auth', r.data);
+            window.location.replace(ctx + "/dashboard.php");
+        });
+    };
     e.logout = function(){
         e.apisync.post("/logout").then(function(res){
             $tool.removeData('auth');
