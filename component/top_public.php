@@ -49,6 +49,40 @@ function top_public(){
 
     <body>
 
+    <script>
+        // window.fbAsyncInit = function() {
+        //     FB.init({
+        //         appId      : '226440184828839',
+        //         cookie     : true,
+        //         xfbml      : true,
+        //         version    : 'v3.0'
+        //     });
+        //
+        //     FB.AppEvents.logPageView();
+        //
+        //     FB.getLoginStatus(function(response) {
+        //         console.log(response.authResponse.accessToken);
+        //         alert(JSON.stringify(response));
+        //     });
+        //
+        // };
+        //
+        // (function(d, s, id){
+        //     var js, fjs = d.getElementsByTagName(s)[0];
+        //     if (d.getElementById(id)) {return;}
+        //     js = d.createElement(s); js.id = id;
+        //     js.src = "https://connect.facebook.net/en_US/sdk.js";
+        //     fjs.parentNode.insertBefore(js, fjs);
+        // }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <script>
+        $().ready(()=>{
+
+        });
+
+    </script>
+
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
@@ -56,11 +90,13 @@ function top_public(){
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
+            <div class="collaps navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="/login.php">Login</a>
                     </li>
+
+
                     <li class="nav-item active">
                         <a class="nav-link" href="/register.php">Register</a>
                     </li>

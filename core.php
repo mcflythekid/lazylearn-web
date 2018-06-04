@@ -22,7 +22,7 @@ require_once __DIR__ . '/component/top_public.php';
 require_once __DIR__ . '/component/bottom_public.php';
 ////////////////////////////////////////////////////////////////////////////////////////
 function is_dev() {
-	$whitelist = array( '127.0.0.1', 'localhost', 'lazylearn.local' );
+	$whitelist = array( '127.0.0.1', 'localhost', 'local.lazylearn.com' );
 	if( in_array( $_SERVER['SERVER_NAME'], $whitelist) )
 		return true;
 	return false;

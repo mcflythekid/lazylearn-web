@@ -21,6 +21,8 @@
 		  <button type="submit" class="btn btn-primary">Login</button>
 		  <a class="btn btn-warning" href="./forget-password.php">Forget Password</a>
 		</form>
+
+        <div class="btn fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
 	</div>
 </div>
 <script>

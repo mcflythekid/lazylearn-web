@@ -92,7 +92,7 @@ var $app = ((endpoint)=>{
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     e.logout = function(){
-        e.apisync.post("/revoke-token").then(function(res){
+        e.apisync.post("/logout").then(function(res){
             $tool.removeData('auth');
             window.location.replace(ctx + "/login.php");
         });
