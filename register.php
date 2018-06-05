@@ -31,8 +31,8 @@
             email: $('#email').val(),
             password: $('#password').val()
         }).then((r)=>{
-            $tool.flash(1, 'Please login');
-            setInterval($app.logout, 1000);
+            $tool.setData('auth', r.data);
+            window.location.replace(ctx + "/dashboard.php");
         });
     });
 })();
