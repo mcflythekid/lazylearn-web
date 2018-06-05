@@ -27,12 +27,12 @@
             <i class="fa fa-facebook-official" aria-hidden="true"></i>
             Login with Facebook
         </button>
-        <button id="logout-facebook-btn" class="btn btn-danger">
-            <i class="fa fa-facebook-official" aria-hidden="true"></i>
-            Logout
-        </button>
+<!--        <button id="logout-facebook-btn" class="btn btn-danger">-->
+<!--            <i class="fa fa-facebook-official" aria-hidden="true"></i>-->
+<!--            Logout-->
+<!--        </button>-->
 
-        <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>
+<!--        <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>-->
 
         <script>
 
@@ -42,7 +42,7 @@
                         console.log(response.authResponse.accessToken);
                         $app.loginFacebook(response.authResponse.accessToken);
                     }
-                });
+                }, {scope: 'public_profile'});
             });
 
         </script>
