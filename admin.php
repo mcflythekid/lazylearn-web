@@ -55,6 +55,16 @@ top_private();
                     sortable: true,
                 },
                 {
+                    field: 'facebookId',
+                    title: 'facebookId',
+                    sortable: true,
+                },
+                {
+                    field: 'fullName',
+                    title: 'fullName',
+                    sortable: true,
+                },
+                {
                     field: 'decks',
                     title: 'decks',
                     sortable: true,
