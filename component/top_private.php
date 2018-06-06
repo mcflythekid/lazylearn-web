@@ -147,17 +147,17 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="/bower_components/admin-lte/dist/img/avatar04.png" class="user-image" alt="User Image">
-                            <span class="hidden-xs app__user_email"></span>
+                            <span class="hidden-xs" id="app__user_fullname"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
                                 <img src="/bower_components/admin-lte/dist/img/avatar04.png" class="img-circle" alt="User Image">
-                                <p class="app__user_email"></p>
+                                <p id="app__user_email">[Email is not set]</p>
                             </li>
 
                             <li class="user-footer">
-                                <div class="pull-left">
+                                <div class="pull-left" id="app__user_changepassword">
                                     <a href="/change-password.php" class="btn btn-default btn-flat">Change password</a>
                                 </div>
                                 <div class="pull-right">
@@ -205,7 +205,12 @@
 
             var auth = $tool.getData('auth');
             if (auth){
-                $('.app__user_email').text(auth.email);
+                if (auth.email) {
+                    $('#app__user_email').text(auth.email);
+                } else {
+                    $('#app__user_changepassword').hide();
+                }
+                $('#app__user_fullname').text(auth.fullName);
                 if (auth.email === 'odopoc@gmail.com'){
                     $('#admin_menu').show();
                 }
