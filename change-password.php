@@ -30,8 +30,7 @@
             $app.apisync.put("/user/" + $tool.getData('auth').userId + "/password", {
                 newPassword: $('#newPassword').val()
             }).then((r)=>{
-                $tool.flash(1, 'Please login');
-                setInterval($app.logout, 1000);
+                $tool.flash(1, 'Password changed');
             });
         });
     })();
