@@ -21,7 +21,7 @@
 <!--        <div class="container">-->
 <!--            <p class="m-0 text-center text-white">Copyright &copy; Lazylearn 2018</p>-->
 <!--        </div>-->
-<!--        <!-- /.container -->-->
+<!--        <!-- /.container -->
 <!--    </footer>-->
 
     <!-- Bootstrap core JavaScript -->
