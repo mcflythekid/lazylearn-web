@@ -71,6 +71,7 @@ var $app = ((endpoint)=>{
         "/forget-password.php",
         "/reset-password.php",
         "/register.php",
+        "/privacy.php",
         "/"
     ];
     var checkPrivatePublicSite = ()=>{
