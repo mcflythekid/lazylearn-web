@@ -21,6 +21,22 @@
 		  </div>
 		  <button type="submit" class="btn btn-primary">Register</button>
 		</form>
+
+        <br>
+        <button id="login-facebook-btn" class="btn btn-primary">
+            <i class="fa fa-facebook-official" aria-hidden="true"></i>
+            Continue with Facebook
+        </button>
+        <script>
+            $('#login-facebook-btn').click(()=>{
+                FB.login(function(response) {
+                    if (response.status= "connected"){
+                        console.log(response.authResponse.accessToken);
+                        $app.loginFacebook(response.authResponse.accessToken);
+                    }
+                }, {scope: 'public_profile'});
+            });
+        </script>
 	</div>
 </div>
 <script>

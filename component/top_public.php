@@ -16,6 +16,7 @@ function top_public(){
         <meta name="author" content="">
 
         <title><?=$TITLE?></title>
+        <link id ="shorticon" rel="shortcut icon" href="<?=$ASSET?>/img/fav.png" >
 
         <style>
             .public-container{

@@ -25,17 +25,9 @@
         <br>
         <button id="login-facebook-btn" class="btn btn-primary">
             <i class="fa fa-facebook-official" aria-hidden="true"></i>
-            Login with Facebook
+            Continue with Facebook
         </button>
-<!--        <button id="logout-facebook-btn" class="btn btn-danger">-->
-<!--            <i class="fa fa-facebook-official" aria-hidden="true"></i>-->
-<!--            Logout-->
-<!--        </button>-->
-
-<!--        <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="false"></div>-->
-
         <script>
-
             $('#login-facebook-btn').click(()=>{
                 FB.login(function(response) {
                     if (response.status= "connected"){
@@ -44,7 +36,6 @@
                     }
                 }, {scope: 'public_profile'});
             });
-
         </script>
 
 	</div>
