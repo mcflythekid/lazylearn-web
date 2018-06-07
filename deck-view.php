@@ -59,7 +59,7 @@ require 'component/chart.php';
             $card__modal__edit.edit(cardId, refresh);
         });
         $('.cardlearn',).click(function(){
-            window.location.href = "./learn.php?id=" + deckId + "&type=" + $(this).data('learn-type');
+            window.location.href = "./deck-learn.php?id=" + deckId + "&type=" + $(this).data('learn-type');
         });
         $('#cardcreate__submit').click(()=> {
             if ($tool.quillIsBlank(new_front) || $tool.quillIsBlank(new_back)){
