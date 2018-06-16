@@ -1,5 +1,5 @@
 <?php 
-function top_public(){
+function top_public($showMenu = true){
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,6 +14,9 @@ function top_public(){
         }
     </style>
     <?=asset()?>
+    <script>
+        Application.publicPagesCheck();
+    </script>
 </head>
 <body>
     <script>
@@ -54,14 +57,20 @@ function top_public(){
                 </button>
                 <a class="navbar-brand" href="/"><strong>Lazylearn</strong></a>
             </div>
+            
             <div id="navbar" class="collapse navbar-collapse pull-right">
                 <ul class="nav navbar-nav">
                     <li><a href="/"><strong>Home</strong></a></li>
+
+                    <?php if ($showMenu) { ?>
                     <li><a href="/auth/register.php"><strong>Register</strong></a></li>
                     <li><a href="/auth/login.php"><strong>Login</strong></a></li>
                     <li><a href="https://fb.com/lazylearn"><strong>Fanpage</strong></a></li>
+                    <?php } ?>
+
                 </ul>
             </div><!--/.nav-collapse -->
+
         </div>
     </nav>
 

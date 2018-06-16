@@ -166,7 +166,7 @@
             event.preventDefault();
             Auth.logout();
         });
-        Application.updateLayout();
+        Application.privatePagesCheck();
     </script>
 
         <!-- Content Wrapper. Contains page content -->

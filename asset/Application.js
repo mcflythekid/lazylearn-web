@@ -1,15 +1,24 @@
 /**
  * @author McFly the Kid
  */
-var Application = ((Application, Storage, Auth)=>{
+var Application = ((Application, Storage, Auth, Constant)=>{
 
-    Application.updateLayout = ()=>{
+    Application.publicPagesCheck = ()=>{
+        if (Storage.get('accessToken') && Constant.blockedAfterLoginUrls.includes(location.pathname)){ // login: ban public
+            window.stop();
+            window.location.replace(Constant.dashboardUrl);
+            return;
+        }
+    };
+
+    Application.privatePagesCheck = ()=>{
+        /*------------------------------------------------------------------------------------------------*/
         var userData = Storage.get('userData');
         if (!userData){
             Auth.logout();
             return;
         }
-
+        /*------------------------------------------------------------------------------------------------*/
         if (userData.email) {
             $('#app__user_email').text(userData.email);
         } else {
@@ -19,7 +28,8 @@ var Application = ((Application, Storage, Auth)=>{
             $('#admin_menu').show();
         }
         $('#app__user_fullname').text(userData.fullName);
+        /*------------------------------------------------------------------------------------------------*/
     };
 
     return Application;
-})({}, Storage, Auth);
+})({}, Storage, Auth, Constant);

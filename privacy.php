@@ -1,7 +1,7 @@
 <?php
 require_once 'core.php';
-title('Login');
-top_public();
+$TITLE = 'Privacy policy';
+top_public(false);
 ?>
 
 <div style="padding: 20px;">
