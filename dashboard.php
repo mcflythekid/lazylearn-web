@@ -1,8 +1,7 @@
 <?php
 require_once 'core.php';
-title('Deck');
+$TITLE = 'Deck';
 top_private();
-require 'component/chart.php';
 ?>
 
 <div class="row">
@@ -25,11 +24,7 @@ require 'component/chart.php';
 </div>
 
 <script>
-    (()=>{
-        var drawChart = ()=>{
-            chart.drawUser($tool.getData('auth').userId, 'lazychart__user');
-        };
-        drawChart();
-    })();
+    AppChart.drawCurrentUserDecks('lazychart__user');
 </script>
+
 <?=bottom_private()?>

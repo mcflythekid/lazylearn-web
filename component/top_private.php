@@ -12,8 +12,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?=$TITLE?></title>
-    <link id ="shorticon" rel="shortcut icon" href="<?=$ASSET?>/img/fav.png" >
+    <?=asset()?>
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -37,27 +37,14 @@
     <link rel="stylesheet" href="/bower_components/bootstrap-daterangepicker/daterangepicker.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="/bower_components/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
-    <!-- jQuery 3 -->
-    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="/bower_components/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button);
     </script>
-    <!-- Bootstrap 3.3.7 -->
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Morris.js charts -->
     <script src="/bower_components/raphael/raphael.min.js"></script>
     <script src="/bower_components/morris.js/morris.min.js"></script>
@@ -81,46 +68,7 @@
     <script src="/bower_components/fastclick/lib/fastclick.js"></script>
     <!-- AdminLTE App -->
     <script src="/bower_components/admin-lte/dist/js/adminlte.min.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="/bower_components/admin-lte/dist/js/pages/dashboard.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="/bower_components/admin-lte/dist/js/demo.js"></script>
 
-    <!--    ------------------------------------------------------------------------------------------------------------------------>
-    <script type="text/javascript" src="//www.gstatic.com/charts/loader.js"></script>
-
-    <!-- axios -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
-
-    <!-- Include the Quill library -->
-    <link href="//cdn.quilljs.com/1.3.4/quill.snow.css" rel="stylesheet">
-    <script src="//cdn.quilljs.com/1.3.4/quill.js"></script>
-
-    <!-- bootstrap dialog -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css" rel="stylesheet">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- bootstrap table -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
-
-    <!-- app -->
-    <link rel="stylesheet" href="<?=$ASSET?>/app.css">
-
-    <script>
-        var ctx = '<?=$CTX?>';
-        var endpoint = '<?=$ENDPOINT?>';
-    </script>
-    <script src="<?=$ASSET?>/tool.js"></script>
-    <script src="<?=$ASSET?>/app.js"></script>
-    <script src="<?=$ASSET?>/external/quill-magic-url.min.js"></script>
-    <script src="<?=$ASSET?>/external/image-resize.min.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -150,15 +98,32 @@
                             <span class="hidden-xs" id="app__user_fullname"></span>
                         </a>
                         <ul class="dropdown-menu">
+
                             <!-- User image -->
                             <li class="user-header">
                                 <img src="/bower_components/admin-lte/dist/img/avatar04.png" class="img-circle" alt="User Image">
                                 <p id="app__user_email">[Email is not set]</p>
                             </li>
 
+                            <!-- Menu Body -->
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="/auth/security.php">Security</a>
+                                    </div>
+<!--                                    <div class="col-xs-4 text-center">-->
+<!--                                        <a href="#">Sales</a>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-xs-4 text-center">-->
+<!--                                        <a href="#">Friends</a>-->
+<!--                                    </div>-->
+                                </div>
+                                <!-- /.row -->
+                            </li>
+
                             <li class="user-footer">
                                 <div class="pull-left" id="app__user_changepassword">
-                                    <a href="/change-password.php" class="btn btn-default btn-flat">Change password</a>
+                                    <a href="/auth/change-password.php" class="btn btn-default btn-flat">Change password</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="#" id="logout" class="btn btn-default btn-flat">Sign out</a>
@@ -182,7 +147,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a href="/deck.php">
+                    <a href="/deck/deck.php">
                         <i class="fa fa-folder-open-o"></i> <span>Deck</span>
                     </a>
                 </li>
@@ -197,30 +162,11 @@
     </aside>
 
     <script>
-        (()=>{
-            $(document).on('click', '#logout', function(event){
-                event.preventDefault();
-                $app.logout();
-            });
-
-            var auth = $tool.getData('auth');
-            if (auth){
-                if (auth.email) {
-                    $('#app__user_email').text(auth.email);
-                } else {
-                    $('#app__user_changepassword').hide();
-                }
-                $('#app__user_fullname').text(auth.fullName);
-                if (auth.email === 'odopoc@gmail.com'){
-                    $('#admin_menu').show();
-                }
-                $('.ui--in').show();
-                $('.ui--out').hide();
-            }else {
-                $('.ui--in').hide();
-                $('.ui--out').show();
-            }
-        })();
+        $(document).on('click', '#logout', function(event){
+            event.preventDefault();
+            Auth.logout();
+        });
+        Application.updateLayout();
     </script>
 
         <!-- Content Wrapper. Contains page content -->

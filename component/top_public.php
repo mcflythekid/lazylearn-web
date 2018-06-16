@@ -1,58 +1,21 @@
 <?php 
 function top_public(){
-	global $TITLE;
-	global $ASSET;
-	global $CTX;
-	global $ENDPOINT;
 ?>
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
-        <title><?=$TITLE?></title>
-        <link id ="shorticon" rel="shortcut icon" href="<?=$ASSET?>/img/fav.png" >
-
-        <style>
-            .public-container{
-                margin-top: 20px;
-            }
-        </style>
-
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
-
-        <!-- Bootstrap core CSS -->
-        <link href="../node_modules/startbootstrap-heroic-features/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Custom styles for this template -->
-        <link href="../node_modules/startbootstrap-heroic-features/css/heroic-features.css" rel="stylesheet">
-
-
-        <script type="text/javascript" src="//www.gstatic.com/charts/loader.js"></script>
-
-        <!-- jquery -->
-        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-        <!-- axios -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.js"></script>
-
-        <script>
-            var ctx = '<?=$CTX?>';
-            var endpoint = '<?=$ENDPOINT?>';
-        </script>
-
-        <script src="<?=$ASSET?>/tool.js"></script>
-        <script src="<?=$ASSET?>/app.js"></script>
-
-    </head>
-
-    <body>
-
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <style>
+        body {
+            padding-top: 50px;
+        }
+    </style>
+    <?=asset()?>
+</head>
+<body>
     <script>
         window.fbAsyncInit = function() {
             FB.init({
@@ -80,38 +43,28 @@ function top_public(){
         }(document, 'script', 'facebook-jssdk'));
     </script>
 
-    <script>
-        $().ready(()=>{
-
-        });
-
-    </script>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="/">Lazylearn</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collaps navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/login.php">Login</a>
-                    </li>
-
-
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/register.php">Register</a>
-                    </li>
-
-                </ul>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><strong>Lazylearn</strong></a>
             </div>
+            <div id="navbar" class="collapse navbar-collapse pull-right">
+                <ul class="nav navbar-nav">
+                    <li><a href="/"><strong>Home</strong></a></li>
+                    <li><a href="/auth/register.php"><strong>Register</strong></a></li>
+                    <li><a href="/auth/login.php"><strong>Login</strong></a></li>
+                    <li><a href="https://fb.com/lazylearn"><strong>Fanpage</strong></a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
         </div>
     </nav>
 
-    <!-- Page Content -->
     <div class="container">
-
-
+<!------------------------------------------------------------------------------------------------------------------->
 <?php } ?>

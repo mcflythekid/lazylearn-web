@@ -4,4 +4,4 @@ RewriteEngine On
 RedirectMatch 404 /\.git
 RedirectMatch 404 /test
 RedirectMatch 404 /\.gitignore
-RewriteRule ^res_([0-9]+)/(.+)$ /res/$2
+RewriteRule ^dkmm-([0-9]+)/(.+)$ /asset/$2

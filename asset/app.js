@@ -19,13 +19,7 @@ var $app = ((endpoint)=>{
             'Access-Control-Allow-Origin': '*',
         }
     });
-    e.apisync = axios.create({
-        baseURL: e.endpoint,
-        headers: {
-            'Authorization': getBearerToken(),
-            'Access-Control-Allow-Origin': '*',
-        }
-    });
+
     var initApisync = ()=>{
         e.apisync.interceptors.request.use(function (config) {
             $tool.lock();

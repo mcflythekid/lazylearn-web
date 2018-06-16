@@ -1,34 +1,23 @@
 <?php
-$VERSION = 70 ;
-$CTX = "";
-$HEADER = "";
-$HEADER2 = "";
-$CTX = "";
-$TITLE = "Lazylearn";
-$TIMEZONE = "UTC";
-//////////////////////////////////////////////////////////////////////////////////////
-if (is_dev()){
-	$ASSET =  "/res_" . rand(1,10000);
-	$ENDPOINT = 'http://localhost:8888/lazylearn-api';
+/**********************************************************************************/
+const TIMEZONE = "UTC";
+const VERSION = 90;
+const DEV_DOMAIN = "local.lazylearn.com";
+const API_SERVER_DEV = 'http://localhost:8888/lazylearn-api';
+const API_SERVER_PRO = 'https://lazylearn.com:8081/lazylearn-api';
+/**********************************************************************************/
+$HEADER = $HEADER2 = $TITLE = '';
+if( in_array( $_SERVER['SERVER_NAME'], array(DEV_DOMAIN)) ){
+    $API_SERVER = API_SERVER_DEV;
+    $ASSET =  "/dkmm-" . rand(100000,999999);
 } else {
-	$ASSET =  "/res_" . $VERSION;
-	$ENDPOINT = 'https://lazylearn.com:8081/lazylearn-api';
+    $API_SERVER = API_SERVER_PRO;
+    $ASSET =  "/dkmm-" . VERSION;
 }
-///////////////////////////////////////////////////////////////////////////////////////
-date_default_timezone_set($TIMEZONE);
+date_default_timezone_set(TIMEZONE);
 require_once __DIR__ . '/component/top_private.php';
 require_once __DIR__ . '/component/bottom_private.php';
 require_once __DIR__ . '/component/top_public.php';
 require_once __DIR__ . '/component/bottom_public.php';
-////////////////////////////////////////////////////////////////////////////////////////
-function is_dev() {
-	$whitelist = array( '127.0.0.1', 'localhost', 'local.lazylearn.com' );
-	if( in_array( $_SERVER['SERVER_NAME'], $whitelist) )
-		return true;
-	return false;
-}
-function title($str){
-	global $TITLE;
-    $TITLE = $str;
-}
-//////////////////////////////////////////////////////////////////////////////////////////
+require_once __DIR__ . '/component/asset.php';
+/**********************************************************************************/
