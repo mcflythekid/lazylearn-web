@@ -76,5 +76,22 @@ var Auth = ((e, AppApi, Constant, FlashMessage)=>{
         });
     };
 
+    e.forgetPassword = (email)=>{
+        AppApi.sync.post('/forget-password', {
+            email: email
+        }).then((response)=>{
+            FlashMessage.success(response.data.msg);
+        });
+    };
+
+    e.resetPassword = (resetId, newRawPassword)=>{
+        AppApi.sync.post('/reset-password', {
+            resetId: resetId,
+            newRawPassword: newRawPassword
+        }).then((response)=>{
+            postLogin(response.data);
+        });
+    }
+
     return e;
 })({}, AppApi, Constant, FlashMessage);

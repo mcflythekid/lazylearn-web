@@ -17,7 +17,7 @@ var AppApi = ((e, apiServer, HoldOn, Storage, FlashMessage)=>{
     });
     syncInstance.interceptors.request.use(function (config) {
         HoldOn.open();
-        config.headers.Authorization = 'Bearer ' + Storage.get('accessToken');
+        if (Storage.get('accessToken')) config.headers.Authorization = 'Bearer ' + Storage.get('accessToken');
         return config;
     }, function (error) {
         HoldOn.close();
@@ -38,7 +38,7 @@ var AppApi = ((e, apiServer, HoldOn, Storage, FlashMessage)=>{
         headers: {'Access-Control-Allow-Origin': '*'}
     });
     asyncInstance.interceptors.request.use(function (config) {
-        config.headers.Authorization = 'Bearer ' + Storage.get('accessToken');
+        if (Storage.get('accessToken')) config.headers.Authorization = 'Bearer ' + Storage.get('accessToken');
         return config;
     }, function (error) {
         return Promise.reject(error);

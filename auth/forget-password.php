@@ -1,11 +1,11 @@
 <?php
-	require 'core.php';
-	title('Forget password');
+	require '../core.php';
+	$TITLE = 'Forget password';
 	top_public();
 ?>
-<div class="row public-container">
-	<div class="col-lg-3"></div>
-	<div class="col-lg-6">
+
+<div class="row u-mt-20">
+    <div class="col-lg-4 col-md-6 col-lg-offset-4 col-md-offset-3">
         <p>
             Please provide your email address, and then we will send you an instruction
         </p>
@@ -18,16 +18,12 @@
 		</form>
 	</div>
 </div>
+
 <script>
-    (()=>{
-        $("#forget").submit((e)=>{
-            e.preventDefault();
-            $app.apisync.post("/forget-password", {
-                email: $('#email').val()
-            }).then((r)=>{
-                $tool.flash(1, 'Please check your inbox');
-            });
-        });
-    })();
+$("#forget").submit((e)=>{
+    e.preventDefault();
+    Auth.forgetPassword($('#email').val())
+});
 </script>
+
 <?=bottom_public()?>
