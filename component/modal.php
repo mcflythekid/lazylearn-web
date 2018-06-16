@@ -27,22 +27,17 @@
     </div>
 </div>
 <script>
-$('#deck__modal__edit--form').submit(function(e){
-    e.preventDefault();
-    Deck.edit($('#deck__modal__edit--id').val(), $('#deck__modal__edit--newName').val().trim(), ()=>{
-        $('#deck__modal__edit').modal('hide');
-        $('#deck__list').bootstrapTable('refresh',{
-            silent: true
+    $('#deck__modal__edit--form').submit(function(e){
+        e.preventDefault();
+        Deck.edit($('#deck__modal__edit--id').val(), $('#deck__modal__edit--newName').val().trim(), ()=>{
+            $('#deck__modal__edit').modal('hide');
+            $('#deck__list').bootstrapTable('refresh',{
+                silent: true
+            });
         });
     });
-});
 </script>
 <!----------------------------------------------------------------------------------------------------------------------------------->
-
-
-
-
-<!-- Modal -->
 <div id="card__modal__edit" class="modal fade" role="dialog" tabindex='-1'>
     <div class="modal-dialog modal-lg">
 
@@ -60,6 +55,7 @@ $('#deck__modal__edit--form').submit(function(e){
                     <div id="card__modal__edit--back"></div>
                 </div>
             </div>
+            <input type="hidden" id="card__modal__edit--cardId">
             <div class="modal-footer">
                 <button type="button" id="card__modal__edit--submit" class="btn btn-success">Change</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -69,49 +65,24 @@ $('#deck__modal__edit--form').submit(function(e){
     </div>
 </div>
 <script>
-    // var $card__modal__edit = ((e)=>{
-    //     var cardId = null;
-    //     var successCb = null;
-    //     var closeCb = null;
-    //
-    //     var quillFront = new Quill('#card__modal__edit--front', $app.quillFrontConf);
-    //     var quillBack = new Quill('#card__modal__edit--back', $app.quillBackConf);
-    //     $(document).on('click', '#card__modal__edit--submit', function(e){
-    //         if ($tool.quillIsBlank(quillFront) || $tool.quillIsBlank(quillBack)){
-    //             return;
-    //         }
-    //         $app.apisync.patch("/card/" + cardId, {
-    //             front: $tool.quillGetHtml(quillFront),
-    //             back: $tool.quillGetHtml(quillBack)
-    //         }).then((res)=>{
-    //             $('#card__modal__edit').off('hidden.bs.modal').on('hidden.bs.modal', function(){
-    //                 $(this).off('hidden.bs.modal');
-    //                 successCb($tool.quillGetHtml(quillFront), $tool.quillGetHtml(quillBack));
-    //                 if (closeCb) closeCb();
-    //             }).modal('hide');
-    //         }).catch((err)=>{
-    //             if (closeCb) closeCb();
-    //         });
-    //     });
-    //
-    //     e.edit = (argCardId, argSuccessCb, argCloseCb)=>{
-    //         cardId = argCardId;
-    //         successCb = argSuccessCb;
-    //         closeCb = argCloseCb;
-    //         $app.apisync.get("/card/" + cardId).then((res)=>{
-    //             $tool.quillSetHtml(quillFront, res.data.front);
-    //             $tool.quillSetHtml(quillBack, res.data.back);
-    //             $('#card__modal__edit').modal('show').off('hidden.bs.modal').on('hidden.bs.modal', function(){
-    //                 $(this).off('hidden.bs.modal');
-    //                 if (closeCb) closeCb();
-    //             });
-    //         }).catch((err)=>{
-    //             if (argCloseCb) argCloseCb();
-    //         });
-    //     };
-    //
-    //     return e;
-    // })({});
+    var backEditQuill = new Quill('#card__modal__edit--back', Editor.generateQuillConfig('Back side', ()=>{
+            frontEditQuill.focus();
+        }, ()=>{
+            $('#card__modal__edit--submit').focus();
+        }));
+
+    var frontEditQuill = new Quill('#card__modal__edit--front', Editor.generateQuillConfig('Front side', ()=>{
+        }, ()=>{
+            backEditQuill.focus();
+        }));
+
+    Card.setEditCardQuills(frontEditQuill, backEditQuill);
+
+    $(document).on('click', '#card__modal__edit--submit', function(e){
+        Card.edit($('#card__modal__edit--cardId').val(), ()=>{
+            $('#card__modal__edit').modal('hide');
+        })
+    });
 </script>
 
 <?php } ?>

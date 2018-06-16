@@ -3,68 +3,79 @@
  */
 var Card = ((e, AppApi, Constant, FlashMessage, Dialog, Deck)=>{
 
-    e.create = (front, back, deckId, callback)=>{
+    var createCardFrontQuill;
+
+    var createCardBackQuill;
+
+    var editCardFrontQuill;
+
+    var editCardBackQuill;
+
+    var get = (cardId, callback)=>{
+        AppApi.async.get("/card/get/" + cardId).then((response)=>{
+            callback(response.data);
+        })
+    };
+
+    e.create = (deckId, callback)=>{
+        if (Editor.isBlank(createCardFrontQuill) || Editor.isBlank(createCardBackQuill)) {
+            FlashMessage.warning("Please check your content");
+            return;
+        }
         AppApi.sync.post("/card/create", {
-            front: front,
-            back: back,
+            front: Editor.getHtml(createCardFrontQuill),
+            back: Editor.getHtml(createCardBackQuill),
             deckId: deckId
         }).then(()=>{
+            Editor.clear(createCardFrontQuill);
+            Editor.clear(createCardBackQuill);
+            createCardFrontQuill.focus();
             callback();
         })
     };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    e.delete = (deckId, callback)=>{
-        Dialog.confirm('Are you sure? This deck will be deleted!', ()=>{
-            AppApi.sync.post("/deck/delete/"+ deckId).then(()=>{
+    e.delete = (cardId, callback)=>{
+        Dialog.confirm('Are you sure? This card will be deleted!', ()=>{
+            AppApi.sync.post("/card/delete/"+ cardId).then(()=>{
                 callback();
             })
         });
     };
 
-    e.archive = (deckId, callback)=>{
-        AppApi.sync.post("/deck/archive/"+ deckId).then(()=>{
-            callback();
-        })
-    };
-
-    e.unarchive = (deckId, callback)=>{
-        AppApi.sync.post("/deck/unarchive/"+ deckId).then(()=>{
-            callback();
-        })
-    };
-
-    e.openEdit = function(deckId, deckName){
-        $('#deck__modal__edit--title').text(deckName);
-        $('#deck__modal__edit--name').val(deckName);
-        $('#deck__modal__edit--id').val(deckId);
-        $('#deck__modal__edit--newName').val('');
-        $('#deck__modal__edit').modal('show');
-    };
-
-    e.edit = (deckId, newName, callback)=>{
-        AppApi.sync.post("/deck/edit", {
-            deckId: deckId,
-            newName: newName
+    e.edit = (cardId, callback)=>{
+        if (Editor.isBlank(editCardFrontQuill) || Editor.isBlank(editCardBackQuill)) {
+            FlashMessage.warning("Please check your content");
+            return;
+        }
+        AppApi.sync.post("/card/edit", {
+            cardId: cardId,
+            front: Editor.getHtml(editCardFrontQuill),
+            back: Editor.getHtml(editCardBackQuill)
         }).then(()=>{
             callback();
+        })
+    };
+
+    e.openEdit = function(cardId, callback){
+        get(cardId, (cardObject)=>{
+            Editor.setHtml(editCardFrontQuill, cardObject.front);
+            Editor.setHtml(editCardBackQuill, cardObject.back);
+            $('#card__modal__edit--cardId').val(cardId);
+            $('#card__modal__edit').modal('show').off('hidden.bs.modal').on('hidden.bs.modal', function(){
+                $(this).off('hidden.bs.modal');
+                callback();
+            });
         });
+    };
+
+    e.setEditCardQuills = (front, back)=>{
+        editCardFrontQuill = front;
+        editCardBackQuill = back;
+    };
+
+    e.setCreateCardQuills = (front, back)=>{
+        createCardFrontQuill = front;
+        createCardBackQuill = back;
     };
 
     return e;

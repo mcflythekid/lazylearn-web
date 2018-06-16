@@ -66,6 +66,8 @@ if (isset($_GET['id'])){
         backEditor.focus();
     }));
 
+    Card.setCreateCardQuills(frontEditor, backEditor);
+
     var refresh = ()=>{
         $('#cardlist').bootstrapTable('refresh',{
             silent: true
@@ -82,16 +84,19 @@ if (isset($_GET['id'])){
     });
 
     $('#cardcreate__submit').click(()=> {
-        if (Editor.isBlank(frontEditor) || Editor.isBlank(backEditor)) {
-            FlashMessage.warning("Please check your content");
-            return;
-        }
-        Card.create(Editor.getHtml(frontEditor), Editor.getHtml(backEditor), deckId, ()=>{
-            Editor.clear(frontEditor);
-            Editor.clear(backEditor);
-            frontEditor.focus();
+        Card.create(deckId, ()=>{
             refresh();
         })
+    });
+
+    $(document).on('click', '.cardcmd__delete', function(){
+        Card.delete($(this).data('card-id'), ()=>{
+            refresh();
+        })
+    });
+
+    $(document).on('click', '.cardcmd__edit', function(e){
+        Card.openEdit($(this).data('card-id'), refresh);
     });
 
     $('#cardlist').bootstrapTable({
@@ -150,40 +155,5 @@ if (isset($_GET['id'])){
         ]
 
     });
-
-
-
-/*
-
-    $(document).on('click', '.cardcmd__delete', function(){
-        var cardId = $(this).data('card-id');
-        $tool.confirm("This will remove this card and cannot be undone!!!", function(){
-            $app.apisync.delete("/card/" + cardId).then(()=>{
-                refresh();
-            });
-        });
-    });
-
-    (()=>{
-        var deckId = $tool.param('id');
-        var enableChart = true;
-
-
-        $(document).on('click', '.cardcmd__edit', function(e){
-            var cardId = $(this).data('card-id');
-            $card__modal__edit.edit(cardId, refresh);
-        });
-        $('.cardlearn',).click(function(){
-            window.location.href = "./deck-learn.php?id=" + deckId + "&type=" + $(this).data('learn-type');
-        });
-
-
-
-
-
-
-
-
-    })();*/
 </script>
 <?=bottom_private()?>
