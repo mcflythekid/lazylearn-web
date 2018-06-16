@@ -15,7 +15,21 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="lazychart" id="lazychart__deck"></div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-target="#collapseOne" href="#" class="a-no-underline display-block">
+                        Learning Status
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div class="lazychart" id="lazychart__deck"></div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -87,6 +101,7 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
                 $('.deck-action[data-action="learn"]').show();
                 $('.deck-action[data-action="review"]').show();
                 $('#appHeader').text(deck.name);
+                AppChart.drawDeck(deckId, 'lazychart__deck');
             } else {
                 $('.deck-action[data-action="archive"]').hide();
                 $('.deck-action[data-action="unarchive"]').show();
@@ -109,10 +124,16 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
                 });
                 break;
             case 'archive':
-                Deck.archive(deckId, refresh);
+                Deck.archive(deckId, ()=>{
+                    window.stop();
+                    location.reload();
+                });
                 break;
             case 'unarchive':
-                Deck.unarchive(deckId, refresh);
+                Deck.unarchive(deckId, ()=>{
+                    window.stop();
+                    location.reload();
+                });
                 break;
             case 'edit':
                 Deck.openEdit(deckId, deck.name, refresh);

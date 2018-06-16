@@ -1,6 +1,6 @@
 <?php
 require_once 'core.php';
-title('Admin');
+$TITLE = 'Admin';
 $HEADER = "Admin";
 $PATHS = [
     "Admin"
@@ -21,77 +21,74 @@ top_private();
     </div>
 </div>
 <script>
-    (()=>{
 
-        var refresh = ()=>{
-            $('#user__list').bootstrapTable('refresh',{
-                silent: true
-            });
-        };
-
-        $('#user__list').bootstrapTable({
-            classes: 'table table-hover table-bordered table-condensed table-responsive bg-white',
-            url: $app.endpoint + "/admin/user",
-            cache: false,
-            striped: false,
-            toolbar: '#toolbar',
-            sidePagination: 'server',
-            sortName: 'createdOn',
-            sortOrder: 'desc',
-            pageSize: 20,
-            pageList: [20, 50, 100],
-            search: true,
-            ajaxOptions: {
-                headers: {
-                    Authorization: 'Bearer ' + $tool.getData('auth').token
-                }
-            },
-            pagination: true,
-            columns: [
-        
-                {
-                    field: 'email',
-                    title: 'email',
-                    sortable: true,
-                },
-                {
-                    field: 'facebookId',
-                    title: 'facebookId',
-                    sortable: true,
-                },
-                {
-                    field: 'fullName',
-                    title: 'fullName',
-                    sortable: true,
-                },
-                {
-                    field: 'decks',
-                    title: 'decks',
-                    sortable: true,
-                },
-                {
-                    field: 'cards',
-                    title: 'cards',
-                    sortable: true,
-                },
-                {
-                    field: 'registerIpAddress',
-                    title: 'registerIpAddress',
-                    sortable: true,
-                },
-                {
-                    field: 'createdOn',
-                    title: 'createdOn',
-                    sortable: true,
-                },
-                {
-                    field: 'updatedOn',
-                    title: 'updatedOn',
-                    sortable: true,
-                }
-            ],
+    var refresh = ()=>{
+        $('#user__list').bootstrapTable('refresh',{
+            silent: true
         });
+    };
 
-    })();
+    $('#user__list').bootstrapTable({
+        classes: 'table table-hover table-bordered table-condensed table-responsive bg-white',
+        url: apiServer + "/admin/search-user",
+        cache: false,
+        striped: false,
+        sidePagination: 'server',
+        sortName: 'createdDate',
+        method: 'post',
+        sortOrder: 'desc',
+        pageSize: 100,
+        pageList: [100, 200],
+        search: true,
+        ajaxOptions: {
+            headers: {
+                Authorization: AppApi.getAuthorization()
+            }
+        },
+        pagination: true,
+        columns: [
+
+            {
+                field: 'email',
+                title: 'Email address',
+                sortable: true,
+            },
+            {
+                field: 'facebookId',
+                title: 'Facebook ID',
+                sortable: true,
+            },
+            {
+                field: 'fullName',
+                title: 'Full name',
+                sortable: true,
+            },
+            {
+                field: 'decks',
+                title: 'Deck',
+                sortable: true,
+            },
+            {
+                field: 'cards',
+                title: 'Card',
+                sortable: true,
+            },
+            {
+                field: 'ipAddress',
+                title: 'IP Address',
+                sortable: true,
+            },
+            {
+                field: 'createdDate',
+                title: 'Joined Date',
+                sortable: true,
+            },
+            {
+                field: 'updatedDate',
+                title: 'Updated Date',
+                sortable: true,
+            }
+        ],
+    });
 </script>
 <?=bottom_private()?>

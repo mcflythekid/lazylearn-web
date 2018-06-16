@@ -19,10 +19,10 @@ var AppChart = ((AppChart, Storage, AppApi)=>{
         }
     };
     var drawUserDecks = (userId, selectorId)=>{
-        draw("/user/" + userId + "/chart", selectorId);
+        draw("/chart/get-user/" + userId, selectorId);
     };
     var drawDeck = (deckId, selectorId)=>{
-        draw("/deck/" + deckId + "/chart", selectorId);
+        draw("/chart/get-deck/" + deckId, selectorId);
     };
     var draw = (chartDataUrl, selectorId)=>{
         google.charts.load('current', {'packages':['corechart']});
@@ -36,10 +36,10 @@ var AppChart = ((AppChart, Storage, AppApi)=>{
                     timeup += obj.timeup;
                 });
                 data.addColumn('string','Step name');
-                data.addColumn('number','Need to learn');
-                //data.addColumn('number','Need to learn (' + timeup + ')');
-                data.addColumn('number','Remembered');
-                //data.addColumn('number','Remembered (' + correct + ')');
+                //data.addColumn('number','Need to learn');
+                data.addColumn('number', timeup + ' cards today');
+                //data.addColumn('number','Remembered');
+                data.addColumn('number', correct + ' cards learned');
                 data.addRows(r.data.length);
                 $.each(r.data, (index, obj)=>{
                     data.setCell(index, 0, obj.stepName);

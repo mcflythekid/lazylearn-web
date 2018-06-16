@@ -10,7 +10,7 @@ top_private();
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-target="#collapseOne" href="#" class="a-no-underline display-block">
-                        Statistics Chart
+                        Overall Status
                     </a>
                 </h4>
             </div>
