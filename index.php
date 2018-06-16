@@ -4,10 +4,6 @@ $TITLE = 'Lazylearn';
 top_public();
 ?>
 
-<script>
-    FlashMessage.success("sss");
-</script>
-
 <style>
     @media(max-width: 768px) {
         .container .jumbotron, .container-fluid .jumbotron {
@@ -18,12 +14,11 @@ top_public();
 
 <div class="jumbotron u-mt-20" >
     <h1>Forget about forgeting!</h1>
-    <br>
-    <p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">
+    <p class="u-mt-30">
+        <button class="btn btn-primary btn-lg" id="login-facebook-btn">
             <i class="fa fa-facebook-official u-mr-5" aria-hidden="true"></i>
             Continue with Facebook
-        </a>
+        </button>
     </p>
 </div>
 
@@ -59,5 +54,11 @@ top_public();
     <a href="mailto:rapperkiban@gmail.com">Contact us</a> -
     <a href="https://github.com/mcflythekid">Github page</a>
 </div>
+
+<script>
+$('#login-facebook-btn').click(()=>{
+    Auth.loginFacebook();
+})
+</script>
 
 <?=bottom_public()?>

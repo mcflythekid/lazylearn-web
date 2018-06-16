@@ -27,16 +27,7 @@ function top_public($showMenu = true){
                 xfbml      : true,
                 version    : 'v3.0'
             });
-
-            FB.AppEvents.logPageView();
-
-            FB.getLoginStatus(function(response) {
-                console.log(response.authResponse.accessToken);
-                //alert(JSON.stringify(response));
-            });
-
         };
-
         (function(d, s, id){
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) {return;}
@@ -57,7 +48,7 @@ function top_public($showMenu = true){
                 </button>
                 <a class="navbar-brand" href="/"><strong>Lazylearn</strong></a>
             </div>
-            
+
             <div id="navbar" class="collapse navbar-collapse pull-right">
                 <ul class="nav navbar-nav">
                     <li><a href="/"><strong>Home</strong></a></li>
