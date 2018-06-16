@@ -12,11 +12,11 @@
 		<form id="login">
 		  <div class="form-group">
 			<label for="email">Email</label>
-			<input type="email" required class="form-control" id="email" placeholder="Email" value="odopoc@gmail.com">
+			<input type="email" required class="form-control" id="email" placeholder="Email">
 		  </div>
 		  <div class="form-group">
 			<label for="rawPassword">Password</label>
-			<input type="password" required class="form-control" id="rawPassword" placeholder="Password" value="dkmm">
+			<input type="password" required class="form-control" id="rawPassword" placeholder="Password">
 		  </div>
 		  <button type="submit" class="btn btn-primary">Login</button>
 		  <a class="btn btn-warning" href="forget-password.php">Forget Password</a>
