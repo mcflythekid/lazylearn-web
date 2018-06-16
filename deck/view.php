@@ -115,6 +115,12 @@ if (isset($_GET['id'])){
             case 'edit':
                 Deck.openEdit(deckId, deck.name, refresh);
                 break;
+            case 'learn':
+                window.location = '/deck/learn.php?type=learn&id=' + deckId;
+                break;
+            case 'review':
+                window.location = '/deck/learn.php?type=review&id=' + deckId;
+                break;
             default:
         }
     });

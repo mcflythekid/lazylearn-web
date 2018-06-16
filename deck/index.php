@@ -94,8 +94,8 @@ modal();
             {
                 width: 100,
                 formatter: (obj,row)=>{
-                    return "<a class='btn btn-sm btn-info pull-left' href=" + row.id + "'/deck/deck-learn.phpn.php?type=learn&id='>Learn</a>" +
-                        " <button class='btn btn-sm context-menu-button pull-right'><span class='glyphicon glyphicon-menu-hamburger'></span></button>";
+                    return '<a class="btn btn-sm btn-success pull-left" href="/deck/learn.php?type=learn&id=' + row.id + '">Learn</a> ' +
+                        '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
                 }
             },
         ],
