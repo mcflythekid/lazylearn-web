@@ -3,6 +3,7 @@
  */
 var Constant = ((Constant)=>{
     Constant.dashboardUrl = '/dashboard.php';
+    Constant.deckUrl = '/deck';
     Constant.loginUrl = '/auth/login.php';
     Constant.securityUrl = '/auth/security.php';
     Constant.blockedAfterLoginUrls = [

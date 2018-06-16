@@ -63,7 +63,7 @@ var Card = ((e, AppApi, Constant, FlashMessage, Dialog, Deck)=>{
             $('#card__modal__edit--cardId').val(cardId);
             $('#card__modal__edit').modal('show').off('hidden.bs.modal').on('hidden.bs.modal', function(){
                 $(this).off('hidden.bs.modal');
-                callback();
+                if (callback) callback();
             });
         });
     };

@@ -39,12 +39,21 @@ if (isset($_GET['id'])){
 
 <div class="row">
     <div class="col-lg-12">
-        <div id="cardcreate__toolbar">
-            <div class="btn-group">
-                    <button class="btn btn-primary cardlearn" data-learn-type="learn">Lean</button>
-                    <button class="btn btn-primary cardlearn" data-learn-type="review">Review</button>
-            </div>
+        <div class="btn-group">
+            <button class="btn btn-success deck-action" data-action="learn">Lean</button>
+            <button class="btn btn-success deck-action" data-action="review">Review</button>
         </div>
+        <div class="btn-group">
+            <button class="btn btn-warning deck-action" data-action="edit">Edit</button>
+            <button class="btn btn-warning deck-action" data-action="archive">Archive</button>
+            <button class="btn btn-warning deck-action" data-action="unarchive">Unarchive</button>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-danger deck-action" data-action="delete">Delete</button>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
         <table id="cardlist"></table>
     </div>
 </div>
@@ -72,15 +81,48 @@ if (isset($_GET['id'])){
         $('#cardlist').bootstrapTable('refresh',{
             silent: true
         });
-        //if (!deck.archived) AppChart.drawDeck(deckId, 'lazychart__deck');
-        document.title = deck.name;
-        $('#breadcrumbName').text(deck.name);
-        $('#headerName').text(deck.name);
+        Deck.get(deckId, (deckResponseObject)=>{
+            deck = deckResponseObject;
+            if (!deck.archived) {
+                $('.deck-action[data-action="archive"]').show();
+                $('.deck-action[data-action="unarchive"]').hide();
+                $('#headerName').text(deck.name);
+            } else {
+                $('.deck-action[data-action="archive"]').hide();
+                $('.deck-action[data-action="unarchive"]').show();
+                $('#headerName').html(deck.name + ' <span class="archived u-pb-5">Archived</span>');
+            }
+            document.title = deck.name;
+            $('#breadcrumbName').text(deck.name);
+
+        })
     };
 
-    Deck.get(deckId, (deckResponse)=>{
-        deck = deckResponse;
-        refresh();
+    $(document).on('click', '.deck-action', function(){
+        var action = $(this).data('action');
+        switch(action) {
+            case 'delete':
+                Deck.delete(deckId, ()=>{
+                    window.location = Constant.deckUrl;
+                });
+                break;
+            case 'archive':
+                Deck.archive(deckId, refresh);
+                break;
+            case 'unarchive':
+                Deck.unarchive(deckId, refresh);
+                break;
+            case 'edit':
+                Deck.openEdit(deckId, deck.name, refresh);
+                break;
+            default:
+        }
+    });
+
+    $(document).on('click', '.cardcmd__delete', function(){
+        Card.delete($(this).data('card-id'), ()=>{
+            refresh();
+        })
     });
 
     $('#cardcreate__submit').click(()=> {
@@ -105,7 +147,6 @@ if (isset($_GET['id'])){
         cache: false,
         method: 'post',
         striped: false,
-        toolbar: '#cardcreate__toolbar',
         sidePagination: 'server',
         sortName: 'createdDate',
         sortOrder: 'desc',
@@ -129,7 +170,7 @@ if (isset($_GET['id'])){
                 formatter: (obj)=>{
                     return obj;
                 },
-                width: '45%'
+                width: '44%'
             },
             {
                 field: 'back',
@@ -138,7 +179,7 @@ if (isset($_GET['id'])){
                 formatter: (obj)=>{
                     return obj;
                 },
-                width: '45%'
+                width: '44%'
             },
             {
                 align: 'center',
@@ -150,10 +191,12 @@ if (isset($_GET['id'])){
                         '<button data-card-id="'+obj+'" class="btn btn-sm btn-danger cardcmd__delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>'+
                         '</div>';
                 },
-                width: '10%'
+                width: '12%'
             },
         ]
 
     });
+
+    refresh();
 </script>
 <?=bottom_private()?>

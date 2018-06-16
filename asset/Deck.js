@@ -37,12 +37,15 @@ var Deck = ((e, AppApi, Constant, FlashMessage, Dialog)=>{
         })
     };
 
-    e.openEdit = function(deckId, deckName){
+    e.openEdit = function(deckId, deckName, callback){
         $('#deck__modal__edit--title').text(deckName);
         $('#deck__modal__edit--name').val(deckName);
         $('#deck__modal__edit--id').val(deckId);
         $('#deck__modal__edit--newName').val('');
-        $('#deck__modal__edit').modal('show');
+        $('#deck__modal__edit').modal('show').off('hidden.bs.modal').on('hidden.bs.modal', function(){
+            $(this).off('hidden.bs.modal');
+            if (callback) callback();
+        });
     };
 
     e.edit = (deckId, newName, callback)=>{
