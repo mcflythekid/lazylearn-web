@@ -50,7 +50,7 @@ top_public();
 </div>
 
 <div class="u-text-center u-mt-50 u-mb-50">
-    <a href="/post/privacy.php">Privacy policy</a> -
+    <a href="/privacy.php">Privacy policy</a> -
     <a href="mailto:rapperkiban@gmail.com">Contact us</a> -
     <a href="https://github.com/mcflythekid">Github page</a>
 </div>
