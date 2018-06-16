@@ -1,21 +1,34 @@
 /**
  * @author McFly the Kid
  */
-var Deck = ((e, AppApi, Constant, FlashMessage, Dialog)=>{
+var Card = ((e, AppApi, Constant, FlashMessage, Dialog, Deck)=>{
 
-    e.get = (deckId, callback)=>{
-        AppApi.async.get("/deck/get/" + deckId).then((response)=>{
-            callback(response.data);
-        });
-    };
-
-    e.create = (name, callback)=>{
-        AppApi.sync.post("/deck/create", {
-            name: name
+    e.create = (front, back, deckId, callback)=>{
+        AppApi.sync.post("/card/create", {
+            front: front,
+            back: back,
+            deckId: deckId
         }).then(()=>{
             callback();
         })
     };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     e.delete = (deckId, callback)=>{
         Dialog.confirm('Are you sure? This deck will be deleted!', ()=>{
@@ -55,4 +68,4 @@ var Deck = ((e, AppApi, Constant, FlashMessage, Dialog)=>{
     };
 
     return e;
-})({}, AppApi, Constant, FlashMessage, Dialog);
+})({}, AppApi, Constant, FlashMessage, Dialog, Deck);

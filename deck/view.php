@@ -1,8 +1,17 @@
 <?php
 require_once '../core.php';
 $TITLE = ('loading...');
+$PATHS = [
+    ["/deck", "Deck"],
+    '<span id="breadcrumbName">loading..</span>'
+];
+
 top_private();
 modal();
+$deckId = '';
+if (isset($_GET['id'])){
+    $deckId = $_GET['id'];
+}
 ?>
 
 <div class="row">
@@ -12,7 +21,7 @@ modal();
 </div>
 
 <div class="row" id="cardcreate">
-    <div class="col-lg-11">
+    <div class="col-lg-11 u-mb-10">
         <div class="row">
             <div class="col-xs-6">
                 <div id="cardcreate__front"></div>
@@ -41,18 +50,62 @@ modal();
 
 
 <script>
+    var deckId = '<?=$deckId?>';
+    var deck;
+    var backEditor = new Quill('#cardcreate__back', Editor.generateQuillConfig('Back side', ()=>{
+        frontEditor.focus();
+    }, ()=>{
+        $('#cardcreate__submit').focus();
+    }));
+    var frontEditor = new Quill('#cardcreate__front', Editor.generateQuillConfig('Front side', ()=>{
+    }, ()=>{
+        backEditor.focus();
+    }));
+
+
+    var refresh = ()=>{
+        $('#cardlist').bootstrapTable('refresh',{
+            silent: true
+        });
+        //if (!deck.archived) AppChart.drawDeck(deckId, 'lazychart__deck');
+        document.title = deck.name;
+        $('#breadcrumbName').text(deck.name);
+    };
+
+    Deck.get(deckId, (deckResponse)=>{
+        deck = deckResponse;
+        refresh();
+    });
+
+    $('#cardcreate__submit').click(()=> {
+        if (Editor.isBlank(frontEditor) || Editor.isBlank(backEditor)) {
+            FlashMessage.warning("Please check your content");
+            return;
+        }
+        Card.create(Editor.getHtml(frontEditor), Editor.getHtml(backEditor), deckId, ()=>{
+            Editor.clear(frontEditor);
+            Editor.clear(backEditor);
+            frontEditor.focus();
+            refresh();
+        })
+    });
+
+/*
+
+    $(document).on('click', '.cardcmd__delete', function(){
+        var cardId = $(this).data('card-id');
+        $tool.confirm("This will remove this card and cannot be undone!!!", function(){
+            $app.apisync.delete("/card/" + cardId).then(()=>{
+                refresh();
+            });
+        });
+    });
+
     (()=>{
         var deckId = $tool.param('id');
         var enableChart = true;
 
-        $(document).on('click', '.cardcmd__delete', function(){
-            var cardId = $(this).data('card-id');
-            $tool.confirm("This will remove this card and cannot be undone!!!", function(){
-                $app.apisync.delete("/card/" + cardId).then(()=>{
-                    refresh();
-                });
-            });
-        });
+
         $(document).on('click', '.cardcmd__edit', function(e){
             var cardId = $(this).data('card-id');
             $card__modal__edit.edit(cardId, refresh);
@@ -60,38 +113,12 @@ modal();
         $('.cardlearn',).click(function(){
             window.location.href = "./deck-learn.php?id=" + deckId + "&type=" + $(this).data('learn-type');
         });
-        $('#cardcreate__submit').click(()=> {
-            if ($tool.quillIsBlank(new_front) || $tool.quillIsBlank(new_back)){
-                return;
-            }
-            $app.apisync.post("/deck/" + deckId + "/card", {
-                front : $tool.quillGetHtml(new_front),
-                back : $tool.quillGetHtml(new_back)
-            }).then(()=>{
-                $tool.quillClear(new_front);
-                $tool.quillClear(new_back);
-                refresh();
-            });
-        });
 
-        var new_front = new Quill('#cardcreate__front', $app.quillFrontConf);
-        var new_back = new Quill('#cardcreate__back',   $app.quillBackConf);
-        var refresh = ()=>{
-            $('#cardlist').bootstrapTable('refresh',{
-                silent: true
-            });
-            if (enableChart) chart.drawDeck(deckId, 'lazychart__deck')
-        };
 
-        $app.api.get("/deck/" + deckId).then((r)=>{
-            var deck = r.data;
-            if (deck.archived == 1) enableChart = false;
-            if (enableChart) chart.drawDeck(deckId, 'lazychart__deck');
-            document.title = deck.name;
 
-        }).catch((e)=>{
-            $tool.flash(0, 'Cannot get deck');
-        });
+
+
+
         $('#cardlist').bootstrapTable({
             url: $app.endpoint + "/deck/" + deckId + "/card/by-search",
             classes: 'table bg-white',
@@ -144,6 +171,6 @@ modal();
 
         });
 
-    })();
+    })();*/
 </script>
 <?=bottom_private()?>

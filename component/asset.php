@@ -18,7 +18,7 @@ function asset(){
     <script src="/node_modules/jstorage/jstorage.min.js"></script>
 
     <script src="/node_modules/quill/dist/quill.min.js"></script>
-    <link href="/node_modules/quill/dist/quill.bubble.css" rel="stylesheet">
+    <link href="/node_modules/quill/dist/quill.snow.css" rel="stylesheet">
     <script src="/node_modules/quill-image-resize-module/image-resize.min.js"></script>
     <script src="/node_modules/quill-magic-url/dist/index.js"></script>
 
@@ -52,9 +52,11 @@ function asset(){
     <script src="<?=$ASSET?>/AppApi.js"></script>
     <script src="<?=$ASSET?>/Auth.js"></script>
     <script src="<?=$ASSET?>/Dialog.js"></script>
+    <script src="<?=$ASSET?>/Editor.js"></script>
 
     <script src="<?=$ASSET?>/Application.js"></script>
     <script src="<?=$ASSET?>/Chart.js"></script>
     <script src="<?=$ASSET?>/Deck.js"></script>
+    <script src="<?=$ASSET?>/Card.js"></script>
 
 <?php } ?>
