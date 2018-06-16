@@ -1,9 +1,8 @@
 <?php
-require_once 'core.php';
-title('loading...');
+require_once '../core.php';
+$TITLE = ('loading...');
 top_private();
-require 'modal/card-edit.php';
-require 'component/chart.php';
+modal();
 ?>
 
 <div class="row">

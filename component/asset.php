@@ -51,8 +51,10 @@ function asset(){
     <script src="<?=$ASSET?>/Storage.js"></script>
     <script src="<?=$ASSET?>/AppApi.js"></script>
     <script src="<?=$ASSET?>/Auth.js"></script>
+    <script src="<?=$ASSET?>/Dialog.js"></script>
 
     <script src="<?=$ASSET?>/Application.js"></script>
     <script src="<?=$ASSET?>/Chart.js"></script>
+    <script src="<?=$ASSET?>/Deck.js"></script>
 
 <?php } ?>

@@ -71,131 +71,126 @@
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+    <div class="wrapper">
 
-    <header class="main-header">
-        <!-- Logo -->
-        <a href="/dashboard.php" class="logo">
-            <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>Lazy</b></span>
-            <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Lazylearn</b></span>
-        </a>
-        <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top">
-            <!-- Sidebar toggle button-->
-            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                <span class="sr-only">Toggle navigation</span>
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="/dashboard.php" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>Lazy</b></span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Lazylearn</b></span>
             </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
 
-            <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
 
-                    <!-- User Account: style can be found in dropdown.less -->
-                    <li class="dropdown user user-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="/bower_components/admin-lte/dist/img/avatar04.png" class="user-image" alt="User Image">
-                            <span class="hidden-xs" id="app__user_fullname"></span>
-                        </a>
-                        <ul class="dropdown-menu">
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="/bower_components/admin-lte/dist/img/avatar04.png" class="user-image" alt="User Image">
+                                <span class="hidden-xs" id="app__user_fullname"></span>
+                            </a>
+                            <ul class="dropdown-menu">
 
-                            <!-- User image -->
-                            <li class="user-header">
-                                <img src="/bower_components/admin-lte/dist/img/avatar04.png" class="img-circle" alt="User Image">
-                                <p id="app__user_email">[Email is not set]</p>
-                            </li>
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <img src="/bower_components/admin-lte/dist/img/avatar04.png" class="img-circle" alt="User Image">
+                                    <p id="app__user_email">[Email is not set]</p>
+                                </li>
 
-                            <!-- Menu Body -->
-                            <li class="user-body">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="/auth/security.php">Security</a>
+                                <!-- Menu Body -->
+                                <li class="user-body">
+                                    <div class="row">
+                                        <div class="col-xs-4 text-center">
+                                            <a href="/auth/security.php">Security</a>
+                                        </div>
                                     </div>
-<!--                                    <div class="col-xs-4 text-center">-->
-<!--                                        <a href="#">Sales</a>-->
-<!--                                    </div>-->
-<!--                                    <div class="col-xs-4 text-center">-->
-<!--                                        <a href="#">Friends</a>-->
-<!--                                    </div>-->
-                                </div>
-                                <!-- /.row -->
-                            </li>
+                                    <!-- /.row -->
+                                </li>
 
-                            <li class="user-footer">
-                                <div class="pull-left" id="app__user_changepassword">
-                                    <a href="/auth/change-password.php" class="btn btn-default btn-flat">Change password</a>
-                                </div>
-                                <div class="pull-right">
-                                    <a href="#" id="logout" class="btn btn-default btn-flat">Sign out</a>
-                                </div>
-                            </li>
-                        </ul>
+                                <li class="user-footer">
+                                    <div class="pull-left" id="app__user_changepassword">
+                                        <a href="/auth/change-password.php" class="btn btn-default btn-flat">Change password</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="#" id="logout" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li>
+                        <a href="/dashboard.php">
+                            <i class="fa fa-th"></i> <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="/deck">
+                            <i class="fa fa-folder-open-o"></i> <span>Deck</span>
+                        </a>
+                    </li>
+                    <li id="admin_menu" style="display: none">
+                        <a href="/admin.php">
+                            <i class="fa fa-group"></i> <span>Admin</span>
+                        </a>
                     </li>
                 </ul>
-            </div>
-        </nav>
-    </header>
-    <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-            <!-- sidebar menu: : style can be found in sidebar.less -->
-            <ul class="sidebar-menu" data-widget="tree">
-                <li>
-                    <a href="/dashboard.php">
-                        <i class="fa fa-th"></i> <span>Home</span>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="/deck/deck.php">
-                        <i class="fa fa-folder-open-o"></i> <span>Deck</span>
-                    </a>
-                </li>
-                <li id="admin_menu" style="display: none">
-                    <a href="/admin.php">
-                        <i class="fa fa-group"></i> <span>Admin</span>
-                    </a>
-                </li>
-            </ul>
-        </section>
-        <!-- /.sidebar -->
-    </aside>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
 
-    <script>
-        $(document).on('click', '#logout', function(event){
-            event.preventDefault();
-            Auth.logout();
-        });
-        Application.privatePagesCheck();
-    </script>
+        <script>
+            $(document).on('click', '#logout', function(event){
+                event.preventDefault();
+                Auth.logout();
+            });
+            Application.privatePagesCheck();
+        </script>
 
-        <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+            <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
 
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                <?=$HEADER?>
-                <small><?=$HEADER2?></small>
-            </h1>
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    <?=$HEADER?>
+                    <small><?=$HEADER2?></small>
+                </h1>
 
-            <?php if(is_array($PATHS)) { ?>
-            <ol class="breadcrumb">
+                <?php if(is_array($PATHS)) { ?>
+                <ol class="breadcrumb">
 
-                <li><a href="/dashboard.php"><i class="fa fa-th"></i> Home</a></li>
+                    <li><a href="/dashboard.php"><i class="fa fa-th"></i> Home</a></li>
 
-                <?php foreach($PATHS as $key=>$path) { ?>
-                    <?php if ($key < sizeof($PATHS) - 1){ ?>
-                    <li><a href="<?=$path[0]?>"><?=$path[1]?></a></li>
-                    <?php } else { ?>
-                    <li class="active"><?=$path?></li>
-                    <?php } ?>
+                    <?php foreach($PATHS as $key=>$path) { ?>
+                        <?php if ($key < sizeof($PATHS) - 1){ ?>
+                        <li><a href="<?=$path[0]?>"><?=$path[1]?></a></li>
+                        <?php } else { ?>
+                        <li class="active"><?=$path?></li>
+                        <?php } ?>
+                    <?php }?>
+
+                </ol>
                 <?php }?>
+            </section>
 
-            </ol>
-            <?php }?>
-        </section>
-
-        <!-- Main content -->
-        <section class="content">
+            <!-- Main content -->
+            <section class="content">
+<!------------------------------------------------------------------------------------------------------------------------->
 <?php } ?>

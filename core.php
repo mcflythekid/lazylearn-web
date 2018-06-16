@@ -20,4 +20,5 @@ require_once __DIR__ . '/component/bottom_private.php';
 require_once __DIR__ . '/component/top_public.php';
 require_once __DIR__ . '/component/bottom_public.php';
 require_once __DIR__ . '/component/asset.php';
+require_once __DIR__ . '/component/modal.php';
 /**********************************************************************************/

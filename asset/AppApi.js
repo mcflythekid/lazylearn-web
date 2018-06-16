@@ -3,6 +3,11 @@
  */
 var AppApi = ((e, apiServer, HoldOn, Storage, FlashMessage)=>{
 
+    var getAuthorization = ()=>{
+        if (Storage.get('accessToken')) return 'Bearer ' + Storage.get('accessToken');
+        return '';
+    }
+
     var handleError = function(error){
         if (error.response && error.response.data && error.response.data.msg){
             FlashMessage.error(error.response.data.msg);
@@ -17,7 +22,7 @@ var AppApi = ((e, apiServer, HoldOn, Storage, FlashMessage)=>{
     });
     syncInstance.interceptors.request.use(function (config) {
         HoldOn.open();
-        if (Storage.get('accessToken')) config.headers.Authorization = 'Bearer ' + Storage.get('accessToken');
+        config.headers.Authorization = getAuthorization();
         return config;
     }, function (error) {
         HoldOn.close();
@@ -38,7 +43,7 @@ var AppApi = ((e, apiServer, HoldOn, Storage, FlashMessage)=>{
         headers: {'Access-Control-Allow-Origin': '*'}
     });
     asyncInstance.interceptors.request.use(function (config) {
-        if (Storage.get('accessToken')) config.headers.Authorization = 'Bearer ' + Storage.get('accessToken');
+        config.headers.Authorization = getAuthorization();
         return config;
     }, function (error) {
         return Promise.reject(error);
@@ -50,6 +55,7 @@ var AppApi = ((e, apiServer, HoldOn, Storage, FlashMessage)=>{
         return Promise.reject(error);
     });
 
+    e.getAuthorization = getAuthorization;
     e.sync = syncInstance;
     e.async = asyncInstance;
     return e;
