@@ -1,6 +1,7 @@
 <?php
 require_once '../core.php';
 $TITLE = ('loading...');
+$HEADER = '<span id="headerName">loading..</span>';
 $PATHS = [
     ["/deck", "Deck"],
     '<span id="breadcrumbName">loading..</span>'
@@ -51,17 +52,19 @@ if (isset($_GET['id'])){
 
 <script>
     var deckId = '<?=$deckId?>';
+
     var deck;
+
     var backEditor = new Quill('#cardcreate__back', Editor.generateQuillConfig('Back side', ()=>{
         frontEditor.focus();
     }, ()=>{
         $('#cardcreate__submit').focus();
     }));
+
     var frontEditor = new Quill('#cardcreate__front', Editor.generateQuillConfig('Front side', ()=>{
     }, ()=>{
         backEditor.focus();
     }));
-
 
     var refresh = ()=>{
         $('#cardlist').bootstrapTable('refresh',{
@@ -70,6 +73,7 @@ if (isset($_GET['id'])){
         //if (!deck.archived) AppChart.drawDeck(deckId, 'lazychart__deck');
         document.title = deck.name;
         $('#breadcrumbName').text(deck.name);
+        $('#headerName').text(deck.name);
     };
 
     Deck.get(deckId, (deckResponse)=>{
@@ -89,6 +93,65 @@ if (isset($_GET['id'])){
             refresh();
         })
     });
+
+    $('#cardlist').bootstrapTable({
+        url: apiServer + "/card/search",
+        classes: 'table bg-white',
+        cache: false,
+        method: 'post',
+        striped: false,
+        toolbar: '#cardcreate__toolbar',
+        sidePagination: 'server',
+        sortName: 'createdDate',
+        sortOrder: 'desc',
+        queryParams: (params)=>{
+            params.deckId = deckId;
+            return params;
+        },
+        showHeader: false,
+        search: true,
+        ajaxOptions: {
+            headers: {
+                Authorization: AppApi.getAuthorization()
+            }
+        },
+        pagination: true,
+        columns: [
+            {
+                field: 'front',
+                title: 'Front',
+                sortable: true,
+                formatter: (obj)=>{
+                    return obj;
+                },
+                width: '45%'
+            },
+            {
+                field: 'back',
+                title: 'Back',
+                sortable: true,
+                formatter: (obj)=>{
+                    return obj;
+                },
+                width: '45%'
+            },
+            {
+                align: 'center',
+                field: 'id',
+                formatter: (obj, row)=>{
+                    return '<div class="btn-group">'+
+
+                        '<button data-card-id="'+obj+'" class="btn btn-sm btn-success cardcmd__edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>'+
+                        '<button data-card-id="'+obj+'" class="btn btn-sm btn-danger cardcmd__delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>'+
+                        '</div>';
+                },
+                width: '10%'
+            },
+        ]
+
+    });
+
+
 
 /*
 
@@ -119,57 +182,7 @@ if (isset($_GET['id'])){
 
 
 
-        $('#cardlist').bootstrapTable({
-            url: $app.endpoint + "/deck/" + deckId + "/card/by-search",
-            classes: 'table bg-white',
-            cache: false,
-            striped: false,
-            toolbar: '#cardcreate__toolbar',
-            sidePagination: 'server',
-            sortName: 'createdOn',
-            sortOrder: 'DESC',
-            showHeader: false,
-            search: true,
-            ajaxOptions: {
-                headers: {
-                    Authorization: 'Bearer ' + $tool.getData('auth').token
-                }
-            },
-            pagination: true,
-            columns: [
-                {
-                    field: 'front',
-                    title: 'Front',
-                    sortable: true,
-                    formatter: (obj)=>{
-                        return obj;
-                    },
-                    width: '45%'
-                },
-                {
-                    field: 'back',
-                    title: 'Back',
-                    sortable: true,
-                    formatter: (obj)=>{
-                        return obj;
-                    },
-                    width: '45%'
-                },
-                {
-                    align: 'center',
-                    field: 'id',
-                    formatter: (obj, row)=>{
-                        return '<div class="btn-group">'+
 
-                            '<button data-card-id="'+obj+'" class="btn btn-sm btn-success cardcmd__edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>'+
-                            '<button data-card-id="'+obj+'" class="btn btn-sm btn-danger cardcmd__delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>'+
-                            '</div>';
-                    },
-                    width: '10%'
-                },
-            ]
-
-        });
 
     })();*/
 </script>
