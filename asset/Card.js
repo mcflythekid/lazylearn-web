@@ -3,6 +3,8 @@
  */
 var Card = ((e, AppApi, Constant, FlashMessage, Dialog, Deck)=>{
 
+    e.deleteMsg = 'Are you sure? This card will be deleted!';
+
     var createCardFrontQuill;
 
     var createCardBackQuill;
@@ -35,7 +37,7 @@ var Card = ((e, AppApi, Constant, FlashMessage, Dialog, Deck)=>{
     };
 
     e.delete = (cardId, callback)=>{
-        Dialog.confirm('Are you sure? This card will be deleted!', ()=>{
+        Dialog.confirm(e.deleteMsg, ()=>{
             AppApi.sync.post("/card/delete/"+ cardId).then(()=>{
                 callback();
             })

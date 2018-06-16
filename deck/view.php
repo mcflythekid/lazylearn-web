@@ -9,10 +9,8 @@ $PATHS = [
 
 top_private();
 modal();
-$deckId = '';
-if (isset($_GET['id'])){
-    $deckId = $_GET['id'];
-}
+
+$deckId = ''; if (isset($_GET['id'])) $deckId = $_GET['id'];
 ?>
 
 <div class="row">
@@ -86,10 +84,14 @@ if (isset($_GET['id'])){
             if (!deck.archived) {
                 $('.deck-action[data-action="archive"]').show();
                 $('.deck-action[data-action="unarchive"]').hide();
+                $('.deck-action[data-action="learn"]').show();
+                $('.deck-action[data-action="review"]').show();
                 $('#headerName').text(deck.name);
             } else {
                 $('.deck-action[data-action="archive"]').hide();
                 $('.deck-action[data-action="unarchive"]').show();
+                $('.deck-action[data-action="learn"]').hide();
+                $('.deck-action[data-action="review"]').hide();
                 $('#headerName').html(deck.name + ' <span class="archived u-pb-5">Archived</span>');
             }
             document.title = deck.name;

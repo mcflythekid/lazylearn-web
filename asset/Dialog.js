@@ -3,8 +3,8 @@
  */
 var Dialog = ((e, BootstrapDialog)=>{
 
-    e.confirm = (msg, callback)=>{
-        BootstrapDialog.confirm({
+    e.confirm = (msg, callback, finallyCallback)=>{
+        var dialog = BootstrapDialog.confirm({
             title: 'WARNING',
             message: msg,
             type: BootstrapDialog.TYPE_WARNING, // <-- Default value is BootstrapDialog.TYPE_PRIMARY
@@ -14,11 +14,11 @@ var Dialog = ((e, BootstrapDialog)=>{
             callback: function(result) {
                 // result will be true if button was click, while it will be false if users close the dialog directly.
                 if(result) {
-                    callback();
+                    if (callback) callback();
                 }
             }
         });
-
+        if (finallyCallback) dialog.options.onhidden =  finallyCallback;
     };
 
     return e;

@@ -1,8 +1,12 @@
 <?php
-require 'core.php';
-title('loading...');
+require '../core.php';
+$TITLE = ('loading...');
 top_private();
-require 'modal/card-edit.php';
+modal();
+
+$deckId = ''; if (isset($_GET['id'])) $deckId = $_GET['id'];
+$learnType = ''; if (isset($_GET['type'])) $learnType = $_GET['type'];
+
 ?>
 
 <div class="row" id="learn">
@@ -79,7 +83,7 @@ require 'modal/card-edit.php';
 </div>
 
 <script>
-var $learn = ((e)=>{
+var $learn = ((e, AppApi, FlashMessage, Dialog, Card)=>{
     var deckId, learnType, arr, arrIndex, arrLength, isReverse, isEditing, isFlipped;
 
     e.str = ()=>{
@@ -92,8 +96,8 @@ var $learn = ((e)=>{
     };
 
     e.init = ()=>{
-        deckId = $tool.param('id');
-        learnType = $tool.param('type');
+        deckId = '<?=$deckId?>';
+        learnType = '<?=$learnType?>';
         arr = [];
         arrIndex = 0;
         isReverse = false;
@@ -125,13 +129,14 @@ var $learn = ((e)=>{
         $(document).on('click', '#learnanswer__right', right);
         $(document).on('click', '#learnanswer__wrong', wrong);
 
-        $app.apisync.get("/deck/" + deckId + "/learn-data?type=" + learnType).then((r)=>{
-            document.title = r.data.deck.name;
-            if (!r.data.cards.length){
-                $tool.info('This deck has no card.', returnToDeck);
-                return;
+        AppApi.sync.get("/learn/get-deck?deckId=" + deckId + "&learnType=" + learnType).then((response)=>{
+
+            document.title = response.data.deck.name;
+            if (!response.data.cards.length){
+                FlashMessage.warning("No card to learn");
+                setTimeout(returnToDeck, 2000);
             }
-            $.each(r.data.cards, (index, obj)=>{
+            $.each(response.data.cards, (index, obj)=>{
                 arr[index] = {
                     id: obj.id,
                     step: obj.step,
@@ -195,8 +200,8 @@ var $learn = ((e)=>{
 
     var delete_ = ()=>{
         isEditing = true;
-        $tool.confirm("This will remove this card and cannot be undone!!!", function(){
-            $app.apisync.delete("/card/" + arr[arrIndex].id).then(()=>{
+        Dialog.confirm(Card.deleteMsg, function(){
+            AppApi.sync.post("/card/delete/" + arr[arrIndex].id).then(()=>{
                 if (arrLength == 1){
                     returnToDeck();
                     return;
@@ -213,9 +218,17 @@ var $learn = ((e)=>{
         });
     };
 
+    var shuffleArray = (a)=>{
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    };
+
     var shuffle = ()=>{
         if (arrLength == 1) return;
-        arr = $tool.shuffle(arr);
+        arr = shuffleArray(arr);
         arr.sort((a, b)=>{
             var valA = a.answered ? 1 : 0;
             var valB = b.answered ? 1 : 0;
@@ -237,10 +250,10 @@ var $learn = ((e)=>{
 
     var right = ()=>{
         if (learnType === 'learn'){
-            $app.api.patch("/card/" + arr[arrIndex].id + "/correct");
+            AppApi.async.post("/learn/correct/" + arr[arrIndex].id);
         } else if (learnType === 'review'){
             if (arr[arrIndex].step == 0){
-                $app.api.patch("/card/" + arr[arrIndex].id + "/correct");
+                AppApi.async.post("/learn/correct/" + arr[arrIndex].id);
             }
         }
         arr[arrIndex].answered = true;
@@ -249,7 +262,7 @@ var $learn = ((e)=>{
     };
 
     var wrong = ()=>{
-        $app.api.patch("/card/" + arr[arrIndex].id + "/incorrect");
+        AppApi.async.post("/learn/incorrect/" + arr[arrIndex].id);
         arr[arrIndex].answered = true;
         arr[arrIndex].correct = false;
         goNextUnanswered();
@@ -300,7 +313,7 @@ var $learn = ((e)=>{
 
     };
 
-    var returnToDeck = ()=>{window.location.href = "./deck.php?id=" + deckId;}
+    var returnToDeck = ()=>{window.location = "/deck/view.php?id=" + deckId;}
 
     var back = ()=>{
         if(arrIndex > 0){
@@ -316,7 +329,7 @@ var $learn = ((e)=>{
         }
     };
     return e;
-})({});
+})({}, AppApi, FlashMessage, Dialog, Card);
 $learn.init();
 </script>
 
