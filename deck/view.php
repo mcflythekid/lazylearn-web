@@ -13,7 +13,7 @@ modal();
 $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
 ?>
 
-<div class="row">
+<div class="row" id="lazychart__deck--wrapper">
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -103,6 +103,7 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
                 $('#appHeader').text(deck.name);
                 AppChart.drawDeck(deckId, 'lazychart__deck');
             } else {
+                $('#lazychart__deck--wrapper').remove();
                 $('.deck-action[data-action="archive"]').hide();
                 $('.deck-action[data-action="unarchive"]').show();
                 $('.deck-action[data-action="learn"]').hide();
