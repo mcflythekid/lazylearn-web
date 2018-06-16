@@ -2,6 +2,9 @@
 require_once '../core.php';
 $TITLE = 'Security';
 $HEADER = 'Security';
+$PATHS = [
+    "Security"
+];
 top_private();
 ?>
 

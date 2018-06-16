@@ -22,3 +22,7 @@ require_once __DIR__ . '/component/bottom_public.php';
 require_once __DIR__ . '/component/asset.php';
 require_once __DIR__ . '/component/modal.php';
 /**********************************************************************************/
+function escape($str){
+    return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+}
+/**********************************************************************************/

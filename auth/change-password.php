@@ -1,8 +1,11 @@
 <?php
-	require '../core.php';
-	$TITLE = 'Change password';
-	$HEADER = 'Change password';
-	top_private();
+require '../core.php';
+$TITLE = 'Change password';
+$HEADER = 'Change password';
+$PATHS = [
+    "Change password"
+];
+top_private();
 ?>
 
 <div class="row u-mt-20">

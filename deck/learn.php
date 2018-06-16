@@ -1,12 +1,19 @@
 <?php
 require '../core.php';
-$TITLE = ('loading...');
+
+$deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
+$learnType = ''; if (isset($_GET['type'])) $learnType = escape($_GET['type']);
+
+$TITLE = 'loading...';
+$HEADER = '<span id="appHeader">loading..</span>';
+$PATHS = [
+    ["/deck", "Deck"],
+    ["/deck/view.php?id=" . $deckId, '<span id="appBreadcrumb1">loading..</span>'],
+    ucfirst($learnType)
+];
+
 top_private();
 modal();
-
-$deckId = ''; if (isset($_GET['id'])) $deckId = $_GET['id'];
-$learnType = ''; if (isset($_GET['type'])) $learnType = $_GET['type'];
-
 ?>
 
 <div class="row" id="learn">
@@ -83,7 +90,7 @@ $learnType = ''; if (isset($_GET['type'])) $learnType = $_GET['type'];
 </div>
 
 <script>
-var $learn = ((e, AppApi, FlashMessage, Dialog, Card)=>{
+var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
     var deckId, learnType, arr, arrIndex, arrLength, isReverse, isEditing, isFlipped;
 
     e.str = ()=>{
@@ -128,6 +135,16 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card)=>{
         $(document).on('click', '#learnanswer__flip', flip);
         $(document).on('click', '#learnanswer__right', right);
         $(document).on('click', '#learnanswer__wrong', wrong);
+
+        Deck.get(deckId, (deck)=>{
+            if (!deck.archived) {
+                $('#appHeader').text(deck.name);
+            } else {
+                $('#appHeader').html(deck.name + ' <span class="archived u-pb-5">Archived</span>');
+            }
+            document.title = deck.name;
+            $('#appBreadcrumb1').text(deck.name);
+        });
 
         AppApi.sync.get("/learn/get-deck?deckId=" + deckId + "&learnType=" + learnType).then((response)=>{
 
@@ -329,7 +346,7 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card)=>{
         }
     };
     return e;
-})({}, AppApi, FlashMessage, Dialog, Card);
+})({}, AppApi, FlashMessage, Dialog, Card, Deck);
 $learn.init();
 </script>
 

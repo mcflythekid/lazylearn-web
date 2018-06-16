@@ -1,16 +1,16 @@
 <?php
 require_once '../core.php';
-$TITLE = ('loading...');
-$HEADER = '<span id="headerName">loading..</span>';
+$TITLE = 'loading...';
+$HEADER = '<span id="appHeader">loading..</span>';
 $PATHS = [
     ["/deck", "Deck"],
-    '<span id="breadcrumbName">loading..</span>'
+    '<span id="appBreadcrumb1">loading..</span>'
 ];
 
 top_private();
 modal();
 
-$deckId = ''; if (isset($_GET['id'])) $deckId = $_GET['id'];
+$deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
 ?>
 
 <div class="row">
@@ -86,16 +86,16 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = $_GET['id'];
                 $('.deck-action[data-action="unarchive"]').hide();
                 $('.deck-action[data-action="learn"]').show();
                 $('.deck-action[data-action="review"]').show();
-                $('#headerName').text(deck.name);
+                $('#appHeader').text(deck.name);
             } else {
                 $('.deck-action[data-action="archive"]').hide();
                 $('.deck-action[data-action="unarchive"]').show();
                 $('.deck-action[data-action="learn"]').hide();
                 $('.deck-action[data-action="review"]').hide();
-                $('#headerName').html(deck.name + ' <span class="archived u-pb-5">Archived</span>');
+                $('#appHeader').html(deck.name + ' <span class="archived u-pb-5">Archived</span>');
             }
             document.title = deck.name;
-            $('#breadcrumbName').text(deck.name);
+            $('#appBreadcrumb1').text(deck.name);
 
         })
     };

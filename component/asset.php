@@ -5,7 +5,7 @@ function asset(){
     global $API_SERVER;
 ?>
 
-    <title><?=$TITLE?></title>
+    <title><?=escape($TITLE)?></title>
     <link href="<?=$ASSET?>/img/fav.png" id ="shorticon" rel="shortcut icon">
 
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
