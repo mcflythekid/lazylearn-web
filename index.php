@@ -38,16 +38,24 @@ top_public();
         <i class="fa fa-clock-o u-mr-5" aria-hidden="true"></i>
         Auto-reminder
     </h4>
-    <p>The machine will pick upcoming flashcards for you.</p>
+    <p>The machine will pick upcoming flashcards for you</p>
 </div>
 
 <div class="u-mt-30">
     <h4>
-        <i class="fa fa-money u-mr-5" aria-hidden="true"></i>
-        Totally free
+        <i class="fa fa-cutlery u-mr-5" aria-hidden="true"></i>
+        Minimum pair
     </h4>
-    <p>In this time, Lazylearn is free, for all</p>
+    <p>Destroy all stubborn new word. You will be surprise for this</p>
 </div>
+
+    <div class="u-mt-30">
+        <h4>
+            <i class="fa fa-money u-mr-5" aria-hidden="true"></i>
+            Totally free
+        </h4>
+        <p>In this time, Lazylearn is free, for all</p>
+    </div>
 
 <div class="u-text-center u-mt-50 u-mb-50">
     <a href="/privacy.php">Privacy policy</a> -
