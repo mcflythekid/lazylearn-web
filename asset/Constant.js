@@ -4,6 +4,7 @@
 var Constant = ((Constant)=>{
     Constant.dashboardUrl = '/dashboard.php';
     Constant.deckUrl = '/deck';
+    Constant.minpairUrl = '/minpair';
     Constant.loginUrl = '/auth/login.php';
     Constant.securityUrl = '/auth/security.php';
     Constant.blockedAfterLoginUrls = [
@@ -13,5 +14,6 @@ var Constant = ((Constant)=>{
         "/auth/forget-password.php",
         "/auth/reset-password.php",
     ];
+    Constant.minpairCount = 120;
     return Constant;
 })({});

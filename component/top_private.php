@@ -145,6 +145,11 @@
                             <i class="fa fa-folder-open-o"></i> <span>Deck</span>
                         </a>
                     </li>
+                    <li class="">
+                        <a href="/minpair">
+                            <i class="fa fa-folder-open-o"></i> <span>Minimum Pair</span>
+                        </a>
+                    </li>
                     <li id="admin_menu" style="display: none">
                         <a href="/admin.php">
                             <i class="fa fa-group"></i> <span>Admin</span>
