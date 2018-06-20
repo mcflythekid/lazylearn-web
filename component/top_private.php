@@ -146,6 +146,11 @@
                         </a>
                     </li>
                     <li class="">
+                        <a href="/vocabulary">
+                            <i class="fa fa-folder-open-o"></i> <span>Vocabulary</span>
+                        </a>
+                    </li>
+                    <li class="">
                         <a href="/minpair">
                             <i class="fa fa-folder-open-o"></i> <span>Minimum Pair</span>
                         </a>

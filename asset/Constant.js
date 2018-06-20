@@ -5,6 +5,7 @@ var Constant = ((Constant)=>{
     Constant.dashboardUrl = '/dashboard.php';
     Constant.deckUrl = '/deck';
     Constant.minpairUrl = '/minpair';
+    Constant.vocabularyUrl = '/vocabulary';
     Constant.loginUrl = '/auth/login.php';
     Constant.securityUrl = '/auth/security.php';
     Constant.blockedAfterLoginUrls = [

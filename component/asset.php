@@ -53,6 +53,7 @@ function asset(){
     <script src="<?=$ASSET?>/Auth.js"></script>
     <script src="<?=$ASSET?>/Dialog.js"></script>
     <script src="<?=$ASSET?>/Editor.js"></script>
+    <script src="<?=$ASSET?>/EncodedFile.js"></script>
 
     <script src="<?=$ASSET?>/Application.js"></script>
     <script src="<?=$ASSET?>/AppChart.js"></script>
