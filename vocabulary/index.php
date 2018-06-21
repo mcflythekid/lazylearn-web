@@ -104,7 +104,7 @@ Vocabdeck();
             if        ($el.data("item") == "rename") {
                 Vocabdeck.openRename(row.id, refresh);
             } else if ($el.data("item") == "delete") {
-                Vocabdeck.drop(row.id, refresh);
+                Vocabdeck.delete(row.id, refresh);
             } else if ($el.data("item") == "archive") {
                 Vocabdeck.archive(row.id, refresh);
             } else if ($el.data("item") == "unarchive") {
