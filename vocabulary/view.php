@@ -74,6 +74,9 @@ $vocabdeckId = ''; if (isset($_GET['id'])) $vocabdeckId = escape($_GET['id']);
             window.location = Constant.vocabularyUrl;
         });
     });
+    $(document).on('click', '.vocab-btn-delete', function() {
+        Vocab.delete($(this).data('vocabid'), refresh);
+    });
 
     $('#vocab-list').bootstrapTable({
         url: apiServer + "/vocab/search",
@@ -114,8 +117,8 @@ $vocabdeckId = ''; if (isset($_GET['id'])) $vocabdeckId = escape($_GET['id']);
                 field: 'id',
                 formatter: (obj, row)=>{
                     return '<div class="btn-group">'+
-                        '<button data-card-id="'+obj+'" class="btn btn-sm btn-success vocabcmd__edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>'+
-                        '<button data-card-id="'+obj+'" class="btn btn-sm btn-danger vocabcmd__delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>'+
+                        '<button data-vocabid="'+obj+'" class="btn btn-sm btn-success vocab-btn-edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>'+
+                        '<button data-vocabid="'+obj+'" class="btn btn-sm btn-danger vocab-btn-delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>'+
                         '</div>';
                 },
                 width: '12%'

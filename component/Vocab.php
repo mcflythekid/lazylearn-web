@@ -113,11 +113,12 @@
                 })
             };
 
-            e.drop = (vocabDeckId, callback)=>{
-                AppApi.sync.post("/vocabdeck/delete/" + vocabDeckId).then((res)=>{
-                    if (callback){
-                        callback(res.data);
-                    }
+            e.delete = (vocabId, callback)=>{
+
+                Dialog.confirm("Are you sure?", ()=> {
+                    AppApi.sync.post("/vocab/delete/" + vocabId).then((res) => {
+                        if (callback) callback(res.data);
+                    });
                 });
             };
 
