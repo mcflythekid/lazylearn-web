@@ -77,6 +77,9 @@ $vocabdeckId = ''; if (isset($_GET['id'])) $vocabdeckId = escape($_GET['id']);
     $(document).on('click', '.vocab-btn-delete', function() {
         Vocab.delete($(this).data('vocabid'), refresh);
     });
+    $(document).on('click', '.vocab-btn-edit', function() {
+        Vocab.openEdit($(this).data('vocabid'), refresh);
+    });
 
     $('#vocab-list').bootstrapTable({
         url: apiServer + "/vocab/search",

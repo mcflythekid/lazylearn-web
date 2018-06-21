@@ -55,6 +55,7 @@ var AppApi = ((e, apiServer, HoldOn, Storage, FlashMessage)=>{
         return Promise.reject(error);
     });
 
+    e.fileServer = apiServer + "/file";
     e.getAuthorization = getAuthorization;
     e.sync = syncInstance;
     e.async = asyncInstance;
