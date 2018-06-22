@@ -9,7 +9,7 @@ $PATHS = [
 
 top_private();
 modal();
-
+Vocab();
 $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
 ?>
 
@@ -54,6 +54,9 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
         <div class="btn-group">
             <button class="btn btn-success deck-action" data-action="learn">Lean</button>
             <button class="btn btn-success deck-action" data-action="review">Review</button>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-info deck-action" data-action="parent" style="display: none;">Parent</button>
         </div>
         <div class="btn-group">
             <button class="btn btn-warning deck-action" data-action="edit">Edit</button>
@@ -113,7 +116,16 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
             document.title = deck.name;
             $('#appBreadcrumb1').text(deck.name);
 
-        })
+            if (deck.vocabdeckId){
+                $('.deck-action[data-action="archive"]').hide();
+                $('.deck-action[data-action="unarchive"]').hide();
+                $('.deck-action[data-action="edit"]').hide();
+                $('.deck-action[data-action="delete"]').hide();
+                $('#cardcreate').hide();
+                $('.deck-action[data-action="parent"]').show();
+            }
+        });
+
     };
 
     $(document).on('click', '.deck-action', function(){
@@ -145,30 +157,33 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
             case 'review':
                 window.location = '/deck/learn.php?type=review&id=' + deckId;
                 break;
+            case 'parent':
+                window.location = '/vocabulary/view.php?&id=' + deck.vocabdeckId;
+                break;
             default:
         }
     });
 
     $(document).on('click', '.cardcmd__delete', function(){
-        Card.delete($(this).data('card-id'), ()=>{
-            refresh();
-        })
+        if (deck.vocabdeckId){
+            Vocab.delete($(this).data('vocabid'), refresh);
+        } else {
+            Card.delete($(this).data('cardid'), refresh);
+        }
+    });
+
+    $(document).on('click', '.cardcmd__edit', function(e){
+        if (deck.vocabdeckId){
+            Vocab.openEdit($(this).data('vocabid'), refresh);
+        } else {
+            Card.openEdit($(this).data('cardid'), refresh);
+        }
     });
 
     $('#cardcreate__submit').click(()=> {
         Card.create(deckId, ()=>{
             refresh();
         })
-    });
-
-    $(document).on('click', '.cardcmd__delete', function(){
-        Card.delete($(this).data('card-id'), ()=>{
-            refresh();
-        })
-    });
-
-    $(document).on('click', '.cardcmd__edit', function(e){
-        Card.openEdit($(this).data('card-id'), refresh);
     });
 
     $('#cardlist').bootstrapTable({
@@ -213,13 +228,11 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
             },
             {
                 align: 'center',
-                field: 'id',
                 formatter: (obj, row)=>{
                     return '<div class="btn-group">'+
-
-                        '<button data-card-id="'+obj+'" class="btn btn-sm btn-success cardcmd__edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>'+
-                        '<button data-card-id="'+obj+'" class="btn btn-sm btn-danger cardcmd__delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>'+
-                        '</div>';
+                        '<button data-vocabid="'+row.vocabId+'" data-cardid="'+row.id+'" class="btn btn-sm btn-success cardcmd__edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>'+
+                        '<button data-vocabid="'+row.vocabId+'" data-cardid="'+row.id+'" class="btn btn-sm btn-danger cardcmd__delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>'+
+                    '</div>';
                 },
                 width: '12%'
             },

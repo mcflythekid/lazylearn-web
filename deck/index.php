@@ -28,7 +28,7 @@ modal();
         <ul id="context-menu" class="dropdown-menu">
             <li data-item="archive"><a>Archive</a></li>
             <li data-item="unarchive"><a>Unarchive</a></li>
-            <li data-item="edit"><a>Edit</a></li>
+            <li data-item="edit"><a>Rename</a></li>
             <li data-item="delete"><a>Delete</a></li>
         </ul>
 
@@ -80,6 +80,18 @@ modal();
                 }
             },
             {
+                width: 50,
+                field: 'vocabdeckId',
+                title: 'Parent',
+                sortable: true,
+                formatter: (obj,row)=>{
+                    if (obj){
+                        return '<a href="/vocabulary/view.php?id=' + obj+ '">View</a>';
+                    }
+                    return "";
+                }
+            },
+            {
                 width: 100,
                 field: 'totalCard',
                 title: 'Size',
@@ -92,14 +104,22 @@ modal();
                 sortable: true,
             },
             {
-                width: 100,
+                width: 50,
                 formatter: (obj,row)=>{
                     var learnHtml = '';
                     if (row.archived == 0){
                         learnHtml = '<a class="btn btn-sm btn-success pull-left" href="/deck/learn.php?type=learn&id=' + row.id + '">Learn</a> ';
                     }
-                    return  learnHtml +
-                        '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
+                    return  learnHtml; '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
+                }
+            },
+            {
+                width: 50,
+                formatter: (obj,row)=>{
+                    if (!row.vocabdeckId)
+                        return '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
+                    else
+                        return '';
                 }
             },
         ],
@@ -107,6 +127,11 @@ modal();
         contextMenuButton: '.context-menu-button',
         contextMenuAutoClickRow: true,
         beforeContextMenuRow: function(e,row,buttonElement){
+
+            if (row.vocabdeckId){
+                return false;
+            }
+
             if (row.archived == 0){
                 $('#context-menu li[data-item="archive"]').show();
                 $('#context-menu li[data-item="unarchive"]').hide();
