@@ -92,6 +92,7 @@ modal();
 <script>
 var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
     var deckId, learnType, arr, arrIndex, arrLength, isReverse, isEditing, isFlipped;
+    var deckObject;
 
     e.str = ()=>{
         return{
@@ -137,6 +138,7 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
         $(document).on('click', '#learnanswer__wrong', wrong);
 
         Deck.get(deckId, (deck)=>{
+            deckObject = deck;
             if (!deck.archived) {
                 $('#appHeader').text(deck.name);
             } else {
