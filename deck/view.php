@@ -78,22 +78,29 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
 
 <script>
     var deckId = '<?=$deckId?>';
-
     var deck;
-
-    var backEditor = new Quill('#cardcreate__back', Editor.generateQuillConfig('Back side', ()=>{
-        frontEditor.focus();
-    }, ()=>{
-        $('#cardcreate__submit').focus();
-    }));
-
-    var frontEditor = new Quill('#cardcreate__front', Editor.generateQuillConfig('Front side', ()=>{
-    }, ()=>{
-        backEditor.focus();
-    }));
-
-    Card.setCreateCardQuills(frontEditor, backEditor);
-
+    var backEditor = new Quill(
+        '#cardcreate__back',
+        Editor.generateQuillConfig(
+            'Back side',
+            ()=>{
+                frontEditor.focus();
+            },
+            ()=>{
+                $('#cardcreate__submit').focus();
+            }
+        )
+    );
+    var frontEditor = new Quill(
+        '#cardcreate__front',
+        Editor.generateQuillConfig(
+            'Front side',
+            ()=>{},
+            ()=>{
+                backEditor.focus();
+            }
+        )
+    );
     var refresh = ()=>{
         $('#cardlist').bootstrapTable('refresh',{
             silent: true
@@ -183,9 +190,7 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
     });
 
     $('#cardcreate__submit').click(()=> {
-        Card.create(deckId, ()=>{
-            refresh();
-        })
+        Card.create(deckId, frontEditor, backEditor, refresh);
     });
 
     $('#cardlist').bootstrapTable({

@@ -215,7 +215,14 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
     };
 
     var editAsCard = ()=>{
-        alert('Not implemented yet');
+        isEditing = true;
+        Card.openEdit(arr[arrIndex].id, ()=>{
+            arr[arrIndex].front = 'test';
+            arr[arrIndex].back = 'test';
+            ask(arrIndex);
+        }, ()=>{
+            isEditing = false;
+        });
     };
 
     var editAsVocab = ()=>{
