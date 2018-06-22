@@ -10,7 +10,6 @@ var EncodedFile = ((e, FlashMessage)=>{
             var fr= new FileReader();
             fr.onload = function(e) {
                 var data = e.target.result;
-                console.log(e.target.result);
                 if (data == "data:"){
                     $el.get(0).value = '';
                     deferred.resolve(undefined);
