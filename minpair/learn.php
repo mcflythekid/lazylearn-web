@@ -1,17 +1,14 @@
 <?php
 require '../core.php';
-
 $minpairId = ''; if (isset($_GET['id'])) $minpairId = escape($_GET['id']);
-
 $TITLE = 'loading...';
 $HEADER = '<span id="appHeader">loading..</span>';
 $PATHS = [
     ["/minpair", "Minimum Pair"],
     '<span id="appBreadcrumb1">loading..</span>'
 ];
-
 top_private();
-modal();
+Minpair();
 ?>
 
     <audio class="audio" id="audio1"></audio>

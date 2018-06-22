@@ -7,7 +7,8 @@ $PATHS = [
 ];
 
 top_private();
-modal();
+
+Deck();
 ?>
 
 <div class="row u-mt-20">

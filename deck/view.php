@@ -8,8 +8,10 @@ $PATHS = [
 ];
 
 top_private();
-modal();
+
 Vocab();
+Deck();
+Card();
 $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
 ?>
 

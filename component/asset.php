@@ -57,8 +57,4 @@ function asset(){
 
     <script src="<?=$ASSET?>/Application.js"></script>
     <script src="<?=$ASSET?>/AppChart.js"></script>
-    <script src="<?=$ASSET?>/Deck.js"></script>
-    <script src="<?=$ASSET?>/Card.js"></script>
-    <script src="<?=$ASSET?>/Minpair.js"></script>
-
 <?php } ?>

@@ -1,9 +1,7 @@
 <?php
 require '../core.php';
-
 $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
 $learnType = ''; if (isset($_GET['type'])) $learnType = escape($_GET['type']);
-
 $TITLE = 'loading...';
 $HEADER = '<span id="appHeader">loading..</span>';
 $PATHS = [
@@ -11,10 +9,10 @@ $PATHS = [
     ["/deck/view.php?id=" . $deckId, '<span id="appBreadcrumb1">loading..</span>'],
     ucfirst($learnType)
 ];
-
 top_private();
-modal();
 Vocab();
+Deck();
+Card();
 ?>
 
 <div class="row" id="learn">

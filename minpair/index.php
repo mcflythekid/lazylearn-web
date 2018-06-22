@@ -5,9 +5,8 @@ $HEADER = "Minimum Pair";
 $PATHS = [
     "Minimum Pair"
 ];
-
 top_private();
-modal();
+Minpair();
 ?>
 
 <div class="row u-mt-20">
