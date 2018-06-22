@@ -241,7 +241,7 @@
 
             e.delete = (vocabId, callback)=>{
 
-                Dialog.confirm("Are you sure?", ()=> {
+                Dialog.confirm("This vocab and all card belong to it will be deleted?", ()=> {
                     AppApi.sync.post("/vocab/delete/" + vocabId).then((res) => {
                         if (callback) callback(res.data);
                     });
