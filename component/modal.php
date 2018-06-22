@@ -32,7 +32,6 @@
         Deck.edit($('#deck__modal__edit--id').val(), $('#deck__modal__edit--newName').val().trim(), ()=>{
             $('#deck__modal__edit').modal('hide');
 
-            // TODO concac
             $('#deck__list').bootstrapTable('refresh',{
                 silent: true
             });
