@@ -58,7 +58,7 @@ var Card = ((e, AppApi, Constant, FlashMessage, Dialog, Deck)=>{
         })
     };
 
-    e.openEdit = function(cardId, callback){
+    e.openEdit = function(cardId, callback, oncloseCallback){
         get(cardId, (cardObject)=>{
             Editor.setHtml(editCardFrontQuill, cardObject.front);
             Editor.setHtml(editCardBackQuill, cardObject.back);

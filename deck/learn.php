@@ -14,6 +14,7 @@ $PATHS = [
 
 top_private();
 modal();
+Vocab();
 ?>
 
 <div class="row" id="learn">
@@ -162,7 +163,8 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
                     front: obj.front,
                     back: obj.back,
                     answered: false,
-                    correct: false
+                    correct: false,
+                    vocabId: obj.vocabId
                 };
                 arrLength = arr.length;
             });
@@ -207,10 +209,23 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
     };
 
     var edit = ()=>{
+        if (deckObject.vocabdeckId){
+            editAsVocab();
+        } else {
+            editAsCard();
+        }
+    };
+
+    var editAsCard = ()=>{
+        alert('Not implemented yet');
+    };
+
+    var editAsVocab = ()=>{
+        alert('Not implemented yet');
         isEditing = true;
-        $card__modal__edit.edit(arr[arrIndex].id, (front, back)=>{
-            arr[arrIndex].front = front;
-            arr[arrIndex].back = back;
+        Vocab.openEdit(arr[arrIndex].vocabId, ()=>{
+            arr[arrIndex].front = 'test';
+            arr[arrIndex].back = 'test';
             ask(arrIndex);
         }, ()=>{
             isEditing = false;
@@ -218,6 +233,14 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
     };
 
     var delete_ = ()=>{
+        if (deckObject.vocabdeckId){
+            deleteAsVocab();
+        } else {
+            deleteAsCard();
+        }
+    };
+
+    var deleteAsCard = ()=>{
         isEditing = true;
         Dialog.confirm(Card.deleteMsg, function(){
             AppApi.sync.post("/card/delete/" + arr[arrIndex].id).then(()=>{
@@ -232,6 +255,24 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
                 arrLength--;
                 ask(arrIndex);
             });
+        }, ()=>{
+            isEditing = false;
+        });
+    };
+
+    var deleteAsVocab = ()=>{
+        isEditing = true;
+        Vocab.delete(arr[arrIndex].vocabId, ()=>{
+            if (arrLength == 1){
+                returnToDeck();
+                return;
+            }
+            arr.splice(arrIndex, 1);
+            if (arrIndex == arrLength - 1){
+                arrIndex--;
+            }
+            arrLength--;
+            ask(arrIndex);
         }, ()=>{
             isEditing = false;
         });

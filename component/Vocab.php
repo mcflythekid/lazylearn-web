@@ -168,7 +168,7 @@
                 $('#vocab-create-modal').modal('show');
             };
 
-            e.openEdit = (vocabId, callback)=>{
+            e.openEdit = (vocabId, successCallback, oncloseCallback)=>{
                 get(vocabId, (vocab)=>{
                     $('#vocab-edit-form').get(0).reset();
                     $('#vocab-edit-word').val(vocab.word);
@@ -193,13 +193,16 @@
                                 encodedFiles[0],
                                 encodedFiles[1],
                                 ()=>{
+                                    if (successCallback) successCallback();
                                     $('#vocab-edit-modal').modal('hide');
-                                    if (callback) callback();
                                 }
                             );
                         });
                     });
-                    $('#vocab-edit-modal').modal('show');
+                    $('#vocab-edit-modal').modal('show').off('hidden.bs.modal').on('hidden.bs.modal', function(){
+                        $(this).off('hidden.bs.modal');
+                        if(oncloseCallback) oncloseCallback();
+                    });
                 });
             };
 
@@ -239,12 +242,14 @@
                 })
             };
 
-            e.delete = (vocabId, callback)=>{
+            e.delete = (vocabId, callback, closeDialogCallback)=>{
 
                 Dialog.confirm("This vocab and all card belong to it will be deleted?", ()=> {
                     AppApi.sync.post("/vocab/delete/" + vocabId).then((res) => {
                         if (callback) callback(res.data);
                     });
+                }, ()=>{
+                    if (closeDialogCallback) closeDialogCallback();
                 });
             };
 
