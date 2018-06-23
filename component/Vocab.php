@@ -192,8 +192,8 @@
                                 $('#vocab-edit-gender').val().trim(),
                                 encodedFiles[0],
                                 encodedFiles[1],
-                                ()=>{
-                                    if (successCallback) successCallback();
+                                (editData)=>{
+                                    if (successCallback) successCallback(editData);
                                     $('#vocab-edit-modal').modal('hide');
                                 }
                             );
@@ -230,7 +230,7 @@
                     encodedImage: encodedImage,
                     encodedAudio: encodedAudio
                 }).then((response)=>{
-                    if (callback) callback();
+                    if (callback) callback(response.data);
                 });
             };
 

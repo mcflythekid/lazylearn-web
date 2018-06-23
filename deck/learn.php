@@ -226,11 +226,11 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
     };
 
     var editAsVocab = ()=>{
-        alert('Not implemented yet');
         isEditing = true;
-        Vocab.openEdit(arr[arrIndex].vocabId, ()=>{
-            arr[arrIndex].front = 'test';
-            arr[arrIndex].back = 'test';
+        Vocab.openEdit(arr[arrIndex].vocabId, (result)=>{
+            var card = result.cards.find(x => x.id === arr[arrIndex].id);
+            arr[arrIndex].front = card.front;
+            arr[arrIndex].back = card.back;
             ask(arrIndex);
         }, ()=>{
             isEditing = false;
