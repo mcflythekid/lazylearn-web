@@ -1,3 +1,3 @@
 bower install
-npm install
+yarn
 /bin/cp -rf .htaccess_prod .htaccess
