@@ -2,9 +2,6 @@
 require_once 'core.php';
 $TITLE = ('Dashboard');
 $HEADER = "Dashboard";
-$PATHS = [
-    "Dashboard"
-];
 
 top_private();
 
