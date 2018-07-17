@@ -137,30 +137,25 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <li>
                         <a href="/dashboard.php">
-                            <i class="fa fa-th"></i> <span>Home</span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="/deck">
-                            <i class="fa fa-folder-open-o"></i> <span>Deck</span>
+                            <i class="fa fa-home"></i> <span>Home</span>
                         </a>
                     </li>
 
                     <li class="">
                         <a href="/vocabulary">
-                            <i class="fa fa-folder-open-o"></i> <span>Vocabulary</span>
+                            <i class="fa fa-language"></i> <span>Vocabulary</span>
                         </a>
                     </li>
 
                     <li class="">
                         <a href="/minpair">
-                            <i class="fa fa-folder-open-o"></i> <span>Minimum Pair</span>
+                            <i class="fa fa-bullhorn"></i> <span>Minimum Pair</span>
                         </a>
                     </li>
 
                     <li id="admin_menu" style="display: none">
                         <a href="/admin.php">
-                            <i class="fa fa-group"></i> <span>Admin</span>
+                            <i class="fa fa-line-chart"></i> <span>Admin</span>
                         </a>
                     </li>
                 </ul>
