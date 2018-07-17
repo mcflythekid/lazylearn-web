@@ -1,9 +1,9 @@
 <?php
 require_once 'core.php';
-$TITLE = ('Deck');
-$HEADER = "Deck";
+$TITLE = ('Dashboard');
+$HEADER = "Dashboard";
 $PATHS = [
-    "Deck"
+    "Dashboard"
 ];
 
 top_private();
