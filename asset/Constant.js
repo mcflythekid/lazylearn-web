@@ -3,7 +3,7 @@
  */
 var Constant = ((Constant)=>{
     Constant.dashboardUrl = '/dashboard.php';
-    Constant.deckUrl = '/deck';
+    Constant.deckUrl = '/dashboard.php';
     Constant.minpairUrl = '/minpair';
     Constant.vocabularyUrl = '/vocabulary';
     Constant.loginUrl = '/auth/login.php';
