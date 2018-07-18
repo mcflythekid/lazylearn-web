@@ -1,4 +1,5 @@
 RewriteEngine On
+Options -Indexes
 
 # force https
 RewriteCond %{SERVER_PORT} 80 
