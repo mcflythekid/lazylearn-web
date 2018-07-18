@@ -65,8 +65,8 @@
                 cardId: cardId,
                 front: front,
                 back: back
-            }).then(()=>{
-                if (successCb) successCb();
+            }).then((res)=>{
+                if (successCb) successCb(res.data);
             })
         };
 
@@ -110,8 +110,8 @@
                         FlashMessage.warning("Please check your content");
                         return;
                     }
-                    edit(cardId, Editor.getHtml(quillEditFront), Editor.getHtml(quillEditBack), ()=>{
-                        if (successCb) successCb();
+                    edit(cardId, Editor.getHtml(quillEditFront), Editor.getHtml(quillEditBack), editedCard=>{
+                        if (successCb) successCb(editedCard);
                         $('#card__modal__edit').modal('hide');
                     });
                 });

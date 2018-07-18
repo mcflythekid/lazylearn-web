@@ -216,9 +216,9 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
 
     var editAsCard = ()=>{
         isEditing = true;
-        Card.openEdit(arr[arrIndex].id, ()=>{
-            arr[arrIndex].front = 'test';
-            arr[arrIndex].back = 'test';
+        Card.openEdit(arr[arrIndex].id, editedCard=>{
+            arr[arrIndex].front = editedCard.front;
+            arr[arrIndex].back = editedCard.back;
             ask(arrIndex);
         }, ()=>{
             isEditing = false;
