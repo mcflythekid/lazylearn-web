@@ -137,7 +137,7 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <li>
                         <a href="/dashboard.php">
-                            <i class="fa fa-home"></i> <span>Home</span>
+                            <i class="fa fa-home"></i> <span>Dashboard</span>
                         </a>
                     </li>
 
@@ -184,7 +184,7 @@
                 <?php if(is_array($PATHS)) { ?>
                 <ol class="breadcrumb">
 
-                    <li><a href="/dashboard.php"><i class="fa fa-th"></i> Home</a></li>
+                    <li><a href="/dashboard.php"><i class="fa fa-home"></i> Dashboard</a></li>
 
                     <?php foreach($PATHS as $key=>$path) { ?>
                         <?php if ($key < sizeof($PATHS) - 1){ ?>
