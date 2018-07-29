@@ -57,8 +57,8 @@
         e.create = (name, callback)=>{
             AppApi.sync.post("/deck/create", {
                 name: name
-            }).then(()=>{
-                callback();
+            }).then((res)=>{
+                callback(res.data);
             })
         };
 
