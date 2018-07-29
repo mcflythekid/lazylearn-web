@@ -3,7 +3,6 @@ require_once '../core.php';
 $TITLE = 'loading...';
 $HEADER = '<span id="appHeader">loading..</span>';
 $PATHS = [
-    ["/deck", "Deck"],
     '<span id="appBreadcrumb1">loading..</span>'
 ];
 

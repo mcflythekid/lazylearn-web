@@ -5,7 +5,6 @@ $learnType = ''; if (isset($_GET['type'])) $learnType = escape($_GET['type']);
 $TITLE = 'loading...';
 $HEADER = '<span id="appHeader">loading..</span>';
 $PATHS = [
-    ["/deck", "Deck"],
     ["/deck/view.php?id=" . $deckId, '<span id="appBreadcrumb1">loading..</span>'],
     ucfirst($learnType)
 ];
@@ -205,7 +204,6 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
     var end = ()=>{
         HoldOn.open();
         setTimeout(returnToDeck, 2000);
-        //returnToDeck();
     };
 
     var edit = ()=>{
