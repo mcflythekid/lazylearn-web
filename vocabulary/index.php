@@ -76,11 +76,6 @@ Vocabdeck();
                 }
             },
             {
-                field: 'createdDate',
-                title: 'Created Date',
-                sortable: true
-            },
-            {
                 width: 50,
                 formatter: (obj,row)=>{
                     return  '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
