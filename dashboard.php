@@ -105,13 +105,13 @@ Deck();
             {
                 width: 100,
                 field: 'totalCard',
-                title: 'Size',
+                title: 'Cards',
                 sortable: true,
             },
             {
                 width: 100,
                 field: 'totalTimeupCard',
-                title: 'Today',
+                title: 'Expired',
                 sortable: true,
             },
             {
