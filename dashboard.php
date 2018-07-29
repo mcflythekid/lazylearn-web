@@ -81,7 +81,7 @@ Deck();
         striped: false,
         toolbar: '#deck__create--wrapper',
         sidePagination: 'server',
-        sortName: 'createdDate',
+        sortName: 'totalTimeupCard',
         sortOrder: 'desc',
         pageSize: 20,
         pageList: [20, 50, 100],
