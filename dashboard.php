@@ -68,7 +68,7 @@ Deck();
     $('#deck__create--form').submit((event)=> {
         event.preventDefault();
         Deck.create($('#deck__create--name').val().trim(), deck=>{
-            window.location = "/deck/view?id=" + deck.id;
+            window.location = "/deck/view.php?id=" + deck.id;
         })
     });
 
