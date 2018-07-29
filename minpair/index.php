@@ -68,7 +68,7 @@ Minpair();
             {
                 width: 100,
                 field: 'learnedCount',
-                title: 'Learned',
+                title: 'Progress',
                 sortable: true,
                 formatter: (obj, row)=>{
                     if (obj < 2){
