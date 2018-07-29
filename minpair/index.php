@@ -43,7 +43,7 @@ Minpair();
         striped: false,
         toolbar: '#mminpair__create--wrapper',
         sidePagination: 'server',
-        sortName: 'createdDate',
+        sortName: 'learnedCount',
         sortOrder: 'desc',
         pageSize: 20,
         pageList: [20, 50, 100],
@@ -70,12 +70,12 @@ Minpair();
                 field: 'learnedCount',
                 title: 'Learned',
                 sortable: true,
-            },
-            {
-                width: 100,
-                field: 'createdDate',
-                title: 'Created Date',
-                sortable: true,
+                formatter: (obj, row)=>{
+                    if (obj < 2){
+                        return obj;
+                    }
+                    return '<strong style="color: green">' + obj + '</strong>';
+                }
             },
             {
                 width: 100,
