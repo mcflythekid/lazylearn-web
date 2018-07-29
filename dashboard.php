@@ -103,18 +103,6 @@ Deck();
                 }
             },
             {
-                width: 50,
-                field: 'vocabdeckId',
-                title: 'Parent',
-                sortable: true,
-                formatter: (obj,row)=>{
-                    if (obj){
-                        return '<a href="/vocabulary/view.php?id=' + obj+ '">View</a>';
-                    }
-                    return "";
-                }
-            },
-            {
                 width: 100,
                 field: 'totalCard',
                 title: 'Size',
