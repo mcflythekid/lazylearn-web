@@ -72,9 +72,9 @@ Minpair();
                 sortable: true,
                 formatter: (obj, row)=>{
                     if (obj < 2){
-                        return obj;
+                        return obj + '/' + Constant.minpairCount;
                     }
-                    return '<strong style="color: green">' + obj + '</strong>';
+                    return '<strong style="color: green">' + obj + '/' + Constant.minpairCount +  '</strong>';
                 }
             },
             {
