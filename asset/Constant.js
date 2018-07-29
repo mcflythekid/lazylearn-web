@@ -15,6 +15,6 @@ var Constant = ((Constant)=>{
         "/auth/forget-password.php",
         "/auth/reset-password.php",
     ];
-    Constant.minpairCount = 5;
+    Constant.minpairCount = 60;
     return Constant;
 })({});

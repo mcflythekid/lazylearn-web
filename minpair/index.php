@@ -44,7 +44,7 @@ Minpair();
         toolbar: '#mminpair__create--wrapper',
         sidePagination: 'server',
         sortName: 'learnedCount',
-        sortOrder: 'desc',
+        sortOrder: 'asc',
         pageSize: 20,
         pageList: [20, 50, 100],
         search: true,

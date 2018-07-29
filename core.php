@@ -1,7 +1,7 @@
 <?php
 /**********************************************************************************/
 const TIMEZONE = "UTC";
-const VERSION = 92;
+const VERSION = 95;
 const DEV_DOMAIN = "local.lazylearn.com";
 const API_SERVER_DEV = 'http://localhost:8888/lazylearn-api';
 const API_SERVER_PRO = 'https://lazylearn.com:8081/lazylearn-api';
