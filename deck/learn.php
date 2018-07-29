@@ -203,7 +203,8 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
     };
 
     var end = ()=>{
-        returnToDeck();
+        setTimeout(returnToDeck, 2000);
+        //returnToDeck();
     };
 
     var edit = ()=>{
@@ -370,6 +371,7 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
         };
         var nextIndex = getNextUnansweredIndex();
         if (nextIndex == -1){
+            Dialog.con
             end();
         } else {
             arrIndex = nextIndex;
