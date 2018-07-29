@@ -203,6 +203,7 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
     };
 
     var end = ()=>{
+        HoldOn.open();
         setTimeout(returnToDeck, 2000);
         //returnToDeck();
     };
