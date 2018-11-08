@@ -4,7 +4,7 @@ const TIMEZONE = "UTC";
 const VERSION = 96;
 const DEV_DOMAIN = "local.lazylearn.com";
 const API_SERVER_DEV = 'http://localhost:8888/lazylearn-api';
-const API_SERVER_PRO = 'https://lazylearn.com:8081/lazylearn-api';
+const API_SERVER_PRO = 'https://lazylearn.com:8080/lazylearn-api';
 /**********************************************************************************/
 $HEADER = $HEADER2 = $TITLE = '';
 if( in_array( $_SERVER['SERVER_NAME'], array(DEV_DOMAIN)) ){
