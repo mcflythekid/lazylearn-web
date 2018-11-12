@@ -13,6 +13,11 @@ top_private();
     }
 </style>
 
+<div class="row">
+    <div class="col-lg-12">
+        <a id="refresh-all-vocab" class="btn btn-sm btn-danger">Refresh All Vocab</a>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-lg-12">
@@ -21,6 +26,13 @@ top_private();
     </div>
 </div>
 <script>
+
+    var refreshAllVocab = ()=>{
+        AppApi.sync.post("/admin/refresh-all-vocab").then((response)=>{
+            FlashMessage.success(response.data.msg);
+        });
+    };
+    $("#refresh-all-vocab").click(refreshAllVocab);
 
     var refresh = ()=>{
         $('#user__list').bootstrapTable('refresh',{
