@@ -149,7 +149,7 @@
 
                     <li class="">
                         <a href="/minpair">
-                            <i class="fa fa-bullhorn"></i> <span>Minimum Pair</span>
+                            <i class="fa fa-bullhorn"></i> <span>Minair</span>
                         </a>
                     </li>
 
