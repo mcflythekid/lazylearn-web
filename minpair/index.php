@@ -34,6 +34,12 @@ Minpair();
     $('#mminpair__create--btn').click((event)=> {
         Minpair.openCreate();
     });
+	
+	$(document).on('click', 'a.act-send-to-deck', function(e){
+		Minpair.sendToDeck($(this).attr('data-deck-id'), deckObj=>{
+			console.log(deckObj);
+		});
+	});
 
     $('#minpair__list').bootstrapTable({
         classes: 'table table-hover table-bordered table-condensed table-responsive bg-white',
@@ -71,13 +77,14 @@ Minpair();
                 sortable: true
             },
             {
-                width: 100,
+                width: 150,
                 formatter: (obj,row)=>{
                     var learnHtml = '';
 
-                    learnHtml = '<a class="btn btn-sm btn-success pull-left" href="/minpair/learn.php?id=' + row.id + '">Learn</a> ';
+                    //learnHtml = ' <a class="btn btn-sm btn-success pull-left" href="/minpair/learn.php?id=' + row.id + '">Learn</a> ';
+                    getHtml = ' <a class="btn btn-sm btn-success pull-left act-send-to-deck" data-deck-id="' + row.id + '">GET</a> ';
 
-                    return  learnHtml +
+                    return  learnHtml + getHtml + 
                         '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
                 }
             },

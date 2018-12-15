@@ -143,6 +143,12 @@
                 callback();
             })
         };
+		
+		e.sendToDeck = (minpairId, callback)=>{
+            AppApi.sync.post("/minpair/send-to-deck/"+ minpairId).then((res)=>{
+                callback(res.data);
+            })
+        };
 
         e.openCreate = ()=>{
             $('#minpair__modal__create').modal('show');
