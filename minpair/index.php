@@ -72,18 +72,6 @@ Minpair();
             },
             {
                 width: 100,
-                field: 'learnedCount',
-                title: 'Progress',
-                sortable: true,
-                formatter: (obj, row)=>{
-                    if (obj < 2){
-                        return obj + '/' + Constant.minpairCount;
-                    }
-                    return '<strong style="color: green">' + obj + '/' + Constant.minpairCount +  '</strong>';
-                }
-            },
-            {
-                width: 100,
                 formatter: (obj,row)=>{
                     var learnHtml = '';
 
