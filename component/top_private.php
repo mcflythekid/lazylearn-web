@@ -168,7 +168,9 @@
                 event.preventDefault();
                 Auth.logout();
             });
-            Application.privatePagesCheck();
+			$(document).ready(()=>{
+				Application.privatePagesCheck();
+			});
         </script>
 
             <!-- Content Wrapper. Contains page content -->

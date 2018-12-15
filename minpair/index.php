@@ -12,7 +12,7 @@ Minpair();
 <div class="row u-mt-20">
     <div class="col-lg-12">
 
-        <div id="mminpair__create--wrapper">
+        <div id="mminpair__create--wrapper" class="admin_component" style="display: none">
             <button class="btn btn-primary" id="mminpair__create--btn" type="submit">Create</button>
         </div>
 
@@ -50,8 +50,8 @@ Minpair();
         striped: false,
         toolbar: '#mminpair__create--wrapper',
         sidePagination: 'server',
-        sortName: 'learnedCount',
-        sortOrder: 'asc',
+        sortName: 'createdDate',
+        sortOrder: 'desc',
         pageSize: 20,
         pageList: [20, 50, 100],
         search: true,
@@ -78,15 +78,15 @@ Minpair();
                 sortable: true
             },
             {
-                width: 150,
+                width: 100,
                 formatter: (obj,row)=>{
-                    var learnHtml = '';
+                    var getHtml = ' <a class="btn btn-sm btn-success pull-left act-send-to-deck" data-deck-id="' + row.id + '">GET</a> ';
 
-                    //learnHtml = ' <a class="btn btn-sm btn-success pull-left" href="/minpair/learn.php?id=' + row.id + '">Learn</a> ';
-                    getHtml = ' <a class="btn btn-sm btn-success pull-left act-send-to-deck" data-deck-id="' + row.id + '">GET</a> ';
-
-                    return  learnHtml + getHtml + 
-                        '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
+					if (Application.isAdmin())
+						return getHtml + 
+							'<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
+					else 
+						return getHtml;
                 }
             },
         ],
@@ -94,12 +94,10 @@ Minpair();
         contextMenuButton: '.context-menu-button',
         contextMenuAutoClickRow: true,
         beforeContextMenuRow: function(e,row,buttonElement){
-            if (row.archived == 0){
-                $('#context-menu li[data-item="archive"]').show();
-                $('#context-menu li[data-item="unarchive"]').hide();
+            if (Application.isAdmin()){
+                $('#context-menu li[data-item="delete"]').show();
             } else {
-                $('#context-menu li[data-item="archive"]').hide();
-                $('#context-menu li[data-item="unarchive"]').show();
+                $('#context-menu li[data-item="delete"]').hide();
             }
             return true;
         },

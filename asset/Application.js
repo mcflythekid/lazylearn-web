@@ -3,6 +3,15 @@
  */
 var Application = ((Application, Storage, Auth, Constant)=>{
 
+	Application.isAdmin = ()=>{
+		var userData = Storage.get('userData');
+        if (!userData){
+            Auth.logout();
+            return;
+        }
+		return userData.authorities.includes(Constant.adminAuthorityName);
+	};
+
     Application.publicPagesCheck = ()=>{
         if (Storage.get('accessToken') && Constant.blockedAfterLoginUrls.includes(location.pathname)){ // login: ban public
             window.stop();
@@ -24,8 +33,9 @@ var Application = ((Application, Storage, Auth, Constant)=>{
         } else {
             $('#app__user_changepassword').hide();
         }
-        if (userData.authorities.includes('admin')){
+        if (userData.authorities.includes(Constant.adminAuthorityName)){
             $('#admin_menu').show();
+            $('.admin_component').show();
         }
         $('#app__user_fullname').text(userData.fullName);
         /*------------------------------------------------------------------------------------------------*/

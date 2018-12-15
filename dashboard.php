@@ -97,14 +97,17 @@ Deck();
                 title: 'Name',
                 sortable: true,
                 formatter: (obj,row)=>{
-                    return '<a href="/deck/view.php?id=' + row.id + '">' + obj+'</a>' +
+					
+					var normalHtml = '<a href="/deck/view.php?id=' + row.id + '">' + obj+'</a>' +
                         (row.archived == 1 ? ' <span class="archived">Archived</span>' : '');
+
+                    return row.minpairLanguage ? obj : normalHtml;
                 }
             },
             {
                 width: 100,
                 field: 'totalCard',
-                title: 'Cards',
+                title: 'Item',
                 sortable: true,
             },
             {
@@ -126,7 +129,7 @@ Deck();
             {
                 width: 50,
                 formatter: (obj,row)=>{
-                    if (!row.vocabdeckId && !row.minpairLanguage)
+                    if (!row.vocabdeckId)
                         return '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
                     else
                         return '';
@@ -138,7 +141,7 @@ Deck();
         contextMenuAutoClickRow: true,
         beforeContextMenuRow: function(e,row,buttonElement){
 
-            if (row.vocabdeckId || row.minpairLanguage){
+            if (row.vocabdeckId){
                 return false;
             }
 
