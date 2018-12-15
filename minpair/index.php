@@ -12,7 +12,7 @@ Minpair();
 <div class="row u-mt-20">
     <div class="col-lg-12">
 
-        <div id="mminpair__create--wrapper" class="admin_component___" style="display: none">
+        <div id="mminpair__create--wrapper" class="admin_component" style="display: none">
             <button class="btn btn-sm btn-danger" id="mminpair__create--btn" type="submit">** Create</button>
         </div>
 
