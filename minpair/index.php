@@ -55,6 +55,11 @@ Minpair();
         },
         pagination: true,
         columns: [
+			{
+                field: 'language',
+                title: 'Language',
+                sortable: true
+            },
             {
                 field: 'word1',
                 title: 'Word 1',

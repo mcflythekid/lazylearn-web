@@ -25,6 +25,10 @@
                                     <label for="minpair__modal__create--phonetic1">Audio 1</label>
                                     <input type="file" required accept=".mp3" class="form-control" id="minpair__modal__create--audio1" >
                                 </div>
+								<div class="form-group">
+                                    <label for="minpair__modal__create--language">Language</label>
+                                    <input type="text" required class="form-control" id="minpair__modal__create--language" placeholder="english, chinese, ...">
+                                </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
@@ -81,6 +85,7 @@
                     $('#minpair__modal__create--word2').val(),
                     $('#minpair__modal__create--phonetic1').val(),
                     $('#minpair__modal__create--phonetic2').val(),
+                    $('#minpair__modal__create--language').val(),
                     base64List[0],
                     base64List[1],
                     ()=>{
@@ -111,14 +116,15 @@
             });
         };
 
-        e.create = (word1, word2, phonetic1, phonetic2, audio1, audio2, callback)=>{
+        e.create = (word1, word2, phonetic1, phonetic2, language, audio1, audio2, callback)=>{
             AppApi.sync.post("/minpair/create", {
                 word1: word1,
                 word2: word2,
                 phonetic1: phonetic1,
                 phonetic2: phonetic2,
                 audio1: audio1,
-                audio2: audio2
+                audio2: audio2,
+				language: language
             }).then(()=>{
                 callback();
             })
