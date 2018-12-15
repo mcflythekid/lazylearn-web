@@ -37,7 +37,8 @@ Minpair();
 	
 	$(document).on('click', 'a.act-send-to-deck', function(e){
 		Minpair.sendToDeck($(this).attr('data-deck-id'), deckObj=>{
-			console.log(deckObj);
+			FlashMessage.success("Get success");
+			refresh();
 		});
 	});
 
