@@ -34,7 +34,7 @@ Minpair();
                     <a class="btn btn-default btn-sm" role="button" id="learncmd__end" title="STOP">
                         <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
                     </a>
-                    <a class="btn btn-default btn-sm admin_component" style="display: none;" role="button" id="learncmd__drop" title="Delete">
+                    <a class="btn btn-default btn-sm admin_component_todo" style="display: none;" role="button" id="learncmd__drop" title="Delete">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     </a>
                 </div>
