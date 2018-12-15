@@ -16,8 +16,8 @@ var Constant = ((Constant)=>{
         "/auth/reset-password.php",
     ];
 	
-    Constant.minpairCount = 2;
-    Constant.minpairAllowedErrors = 1;
+    Constant.minpairCount = 120;
+    Constant.minpairAllowedErrors = 6;
 	
 	
 	Constant.adminAuthorityName = "admin";
