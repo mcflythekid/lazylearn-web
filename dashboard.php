@@ -100,8 +100,11 @@ Deck();
 					
 					var normalHtml = '<a href="/deck/view.php?id=' + row.id + '">' + obj+'</a>' +
                         (row.archived == 1 ? ' <span class="archived">Archived</span>' : '');
+						
+					var minpairHtml = obj +
+						(row.archived == 1 ? ' <span class="archived">Archived</span>' : '');
 
-                    return row.minpairLanguage ? obj : normalHtml;
+                    return row.minpairLanguage ? minpairHtml : normalHtml;
                 }
             },
             {
