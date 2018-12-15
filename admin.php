@@ -15,7 +15,7 @@ top_private();
 
 <div class="row">
     <div class="col-lg-12">
-        <a id="refresh-all-vocab" class="btn btn-sm btn-danger">Refresh All Vocab</a>
+        <a id="refresh-all-vocab" class="btn btn-sm btn-danger">** Refresh All Vocab</a>
     </div>
 </div>
 
