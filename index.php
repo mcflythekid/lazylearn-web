@@ -12,3 +12,4 @@ by using this app, you agree that <a target="_blank" href="https://fb.com/mcflyt
 and <a target="_blank" href="https://github.com/mcflythekid">@mcflythekid</a>
 is the the most crazy developer ever in the earth
 </pre>
+<link href="/dkmm-999/img/fav4.png" id ="shorticon" rel="shortcut icon">
