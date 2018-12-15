@@ -1,10 +1,12 @@
 <?php
 require '../core.php';
 $minpairId = ''; if (isset($_GET['id'])) $minpairId = escape($_GET['id']);
+$cardId = ''; if (isset($_GET['cardid'])) $cardId = escape($_GET['cardid']);
+$learnType = ''; if (isset($_GET['type'])) $learnType = escape($_GET['type']);
 $TITLE = 'loading...';
 $HEADER = '<span id="appHeader">loading..</span>';
 $PATHS = [
-    ["/minpair", "Minimum Pair"],
+    ["/minpair", "Minpair"],
     '<span id="appBreadcrumb1">loading..</span>'
 ];
 top_private();
@@ -29,10 +31,10 @@ Minpair();
 
             <div class="row">
                 <div id="learncmd" class="btn-group btn-group-justified" role="group" aria-label="Command">
-                    <a class="btn btn-default btn-sm" role="button" id="learncmd__end" title="End session">
+                    <a class="btn btn-default btn-sm" role="button" id="learncmd__end" title="STOP">
                         <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
                     </a>
-                    <a class="btn btn-default btn-sm" role="button" id="learncmd__drop" title="Delete this pair">
+                    <a class="btn btn-default btn-sm admin_component" style="display: none;" role="button" id="learncmd__drop" title="Delete">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     </a>
                 </div>
@@ -73,9 +75,16 @@ Minpair();
 
     <script>
         var minpairId = '<?=$minpairId?>';
+        var cardId = '<?=$cardId?>';
+        var learnType = '<?=$learnType?>';
         var minpair;
         var selectedWord;
         var count, correct, incorrect;
+		
+		var cardObj;
+		AppApi.sync.get('/card/get/' + cardId).then(res=>{
+			cardObj = res.data;
+		});
 
         var reload = ()=>{
             Minpair.get(minpairId, (object)=>{
@@ -91,7 +100,9 @@ Minpair();
                 $('#learnanswer__2').text(minpair.phonetic2);
                 $('#learnanswer__play').show();
                 updateState();
-            });
+            }, err=>{
+				Dialog.fail("Cannot found minpair");
+			});
         };
 
         var updateState = ()=>{
@@ -133,24 +144,42 @@ Minpair();
         var play = ()=>{
             $('#audio' + selectedWord)[0].play();
         };
+		
         var drop = ()=>{
             Minpair.delete(minpairId, ()=>{
-                window.location = Constant.minpairUrl;
+                location.reload();
             });
         };
-        var end = ()=>{
-            window.location = Constant.minpairUrl;
+		
+        var end = ()=>{ //interupt
+            window.location = Constant.deckUrl;
         };
+		
+		var finishSession = ()=>{ //learned until the end
+			if (incorrect <= Constant.minpairAllowedErrors){
+				if (learnType === 'learn'){
+					AppApi.async.post("/learn/correct/" + cardId);
+				} else if (learnType === 'review' && cardObj.step == 0){
+					AppApi.async.post("/learn/correct/" + cardId);
+				}
+				Dialog.success('Success!<br>' + correct + " correct / " + Constant.minpairCount, ()=>{
+					window.location = Constant.deckUrl;
+				});
+			} else {
+				AppApi.async.post("/learn/incorrect/" + cardId);
+				Dialog.fail('Failed! You wrong answer must not be greater than ' + Constant.minpairAllowedErrors, ()=>{
+					location.reload();
+				});
+			}
+		};
+		
         var next = ()=>{
             if (count == Constant.minpairCount){
-                Minpair.learned(minpairId, ()=>{
-                    FlashMessage.success("Leaned");
-                    reload();
-                    return;
-                });
-            }
-            selectedWord = Math.floor(Math.random() * 2) + 1;
-            play();
+				finishSession();
+            } else {
+				selectedWord = Math.floor(Math.random() * 2) + 1;
+				play();
+			}
         };
 
         $('audio.audio').on('play', ()=>{

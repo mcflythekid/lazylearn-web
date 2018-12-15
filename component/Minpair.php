@@ -110,10 +110,14 @@
      */
     var Minpair = ((e, AppApi, Constant, FlashMessage, Dialog)=>{
 
-        e.get = (minpairId, callback)=>{
+        e.get = (minpairId, callback, errCb)=>{
             AppApi.async.get("/minpair/get/" + minpairId).then((response)=>{
                 callback(response.data);
-            });
+            }).catch(err=>{
+				if (errCb) {
+					errCb(err);
+				}
+			});
         };
 
         e.create = (word1, word2, phonetic1, phonetic2, language, audio1, audio2, callback)=>{
@@ -127,7 +131,7 @@
 				language: language
             }).then(()=>{
                 callback();
-            })
+            });
         };
 
         e.delete = (minpairId, callback)=>{
@@ -137,7 +141,7 @@
                 })
             });
         };
-
+		
         e.learned = (minpairId, callback)=>{
             AppApi.sync.post("/minpair/learned/"+ minpairId).then(()=>{
                 callback();

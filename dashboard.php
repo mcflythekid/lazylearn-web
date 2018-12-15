@@ -124,8 +124,12 @@ Deck();
                 formatter: (obj,row)=>{
                     var learnHtml = '';
                     if (row.archived == 0 && row.totalTimeupCard > 0){
-                        learnHtml = '<a class="btn btn-sm btn-success pull-left" href="/deck/learn.php?type=learn&id=' + row.id + '">Learn</a> ';
-                    }
+						if (row.minpairLanguage){
+							learnHtml = '<a class="btn btn-sm btn-success pull-left" href="/minpair/learn-redirect.php?type=learn&id=' + row.id + '">Learn</a> ';
+						} else {
+							learnHtml = '<a class="btn btn-sm btn-success pull-left" href="/deck/learn.php?type=learn&id=' + row.id + '">Learn</a> ';
+						}
+					}
                     return  learnHtml;
                 }
             },

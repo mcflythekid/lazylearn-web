@@ -15,7 +15,11 @@ var Constant = ((Constant)=>{
         "/auth/forget-password.php",
         "/auth/reset-password.php",
     ];
-    Constant.minpairCount = 60;
+	
+    Constant.minpairCount = 120;
+    Constant.minpairAllowedErrors = 6;
+	
+	
 	Constant.adminAuthorityName = "admin";
     return Constant;
 })({});
