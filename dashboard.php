@@ -126,7 +126,7 @@ Deck();
             {
                 width: 50,
                 formatter: (obj,row)=>{
-                    if (!row.vocabdeckId)
+                    if (!row.vocabdeckId && !row.minpairLanguage)
                         return '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
                     else
                         return '';
@@ -138,7 +138,7 @@ Deck();
         contextMenuAutoClickRow: true,
         beforeContextMenuRow: function(e,row,buttonElement){
 
-            if (row.vocabdeckId){
+            if (row.vocabdeckId || row.minpairLanguage){
                 return false;
             }
 
