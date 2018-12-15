@@ -1,9 +1,9 @@
 <?php
 require_once '../core.php';
-$TITLE = ('Minimum Pair');
-$HEADER = "Minimum Pair";
+$TITLE = ('Minpair');
+$HEADER = "Minpair";
 $PATHS = [
-    "Minimum Pair"
+    "Minpair"
 ];
 top_private();
 Minpair();
