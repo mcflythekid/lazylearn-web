@@ -149,7 +149,7 @@
 
                     <li class="">
                         <a href="/minpair">
-                            <i class="fa fa-bullhorn"></i> <span>Minpair</span>
+                            <i class="fa fa-bullhorn"></i> <span>New Minpair</span>
                         </a>
                     </li>
 
