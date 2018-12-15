@@ -1,5 +1,8 @@
 <html>
-<head><link href="/dkmm-999/img/fav4.png" id ="shorticon" rel="shortcut icon"></head>
+<head>
+<title>lazylearn dot com</title>
+<link href="/dkmm-999/img/fav4.png" id ="shorticon" rel="shortcut icon">
+</head>
 <body>
 
 <style>
