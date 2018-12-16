@@ -101,10 +101,10 @@ Deck();
 					var normalHtml = '<a href="/deck/view.php?id=' + row.id + '">' + obj+'</a>' +
                         (row.archived == 1 ? ' <span class="archived">Archived</span>' : '');
 						
-					var minpairHtml = obj +
+					var minpairArticleHtml = obj +
 						(row.archived == 1 ? ' <span class="archived">Archived</span>' : '');
 
-                    return row.minpairLanguage ? minpairHtml : normalHtml;
+                    return row.minpairLanguage || row.articleCategory ? minpairArticleHtml : normalHtml;
                 }
             },
             {
@@ -126,6 +126,8 @@ Deck();
                     if (row.archived == 0 && row.totalTimeupCard > 0){
 						if (row.minpairLanguage){
 							learnHtml = '<a class="btn btn-sm btn-success pull-left" href="/minpair/learn-redirect.php?type=learn&id=' + row.id + '">Learn</a> ';
+						} else if (row.articleCategory){
+							learnHtml = '<a class="btn btn-sm btn-success pull-left" href="/article/learn-redirect.php?type=learn&id=' + row.id + '">Learn</a> ';
 						} else {
 							learnHtml = '<a class="btn btn-sm btn-success pull-left" href="/deck/learn.php?type=learn&id=' + row.id + '">Learn</a> ';
 						}
