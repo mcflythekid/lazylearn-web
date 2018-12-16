@@ -149,7 +149,13 @@
 
                     <li class="">
                         <a href="/minpair">
-                            <i class="fa fa-bullhorn"></i> <span>New Minpair</span>
+                            <i class="fa fa-bullhorn"></i> <span>Minpair</span>
+                        </a>
+                    </li>
+
+                    <li class="">
+                        <a href="/article">
+                            <i class="fa fa-book"></i> <span>Article</span>
                         </a>
                     </li>
 

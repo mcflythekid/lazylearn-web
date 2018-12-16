@@ -25,6 +25,7 @@ require_once __DIR__ . '/component/Vocab.php';
 require_once __DIR__ . '/component/Deck.php';
 require_once __DIR__ . '/component/Card.php';
 require_once __DIR__ . '/component/Minpair.php';
+require_once __DIR__ . '/component/Article.php';
 /**********************************************************************************/
 function escape($str){
     return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');

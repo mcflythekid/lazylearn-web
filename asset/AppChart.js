@@ -36,10 +36,13 @@ var AppChart = ((AppChart, Storage, AppApi)=>{
                     timeup += obj.timeup;
                 });
                 data.addColumn('string','Step name');
-                //data.addColumn('number','Need to learn');
-                data.addColumn('number', timeup + ' cards today');
-                //data.addColumn('number','Remembered');
-                data.addColumn('number', correct + ' cards learned');
+
+                data.addColumn('number','Expired');
+                //data.addColumn('number', timeup + ' cards today');
+
+                data.addColumn('number','Pass');
+                //data.addColumn('number', correct + ' cards learned');
+
                 data.addRows(r.data.length);
                 $.each(r.data, (index, obj)=>{
                     data.setCell(index, 0, obj.stepName);
