@@ -1,9 +1,9 @@
 <?php
 require_once 'core.php';
-$TITLE = 'Admin';
-$HEADER = "Admin";
+$TITLE = 'User';
+$HEADER = "User";
 $PATHS = [
-    "Admin"
+    "User"
 ];
 top_private();
 ?>
@@ -26,6 +26,10 @@ top_private();
     </div>
 </div>
 <script>
+
+    $(document).on('click', 'button.forcelogin__btn', function(){
+        Auth.forceLogin($(this).attr('data-userid'));
+    })
 
     var refreshAllVocab = ()=>{
         AppApi.sync.post("/admin/refresh-all-vocab").then((response)=>{
@@ -99,6 +103,11 @@ top_private();
                 field: 'updatedDate',
                 title: 'Updated Date',
                 sortable: true,
+            },
+            {
+                formatter: (obj, row)=>{
+                    return "<button class='btn btn-info forcelogin__btn' data-userid='" + row.id + "'>Login</button>"
+                }
             }
         ],
     });

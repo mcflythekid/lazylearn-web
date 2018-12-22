@@ -37,6 +37,12 @@ var Auth = ((e, AppApi, Constant, FlashMessage)=>{
         });
     };
 
+    e.forceLogin = (userId)=>{
+        AppApi.sync.post("/force-login/" + userId).then((response)=>{
+            postLogin(response.data);
+        });
+    };
+
     e.loginFacebook = ()=>{
         FB.login(function(facebookResponse) {
             if (facebookResponse.status= "connected"){

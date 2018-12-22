@@ -159,11 +159,19 @@
                         </a>
                     </li>
 
-                    <li id="admin_menu" style="display: none">
-                        <a href="/admin.php">
-                            <i class="fa fa-line-chart"></i> <span>Admin</span>
+                    <li class="treeview" id="admin_menu" style="display: none">
+                        <a href="#">
+                            <i class="fa fa-lock"></i>
+                            <span>Admin</span>
+                            <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                            </span>
                         </a>
+                        <ul class="treeview-menu">
+                            <li><a href="/admin.php"><i class="fa fa-user"></i> User</a></li>
+                        </ul>
                     </li>
+                    
                 </ul>
             </section>
             <!-- /.sidebar -->
