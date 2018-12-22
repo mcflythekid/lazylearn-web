@@ -1,10 +1,16 @@
-<html>
-<head>
-<title>lazylearn dot com</title>
-<link href="/dkmm-999/img/fav4.png" id ="shorticon" rel="shortcut icon">
-</head>
-<body>
+<?php
+require_once 'core.php';
+$TITLE = 'Lazylearn';
+top_public();
+?>
 
+<style>
+    @media(max-width: 768px) {
+        .container .jumbotron, .container-fluid .jumbotron {
+            padding-right: 20px;
+            padding-left: 20px;
+    }
+</style>
 <style>
     body{font-family: "Lucida Console", "Courier New", serif;}
     a{text-decoration: none; color:blue;}
@@ -20,5 +26,4 @@ and <a target="_blank" href="https://github.com/mcflythekid">@mcflythekid</a>
 is the the most crazy developer ever in the earth
 </pre>
 
-</body>
-</html>
+<?=bottom_public()?>
