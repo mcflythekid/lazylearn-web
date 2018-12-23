@@ -70,16 +70,6 @@ top_private();
                 sortable: true,
             },
             {
-                field: 'decks',
-                title: 'Deck',
-                sortable: true,
-            },
-            {
-                field: 'cards',
-                title: 'Card',
-                sortable: true,
-            },
-            {
                 field: 'createdDate',
                 title: 'Joined Date',
                 sortable: true,

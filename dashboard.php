@@ -97,14 +97,20 @@ Deck();
                 title: 'Name',
                 sortable: true,
                 formatter: (obj,row)=>{
-					
-					var normalHtml = '<a href="/deck/view.php?id=' + row.id + '">' + obj+'</a>' +
+					debugger;
+					var link = '<a href="/deck/view.php?id=' + row.id + '">' + obj+'</a>' +
                         (row.archived == 1 ? ' <span class="archived">Archived</span>' : '');
 						
-					var minpairArticleHtml = obj +
+					var noLink = obj +
 						(row.archived == 1 ? ' <span class="archived">Archived</span>' : '');
 
-                    return row.minpairLanguage || row.articleCategory ? minpairArticleHtml : normalHtml;
+                    if (row.minpairLanguage || row.articleCategory || row.vocabdeckId){
+                        link = "<strong>" + link + "</strong>"
+                        noLink = "<strong>" + noLink + "</strong>"
+                    }
+
+                    //return row.minpairLanguage || row.articleCategory ? minpairArticleHtml : normalHtml;
+                    return link;
                 }
             },
             {
@@ -138,7 +144,7 @@ Deck();
             {
                 width: 50,
                 formatter: (obj,row)=>{
-                    if (!row.vocabdeckId)
+                    if (!(row.vocabdeckId || row.minpairLanguage || row.articleCategory))
                         return '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
                     else
                         return '';
@@ -150,7 +156,7 @@ Deck();
         contextMenuAutoClickRow: true,
         beforeContextMenuRow: function(e,row,buttonElement){
 
-            if (row.vocabdeckId){
+            if (row.vocabdeckId || row.minpairLanguage || row.articleCategory){
                 return false;
             }
 

@@ -1,9 +1,9 @@
 <?php
 require_once '../core.php';
-$TITLE = ('Minpair');
-$HEADER = "Minpair";
+$TITLE = ('Admin: Minpair');
+$HEADER = "Admin: Minpair";
 $PATHS = [
-    "Minpair"
+    "Admin: Minpair"
 ];
 top_private();
 Minpair();
@@ -11,16 +11,10 @@ Minpair();
 
 <div class="row u-mt-20">
     <div class="col-lg-12">
-
-        <div id="mminpair__create--wrapper">
-            <button class="btn btn-success" id="mminpair__create--btn" type="submit">Create</button>
-        </div>
-
         <table id="minpair__list"></table>
         <ul id="context-menu" class="dropdown-menu">
             <li data-item="delete"><a>Delete</a></li>
         </ul>
-
     </div>
 </div>
 
@@ -44,7 +38,7 @@ Minpair();
 
     $('#minpair__list').bootstrapTable({
         classes: 'table table-hover table-bordered table-condensed table-responsive bg-white',
-        url: apiServer + "/minpair/search",
+        url: apiServer + "/minpair/admin/search",
         cache: false,
         method: 'post',
         striped: false,
@@ -68,6 +62,11 @@ Minpair();
                 sortable: true
             },
             {
+                field: 'user.fullName',
+                title: 'User',
+                sortable: true
+            },
+            {
                 field: 'word1',
                 title: 'Word 1',
                 sortable: true
@@ -80,21 +79,13 @@ Minpair();
             {
                 width: 50,
                 formatter: (obj,row)=>{
-                    return '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
+                    return'<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
                 }
             },
         ],
         contextMenu: '#context-menu',
         contextMenuButton: '.context-menu-button',
         contextMenuAutoClickRow: true,
-        beforeContextMenuRow: function(e,row,buttonElement){
-            if (Application.isAdmin()){
-                $('#context-menu li[data-item="delete"]').show();
-            } else {
-                $('#context-menu li[data-item="delete"]').hide();
-            }
-            return true;
-        },
         onContextMenuItem: function(row, $el) {
              if ($el.data("item") == "delete") {
                 Minpair.delete(row.id, ()=>{
