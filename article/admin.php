@@ -1,9 +1,9 @@
 <?php
 require_once '../core.php';
-$TITLE = ('Topic');
-$HEADER = "Topic";
+$TITLE = ('Topic Admin');
+$HEADER = "Topic Admin";
 $PATHS = [
-    "Topic"
+    "Topic Admin"
 ];
 top_private();
 Article();
@@ -13,7 +13,7 @@ Article();
     <div class="col-lg-12">
 
         <div id="article__create--wrapper" class="admin_component" style="display: none">
-            <button class="btn btn-sm btn-danger" id="article__create--btn" type="submit">** Create</button>
+            <button class="btn btn-sm btn-success" id="article__create--btn" type="submit">Create</button>
         </div>
 
         <table id="article__list"></table>
@@ -44,7 +44,7 @@ Article();
 
     $('#article__list').bootstrapTable({
         classes: 'table table-hover table-bordered table-condensed table-responsive bg-white',
-        url: apiServer + "/article/search",
+        url: apiServer + "/article/admin/search",
         cache: false,
         method: 'post',
         striped: false,
@@ -68,6 +68,14 @@ Article();
                 sortable: true
             },
             {
+                field: 'user',
+                title: 'User',
+                sortable: true,
+                formatter: (obj, row)=>{
+                    return "<a href='' class=''>" + obj.fullName + "</a>";
+                }
+            },
+            {
                 field: 'name',
                 title: 'Name',
                 sortable: true
@@ -78,15 +86,9 @@ Article();
                 sortable: true
             },
             {
-                width: 100,
+                width: 50,
                 formatter: (obj,row)=>{
-                    var getHtml = ' <a class="btn btn-sm btn-success pull-left act-send-to-deck" data-article-id="' + row.id + '">GET</a> ';
-
-					if (Application.isAdmin())
-						return getHtml + 
-							'<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
-					else 
-						return getHtml;
+                    return '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
                 }
             },
         ],

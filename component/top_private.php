@@ -155,7 +155,7 @@
 
                     <li class="">
                         <a href="/article">
-                            <i class="fa fa-book"></i> <span>Article</span>
+                            <i class="fa fa-book"></i> <span>Topic</span>
                         </a>
                     </li>
 
@@ -169,6 +169,7 @@
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="/admin.php"><i class="fa fa-user"></i> User</a></li>
+                            <li><a href="/article/admin.php"><i class="fa fa-book"></i> Topic</a></li>
                         </ul>
                     </li>
                     
