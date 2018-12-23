@@ -1,35 +1,23 @@
 <?php
 require_once 'core.php';
-$TITLE = 'User';
-$HEADER = "User";
+$TITLE = 'Admin: User';
+$HEADER = "Admin: User";
 $PATHS = [
-    "User"
+    "Admin: User"
 ];
 top_private();
 ?>
-<style>
-    #toolbar {
-        width: 300px;
-    }
-</style>
 
 <div class="row">
     <div class="col-lg-12">
-        <a id="refresh-all-vocab" class="btn btn-sm btn-danger">** Refresh All Vocab</a>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-12">
-        <div id="toolbar"></div>
         <table id="user__list"></table>
+        <ul id="context-menu" class="dropdown-menu">
+            <li data-item="login"><a>Login</a></li>
+        </ul>
     </div>
 </div>
-<script>
 
-    $(document).on('click', 'button.forcelogin__btn', function(){
-        Auth.forceLogin($(this).attr('data-userid'));
-    })
+<script>
 
     var refreshAllVocab = ()=>{
         AppApi.sync.post("/admin/refresh-all-vocab").then((response)=>{
@@ -61,26 +49,24 @@ top_private();
                 Authorization: AppApi.getAuthorization()
             }
         },
+        contextMenu: '#context-menu',
+        contextMenuButton: '.context-menu-button',
+        contextMenuAutoClickRow: true,
+        onContextMenuItem: function(row, $el) {
+             if ($el.data("item") == "login") {
+                Auth.forceLogin(row.id);
+            }
+        },
         pagination: true,
         columns: [
-            {
-                field: 'id',
-                title: 'ID',
-                sortable: true,
-            },
             {
                 field: 'email',
                 title: 'Email address',
                 sortable: true,
             },
             {
-                field: 'facebookId',
-                title: 'Facebook ID',
-                sortable: true,
-            },
-            {
                 field: 'fullName',
-                title: 'Full name',
+                title: 'Name',
                 sortable: true,
             },
             {
@@ -94,25 +80,16 @@ top_private();
                 sortable: true,
             },
             {
-                field: 'ipAddress',
-                title: 'IP Address',
-                sortable: true,
-            },
-            {
                 field: 'createdDate',
                 title: 'Joined Date',
                 sortable: true,
             },
             {
-                field: 'updatedDate',
-                title: 'Updated Date',
-                sortable: true,
-            },
-            {
-                formatter: (obj, row)=>{
-                    return "<button class='btn btn-info forcelogin__btn' data-userid='" + row.id + "'>Login</button>"
+                width: 50,
+                formatter: ()=>{
+                    return '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
                 }
-            }
+            },
         ],
     });
 </script>

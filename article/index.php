@@ -11,9 +11,8 @@ Article();
 
 <div class="row u-mt-20">
     <div class="col-lg-12">
-
-        <div id="article__create--wrapper" class="admin_component" style="display: none">
-            <button class="btn btn-sm btn-danger" id="article__create--btn" type="submit">** Create</button>
+        <div id="article__create--wrapper">
+            <button class="btn btn-success" id="article__create--btn" type="submit">Create</button>
         </div>
 
         <table id="article__list"></table>
@@ -78,15 +77,9 @@ Article();
                 sortable: true
             },
             {
-                width: 100,
+                width: 50,
                 formatter: (obj,row)=>{
-                    var getHtml = ' <a class="btn btn-sm btn-success pull-left act-send-to-deck" data-article-id="' + row.id + '">GET</a> ';
-
-					if (Application.isAdmin())
-						return getHtml + 
-							'<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
-					else 
-						return getHtml;
+                    return '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
                 }
             },
         ],

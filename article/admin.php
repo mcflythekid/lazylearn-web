@@ -1,9 +1,9 @@
 <?php
 require_once '../core.php';
-$TITLE = ('Topic Admin');
-$HEADER = "Topic Admin";
+$TITLE = ('Admin: Topic');
+$HEADER = "Admin: Topic";
 $PATHS = [
-    "Topic Admin"
+    "Admin: Topic"
 ];
 top_private();
 Article();
@@ -11,16 +11,10 @@ Article();
 
 <div class="row u-mt-20">
     <div class="col-lg-12">
-
-        <div id="article__create--wrapper" class="admin_component" style="display: none">
-            <button class="btn btn-sm btn-success" id="article__create--btn" type="submit">Create</button>
-        </div>
-
         <table id="article__list"></table>
         <ul id="context-menu" class="dropdown-menu">
             <li data-item="delete"><a>Delete</a></li>
         </ul>
-
     </div>
 </div>
 
@@ -68,12 +62,9 @@ Article();
                 sortable: true
             },
             {
-                field: 'user',
+                field: 'user.fullName',
                 title: 'User',
-                sortable: true,
-                formatter: (obj, row)=>{
-                    return "<a href='' class=''>" + obj.fullName + "</a>";
-                }
+                sortable: true
             },
             {
                 field: 'name',
@@ -83,11 +74,14 @@ Article();
             {
                 field: 'url',
                 title: 'URL',
-                sortable: true
+                sortable: true,
+                formatter: (obj,row)=>{
+                    return "<a target='_blank' href='" + obj + "' class=''>" + obj + "</a>";
+                }
             },
             {
                 width: 50,
-                formatter: (obj,row)=>{
+                formatter: ()=>{
                     return '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
                 }
             },

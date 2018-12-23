@@ -15,19 +15,19 @@
                         <div class="col-xs-12">
                             <div class="form-group">
                                 <label for="article__modal__create--name">Name</label>
-                                <input type="text" value="xxx" required class="form-control" id="article__modal__create--name" placeholder="Name">
+                                <input type="text" value="" required class="form-control" id="article__modal__create--name" placeholder="Name">
                             </div>
                             <div class="form-group">
                                 <label for="article__modal__create--content">Content</label>
-                                <input type="text" value="xxx" required class="form-control" id="article__modal__create--content" placeholder="Content">
+                                <input type="text" value="" required class="form-control" id="article__modal__create--content" placeholder="Content">
                             </div>
                             <div class="form-group">
                                 <label for="article__modal__create--url">Content</label>
-                                <input type="text" value="xxx" class="form-control" id="article__modal__create--url" placeholder="URL">
+                                <input type="text" value="" class="form-control" id="article__modal__create--url" placeholder="URL">
                             </div>
                             <div class="form-group">
                                 <label for="article__modal__create--category">Category</label>
-                                <input type="text" value="xxx" required class="form-control" id="article__modal__create--category" placeholder="Category">
+                                <input type="text" value="" required class="form-control" id="article__modal__create--category" placeholder="Category">
                             </div>
                         </div>
                     </div>
