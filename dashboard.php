@@ -97,7 +97,6 @@ Deck();
                 title: 'Name',
                 sortable: true,
                 formatter: (obj,row)=>{
-					debugger;
 					var link = '<a href="/deck/view.php?id=' + row.id + '">' + obj+'</a>' +
                         (row.archived == 1 ? ' <span class="archived">Archived</span>' : '');
 						
@@ -115,29 +114,25 @@ Deck();
             },
             {
                 width: 100,
-                field: 'totalCard',
-                title: 'Item',
-                sortable: true,
-            },
-            {
-                width: 100,
-                field: 'totalTimeupCard',
                 title: 'Expired',
                 sortable: true,
+                formatter: (obj, row)=>{
+                    return "<span class='cl' data-deckid='"+row.id+"'><span>";
+                }
             },
             {
                 width: 50,
                 formatter: (obj,row)=>{
                     var learnHtml = '';
-                    if (row.archived == 0 && row.totalTimeupCard > 0){
+                    //if (row.archived == 0 && row.totalTimeupCard > 0){
 						if (row.minpairLanguage){
-							learnHtml = '<a class="btn btn-sm btn-success pull-left" href="/minpair/learn-redirect.php?type=learn&id=' + row.id + '">Learn</a> ';
+							learnHtml = '<a data-deckid="' + row.id + '" class="btn btn-sm btn-success pull-left cc" href="/minpair/learn-redirect.php?type=learn&id=' + row.id + '">loading...</a> ';
 						} else if (row.articleCategory){
-							learnHtml = '<a class="btn btn-sm btn-success pull-left" href="/article/learn-redirect.php?type=learn&id=' + row.id + '">Learn</a> ';
+							learnHtml = '<a data-deckid="' + row.id + '" class="btn btn-sm btn-success pull-left cc" href="/article/learn-redirect.php?type=learn&id=' + row.id + '">loading...</a> ';
 						} else {
-							learnHtml = '<a class="btn btn-sm btn-success pull-left" href="/deck/learn.php?type=learn&id=' + row.id + '">Learn</a> ';
+							learnHtml = '<a data-deckid="' + row.id + '" class="btn btn-sm btn-success pull-left cc" href="/deck/learn.php?type=learn&id=' + row.id + '">Learn</a> ';
 						}
-					}
+					//}
                     return  learnHtml;
                 }
             },
@@ -151,6 +146,26 @@ Deck();
                 }
             },
         ],
+        onLoadSuccess: ()=>{
+            $('a.cc').each(function(index){
+                var $el = $(this);
+                var deckId = $el.attr('data-deckid');
+                debugger;
+                AppApi.async.get("/learn/learnable-count/" + deckId).then(res=>{
+                    debugger;
+                    if (res.data > 0){
+                        $el.text('Learn');
+                        $('span.cl[data-deckid="'+deckId+'"]').text(res.data);
+                        //$('span.cl').text(res.data);
+                    } else {
+                        $el.remove();
+                    }
+                    
+                }).catch(err=>{
+                    $el.text('ERROR');
+                });
+            });
+        },
         contextMenu: '#context-menu',
         contextMenuButton: '.context-menu-button',
         contextMenuAutoClickRow: true,
