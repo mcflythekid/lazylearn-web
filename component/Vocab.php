@@ -32,8 +32,8 @@
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="vocab-create-gender">Gender</label>
-                                    <input class="form-control" id="vocab-create-gender" placeholder="Gender">
+                                    <label for="vocab-create-phrase">Phrase</label>
+                                    <input class="form-control" id="vocab-create-phrase" placeholder="Phrase">
                                 </div>
                             </div>
                         </div>
@@ -93,8 +93,8 @@
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="vocab-edit-gender">Gender</label>
-                                    <input class="form-control" id="vocab-edit-gender" placeholder="Gender">
+                                    <label for="vocab-edit-phrase">Phrase</label>
+                                    <input class="form-control" id="vocab-edit-phrase" placeholder="Phrase">
                                 </div>
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                             $('#vocab-create-word').val().trim(),
                             $('#vocab-create-phonetic').val().trim(),
                             $('#vocab-create-personalconnection').val().trim(),
-                            $('#vocab-create-gender').val().trim(),
+                            $('#vocab-create-phrase').val().trim(),
                             encodedFiles[0],
                             encodedFiles[1],
                             ()=>{
@@ -174,7 +174,7 @@
                     $('#vocab-edit-word').val(vocab.word);
                     $('#vocab-edit-phonetic').val(vocab.phonetic);
                     $('#vocab-edit-personalconnection').val(vocab.personalConnection);
-                    $('#vocab-edit-gender').val(vocab.gender);
+                    $('#vocab-edit-phrase').val(vocab.phrase);
                     $('#vocab-edit-audio-old').attr('src', AppApi.fileServer + vocab.audioPath);
                     $('#vocab-edit-image-old').attr('src', AppApi.fileServer + vocab.imagePath);
 
@@ -189,7 +189,7 @@
                                 $('#vocab-edit-word').val().trim(),
                                 $('#vocab-edit-phonetic').val().trim(),
                                 $('#vocab-edit-personalconnection').val().trim(),
-                                $('#vocab-edit-gender').val().trim(),
+                                $('#vocab-edit-phrase').val().trim(),
                                 encodedFiles[0],
                                 encodedFiles[1],
                                 (editData)=>{
@@ -206,13 +206,13 @@
                 });
             };
 
-            var create = (vocabdeckId, word, phonetic, personalConnection, gender, encodedImage, encodedAudio, callback)=>{
+            var create = (vocabdeckId, word, phonetic, personalConnection, phrase, encodedImage, encodedAudio, callback)=>{
                 AppApi.sync.post("/vocab/create", {
                     vocabdeckId: vocabdeckId,
                     word: word,
                     phonetic: phonetic,
                     personalConnection: personalConnection,
-                    gender: gender,
+                    phrase: phrase,
                     encodedImage: encodedImage,
                     encodedAudio: encodedAudio
                 }).then((response)=>{
@@ -220,13 +220,13 @@
                 });
             };
 
-            var edit = (vocabId, word, phonetic, personalConnection, gender, encodedImage, encodedAudio, callback)=>{
+            var edit = (vocabId, word, phonetic, personalConnection, phrase, encodedImage, encodedAudio, callback)=>{
                 AppApi.sync.post("/vocab/edit", {
                     vocabId: vocabId,
                     word: word,
                     phonetic: phonetic,
                     personalConnection: personalConnection,
-                    gender: gender,
+                    phrase: phrase,
                     encodedImage: encodedImage,
                     encodedAudio: encodedAudio
                 }).then((response)=>{
