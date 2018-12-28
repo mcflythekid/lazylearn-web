@@ -104,7 +104,6 @@ var AnswerList = ((e)=>{
 var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
     var deckId, learnType, arr, arrIndex, arrLength, isReverse, isEditing, isFlipped;
     var deckObject;
-    var sendingAnswer = false;
 
     e.str = ()=>{
         return{
@@ -217,7 +216,9 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
 
     var end = ()=>{
         HoldOn.open();
-        AnswerList.waitAll().then(returnToDeck);
+        AnswerList.waitAll().then(()=>{
+            window.location = Constant.deckUrl;
+        }));
     };
 
     var edit = ()=>{
