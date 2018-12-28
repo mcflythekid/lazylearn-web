@@ -88,9 +88,25 @@ Card();
 </div>
 
 <script>
+
+var AnswerList = ((e)=>{
+    var promises = [];
+    e.push = promise => {
+        promises.push(promise);
+    };
+    e.waitAll = ()=>{
+        Promise.all(promises).then(values=>{
+            return new Promise();
+        });
+    }
+    return e;
+})({});
+
+
 var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
     var deckId, learnType, arr, arrIndex, arrLength, isReverse, isEditing, isFlipped;
     var deckObject;
+    var sendingAnswer = false;
 
     e.str = ()=>{
         return{
@@ -203,7 +219,7 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
 
     var end = ()=>{
         HoldOn.open();
-        setTimeout(returnToDeck, 2000);
+        AnswerList.waitAll().then(returnToDeck);
     };
 
     var edit = ()=>{
@@ -315,10 +331,10 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
 
     var right = ()=>{
         if (learnType === 'learn'){
-            AppApi.async.post("/learn/correct/" + arr[arrIndex].id);
+            AnswerList.push(AppApi.async.post("/learn/correct/" + arr[arrIndex].id));
         } else if (learnType === 'review'){
             if (arr[arrIndex].step == 0){
-                AppApi.async.post("/learn/correct/" + arr[arrIndex].id);
+                AnswerList.push(AppApi.async.post("/learn/correct/" + arr[arrIndex].id));
             }
         }
         arr[arrIndex].answered = true;
@@ -327,7 +343,7 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
     };
 
     var wrong = ()=>{
-        AppApi.async.post("/learn/incorrect/" + arr[arrIndex].id);
+        AnswerList.push(AppApi.async.post("/learn/incorrect/" + arr[arrIndex].id));
         arr[arrIndex].answered = true;
         arr[arrIndex].correct = false;
         goNextUnanswered();
@@ -370,7 +386,6 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
         };
         var nextIndex = getNextUnansweredIndex();
         if (nextIndex == -1){
-            Dialog.con
             end();
         } else {
             arrIndex = nextIndex;
