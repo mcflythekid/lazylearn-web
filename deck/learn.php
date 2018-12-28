@@ -95,9 +95,7 @@ var AnswerList = ((e)=>{
         promises.push(promise);
     };
     e.waitAll = ()=>{
-        Promise.all(promises).then(values=>{
-            return new Promise();
-        });
+        return Promise.all(promises);
     }
     return e;
 })({});
