@@ -26,14 +26,14 @@
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="vocab-create-personalconnection">Personal connection</label>
-                                    <input required class="form-control" id="vocab-create-personalconnection" placeholder="Personal connection">
+                                    <label for="vocab-create-phrase">Phrase</label>
+                                    <input class="form-control" id="vocab-create-phrase" placeholder="Phrase">
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="vocab-create-phrase">Phrase</label>
-                                    <input class="form-control" id="vocab-create-phrase" placeholder="Phrase">
+                                    <label for="vocab-create-personalconnection">Personal connection</label>
+                                    <input required class="form-control" id="vocab-create-personalconnection" placeholder="Personal connection">
                                 </div>
                             </div>
                         </div>
@@ -87,14 +87,14 @@
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="vocab-edit-personalconnection">Personal connection</label>
-                                    <input required class="form-control" id="vocab-edit-personalconnection" placeholder="Personal connection">
+                                    <label for="vocab-edit-phrase">Phrase</label>
+                                    <input class="form-control" id="vocab-edit-phrase" placeholder="Phrase">
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="vocab-edit-phrase">Phrase</label>
-                                    <input class="form-control" id="vocab-edit-phrase" placeholder="Phrase">
+                                    <label for="vocab-edit-personalconnection">Personal connection</label>
+                                    <input required class="form-control" id="vocab-edit-personalconnection" placeholder="Personal connection">
                                 </div>
                             </div>
                         </div>
