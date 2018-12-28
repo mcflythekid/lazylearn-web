@@ -150,9 +150,7 @@ Deck();
             $('a.cc').each(function(index){
                 var $el = $(this);
                 var deckId = $el.attr('data-deckid');
-                debugger;
                 AppApi.async.get("/learn/learnable-count/" + deckId).then(res=>{
-                    debugger;
                     if (res.data > 0){
                         $el.text('Learn');
                         $('span.cl[data-deckid="'+deckId+'"]').text(res.data);
