@@ -218,7 +218,7 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
         HoldOn.open();
         AnswerList.waitAll().then(()=>{
             window.location = Constant.deckUrl;
-        }));
+        });
     };
 
     var edit = ()=>{
