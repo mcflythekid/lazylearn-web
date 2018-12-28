@@ -1,5 +1,5 @@
 <?php
-require_once 'core.php';
+require_once '../core.php';
 $TITLE = 'Admin: User';
 $HEADER = "Admin: User";
 $PATHS = [

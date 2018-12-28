@@ -168,7 +168,8 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="/admin.php"><i class="fa fa-user"></i> User</a></li>
+                            <li><a href="/admin/user.php"><i class="fa fa-user"></i> User</a></li>
+                            <li><a href="/admin/panel.php"><i class="fa fa-gear"></i> Setting</a></li>
                             <li><a href="/article/admin.php"><i class="fa fa-book"></i> Topic</a></li>
                             <li><a href="/minpair/admin.php"><i class="fa fa-bullhorn"></i> Minpair</a></li>
                         </ul>
