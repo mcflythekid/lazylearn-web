@@ -56,11 +56,6 @@ Article();
         },
         pagination: true,
         columns: [
-			{
-                field: 'category',
-                title: 'Category',
-                sortable: true
-            },
             {
                 field: 'user.fullName',
                 title: 'User',
