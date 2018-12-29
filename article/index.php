@@ -64,7 +64,10 @@ Article();
             {
                 field: 'name',
                 title: 'Name',
-                sortable: true
+                sortable: true,
+                formatter: (o, row)=>{
+                    return '<a href="/article/view-redirect.php?id=' + row.id + '">' + o + '</a>';
+                }
             },
             {
                 field: 'url',
