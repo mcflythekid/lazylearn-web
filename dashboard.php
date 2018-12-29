@@ -127,7 +127,7 @@ Deck();
                     //if (row.archived == 0 && row.totalTimeupCard > 0){
 						if (row.minpairLanguage){
 							learnHtml = '<a data-deckid="' + row.id + '" class="btn btn-sm btn-success pull-left cc" href="/minpair/learn-redirect.php?type=learn&id=' + row.id + '">loading...</a> ';
-						} else if (row.articleCategory){
+						} else if (row.type == "topic"){
 							learnHtml = '<a data-deckid="' + row.id + '" class="btn btn-sm btn-success pull-left cc" href="/article/learn-redirect.php?type=learn&id=' + row.id + '">loading...</a> ';
 						} else {
 							learnHtml = '<a data-deckid="' + row.id + '" class="btn btn-sm btn-success pull-left cc" href="/deck/learn.php?type=learn&id=' + row.id + '">loading...</a> ';
