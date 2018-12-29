@@ -34,7 +34,7 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
     </div>
 </div>
 
-<div class="row" id="cardcreate">
+<div class="row deck-control" id="cardcreate">
     <div class="col-lg-11 u-mb-10">
         <div class="row">
             <div class="col-xs-6">
@@ -51,7 +51,8 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
 </div>
 
 <div class="row">
-    <div class="col-lg-12">
+
+    <div class="col-lg-12 deck-control">
         <div class="btn-group">
             <button class="btn btn-success deck-action" data-action="learn">Lean</button>
             <button class="btn btn-success deck-action" data-action="review">Review</button>
@@ -106,6 +107,11 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
         });
         Deck.get(deckId, (deckResponseObject)=>{
             deck = deckResponseObject;
+
+            if (deck.type == "topic"){
+                $('.deck-control').hide();
+            }
+
             if (!deck.archived) {
                 $('.deck-action[data-action="archive"]').show();
                 $('.deck-action[data-action="unarchive"]').hide();
@@ -250,7 +256,9 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
             {
                 align: 'center',
                 formatter: (obj, row)=>{
-                   // debugger;
+                   if (deck.type == 'topic'){
+                       return '';
+                    }
                     return '<div class="btn-group">'+
                         '<button data-vocabid="'+row.vocabId+'" data-cardid="'+row.id+'" class="btn btn-sm btn-success cardcmd__edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>'+
                         '<button data-vocabid="'+row.vocabId+'" data-cardid="'+row.id+'" class="btn btn-sm btn-danger cardcmd__delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>'+
