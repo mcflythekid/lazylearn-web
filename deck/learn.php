@@ -57,7 +57,8 @@ Card();
         <div class="row">
             <div id="learndata">
                 <div id="learndata__front">
-                    <div id="learndata__front--result-correct" class="learndata__front--result" style="display: none;">CORRECT</div>
+                    <div id="learndata__front--result-correct-4" class="learndata__front--result" style="display: none;">HESITATE</div>
+                    <div id="learndata__front--result-correct-5" class="learndata__front--result" style="display: none;">PERFECT</div>
                     <div id="learndata__front--result-incorrect" class="learndata__front--result" style="display: none;">INCORRECT</div>
                     <div id="learndata__front--data"></div>
                 </div>
@@ -73,13 +74,23 @@ Card();
                     <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                     Show answer
                 </button>
-                <button id="learnanswer__right" class="learnanswer btn btn-success" style="display: none;">
-                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    I was right
-                </button>
+                
                 <button id="learnanswer__wrong" class="learnanswer btn btn-danger" style="display: none;">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    I was wrong
+                    Forget
+                </button>
+
+                <button data-quality="3" class="learnanswer learnanswer__right btn btn-warning" style="display: none;">
+                    Very Hard
+                </button>
+
+                <button data-quality="4" class="learnanswer learnanswer__right btn btn-info" style="display: none;">
+                    Hesitate
+                </button>
+
+                <button data-quality="5" class="learnanswer learnanswer__right btn btn-success" style="display: none;">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    Perfect
                 </button>
             </div>
         </div>
@@ -125,8 +136,8 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
 
         $(document).on('keydown', function(event){
             if(event.keyCode == 40 && !isEditing ) {event.preventDefault(); wrong();} // Down
-            if(event.keyCode == 38 && !isEditing ) {;event.preventDefault(); right()} // Up
-            if(event.keyCode == 37 && !isEditing ) {;event.preventDefault(); back();} // Left
+            if(event.keyCode == 38 && !isEditing ) {event.preventDefault(); right(5);} // Up
+            if(event.keyCode == 37 && !isEditing ) {event.preventDefault(); back();} // Left
             if(event.keyCode == 39 && !isEditing ) { // Right
                 event.preventDefault();
                 if (arr[arrIndex].answered || isFlipped) {
@@ -145,7 +156,10 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
         $(document).on('click', '#learncmd__delete', delete_);
         $(document).on('click', '#learncmd__shuffle', shuffle);
         $(document).on('click', '#learnanswer__flip', flip);
-        $(document).on('click', '#learnanswer__right', right);
+        $(document).on('click', '.learnanswer__right', function(e){
+            e.preventDefault();
+            right($(this).attr('data-quality'));
+        });
         $(document).on('click', '#learnanswer__wrong', wrong);
 
         Deck.get(deckId, (deck)=>{
@@ -174,7 +188,8 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
                     back: obj.back,
                     answered: false,
                     correct: false,
-                    vocabId: obj.vocabId
+                    vocabId: obj.vocabId,
+                    quality: -1
                 };
                 arrLength = arr.length;
             });
@@ -193,11 +208,15 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
         $('#learndata__back--data').addClass('hidden');
 
         if(arr[index].answered){
-            $('#learnanswer__right').show();
+            $('.learnanswer__right').show();
             $('#learnanswer__wrong').show();
             $('#learndata__back--data').removeClass('hidden');
             if (arr[index].correct){
-                $('#learndata__front--result-correct').show();
+                if (arr[index].quality == 4){
+                    $('#learndata__front--result-correct-4').show();
+                } else if (arr[index].quality == 5){
+                    $('#learndata__front--result-correct-5').show();
+                }
             } else {
                 $('#learndata__front--result-incorrect').show();
             }
@@ -324,20 +343,28 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
         isFlipped = true;
         $('#learndata__back--data').removeClass('hidden');
         $('#learnanswer__flip').hide();
-        $('#learnanswer__right').show();
+        $('.learnanswer__right').show();
         $('#learnanswer__wrong').show();
     };
 
-    var right = ()=>{
-        if (learnType === 'learn'){
-            AnswerList.push(AppApi.async.post("/learn/correct/" + arr[arrIndex].id));
-        } else if (learnType === 'review'){
-            if (arr[arrIndex].step == 0){
-                AnswerList.push(AppApi.async.post("/learn/correct/" + arr[arrIndex].id));
-            }
+    var right = (quality)=>{
+        if (arr[arrIndex].correct){
+            goNextUnanswered();
+            return;
         }
-        arr[arrIndex].answered = true;
-        arr[arrIndex].correct = true;
+
+        if (learnType == 'learn'){
+            AnswerList.push(AppApi.async.post("/learn/quality",{
+                cardId: arr[arrIndex].id,
+                quality: quality
+            }));
+        }
+        
+        if (quality > 3){
+            arr[arrIndex].answered = true;
+            arr[arrIndex].correct = true;
+        }
+        arr[arrIndex].quality = quality;
         goNextUnanswered();
     };
 
@@ -345,6 +372,7 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
         AnswerList.push(AppApi.async.post("/learn/incorrect/" + arr[arrIndex].id));
         arr[arrIndex].answered = true;
         arr[arrIndex].correct = false;
+        arr[arrIndex].correct = 0;
         goNextUnanswered();
     };
 

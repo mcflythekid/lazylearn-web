@@ -59,7 +59,10 @@
     font-size:18px;
     font-weight:bold;
 }
-#learndata__front--result-correct{
+#learndata__front--result-correct-4{
+    color: #0c8ee4;
+}
+#learndata__front--result-correct-5{
     color: #66cc66;
 }
 #learndata__front--result-incorrect{

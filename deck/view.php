@@ -205,7 +205,7 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
             params.deckId = deckId;
             return params;
         },
-        showHeader: false,
+        showHeader: true,
         search: true,
         ajaxOptions: {
             headers: {
@@ -221,7 +221,7 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
                 formatter: (obj)=>{
                     return obj;
                 },
-                width: '44%'
+                width: '40%'
             },
             {
                 field: 'back',
@@ -230,11 +230,27 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
                 formatter: (obj)=>{
                     return obj;
                 },
-                width: '44%'
+                width: '40%'
+            },
+            {
+                field: 'sm2Ef',
+                title: 'E-F',
+                sortable: true,
+            },
+            {
+                field: 'step',
+                title: 'Step',
+                sortable: true,
+            },
+            {
+                field: 'expiredDays',
+                title: 'Days',
+                sortable: false,
             },
             {
                 align: 'center',
                 formatter: (obj, row)=>{
+                   // debugger;
                     return '<div class="btn-group">'+
                         '<button data-vocabid="'+row.vocabId+'" data-cardid="'+row.id+'" class="btn btn-sm btn-success cardcmd__edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>'+
                         '<button data-vocabid="'+row.vocabId+'" data-cardid="'+row.id+'" class="btn btn-sm btn-danger cardcmd__delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>'+
