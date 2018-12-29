@@ -105,15 +105,24 @@ Deck();
                 }
             },
             {
-                width: 100,
+                width: 50,
                 title: 'Expired',
                 sortable: true,
                 formatter: (obj, row)=>{
-                    return "<span class='learnable-check' data-deckid='"+row.id+"'><span>";
+                    return "<span class='learnable-count' data-deckid='"+row.id+"'><span>";
                 }
             },
             {
-                field: 'type'
+                width: 50,
+                formatter: (obj,row)=>{
+                    if (row.type == 'minpair'){
+                        return '<a data-deckid="' + row.id + '" class="btn btn-sm btn-success pull-left learn-go" href="/minpair/learn-redirect.php?type=learn&id=' + row.id + '">loading...</a> ';
+                    } else if (row.type == 'topic'){
+                        return '<a data-deckid="' + row.id + '" class="btn btn-sm btn-success pull-left learn-go" href="/article/learn-redirect.php?type=learn&id=' + row.id + '">loading...</a> ';
+                    } else {
+                        return '<a data-deckid="' + row.id + '" class="btn btn-sm btn-success pull-left learn-go" href="/deck/learn.php?type=learn&id=' + row.id + '">loading...</a> ';
+                    }
+                }
             },
             {
                 width: 50,
@@ -126,13 +135,13 @@ Deck();
             },
         ],
         onLoadSuccess: ()=>{
-            $('span.learnable-check').each(function(index){
+            $('a.learn-go').each(function(index){
                 var $el = $(this);
                 var deckId = $el.attr('data-deckid');
                 AppApi.async.get("/learn/learnable-count/" + deckId).then(res=>{
                     if (res.data > 0){
                         $el.text('Learn');
-                        $('span.learnable-check[data-deckid="'+deckId+'"]').text(res.data);
+                        $('span.learnable-count[data-deckid="'+deckId+'"]').text(res.data);
                     } else {
                         $el.remove();
                     }
