@@ -1,7 +1,7 @@
 <?php function Article(){ ?>
 
 <div id="article__modal__create" class="modal fade" role="dialog" tabindex='-1'>
-    <div class="modal-dialog">
+    <div class="modal-dialog  modal-lg">
 
         <!-- Modal content-->
         <div class="modal-content">
@@ -19,7 +19,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="article__modal__create--content">Content</label>
-                                <input type="text" value="" required class="form-control" id="article__modal__create--content" placeholder="Content">
+                                <div id="article__modal__create--content"></div>
                             </div>
                             <div class="form-group">
                                 <label for="article__modal__create--url">URL</label>
@@ -40,11 +40,24 @@
 
 <script>
 
+    var quillContent = new Quill(
+        '#article__modal__create--content',
+        Editor.generateQuillConfig('Content',()=>{
+            console.log("");
+        },()=>{
+            console.log("");
+        })
+    );
+
     $('#article__modal__create--form').submit(function(e){
         e.preventDefault();
+        if (Editor.isBlank(quillContent)) {
+            FlashMessage.warning("Please check your content");
+            return;
+        }
         Article.create(
             $('#article__modal__create--name').val(),
-            $('#article__modal__create--content').val(),
+            Editor.getHtml(quillContent),
             $('#article__modal__create--url').val(),
             ()=>{
                 $('#article__modal__create--form')[0].reset();
@@ -94,12 +107,6 @@ var Article = ((e, AppApi, Constant, FlashMessage, Dialog)=>{
         });
     };
         
-    e.sendToDeck = (articleId, callback)=>{
-        AppApi.sync.post("/article/send-to-deck/"+ articleId).then((res)=>{
-            callback(res.data);
-        })
-    };
-
     e.openCreate = ()=>{
         $('#article__modal__create').modal('show');
     };
