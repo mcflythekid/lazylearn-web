@@ -97,19 +97,11 @@ Deck();
                 title: 'Name',
                 sortable: true,
                 formatter: (obj,row)=>{
-					var link = '<a href="/deck/view.php?id=' + row.id + '">' + obj+'</a>' +
-                        (row.archived == 1 ? ' <span class="archived">Archived</span>' : '');
-						
-					var noLink = obj +
-						(row.archived == 1 ? ' <span class="archived">Archived</span>' : '');
-
-                    if (row.minpairLanguage || row.articleCategory || row.vocabdeckId){
-                        link = "<strong>" + link + "</strong>"
-                        noLink = "<strong>" + noLink + "</strong>"
-                    }
-
-                    //return row.minpairLanguage || row.articleCategory ? minpairArticleHtml : normalHtml;
-                    return link;
+                    var archived =  (row.archived == 1 ? ' <span class="archived">Archived</span>' : '');
+					var link = '<a href="/deck/view.php?id=' + row.id + '">' + obj+'</a>' + archived;
+					var noLink = obj + archived;
+                    
+                    return ["default","topic","vocab"].includes(row.type) ? link : noLink;
                 }
             },
             {
@@ -117,29 +109,16 @@ Deck();
                 title: 'Expired',
                 sortable: true,
                 formatter: (obj, row)=>{
-                    return "<span class='cl' data-deckid='"+row.id+"'><span>";
+                    return "<span class='learnable-check' data-deckid='"+row.id+"'><span>";
                 }
+            },
+            {
+                field: 'type'
             },
             {
                 width: 50,
                 formatter: (obj,row)=>{
-                    var learnHtml = '';
-                    //if (row.archived == 0 && row.totalTimeupCard > 0){
-						if (row.minpairLanguage){
-							learnHtml = '<a data-deckid="' + row.id + '" class="btn btn-sm btn-success pull-left cc" href="/minpair/learn-redirect.php?type=learn&id=' + row.id + '">loading...</a> ';
-						} else if (row.type == "topic"){
-							learnHtml = '<a data-deckid="' + row.id + '" class="btn btn-sm btn-success pull-left cc" href="/article/learn-redirect.php?type=learn&id=' + row.id + '">loading...</a> ';
-						} else {
-							learnHtml = '<a data-deckid="' + row.id + '" class="btn btn-sm btn-success pull-left cc" href="/deck/learn.php?type=learn&id=' + row.id + '">loading...</a> ';
-						}
-					//}
-                    return  learnHtml;
-                }
-            },
-            {
-                width: 50,
-                formatter: (obj,row)=>{
-                    if (!(row.vocabdeckId || row.minpairLanguage || row.articleCategory))
+                    if (row.type == "default")
                         return '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
                     else
                         return '';
@@ -147,14 +126,13 @@ Deck();
             },
         ],
         onLoadSuccess: ()=>{
-            $('a.cc').each(function(index){
+            $('span.learnable-check').each(function(index){
                 var $el = $(this);
                 var deckId = $el.attr('data-deckid');
                 AppApi.async.get("/learn/learnable-count/" + deckId).then(res=>{
                     if (res.data > 0){
                         $el.text('Learn');
-                        $('span.cl[data-deckid="'+deckId+'"]').text(res.data);
-                        //$('span.cl').text(res.data);
+                        $('span.learnable-check[data-deckid="'+deckId+'"]').text(res.data);
                     } else {
                         $el.remove();
                     }
@@ -169,7 +147,7 @@ Deck();
         contextMenuAutoClickRow: true,
         beforeContextMenuRow: function(e,row,buttonElement){
 
-            if (row.vocabdeckId || row.minpairLanguage || row.articleCategory){
+            if (row.type != 'default'){
                 return false;
             }
 

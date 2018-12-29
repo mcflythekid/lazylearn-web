@@ -26,6 +26,12 @@ top_private();
     </div>
 </div>
 
+<div class="row u-mt-15">
+    <div class="col-lg-12">
+        <button class="btn btn-info" id="refresh-all-minpair">Refresh Minpair</button>
+    </div>
+</div>
+
 <script>
 
     var refreshAllVocab = ()=>{
@@ -48,6 +54,13 @@ top_private();
         });
     };
     $("#refresh-all-topic").click(refreshAllTopic);
+
+    var refreshAllMinpair = ()=>{
+        AppApi.sync.post("/admin/refresh-all-minpair").then((response)=>{
+            FlashMessage.success(response.data.msg);
+        });
+    };
+    $("#refresh-all-minpair").click(refreshAllMinpair);
 
 </script>
 <?=bottom_private()?>
