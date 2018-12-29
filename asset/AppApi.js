@@ -12,7 +12,7 @@ var AppApi = ((e, apiServer, HoldOn, Storage, FlashMessage)=>{
         if (error.response && error.response.data && error.response.data.msg){
             FlashMessage.error(error.response.data.msg);
         } else{
-            FlashMessage.error('Cannot process request.');
+            FlashMessage.error('Có biến rồi đại vương ơi. Chúng ta đã bị mất kết nối!');
         }
     };
 
