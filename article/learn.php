@@ -15,15 +15,22 @@ Article();
 
     <div class="row" style="display: none;" id="art_submit">
         <div class="col-lg-12">
-            <button class="btn btn-sm btn-success" id="article__create--btn" type="submit">Complete</button>
+            <button class="btn btn-sm btn-danger" id="forget">Forget</button>
+            <button class="btn btn-sm btn-warning success" data-quality="3">Hard</button>
+            <button class="btn btn-sm btn-info success" data-quality="4">Hesitate</button>
+            <button class="btn btn-sm btn-success success" data-quality="5">Perfect</button>
         </div>
     </div>
+
+    <hr>
 
     <div class="row" style="display: none;" id="art_url">
         <div class="col-lg-12">
             <h4>URL: <a href="" target="_blank"></a></h4>
         </div>
     </div>
+
+    <hr>
 
     <div class="row">
         <div class="col-lg-12">
@@ -63,20 +70,27 @@ Article();
             window.location = Constant.deckUrl;
         };
 
-        $(document).on('click', '#art_submit button', function(e){
-            e.preventDefault();
-            Dialog.confirm('This cannot be undone', ()=>{
-                if (learnType === 'learn'){
-					AppApi.sync.post("/learn/correct/" + cardId).then(()=>{
-                        goHome();
-                    });
-				} else if (learnType === 'review' && cardObj.step == 0){
-					AppApi.sync.post("/learn/correct/" + cardId).then(()=>{
-                        goHome();
-                    });
-				} else {
+        $(document).on('click', '#art_submit #forget', function(){
+            Dialog.confirm('Are you sure?', ()=>{
+                AppApi.sync.post("/learn/incorrect/" + cardId).then(()=>{
                     goHome();
-                }
+                });
+            });
+        });
+
+        $(document).on('click', '#art_submit .success', function(e){
+            var quality = $(this).attr('data-quality');
+            if (learnType == 'review'){
+                goHome();
+                return;
+            }
+            Dialog.confirm('Are you sure?', ()=>{
+                AppApi.sync.post("/learn/quality", {
+                    cardId: cardId,
+                    quality: quality
+                }).then(()=>{
+                    goHome();
+                });
             });
         });
 		
