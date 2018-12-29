@@ -20,6 +20,12 @@ top_private();
     </div>
 </div>
 
+<div class="row u-mt-15">
+    <div class="col-lg-12">
+        <button class="btn btn-info" id="refresh-all-topic">Refresh Topic</button>
+    </div>
+</div>
+
 <script>
 
     var refreshAllVocab = ()=>{
@@ -36,7 +42,12 @@ top_private();
     };
     $("#refresh-all-vocabdeck").click(refreshAllVocabdeck);
 
-
+    var refreshAllTopic = ()=>{
+        AppApi.sync.post("/admin/refresh-all-topic").then((response)=>{
+            FlashMessage.success(response.data.msg);
+        });
+    };
+    $("#refresh-all-topic").click(refreshAllTopic);
 
 </script>
 <?=bottom_private()?>

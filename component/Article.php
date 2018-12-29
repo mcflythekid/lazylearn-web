@@ -22,12 +22,8 @@
                                 <input type="text" value="" required class="form-control" id="article__modal__create--content" placeholder="Content">
                             </div>
                             <div class="form-group">
-                                <label for="article__modal__create--url">Content</label>
+                                <label for="article__modal__create--url">URL</label>
                                 <input type="text" value="" class="form-control" id="article__modal__create--url" placeholder="URL">
-                            </div>
-                            <div class="form-group">
-                                <label for="article__modal__create--category">Category</label>
-                                <input type="text" value="" required class="form-control" id="article__modal__create--category" placeholder="Category">
                             </div>
                         </div>
                     </div>
@@ -50,11 +46,9 @@
             $('#article__modal__create--name').val(),
             $('#article__modal__create--content').val(),
             $('#article__modal__create--url').val(),
-            $('#article__modal__create--category').val(),
             ()=>{
                 $('#article__modal__create--form')[0].reset();
                 $('#article__modal__create').modal('hide');
-
                 // TODO concac
                 $('#article__list').bootstrapTable('refresh',{
                     silent: true
@@ -82,12 +76,11 @@ var Article = ((e, AppApi, Constant, FlashMessage, Dialog)=>{
         });
     };
 
-    e.create = (name, content, url, category, callback)=>{
+    e.create = (name, content, url, callback)=>{
         AppApi.sync.post("/article/create", {
             name: name,
             content: content,
-            url: url,
-            category: category
+            url: url
         }).then(()=>{
             callback();
         });
