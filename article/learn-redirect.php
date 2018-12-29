@@ -19,7 +19,7 @@ Deck();
 		}
 		
 		var card = response.data.cards[0];
-		var loc = "/article/learn.php?id=" + card.front + "&cardid=" + card.id + "&type=" + learnType;
+		var loc = "/article/learn.php?id=" + card.articleId + "&cardid=" + card.id + "&type=" + learnType;
 		window.location = loc;
 	});
 </script>
