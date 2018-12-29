@@ -158,9 +158,15 @@ Minpair();
 		var finishSession = ()=>{ //learned until the end
 			if (incorrect <= Constant.minpairAllowedErrors){
 				if (learnType === 'learn'){
-					AppApi.async.post("/learn/correct/" + cardId);
+					AppApi.async.post("/learn/quality",{
+                        cardId: cardId,
+                        quality:5
+                    });
 				} else if (learnType === 'review' && cardObj.step == 0){
-					AppApi.async.post("/learn/correct/" + cardId);
+					AppApi.async.post("/learn/quality",{
+                        cardId: cardId,
+                        quality:5
+                    });
 				}
 				Dialog.success('Success!<br>' + correct + " correct / " + Constant.minpairCount, ()=>{
 					window.location = Constant.deckUrl;
