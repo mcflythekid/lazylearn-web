@@ -33,7 +33,7 @@ Article();
     <hr>
 
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-6">
             <div id="art_content"></div>
         </div>
     </div>
