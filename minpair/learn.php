@@ -90,7 +90,7 @@ Minpair();
             Minpair.get(minpairId, (object)=>{
                 count = correct = incorrect = 0;
                 minpair = object;
-                var name = minpair.word1 + ' - ' + minpair.word2 + ' [' + minpair.learnedCount + ']';
+                var name = minpair.word1 + ' - ' + minpair.word2;
                 $('#appHeader').text(name);
                 document.title = name;
                 $('#appBreadcrumb1').text(name);
