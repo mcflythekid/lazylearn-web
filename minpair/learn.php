@@ -210,6 +210,13 @@ Minpair();
             if(event.keyCode == 39) {;event.preventDefault(); choose2();} // Right
         });
 
+        var force = ()=>{
+            AppApi.async.post("/learn/quality",{
+                cardId: cardId,
+                quality:5
+            });
+        };
+
         reload();
 
     </script>
