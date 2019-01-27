@@ -185,9 +185,9 @@ div.flash-container{
 /***********************************************************************/
 /***********************************************************************/
 /***********************************************************************/
-#learndata__front-result-correct{
+#learndata__front--result-correct{
     color: #66cc66;
 }
-#learndata__front-result-incorrect{
+#learndata__front--result-incorrect{
     color: #ff3333;
 }
