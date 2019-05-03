@@ -1,5 +1,4 @@
 <?php
-header("Location: /dashboard.php")
 require_once 'core.php';
 $TITLE = 'Lazylearn';
 top_public();
