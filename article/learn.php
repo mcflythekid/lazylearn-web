@@ -81,7 +81,7 @@ Article();
 
         $(document).on('click', '#art_submit #delete', function(){
             Dialog.confirm('Are you sure to delete?', ()=>{
-                AppApi.sync.post("/article/delete/" + cardId).then(()=>{
+                AppApi.sync.post("/article/delete/" + articleId).then(()=>{
                     goHome();
                 });
             });
