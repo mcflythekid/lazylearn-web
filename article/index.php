@@ -68,7 +68,7 @@ Article();
                 title: 'Name',
                 sortable: true,
                 formatter: (o, row)=>{
-                    return '<a href="/article/view-redirect.php?id=' + row.id + '">' + o + '</a>';
+                    return '<a target="_blank" href="/article/view-redirect.php?id=' + row.id + '">' + o + '</a>';
                 }
             },
             {
