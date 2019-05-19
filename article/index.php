@@ -94,6 +94,8 @@ Article();
                 Article.delete(row.id, ()=>{
                     refresh();
                 });
+            } else if ($el.data("item") == "rename") {
+                alert('ok');
             }
         }
     });
