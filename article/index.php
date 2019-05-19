@@ -102,6 +102,11 @@ Article();
                         newName: newName
                     }).then(refresh);
                 }
+            } else if ($el.data("item") == "edit") {
+                AppApi.sync.get("/article/" + row.id).then(res=>{
+                    console.log(res.data);
+                    Article.openCreate();
+                });
             }
         }
     });
