@@ -53,8 +53,8 @@ Article();
         sidePagination: 'server',
         sortName: 'createdDate',
         sortOrder: 'desc',
-        pageSize: 20,
-        pageList: [20, 50, 100],
+        pageSize: 100,
+        pageList: [100, 150, 200],
         search: true,
         ajaxOptions: {
             headers: {
@@ -104,7 +104,7 @@ Article();
                 }
             } else if ($el.data("item") == "edit") {
                 AppApi.sync.get("/article/get/" + row.id).then(res=>{
-                    Article.openEdit(res.data.name + ' - updated', res.data.content, res.data.url);
+                    Article.openEdit(res.data.name, res.data.content, res.data.url, row.id);
                 });
             }
         }

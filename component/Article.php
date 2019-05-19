@@ -27,6 +27,7 @@
                             </div>
                         </div>
                     </div>
+                    <input type="hidden" id="article__modal__create--id-to-delete">
                 </form>
             </div>
             <div class="modal-footer">
@@ -55,6 +56,7 @@
             FlashMessage.warning("Please check your content");
             return;
         }
+        var idToDelete = $('#article__modal__create--id-to-delete').val();
         Article.create(
             $('#article__modal__create--name').val(),
             Editor.getHtml(quillContent),
@@ -66,6 +68,9 @@
                 $('#article__list').bootstrapTable('refresh',{
                     silent: true
                 });
+                if (idToDelete){
+                    AppApi.sync.post("/article/delete/"+ idToDelete);
+                }
             }
         );
     });
@@ -108,13 +113,15 @@ var Article = ((e, AppApi, Constant, FlashMessage, Dialog)=>{
     };
         
     e.openCreate = ()=>{
+        $('#article__modal__create--id-to-delete').val('');
         $('#article__modal__create').modal('show');
     };
 
-    e.openEdit = (name, content, url)=>{
+    e.openEdit = (name, content, url, idToDelete)=>{
         Editor.setHtml(quillContent, content);
         $('#article__modal__create--name').val(name);
         $('#article__modal__create--url').val(url);
+        $('#article__modal__create--id-to-delete').val(idToDelete);
         $('#article__modal__create').modal('show');
     };
 
