@@ -103,7 +103,7 @@ Article();
                     }).then(refresh);
                 }
             } else if ($el.data("item") == "edit") {
-                AppApi.sync.get("/article/" + row.id).then(res=>{
+                AppApi.sync.get("/article/get/" + row.id).then(res=>{
                     console.log(res.data);
                     Article.openCreate();
                 });
