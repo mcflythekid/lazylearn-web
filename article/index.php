@@ -18,6 +18,8 @@ Article();
         <table id="article__list"></table>
         <ul id="context-menu" class="dropdown-menu">
             <li data-item="delete"><a>Delete</a></li>
+            <li data-item="rename"><a>Rename</a></li>
+            <li data-item="edit"><a>Edit</a></li>
         </ul>
 
     </div>
@@ -88,7 +90,7 @@ Article();
             return true;
         },
         onContextMenuItem: function(row, $el) {
-             if ($el.data("item") == "delete") {
+            if ($el.data("item") == "delete") {
                 Article.delete(row.id, ()=>{
                     refresh();
                 });
