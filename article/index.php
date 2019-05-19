@@ -95,7 +95,14 @@ Article();
                     refresh();
                 });
             } else if ($el.data("item") == "rename") {
-                alert('ok');
+                var newName = prompt("Please enter new name", row.name;
+                if (newName){
+                    AppApi.sync.post("/article/rename", {
+                        articleId: row.id,
+                        newName: newName
+                    }).then(refresh);
+                }
+               
             }
         }
     });
