@@ -159,7 +159,7 @@
                         </a>
                     </li>
 
-                    <li class="treeview active" id="admin_menu" style="display: none">
+                    <li class="treeview" id="admin_menu" style="display: none">
                         <a href="#">
                             <i class="fa fa-lock"></i>
                             <span>Admin</span>
