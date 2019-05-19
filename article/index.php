@@ -104,7 +104,7 @@ Article();
                 }
             } else if ($el.data("item") == "edit") {
                 AppApi.sync.get("/article/get/" + row.id).then(res=>{
-                    Article.openCreate(res.data.name + ' - updated', res.data.content, res.data.url);
+                    Article.openEdit(res.data.name + ' - updated', res.data.content, res.data.url);
                 });
             }
         }
