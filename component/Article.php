@@ -108,14 +108,15 @@ var Article = ((e, AppApi, Constant, FlashMessage, Dialog)=>{
     };
         
     e.openCreate = ()=>{
+        Editor.setHtml(quillContent, content);
         $('#article__modal__create').modal('show');
     };
 
     e.openCreate = (name, content, url)=>{
-        $('#article__modal__create').modal('show');
+        Editor.setHtml(quillContent, content);
         $('#article__modal__create--name').val(name);
         $('#article__modal__create--url').val(url);
-        Editor.setHtml(quillContent, content);
+        $('#article__modal__create').modal('show');
     };
 
     return e;
