@@ -12,7 +12,7 @@ Deck();
 		var card = response.data;
 		if (card){
 			var loc = "/article/learn.php?id=" + card.articleId + "&cardid=" + card.id + "&type=review";
-			window.location = loc;
+			window.location.replace(loc);
 		} else {
 			alert('nhu cc');
 		}
