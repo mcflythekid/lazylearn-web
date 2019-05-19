@@ -111,6 +111,13 @@ var Article = ((e, AppApi, Constant, FlashMessage, Dialog)=>{
         $('#article__modal__create').modal('show');
     };
 
+    e.openCreate = (name, content, url)=>{
+        $('#article__modal__create').modal('show');
+        $('#article__modal__create--name').val(name);
+        $('#article__modal__create--url').val(url);
+        Editor.setHtml(quillContent, content);
+    };
+
     return e;
 })({}, AppApi, Constant, FlashMessage, Dialog);
 </script>

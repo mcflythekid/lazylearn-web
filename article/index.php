@@ -105,7 +105,7 @@ Article();
             } else if ($el.data("item") == "edit") {
                 AppApi.sync.get("/article/get/" + row.id).then(res=>{
                     console.log(res.data);
-                    Article.openCreate();
+                    Article.openCreate(res.data.name + ' - updated', res.data.content, res.data.url);
                 });
             }
         }
