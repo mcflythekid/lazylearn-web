@@ -19,6 +19,7 @@ Article();
             <button class="btn btn-sm btn-warning success" data-quality="3">Hard</button>
             <button class="btn btn-sm btn-info success" data-quality="4">Hesitate</button>
             <button class="btn btn-sm btn-success success" data-quality="5">Perfect</button>
+            <button class="btn btn-sm btn-danger pull-right" id="delete">DELETE</button>
         </div>
     </div>
 
@@ -73,6 +74,14 @@ Article();
         $(document).on('click', '#art_submit #forget', function(){
             Dialog.confirm('Are you sure?', ()=>{
                 AppApi.sync.post("/learn/incorrect/" + cardId).then(()=>{
+                    goHome();
+                });
+            });
+        });
+
+        $(document).on('click', '#art_submit #delete', function(){
+            Dialog.confirm('Are you sure to delete?', ()=>{
+                AppApi.sync.post("/article/delete/" + cardId).then(()=>{
                     goHome();
                 });
             });
