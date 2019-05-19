@@ -69,7 +69,9 @@
                     silent: true
                 });
                 if (idToDelete){
-                    AppApi.sync.post("/article/delete/"+ idToDelete);
+                    AppApi.sync.post("/article/delete/"+ idToDelete).then(res=>{
+                        location.reload();
+                    });
                 }
             }
         );
@@ -113,6 +115,7 @@ var Article = ((e, AppApi, Constant, FlashMessage, Dialog)=>{
     };
         
     e.openCreate = ()=>{
+        Editor.setHtml(quillContent, '');
         $('#article__modal__create--id-to-delete').val('');
         $('#article__modal__create').modal('show');
     };
