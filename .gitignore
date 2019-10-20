@@ -1,4 +1,7 @@
+# idea
+.vscode/
 .idea/
+
+# package
 node_modules/
 bower_components/
-cert/
