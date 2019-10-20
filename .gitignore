@@ -5,3 +5,6 @@
 # package
 node_modules/
 bower_components/
+
+# hygen
+src/_env.php

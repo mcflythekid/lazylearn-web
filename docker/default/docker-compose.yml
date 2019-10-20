@@ -1,0 +1,10 @@
+## generated
+version: '3.5'
+services:
+  lazylearn-web:
+    container_name: lazylearn-web
+    image: webdevops/php-apache:ubuntu-16.04
+    ports:
+      - 8420:80
+    volumes:
+      - ../../src:/app

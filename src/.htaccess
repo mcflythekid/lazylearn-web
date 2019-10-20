@@ -5,14 +5,7 @@ Options -Indexes
 RewriteRule ^dkmm-([0-9]+)/(.+)$ /asset/$2
 
 # block files
-RewriteRule ^\.gitignore$  [L,R=404]
-RewriteRule ^\.htaccess_prod  [L,R=404]
 RewriteRule ^\.htaccess  [L,R=404]
 RewriteRule ^core\.php$  [L,R=404]
 RewriteRule ^package\.json$  [L,R=404]
-RewriteRule ^README\.md$  [L,R=404]
 RewriteRule ^yarn\.lock$  [L,R=404]
-
-# block directories
-RewriteRule ^script  [L,R=404]
-RewriteRule ^\.git  [L,R=404]
