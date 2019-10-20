@@ -8,9 +8,9 @@
     "docker:up": "cd docker/default && docker-compose up --force-recreate",
     "docker:down": "cd docker/default && docker-compose down || true",
     "setup": "npm i && cd src && bower install && yarn",
-    "restart": "envigenter default && npm run docker:down && npm run docker:up",
-    "start:detach": "envigenter default && npm run setup && npm run docker:down && npm run docker:up:detach",
-    "start": "envigenter default && npm run setup && npm run restart"
+    "restart": "npm run envigenter default && npm run docker:down && npm run docker:up",
+    "start:detach": "npm run envigenter default && npm run setup && npm run docker:down && npm run docker:up:detach",
+    "start": "npm run envigenter default && npm run setup && npm run restart"
   },
   "dependencies": {},
   "devDependencies": {
