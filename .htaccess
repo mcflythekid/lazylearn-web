@@ -1,10 +1,6 @@
 RewriteEngine On
 Options -Indexes
 
-# force https
-#RewriteCond %{SERVER_PORT} 80 
-#RewriteRule ^(.*)$ https://www.lazylearn.com/$1 [R,L]
-
 # resource
 RewriteRule ^dkmm-([0-9]+)/(.+)$ /asset/$2
 
