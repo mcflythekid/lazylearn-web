@@ -1,0 +1,11 @@
+RewriteEngine On
+Options -Indexes
+
+# resource
+RewriteRule ^dkmm-([0-9]+)/(.+)$ /asset/$2
+
+# block files
+RewriteRule ^\.htaccess  [L,R=404]
+RewriteRule ^core\.php$  [L,R=404]
+RewriteRule ^package\.json$  [L,R=404]
+RewriteRule ^yarn\.lock$  [L,R=404]
