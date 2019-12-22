@@ -148,11 +148,11 @@
                         </a>
                     </li>
 
-                    <!-- <li class="">
+                    <li class="">
                         <a href="/minpair">
                             <i class="fa fa-bullhorn"></i> <span>Minpair</span>
                         </a>
-                    </li> -->
+                    </li>
 
                     <li class="">
                         <a href="/article">
