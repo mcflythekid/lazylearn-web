@@ -4,17 +4,20 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docker:up:detach": "cd docker/default && docker-compose up -d --force-recreate",
-    "docker:up": "cd docker/default && docker-compose up --force-recreate",
-    "docker:down": "cd docker/default && docker-compose down || true",
-    "setup": "npm i && cd src && bower install && yarn",
-    "restart": "envigenter default && npm run docker:down && npm run docker:up",
-    "start:detach": "envigenter default && npm run setup && npm run docker:down && npm run docker:up:detach",
-    "start": "envigenter default && npm run setup && npm run restart"
+    "_docker:up:detach": "cd docker/default && docker-compose up -d --force-recreate",
+    "_docker:up": "cd docker/default && docker-compose up --force-recreate",
+    "_docker:down": "cd docker/default && docker-compose down || true",
+    "_setup": "npm i && cd src && bower install && yarn",
+    "restart": "envigenter default && npm run _docker:down && npm run _docker:up",
+    "start:detach": "envigenter default && npm run _setup && npm run _docker:down && npm run _docker:up:detach",
+    "start": "envigenter default && npm run _setup && npm run restart"
   },
   "dependencies": {},
   "devDependencies": {
+    "bower": "^1.8.8",
+    "cross-env": "^7.0.2",
     "envigenter": "^1.2.4",
-    "hygen-envigenter": "^1.1.0"
+    "hygen-envigenter": "^1.1.0",
+    "yarn": "^1.22.4"
   }
 }

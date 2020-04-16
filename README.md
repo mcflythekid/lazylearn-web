@@ -1,5 +1,15 @@
-# lazylearn-web
+lazylearn-web
+===
 Frontend of Lazylearn
 
-## setup
-sudo npm i bower envigenter hygen hygen-add cross-env -g
+# Requirements
+* NPM
+
+# First time development, change library
+```npm i && npm run start```
+
+# Start / Restart
+```npm run restart```
+
+# Production start
+```npm run start:detach```

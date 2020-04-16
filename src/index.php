@@ -21,7 +21,7 @@ top_public();
     <li><a href="/auth/register.php"><h2>create an account</a></li>
 </ul>
 <pre>
-by using this app,, you agree that <a target="_blank" href="https://fb.com/mcflythekid">@mcflythekid</a>
+by using this app, you agree that <a target="_blank" href="https://fb.com/mcflythekid">@mcflythekid</a>
 and <a target="_blank" href="https://github.com/mcflythekid">@mcflythekid</a>
 is the the most crazy developer ever in the earth
 </pre>
