@@ -2,16 +2,14 @@
 /**********************************************************************************/
 const TIMEZONE = "UTC";
 const VERSION = 109;
-const DEV_DOMAIN = "local.lazylearn.com";
-const API_SERVER_DEV = 'http://localhost:8888';
-const API_SERVER_PRO = 'https://api.lazylearn.com';
 /**********************************************************************************/
+
+require_once __DIR__ . '/_env.php';
 $HEADER = $HEADER2 = $TITLE = '';
-if( in_array( $_SERVER['SERVER_NAME'], array(DEV_DOMAIN)) ){
-    $API_SERVER = API_SERVER_DEV;
+$API_SERVER = API_SERVER;
+if (!IS_PRODUCTION) {
     $ASSET =  "/dkmm-" . rand(100000,999999);
 } else {
-    $API_SERVER = API_SERVER_PRO;
     $ASSET =  "/dkmm-" . VERSION;
 }
 date_default_timezone_set(TIMEZONE);
