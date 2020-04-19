@@ -41,19 +41,26 @@
                             <div class="col-xs-6">
                                 <div class="form-group">
                                     <label for="vocab-create-image">Image</label>
-                                    <input type="file" accept="image/*" required class="form-control" id="vocab-create-image">
+                                    <input type="file" accept="image/*" class="form-control" id="vocab-create-image">
+                                    <input type="hidden"                                              id="vocab-create-image-encoded">
+                                    <img style="max-height: 100px; display: block"                    id="vocab-create-image-preview">
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
                                     <label for="vocab-create-audio">Audio</label>
-                                    <input type="file" accept="audio/*" required class="form-control" id="vocab-create-audio">
+                                    <input type="file" accept="audio/*" class="form-control" id="vocab-create-audio">
+                                    <input type="hidden"                                              id="vocab-create-audio-encoded">
+                                    <audio controls style="width: 100%; display: block"               id="vocab-create-audio-preview">
+                                        Your browser does not support the audio element.
+                                    </audio>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
+                    <button id="crawl" class="btn btn-info">Crawl</button>
                     <button type="submit" form="vocab-create-form" class="btn btn-success">Create</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </div>
@@ -142,28 +149,61 @@
 
         var Vocab = ((e, AppApi, EncodedFile)=>{
 
-            e.openCreate = (vocabdeckId, callback)=>{
+            e.resetCreateForm = ()=>{
                 $('#vocab-create-form').get(0).reset();
+                $('#vocab-create-audio-encoded').val('');
+                $('#vocab-create-audio-preview').attr('src', '');
+                $('#vocab-create-image-encoded').val('');
+                $('#vocab-create-image-preview').attr('src', '');
+            };
+
+
+            e.crawl = ()=>{
+                const word = $('#vocab-create-word').val().trim();
+                if (!word){
+                    FlashMessage.error('Word is required');
+                    return;
+                }
+                AppApi.sync.get("/vocab/get-oxford/" + word).then((response)=>{
+                    const data = response.data;
+                    e.resetCreateForm();
+                    $('#vocab-create-word').val(data.word);
+                    $('#vocab-create-phonetic').val(data.phonetic);
+                    $('#vocab-create-phrase').val(data.phrase);
+
+                    $('#vocab-create-audio-encoded').val(JSON.stringify({  ext: "mp3", content: data.audio64 }));
+                    $('#vocab-create-audio-preview').attr('src', data.audio);
+
+                });
+                
+            };
+
+            e.openCreate = (vocabdeckId, callback)=>{
+                e.resetCreateForm();
                 $('#vocab-create-form').off().submit((e)=>{
                     e.preventDefault();
-                    Promise.all([
-                        EncodedFile.read($('#vocab-create-image')),
-                        EncodedFile.read($('#vocab-create-audio'))
-                    ]).then((encodedFiles)=>{
-                        create(
-                            vocabdeckId,
-                            $('#vocab-create-word').val().trim(),
-                            $('#vocab-create-phonetic').val().trim(),
-                            $('#vocab-create-personalconnection').val().trim(),
-                            $('#vocab-create-phrase').val().trim(),
-                            encodedFiles[0],
-                            encodedFiles[1],
-                            ()=>{
-                                $('#vocab-create-modal').modal('hide');
-                                if (callback) callback();
-                            }
-                        );
-                    });
+
+                    if (
+                        !$('#vocab-create-image-encoded').val()
+                        || !$('#vocab-create-audio-encoded').val()
+                    ) {
+                        FlashMessage.error("Check your audio / image!");
+                        return;
+                    }
+
+                    create(
+                        vocabdeckId,
+                        $('#vocab-create-word').val().trim(),
+                        $('#vocab-create-phonetic').val().trim(),
+                        $('#vocab-create-personalconnection').val().trim(),
+                        $('#vocab-create-phrase').val().trim(),
+                        JSON.parse($('#vocab-create-image-encoded').val()),
+                        JSON.parse($('#vocab-create-audio-encoded').val()),
+                        ()=>{
+                            $('#vocab-create-modal').modal('hide');
+                            if (callback) callback();
+                        }
+                    );
                 });
                 $('#vocab-create-modal').modal('show');
             };
@@ -263,6 +303,45 @@
 
             return e;
         })({}, AppApi, EncodedFile);
+
+
+
+        $("#vocab-create-modal button#crawl").click(()=>{
+            Vocab.crawl();
+        });
+        $("#vocab-create-image").change(function(){
+            EncodedFile.read($(this)).then(res=>{
+                console.log("Encoded image", res);
+                $("#vocab-create-image-encoded").val(JSON.stringify(res));
+            }).catch(err=>{
+                FlashMessage.error("Cannot read image");
+            });
+
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#vocab-create-image-preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(this.files[0]); // convert to base64 string
+            }
+        });
+        $("#vocab-create-audio").change(function(){
+            EncodedFile.read($(this)).then(res=>{
+                console.log("Encoded audio", res);
+                $("#vocab-create-audio-encoded").val(JSON.stringify(res));
+            }).catch(err=>{
+                FlashMessage.error("Cannot read audio");
+            });
+
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#vocab-create-audio-preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(this.files[0]); // convert to base64 string
+            }
+        });
+
 
     </script>
 
