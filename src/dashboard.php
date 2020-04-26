@@ -27,6 +27,12 @@ Deck();
     </div>
 </div>
 
+<div class="row">
+    <div class="col-lg-12">
+        <a class="btn btn-sm btn-success pull-left" href="/deck/learn.php?type=learn&id=all-deck">Lazy Learn Style</a>
+    </div>
+</div>
+
 <div class="row u-mt-20">
     <div class="col-lg-12">
 
