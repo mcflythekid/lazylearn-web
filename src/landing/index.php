@@ -2,14 +2,17 @@
 session_start();
 
 require_once '../core.php';
+require_once "../lang/core.php";
 
-if (!isset($_SESSION["lang"])){
-    $_SESSION["lang"] = "en";
+$lang_file = "../lang/" . optimize_language() . ".php";
+$default_lang_file = "../lang/en_US.php";
+if (file_exists($lang_file)){
+  require_once $lang_file;
+} else {
+  require_once $default_lang_file;
 }
-require_once "../lang/" . $_SESSION["lang"] . ".php";
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -100,7 +103,7 @@ require_once "../lang/" . $_SESSION["lang"] . ".php";
                 <li class="cta">
                   <a href="#language-section" class="nav-link">
                     <span>
-                      <img src="/lang/en.png">
+                      <img src="/lang/en_US.png">
                     </span>
                   </a>
                 </li>
@@ -422,8 +425,8 @@ require_once "../lang/" . $_SESSION["lang"] . ".php";
           <div class="col-md-3 ml-auto" id="language-section">
             <h3>Language</h3>
             <ul class="list-unstyled footer-links">
-              <li class="cta lang" data-lang="vi"><a href="#" class="nav-link"><img src="/lang/vi.png">&nbsp;&nbsp;Tiếng Việt</a></li>
-              <li class="cta lang" data-lang="en"><a href="#" class="nav-link"><img src="/lang/en.png">&nbsp;&nbsp;English</a></li>
+              <li class="cta lang" data-lang="vi_VN"><a href="#" class="nav-link"><img src="/lang/vi_VN.png">&nbsp;&nbsp;Tiếng Việt</a></li>
+              <li class="cta lang" data-lang="en_US"><a href="#" class="nav-link"><img src="/lang/en_US.png">&nbsp;&nbsp;English</a></li>
             </ul>
           </div>
 

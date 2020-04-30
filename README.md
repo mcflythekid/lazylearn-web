@@ -19,3 +19,6 @@ Frontend of Lazylearn
 
 # Theme
 * https://colorlib.com/wp/template/oneschool/
+
+https://stackoverflow.com/questions/10175658/is-there-a-simple-way-to-get-the-language-code-from-a-country-code-in-php
+https://hub.docker.com/r/observabilitystack/geoip-api
