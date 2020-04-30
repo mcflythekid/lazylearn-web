@@ -4,7 +4,11 @@ $TITLE = 'Lazylearn';
 top_public();
 ?>
 
-<style>
+<script>
+    window.location.replace("/landing");
+</script>
+
+<!-- <style>
     @media(max-width: 768px) {
         .container .jumbotron, .container-fluid .jumbotron {
             padding-right: 20px;
@@ -24,6 +28,6 @@ top_public();
 by using this app, you agree that <a target="_blank" href="https://fb.com/mcflythekid">@mcflythekid</a>
 and <a target="_blank" href="https://github.com/mcflythekid">@mcflythekid</a>
 is the the most crazy developer ever in the earth
-</pre>
+</pre> -->
 
 <?=bottom_public()?>

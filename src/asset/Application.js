@@ -34,7 +34,7 @@ var Application = ((Application, Storage, Auth, Constant)=>{
             $('#app__user_changepassword').hide();
         }
         if (userData.authorities.includes(Constant.adminAuthorityName)){
-            $('#admin_menu').show();
+            $('.admin_menu').show();
             $('.admin_component').show();
         }
         $('#app__user_fullname').text(userData.fullName);

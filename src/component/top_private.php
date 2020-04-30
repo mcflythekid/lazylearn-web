@@ -146,8 +146,8 @@
                     <li class="header">Main</li>
                     <li><a href="/dashboard.php"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
                     <li><a href="/vocabulary"><i class="fa fa-language"></i> <span>Vocabulary</span></a></li>
-                    <li><a href="/minpair"><i class="fa fa-circle-o text-blue"></i> <span>Minpair</span></a></li>
-                    <li><a href="/article"><i class="fa fa-circle-o text-orange"></i> <span>Topic</span></a></li>
+                    <li><a href="/minpair"><i class="fa fa-circle-o text-purple"></i> <span>Minpair</span></a></li>
+                    <li><a href="/article"><i class="fa fa-circle-o text-purple"></i> <span>Topic</span></a></li>
                     
                     <li class="admin_menu header">Admin</li>
                     <li class="admin_menu"><a href="/admin/user.php"><i class="fa fa-circle-o text-red"></i> User</a></li>

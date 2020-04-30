@@ -16,3 +16,6 @@ Frontend of Lazylearn
 
 # FAV icon
 * https://favicon.io/favicon-generator/?t=Lazy&ff=Waiting+for+the+Sunrise&fs=60&fc=%23FFF&b=rounded&bc=%23605ca8
+
+# Theme
+* https://colorlib.com/wp/template/oneschool/

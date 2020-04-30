@@ -1,7 +1,7 @@
 <?php
 require_once 'core.php';
 $TITLE = ('Dashboard');
-$HEADER = "Dashboard";
+// $HEADER = "Dashboard";
 
 top_private();
 
