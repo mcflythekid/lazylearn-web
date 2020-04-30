@@ -1,9 +1,12 @@
 <?php
 session_start();
+
+require_once '../core.php';
+
 if (!isset($_SESSION["lang"])){
     $_SESSION["lang"] = "en";
 }
-include_once "../lang/" . $_SESSION["lang"] . ".php";
+require_once "../lang/" . $_SESSION["lang"] . ".php";
 
 ?>
 
@@ -43,6 +46,24 @@ include_once "../lang/" . $_SESSION["lang"] . ".php";
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   
+  <script>
+      window.fbAsyncInit = function() {
+          FB.init({
+              appId      : '226440184828839',
+              cookie     : true,
+              xfbml      : true,
+              version    : 'v3.0'
+          });
+      };
+      (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "https://connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+  </script>
+
   <div class="site-wrap">
 
     <div class="site-mobile-menu site-navbar-target">
@@ -107,19 +128,23 @@ include_once "../lang/" . $_SESSION["lang"] . ".php";
                 </div>
 
                 <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
-                  <form action="" method="post" class="form-box">
+                  <form id="form-register" action="" method="post" class="form-box">
                     <h3 class="h4 text-black mb-4"><?= $lang["landing.first.signupform.title"] ?></h3>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder='<?= $lang["landing.first.signupform.email"] ?>'>
+                      <input class="email" type="text" required class="form-control" placeholder='<?= $lang["landing.first.signupform.email"] ?>'>
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control" placeholder='<?= $lang["landing.first.signupform.pass"] ?>'>
+                      <input class="password1" type="password" required class="form-control" placeholder='<?= $lang["landing.first.signupform.pass"] ?>'>
                     </div>
                     <div class="form-group mb-4">
-                      <input type="password" class="form-control" placeholder='<?= $lang["landing.first.signupform.repass"] ?>'>
+                      <input class="password2" type="password" required class="form-control" placeholder='<?= $lang["landing.first.signupform.repass"] ?>'>
                     </div>
                     <div class="form-group">
                       <input type="submit" class="btn btn-primary btn-pill" value='<?= $lang["landing.first.signupform.submit"] ?>'>
+                      <button class="facebook-login btn btn-primary btn-pill">
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                        <?= $lang["landing.first.signupform.fb"] ?>
+                      </button>
                     </div>
                   </form>
 
@@ -448,10 +473,31 @@ include_once "../lang/" . $_SESSION["lang"] . ".php";
   <script src="js/jquery.fancybox.min.js"></script>
   <script src="js/jquery.sticky.js"></script>
 
-  
   <script src="js/main.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js" integrity="sha256-T/f7Sju1ZfNNfBh7skWn0idlCBcI3RwdLSS4/I7NQKQ=" crossorigin="anonymous"></script>
+  <!-- ======================================================== -->
+  <!-- =======================  API  ========================== -->
+  <!-- ======================================================== -->
+  <script>
+    var apiServer = '<?=$API_SERVER?>';
+  </script>
+
+  <script src="/node_modules/jstorage/jstorage.min.js"></script>
+  <script src="<?=$ASSET?>/Storage.js"></script>
+
+  <script src="/node_modules/axios/dist/axios.min.js"></script>
+
+  <script src="/external/Holdon/HoldOn.min.js"></script>
+  <link href="/external/Holdon/HoldOn.min.css" rel="stylesheet">
+
+  <script src="/external/flashjs/dist/flash.min.js"></script>
+  <link href="/external/flashjs/dist/flash.min.css" rel="stylesheet">
+  <link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+  <script src="<?=$ASSET?>/Constant.js"></script>
+  <script src="<?=$ASSET?>/AppApi.js"></script>
+  <script src="<?=$ASSET?>/Auth.js"></script>
+
   <script>
     $(document).on('click', '.lang', function(){
         const lang = $(this).attr('data-lang');
@@ -459,8 +505,26 @@ include_once "../lang/" . $_SESSION["lang"] . ".php";
           location.reload();
         });
     });
+    $(document).on('submit', 'form#form-register', function(event){
+        event.preventDefault();
+        const email = $(this).find("input.email").val();
+        const password1 = $(this).find("input.password1").val();
+        const password2 = $(this).find("input.password2").val();
+        if (password1 != password2){
+          FlashMessage.error('<?= $lang["landing.first.signupform.msg.password_not_matched"] ?>');
+          return;
+        }
+        Auth.register(email, password1);
+    });
+    $(document).on('click', 'form#form-register button.facebook-login', function(event){
+      event.preventDefault();
+      Auth.loginFacebook();
+    });
 
   </script>
-    
+  <!-- ======================================================== -->
+  <!-- ======================================================== -->
+  <!-- ======================================================== -->
+
   </body>
 </html>
