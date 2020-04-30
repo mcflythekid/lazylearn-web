@@ -142,46 +142,18 @@
             <section class="sidebar">
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li>
-                        <a href="/dashboard.php">
-                            <i class="fa fa-home"></i> <span>Dashboard</span>
-                        </a>
-                    </li>
 
-                    <li class="">
-                        <a href="/vocabulary">
-                            <i class="fa fa-language"></i> <span>Vocabulary</span>
-                        </a>
-                    </li>
-
-                    <li class="">
-                        <a href="/minpair">
-                            <i class="fa fa-bullhorn"></i> <span>Minpair</span>
-                        </a>
-                    </li>
-
-                    <li class="">
-                        <a href="/article">
-                            <i class="fa fa-book"></i> <span>Topic</span>
-                        </a>
-                    </li>
-
-                    <li class="treeview" id="admin_menu" style="display: none">
-                        <a href="#">
-                            <i class="fa fa-lock"></i>
-                            <span>Admin</span>
-                            <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="/admin/user.php"><i class="fa fa-user"></i> User</a></li>
-                            <li><a href="/admin/panel.php"><i class="fa fa-gear"></i> Setting</a></li>
-                            <li><a href="/article/admin.php"><i class="fa fa-book"></i> Topic</a></li>
-                            <li><a href="/minpair/admin.php"><i class="fa fa-bullhorn"></i> Minpair</a></li>
-                        </ul>
-                    </li>
+                    <li class="header">Main</li>
+                    <li><a href="/dashboard.php"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                    <li><a href="/vocabulary"><i class="fa fa-language"></i> <span>Vocabulary</span></a></li>
+                    <li><a href="/minpair"><i class="fa fa-circle-o text-blue"></i> <span>Minpair</span></a></li>
+                    <li><a href="/article"><i class="fa fa-circle-o text-orange"></i> <span>Topic</span></a></li>
                     
+                    <li class="admin_menu header">Admin</li>
+                    <li class="admin_menu"><a href="/admin/user.php"><i class="fa fa-circle-o text-red"></i> User</a></li>
+                    <li class="admin_menu"><a href="/admin/panel.php"><i class="fa fa-circle-o text-yellow"></i> Setting</a></li>
+                    <li class="admin_menu"><a href="/article/admin.php"><i class="fa fa-circle-o text-green"></i> Topic</a></li>
+                    <li class="admin_menu"><a href="/minpair/admin.php"><i class="fa fa-circle-o text-aqua"></i> Minpair</a></li>
                 </ul>
             </section>
             <!-- /.sidebar -->
