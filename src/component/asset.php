@@ -6,7 +6,7 @@ function asset(){
 ?>
 
     <title><?=escape($TITLE)?></title>
-    <link href="<?=$ASSET?>/img/fav4.png" id ="shorticon" rel="shortcut icon">
+    <!-- <link href="<?=$ASSET?>/img/fav4.png" id ="shorticon" rel="shortcut icon"> -->
 
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 
