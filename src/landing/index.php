@@ -11,7 +11,7 @@ include_once "../lang/" . $_SESSION["lang"] . ".php";
 <html lang="en">
   <head>
 
-    <title>OneSchool &mdash; Website by Colorlib</title>
+    <title>LazyLearn &mdash; Flashcard Machine</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
