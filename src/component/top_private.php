@@ -77,7 +77,7 @@
     <script src="/bower_components/admin-lte/dist/js/adminlte.min.js"></script>
 
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-purple-light sidebar-mini">
     <div class="wrapper">
 
         <header class="main-header">
