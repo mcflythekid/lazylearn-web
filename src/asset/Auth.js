@@ -16,7 +16,8 @@ var Auth = ((e, AppApi, Constant, FlashMessage)=>{
     e.logout = ()=>{
         Storage.delete('accessToken');
         Storage.delete('userData');
-        window.location = Constant.loginUrl;
+        //window.location = Constant.loginUrl;
+        window.location = "/";
     };
 
     e.register = (email, rawPassword)=>{
