@@ -101,14 +101,14 @@
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="/bower_components/admin-lte/dist/img/avatar04.png" class="user-image" alt="User Image">
-                                <span class="hidden-xs" id="app__user_fullname"></span>
+                                <!-- <img src="/bower_components/admin-lte/dist/img/avatar04.png" class="user-image" alt="User Image"> -->
+                                [ <span class="hidden-xs" id="app__user_fullname"></span> ]
                             </a>
                             <ul class="dropdown-menu">
 
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img src="/bower_components/admin-lte/dist/img/avatar04.png" class="img-circle" alt="User Image">
+                                    <!-- <img src="/bower_components/admin-lte/dist/img/avatar04.png" class="img-circle" alt="User Image"> -->
                                     <p id="app__user_email">[Email is not set]</p>
                                 </li>
 
@@ -124,7 +124,7 @@
 
                                 <li class="user-footer">
                                     <div class="pull-left" id="app__user_changepassword">
-                                        <a href="/auth/change-password.php" class="btn btn-default btn-flat">Change password</a>
+                                        <a href="/auth/change-password.php" class="btn btn-default btn-flat ">Change password</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="#" id="logout" class="btn btn-default btn-flat">Sign out</a>
