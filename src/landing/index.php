@@ -45,6 +45,12 @@ if (file_exists($lang_file)){
     <link rel="stylesheet" href="css/aos.css">
 
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+    form#form-subscribe input.email{
+      height: 43px;
+    }
+    </style>
     
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
