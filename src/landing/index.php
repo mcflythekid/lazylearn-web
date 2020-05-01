@@ -370,40 +370,40 @@ if (file_exists($lang_file)){
 
 
             
-            <h2 class="section-title mb-3">Message Us</h2>
-            <p class="mb-5">Natus totam voluptatibus animi aspernatur ducimus quas obcaecati mollitia quibusdam temporibus culpa dolore molestias blanditiis consequuntur sunt nisi.</p>
+            <h2 class="section-title mb-3"><?= $lang["landing.first.contactform.title"] ?></h2>
+            <p class="mb-5"><?= $lang["landing.first.contactform.content"] ?></p>
           
-            <form method="post" data-aos="fade">
+            <form id="form-contact" method="post" data-aos="fade">
               <div class="form-group row">
                 <div class="col-md-6 mb-3 mb-lg-0">
-                  <input type="text" class="form-control" placeholder="First name">
+                  <input type="text" class="firstName form-control" placeholder='<?= $lang["landing.first.contactform.placeholder.first_name"] ?>'>
                 </div>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" placeholder="Last name">
+                  <input type="text" class="lastName form-control" placeholder='<?= $lang["landing.first.contactform.placeholder.last_name"] ?>'>
                 </div>
               </div>
 
               <div class="form-group row">
                 <div class="col-md-12">
-                  <input type="text" class="form-control" placeholder="Subject">
+                  <input type="text" class="subject form-control" placeholder='<?= $lang["landing.first.contactform.placeholder.subject"] ?>'>
                 </div>
               </div>
 
               <div class="form-group row">
                 <div class="col-md-12">
-                  <input type="email" class="form-control" placeholder="Email">
+                  <input type="text" class="email form-control" placeholder='<?= $lang["landing.first.contactform.placeholder.email"] ?>'>
                 </div>
               </div>
               <div class="form-group row">
                 <div class="col-md-12">
-                  <textarea class="form-control" id="" cols="30" rows="10" placeholder="Write your message here."></textarea>
+                  <textarea class="content form-control" id="" cols="30" rows="10" placeholder='<?= $lang["landing.first.contactform.placeholder.content"] ?>'></textarea>
                 </div>
               </div>
 
               <div class="form-group row">
                 <div class="col-md-6">
                   
-                  <input type="submit" class="btn btn-primary py-3 px-5 btn-block btn-pill" value="Send Message">
+                  <input type="submit" class="btn btn-primary py-3 px-5 btn-block btn-pill" value='<?= $lang["landing.first.contactform.submit"] ?>'>
                 </div>
               </div>
 
@@ -418,8 +418,8 @@ if (file_exists($lang_file)){
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <h3>About OneSchool</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro consectetur ut hic ipsum et veritatis corrupti. Itaque eius soluta optio dolorum temporibus in, atque, quos fugit sunt sit quaerat dicta.</p>
+            <h3><?= $lang["landing.about.title"] ?></h3>
+            <p><?= $lang["landing.about.content"] ?></p>
           </div>
 
           <div class="col-md-3 ml-auto" id="language-section">
@@ -431,12 +431,12 @@ if (file_exists($lang_file)){
           </div>
 
           <div class="col-md-4">
-            <h3>Subscribe</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt incidunt iure iusto architecto? Numquam, natus?</p>
-            <form action="#" class="footer-subscribe">
+            <h3><?= $lang["landing.first.subscribeform.title"] ?></h3>
+            <p><?= $lang["landing.first.subscribeform.content"] ?></p>
+            <form id="form-subscribe" action="#" class="footer-subscribe">
               <div class="d-flex mb-5">
-                <input type="text" class="form-control rounded-0" placeholder="Email">
-                <input type="submit" class="btn btn-primary rounded-0" value="Subscribe">
+                <input type="text" class="email form-control rounded-0" placeholder='<?= $lang["landing.first.subscribeform.placeholder.email"] ?>'>
+                <input type="submit" class="btn btn-primary rounded-0" value='<?= $lang["landing.first.subscribeform.submit"] ?>'>
               </div>
             </form>
           </div>
@@ -500,6 +500,7 @@ if (file_exists($lang_file)){
   <script src="<?=$ASSET?>/Constant.js"></script>
   <script src="<?=$ASSET?>/AppApi.js"></script>
   <script src="<?=$ASSET?>/Auth.js"></script>
+  <script src="<?=$ASSET?>/ContactForm.js"></script>
 
   <script>
     $(document).on('click', '.lang', function(){
@@ -523,7 +524,24 @@ if (file_exists($lang_file)){
       event.preventDefault();
       Auth.loginFacebook();
     });
-
+    $(document).on('submit', 'form#form-contact', function(event){
+        event.preventDefault();
+        const firstName = $(this).find("input.firstName").val();
+        const lastName = $(this).find("input.lastName").val();
+        const email = $(this).find("input.email").val();
+        const subject = $(this).find("input.subject").val();
+        const content = $(this).find("textarea.content").val();
+        ContactForm.submitContact({ firstName, lastName, email, subject, content }).then(response=>{
+          FlashMessage.success('<?= $lang["landing.first.contactform.success_msg"] ?>');
+        });
+    });
+    $(document).on('submit', 'form#form-subscribe', function(event){
+        event.preventDefault();
+        const email = $(this).find("input.email").val();
+        ContactForm.submitSubscribe({ email }).then(response=>{
+          FlashMessage.success('<?= $lang["landing.first.subscribeform.success_msg"] ?>');
+        });
+    });    
   </script>
   <!-- ======================================================== -->
   <!-- ======================================================== -->
