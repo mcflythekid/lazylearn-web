@@ -17,7 +17,7 @@ if (file_exists($lang_file)){
 <html lang="en">
   <head>
 
-    <title>LazyLearn &mdash; Flashcard Machine</title>
+    <title><?= $lang["title"] ?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -95,8 +95,8 @@ if (file_exists($lang_file)){
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="#home-section" class="nav-link"><?= $lang["landing.head.home"] ?></a></li>
-                <li><a href="#programs-section" class="nav-link"><?= $lang["landing.head.programs"] ?></a></li>
-                <li><a href="#teachers-section" class="nav-link"><?= $lang["landing.head.lazys"] ?></a></li>
+                <li><a href="#programs-section" class="nav-link"><?= $lang["landing.head.program"] ?></a></li>
+                <li><a href="#teachers-section" class="nav-link"><?= $lang["landing.head.supervisor"] ?></a></li>
                 <li><a href="#contact-section" class="nav-link"><?= $lang["landing.head.contactus"] ?></a></li>
               </ul>
             </nav>
@@ -170,19 +170,19 @@ if (file_exists($lang_file)){
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-lg-7 text-center"  data-aos="fade-up" data-aos-delay="">
-            <h2 class="section-title">Our Programs</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam repellat aut neque! Doloribus sunt non aut reiciendis, vel recusandae obcaecati hic dicta repudiandae in quas quibusdam ullam, illum sed veniam!</p>
+            <h2 class="section-title"><?= $lang["landing.program.title"] ?></h2>
+            <p><?= $lang["landing.program.content"] ?></p>
           </div>
         </div>
         <div class="row mb-5 align-items-center">
           <div class="col-lg-7 mb-5" data-aos="fade-up" data-aos-delay="100">
-            <img src="images/undraw_youtube_tutorial.svg" alt="Image" class="img-fluid">
+            <img src="images/new/flashcard_01.png" alt="Image" class="img-fluid">
           </div>
           <div class="col-lg-4 ml-auto" data-aos="fade-up" data-aos-delay="200">
-            <h2 class="text-black mb-4">We Are Excellent In Education</h2>
-            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem maxime nam porro possimus fugiat quo molestiae illo.</p>
+            <h2 class="text-black mb-4"><?= $lang["landing.program.1.title"] ?></h2>
+            <p class="mb-4"><?= $lang["landing.program.1.content"] ?></p>
 
-            <div class="d-flex align-items-center custom-icon-wrap mb-3">
+            <!-- <div class="d-flex align-items-center custom-icon-wrap mb-3">
               <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
               <div><h3 class="m-0">22,931 Yearly Graduates</h3></div>
             </div>
@@ -190,20 +190,20 @@ if (file_exists($lang_file)){
             <div class="d-flex align-items-center custom-icon-wrap">
               <span class="custom-icon-inner mr-3"><span class="icon icon-university"></span></span>
               <div><h3 class="m-0">150 Universities Worldwide</h3></div>
-            </div>
+            </div> -->
 
           </div>
         </div>
 
         <div class="row mb-5 align-items-center">
           <div class="col-lg-7 mb-5 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="100">
-            <img src="images/undraw_teaching.svg" alt="Image" class="img-fluid">
+            <img src="images/new/deep_01.jpg" alt="Image" class="img-fluid">
           </div>
           <div class="col-lg-4 mr-auto order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-            <h2 class="text-black mb-4">Strive for Excellent</h2>
-            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem maxime nam porro possimus fugiat quo molestiae illo.</p>
+            <h2 class="text-black mb-4"><?= $lang["landing.program.2.title"] ?></h2>
+            <p class="mb-4"><?= $lang["landing.program.2.content"] ?></p>
 
-            <div class="d-flex align-items-center custom-icon-wrap mb-3">
+            <!-- <div class="d-flex align-items-center custom-icon-wrap mb-3">
               <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
               <div><h3 class="m-0">22,931 Yearly Graduates</h3></div>
             </div>
@@ -211,20 +211,20 @@ if (file_exists($lang_file)){
             <div class="d-flex align-items-center custom-icon-wrap">
               <span class="custom-icon-inner mr-3"><span class="icon icon-university"></span></span>
               <div><h3 class="m-0">150 Universities Worldwide</h3></div>
-            </div>
+            </div> -->
 
           </div>
         </div>
 
         <div class="row mb-5 align-items-center">
           <div class="col-lg-7 mb-5" data-aos="fade-up" data-aos-delay="100">
-            <img src="images/undraw_teacher.svg" alt="Image" class="img-fluid">
+            <img src="images/new/brain_01.png" alt="Image" class="img-fluid">
           </div>
           <div class="col-lg-4 ml-auto" data-aos="fade-up" data-aos-delay="200">
-            <h2 class="text-black mb-4">Education is life</h2>
-            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem maxime nam porro possimus fugiat quo molestiae illo.</p>
+            <h2 class="text-black mb-4"><?= $lang["landing.program.3.title"] ?></h2>
+            <p class="mb-4"><?= $lang["landing.program.3.content"] ?></p>
 
-            <div class="d-flex align-items-center custom-icon-wrap mb-3">
+            <!-- <div class="d-flex align-items-center custom-icon-wrap mb-3">
               <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
               <div><h3 class="m-0">22,931 Yearly Graduates</h3></div>
             </div>
@@ -232,7 +232,7 @@ if (file_exists($lang_file)){
             <div class="d-flex align-items-center custom-icon-wrap">
               <span class="custom-icon-inner mr-3"><span class="icon icon-university"></span></span>
               <div><h3 class="m-0">150 Universities Worldwide</h3></div>
-            </div>
+            </div> -->
 
           </div>
         </div>
@@ -245,35 +245,36 @@ if (file_exists($lang_file)){
 
         <div class="row mb-5 justify-content-center">
           <div class="col-lg-7 mb-5 text-center"  data-aos="fade-up" data-aos-delay="">
-            <h2 class="section-title">Our Teachers</h2>
-            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam repellat aut neque! Doloribus sunt non aut reiciendis, vel recusandae obcaecati hic dicta repudiandae in quas quibusdam ullam, illum sed veniam!</p>
+            <h2 class="section-title"><?= $lang["landing.supervisor.title"] ?></h2>
+            <p class="mb-5"><?= $lang["landing.supervisor.content"] ?></p>
           </div>
         </div>
 
         <div class="row">
 
-          <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="teacher text-center">
-              <img src="images/person_1.jpg" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
-              <div class="py-2">
-                <h3 class="text-black">Benjamin Stone</h3>
-                <p class="position">Physics Teacher</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro eius suscipit delectus enim iusto tempora, adipisci at provident.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="offset-lg-2 offset-md-3     col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
             <div class="teacher text-center">
               <img src="images/person_2.jpg" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
               <div class="py-2">
-                <h3 class="text-black">Katleen Stone</h3>
-                <p class="position">Physics Teacher</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro eius suscipit delectus enim iusto tempora, adipisci at provident.</p>
+                <h3 class="text-black"><?= $lang["landing.supervisor.1.name"] ?></h3>
+                <p class="position"><?= $lang["landing.supervisor.1.title"] ?></p>
+                <p><?= $lang["landing.supervisor.1.bio"] ?></p>
               </div>
             </div>
           </div>
 
+          <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="teacher text-center">
+              <img src="images/person_3.jpg" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
+              <div class="py-2">
+                <h3 class="text-black"><?= $lang["landing.supervisor.2.name"] ?></h3>
+                <p class="position"><?= $lang["landing.supervisor.2.title"] ?></p>
+                <p><?= $lang["landing.supervisor.2.bio"] ?></p>
+              </div>
+            </div>
+          </div>
+
+          <!--
           <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
             <div class="teacher text-center">
               <img src="images/person_3.jpg" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
@@ -284,6 +285,8 @@ if (file_exists($lang_file)){
               </div>
             </div>
           </div>
+          -->
+
         </div>
       </div>
     </div>
@@ -292,16 +295,17 @@ if (file_exists($lang_file)){
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-md-8 text-center testimony">
-            <img src="images/person_4.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
-            <h3 class="mb-4">Jerome Jensen</h3>
+            <img src="images/new/marty_01.jpeg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+            <h3 class="mb-4"><?= $lang["landing.boss.name"] ?></h3>
             <blockquote>
-              <p>&ldquo; Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum rem soluta sit eius necessitatibus voluptate excepturi beatae ad eveniet sapiente impedit quae modi quo provident odit molestias! Rem reprehenderit assumenda &rdquo;</p>
+              <p>&ldquo; <?= $lang["landing.boss.bio"] ?> &rdquo;</p>
             </blockquote>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Why us
     <div class="site-section pb-0">
 
       <div class="future-blobs">
@@ -363,7 +367,7 @@ if (file_exists($lang_file)){
         </div>
       </div>
     </div>
-
+    -->
     
 
 
