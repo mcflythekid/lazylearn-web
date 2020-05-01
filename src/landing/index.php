@@ -538,6 +538,7 @@ if (file_exists($lang_file)){
         const subject = $(this).find("input.subject").val();
         const content = $(this).find("textarea.content").val();
         ContactForm.submitContact({ firstName, lastName, email, subject, content }).then(response=>{
+          $(this)[0].reset();
           FlashMessage.success('<?= $lang["landing.first.contactform.success_msg"] ?>');
         });
     });
@@ -545,6 +546,7 @@ if (file_exists($lang_file)){
         event.preventDefault();
         const email = $(this).find("input.email").val();
         ContactForm.submitSubscribe({ email }).then(response=>{
+          $(this)[0].reset();
           FlashMessage.success('<?= $lang["landing.first.subscribeform.success_msg"] ?>');
         });
     });    
