@@ -144,7 +144,8 @@
                 <ul class="sidebar-menu" data-widget="tree">
 
                     <li class="header">Main</li>
-                    <li><a href="/dashboard.php"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                    <li><a href="/dashboard.php"><i class="fa fa-home"></i> <span>Lazy</span></a></li>
+                    <li><a href="/deck.php"><i class="fa fa-bars"></i> <span>My Decks</span></a></li>
                     <li><a href="/vocabulary"><i class="fa fa-language"></i> <span>Vocabulary</span></a></li>
                     <li><a href="/minpair"><i class="fa fa-circle-o text-aqua"></i> <span>Minpair</span></a></li>
                     <li><a href="/article"><i class="fa fa-circle-o text-green"></i> <span>Topic</span></a></li>
