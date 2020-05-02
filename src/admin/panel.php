@@ -1,34 +1,22 @@
 <?php
 require_once '../core.php';
-$TITLE = 'Admin: Setting';
-$HEADER = "Admin: Setting";
+$TITLE = 'Advanced Settings';
+$HEADER = "Advanced Settings";
 $PATHS = [
-    "Admin: Setting"
+    "Advanced Settings"
 ];
 top_private();
 ?>
 
-<div class="row">
-    <div class="col-lg-12">
-        <button class="btn btn-info" id="refresh-all-vocab">Refresh Vocab</button>
+<div class="u-center">
+    <div class="col-lg-3">
+        <button class="btn btn-info btn-flat" id="refresh-all-vocab">Refresh Vocab</button>
     </div>
-</div>
-
-<div class="row u-mt-15">
-    <div class="col-lg-12">
-        <button class="btn btn-info" id="refresh-all-vocabdeck">Refresh Vocabdeck</button>
+    <div class="col-lg-3">
+        <button class="btn btn-info btn-flat" id="refresh-all-vocabdeck">Refresh Vocabdeck</button>
     </div>
-</div>
-
-<div class="row u-mt-15">
-    <div class="col-lg-12">
-        <button class="btn btn-info" id="refresh-all-topic">Refresh Topic</button>
-    </div>
-</div>
-
-<div class="row u-mt-15">
-    <div class="col-lg-12">
-        <button class="btn btn-info" id="refresh-all-minpair">Refresh Minpair</button>
+    <div class="col-lg-3">
+        <button class="btn btn-info btn-flat" id="refresh-all-minpair">Refresh Minpair</button>
     </div>
 </div>
 
@@ -47,13 +35,6 @@ top_private();
         });
     };
     $("#refresh-all-vocabdeck").click(refreshAllVocabdeck);
-
-    var refreshAllTopic = ()=>{
-        AppApi.sync.post("/admin/refresh-all-topic").then((response)=>{
-            FlashMessage.success(response.data.msg);
-        });
-    };
-    $("#refresh-all-topic").click(refreshAllTopic);
 
     var refreshAllMinpair = ()=>{
         AppApi.sync.post("/admin/refresh-all-minpair").then((response)=>{
