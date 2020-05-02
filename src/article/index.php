@@ -62,7 +62,10 @@ Article();
             {
                 field: 'url',
                 title: 'URL',
-                sortable: true
+                sortable: true,
+                formatter: (o)=>{
+                    return '<a href="' + o + '">' + o + '</a>';
+                }
             },
             {
                 field: 'createdDate',
