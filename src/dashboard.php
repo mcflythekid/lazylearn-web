@@ -127,11 +127,11 @@ Deck();
                 width: 50,
                 formatter: (obj,row)=>{
                     if (row.type == 'minpair'){
-                        return '<a data-deckid="' + row.id + '" class="btn btn-flat btn-info pull-left learn-go" href="/minpair/learn-redirect.php?type=learn&id=' + row.id + '">loading...</a> ';
+                        return '<a data-deckid="' + row.id + '" class="btn btn-xs btn-flat btn-info pull-left learn-go" href="/minpair/learn-redirect.php?type=learn&id=' + row.id + '">loading...</a> ';
                     } else if (row.type == 'topic'){
-                        return '<a data-deckid="' + row.id + '" class="btn btn-flat btn-info pull-left learn-go" href="/article/learn-redirect.php?type=learn&id=' + row.id + '">loading...</a> ';
+                        return '<a data-deckid="' + row.id + '" class="btn btn-xs btn-flat btn-info pull-left learn-go" href="/article/learn-redirect.php?type=learn&id=' + row.id + '">loading...</a> ';
                     } else {
-                        return '<a data-deckid="' + row.id + '" class="btn btn-flat btn-info pull-left learn-go" href="/deck/learn.php?type=learn&id=' + row.id + '">loading...</a> ';
+                        return '<a data-deckid="' + row.id + '" class="btn btn-xs btn-flat btn-info pull-left learn-go" href="/deck/learn.php?type=learn&id=' + row.id + '">loading...</a> ';
                     }
                 }
             },
@@ -140,10 +140,10 @@ Deck();
                 formatter: (obj,row)=>{
                     if (row.type == "default")
                         return '<span class="deck-menu">' + 
-                            '<button data-id="' + row.id + '" class="action-rename btn btn-info btn-flat">Rename</button>' +
-                            (row.archived == 0 ? '<button data-id="' + row.id + '" class="action-archive btn btn-info btn-flat u-ml-5">Archive</button>' : '' ) +
-                            (row.archived == 1 ? '<button data-id="' + row.id + '" class="action-unarchive btn btn-info btn-flat u-ml-5">Unarchive</button>' : '' ) +
-                            '<button data-id="' + row.id + '" class="action-delete btn btn-danger btn-flat u-ml-5">Delete</button>' + 
+                            '<button data-id="' + row.id + '" class="action-rename btn btn-xs btn-info btn-flat">Rename</button>' +
+                            (row.archived == 0 ? '<button data-id="' + row.id + '" class="action-archive btn btn-xs btn-info btn-flat u-ml-5">Archive</button>' : '' ) +
+                            (row.archived == 1 ? '<button data-id="' + row.id + '" class="action-unarchive btn btn-xs btn-info btn-flat u-ml-5">Unarchive</button>' : '' ) +
+                            '<button data-id="' + row.id + '" class="action-delete btn btn-xs btn-danger btn-flat u-ml-5">Delete</button>' + 
                         '</span>';
                     else
                         return '';
