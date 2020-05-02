@@ -14,7 +14,7 @@ Deck();
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-target="#collapseOne" href="#" class="a-no-underline display-block">
-                        Overall Status
+                        Status by deck
                     </a>
                 </h4>
             </div>

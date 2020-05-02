@@ -9,7 +9,8 @@ var AppChart = ((AppChart, Storage, AppApi)=>{
         legend: { position: 'top', maxLines: 3 },
         bar: { groupWidth: '75%' },
         isStacked: true,
-        colors: ['#F39C12', '#66cc66' ],
+        //colors: ['#F39C12', '#66cc66' ],
+        colors: ['orange', 'green' ],
         backgroundColor: '#fff',
         vAxis: {
             gridlines: {
