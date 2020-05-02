@@ -16,7 +16,7 @@ Vocabdeck();
                 <div class="input-group" >
                     <input type="text" class="form-control" id="vocabdeck-create-name" required placeholder="Vocabulary deck name...">
                     <span class="input-group-btn">
-						<button class="btn btn-primary" type="submit">Create</button>
+						<button class="btn btn-info btn-flat" type="submit">Create</button>
 					</span>
                 </div>
             </form>
@@ -76,36 +76,39 @@ Vocabdeck();
                 }
             },
             {
-                width: 50,
+                field: 'createdDate',
+                title: 'Created',
+                sortable: true
+            },
+            {
+                width: 250,
                 formatter: (obj,row)=>{
-                    return  '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
+                    return '<span class="vocab-menu">' + 
+                        '<button data-id="' + row.id + '" class="action-rename btn btn-info btn-flat">Rename</button>' +
+                        (row.archived == 0 ? '<button data-id="' + row.id + '" class="action-archive btn btn-info btn-flat u-ml-5">Archive</button>' : '' ) +
+                        (row.archived == 1 ? '<button data-id="' + row.id + '" class="action-unarchive btn btn-info btn-flat u-ml-5">Unarchive</button>' : '' ) +
+                        '<button data-id="' + row.id + '" class="action-delete btn btn-danger btn-flat u-ml-5">Delete</button>' + 
+                    '</span>';
                 }
             },
-        ],
-        contextMenu: '#context-menu',
-        contextMenuButton: '.context-menu-button',
-        contextMenuAutoClickRow: true,
-        beforeContextMenuRow: function(e,row,buttonElement){
-            if (row.archived == 0){
-                $('#context-menu li[data-item="archive"]').show();
-                $('#context-menu li[data-item="unarchive"]').hide();
-            } else {
-                $('#context-menu li[data-item="archive"]').hide();
-                $('#context-menu li[data-item="unarchive"]').show();
-            }
-            return true;
-        },
-        onContextMenuItem: function(row, $el) {
-            if        ($el.data("item") == "rename") {
-                Vocabdeck.openRename(row.id, refresh);
-            } else if ($el.data("item") == "delete") {
-                Vocabdeck.delete(row.id, refresh);
-            } else if ($el.data("item") == "archive") {
-                Vocabdeck.archive(row.id, refresh);
-            } else if ($el.data("item") == "unarchive") {
-                Vocabdeck.unarchive(row.id, refresh);
-            }
-        }
+        ]
+    });
+
+    $(document).on('click', 'span.vocab-menu button.action-rename', function(event){
+        const id = $(this).attr("data-id");
+        Vocabdeck.openRename(id, refresh);
+    });
+    $(document).on('click', 'span.vocab-menu button.action-archive', function(event){
+        const id = $(this).attr("data-id");
+        Vocabdeck.archive(id, refresh);
+    });
+    $(document).on('click', 'span.vocab-menu button.action-unarchive', function(event){
+        const id = $(this).attr("data-id");
+        Vocabdeck.unarchive(id, refresh);
+    });
+    $(document).on('click', 'span.vocab-menu button.action-delete', function(event){
+        const id = $(this).attr("data-id");
+        Vocabdeck.delete(id, refresh);
     });
 
 </script>
