@@ -11,10 +11,8 @@ Minpair();
 
 <div class="row u-mt-20">
     <div class="col-lg-12">
+        <div id="mminpair__create--wrapper"></div>
         <table id="minpair__list"></table>
-        <ul id="context-menu" class="dropdown-menu">
-            <li data-item="delete"><a>Delete</a></li>
-        </ul>
     </div>
 </div>
 
@@ -62,11 +60,6 @@ Minpair();
                 sortable: true
             },
             {
-                field: 'user.fullName',
-                title: 'User',
-                sortable: true
-            },
-            {
                 field: 'word1',
                 title: 'Word 1',
                 sortable: true
@@ -77,22 +70,40 @@ Minpair();
                 sortable: true
             },
             {
-                width: 50,
+                field: 'createdDate',
+                title: 'Created',
+                sortable: true
+            },
+            {
+                field: 'user.fullName',
+                title: 'User Name',
+                sortable: true
+            },
+            {
+                field: 'user.id',
+                title: 'User Id',
+                sortable: true
+            },
+            {
+                field: 'user.email',
+                title: 'User Email',
+                sortable: true
+            },
+            {
+                width: 70,
                 formatter: (obj,row)=>{
-                    return'<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
+                    return '<span class="minpair-menu">' + 
+                        '<button data-id="' + row.id + '" class="action-delete btn btn-danger btn-flat u-ml-5">Delete</button>' + 
+                    '</span>';
                 }
             },
-        ],
-        contextMenu: '#context-menu',
-        contextMenuButton: '.context-menu-button',
-        contextMenuAutoClickRow: true,
-        onContextMenuItem: function(row, $el) {
-             if ($el.data("item") == "delete") {
-                Minpair.delete(row.id, ()=>{
-                    refresh();
-                });
-            }
-        }
+        ]
+    });
+    $(document).on('click', 'span.minpair-menu button.action-delete', function(event){
+        const id = $(this).attr("data-id");
+        Minpair.delete(id, ()=>{
+            refresh();
+        });
     });
 
 </script>
