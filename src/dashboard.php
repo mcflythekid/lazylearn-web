@@ -41,7 +41,7 @@ Deck();
                 <div class="input-group" >
                     <input type="text" class="form-control" id="deck__create--name" required placeholder="Deck name...">
                     <span class="input-group-btn">
-						<button class="btn btn-primary" type="submit">Create</button>
+						<button class="btn btn-info btn-flat" type="submit">Create Deck</button>
 					</span>
                 </div>
             </form>
@@ -119,22 +119,32 @@ Deck();
                 }
             },
             {
-                width: 50,
-                formatter: (obj,row)=>{
-                    if (row.type == 'minpair'){
-                        return '<a data-deckid="' + row.id + '" class="btn btn-sm btn-success pull-left learn-go" href="/minpair/learn-redirect.php?type=learn&id=' + row.id + '">loading...</a> ';
-                    } else if (row.type == 'topic'){
-                        return '<a data-deckid="' + row.id + '" class="btn btn-sm btn-success pull-left learn-go" href="/article/learn-redirect.php?type=learn&id=' + row.id + '">loading...</a> ';
-                    } else {
-                        return '<a data-deckid="' + row.id + '" class="btn btn-sm btn-success pull-left learn-go" href="/deck/learn.php?type=learn&id=' + row.id + '">loading...</a> ';
-                    }
-                }
+                field: 'createdDate',
+                title: 'Created',
+                sortable: true
             },
             {
                 width: 50,
                 formatter: (obj,row)=>{
+                    if (row.type == 'minpair'){
+                        return '<a data-deckid="' + row.id + '" class="btn btn-flat btn-info pull-left learn-go" href="/minpair/learn-redirect.php?type=learn&id=' + row.id + '">loading...</a> ';
+                    } else if (row.type == 'topic'){
+                        return '<a data-deckid="' + row.id + '" class="btn btn-flat btn-info pull-left learn-go" href="/article/learn-redirect.php?type=learn&id=' + row.id + '">loading...</a> ';
+                    } else {
+                        return '<a data-deckid="' + row.id + '" class="btn btn-flat btn-info pull-left learn-go" href="/deck/learn.php?type=learn&id=' + row.id + '">loading...</a> ';
+                    }
+                }
+            },
+            {
+                width: 250,
+                formatter: (obj,row)=>{
                     if (row.type == "default")
-                        return '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
+                        return '<span class="deck-menu">' + 
+                            '<button data-id="' + row.id + '" class="action-rename btn btn-info btn-flat">Rename</button>' +
+                            (row.archived == 0 ? '<button data-id="' + row.id + '" class="action-archive btn btn-info btn-flat u-ml-5">Archive</button>' : '' ) +
+                            (row.archived == 1 ? '<button data-id="' + row.id + '" class="action-unarchive btn btn-info btn-flat u-ml-5">Unarchive</button>' : '' ) +
+                            '<button data-id="' + row.id + '" class="action-delete btn btn-danger btn-flat u-ml-5">Delete</button>' + 
+                        '</span>';
                     else
                         return '';
                 }
@@ -156,42 +166,30 @@ Deck();
                     $el.text('ERROR');
                 });
             });
-        },
-        contextMenu: '#context-menu',
-        contextMenuButton: '.context-menu-button',
-        contextMenuAutoClickRow: true,
-        beforeContextMenuRow: function(e,row,buttonElement){
-
-            if (row.type != 'default'){
-                return false;
-            }
-
-            if (row.archived == 0){
-                $('#context-menu li[data-item="archive"]').show();
-                $('#context-menu li[data-item="unarchive"]').hide();
-            } else {
-                $('#context-menu li[data-item="archive"]').hide();
-                $('#context-menu li[data-item="unarchive"]').show();
-            }
-            return true;
-        },
-        onContextMenuItem: function(row, $el) {
-            if ($el.data("item") == "edit") {
-                Deck.openEdit(row.id, row.name);
-            } else if ($el.data("item") == "delete") {
-                Deck.delete(row.id, ()=>{
-                    refresh();
-                });
-            } else if ($el.data("item") == "archive") {
-                Deck.archive(row.id, ()=>{
-                    refresh();
-                });
-            } else if ($el.data("item") == "unarchive") {
-                Deck.unarchive(row.id, ()=>{
-                    refresh();
-                });
-            }
         }
+    });
+
+    $(document).on('click', 'span.deck-menu button.action-rename', function(event){
+        const id = $(this).attr("data-id");
+        Deck.openEdit(id, "");
+    });
+    $(document).on('click', 'span.deck-menu button.action-archive', function(event){
+        const id = $(this).attr("data-id");
+        Deck.archive(id, ()=>{
+            refresh();
+        });
+    });
+    $(document).on('click', 'span.deck-menu button.action-unarchive', function(event){
+        const id = $(this).attr("data-id");
+        Deck.unarchive(id, ()=>{
+            refresh();
+        });
+    });
+    $(document).on('click', 'span.deck-menu button.action-delete', function(event){
+        const id = $(this).attr("data-id");
+        Deck.delete(id, ()=>{
+            refresh();
+        });
     });
 
 </script>
