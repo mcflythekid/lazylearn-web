@@ -15,33 +15,33 @@
                             <div class="col-xs-6">
                                 <div class="form-group">
                                     <label for="minpair__modal__create--word1">Word 1</label>
-                                    <input type="text" required class="form-control" id="minpair__modal__create--word1" placeholder="Word 1" value="sss">
+                                    <input type="text" required class="form-control" id="minpair__modal__create--word1" placeholder="Word 1" value="">
                                 </div>
                                 <div class="form-group">
                                     <label for="minpair__modal__create--phonetic1">Phonetic 1</label>
-                                    <input type="text" required class="form-control" id="minpair__modal__create--phonetic1" placeholder="Phonetic 1" value="sss">
+                                    <input type="text" required class="form-control" id="minpair__modal__create--phonetic1" placeholder="Phonetic 1" value="">
                                 </div>
                                 <div class="form-group">
                                     <label for="minpair__modal__create--phonetic1">Audio 1</label>
-                                    <input type="file" multiple required accept=".mp3" class="form-control" id="minpair__modal__create--audio1" >
+                                    <input type="file" accept="audio/*" multiple required accept=".mp3" class="form-control" id="minpair__modal__create--audio1" >
                                 </div>
 								<div class="form-group">
                                     <label for="minpair__modal__create--language">Language</label>
-                                    <input type="text" required class="form-control" id="minpair__modal__create--language" placeholder="english, chinese, ..." value="sss">
+                                    <input type="text" required class="form-control" id="minpair__modal__create--language" placeholder="english, chinese, ..." value="">
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
                                     <label for="minpair__modal__create--word1">Word 2</label>
-                                    <input type="text" required class="form-control" id="minpair__modal__create--word2" placeholder="Word 2" value="sss">
+                                    <input type="text" required class="form-control" id="minpair__modal__create--word2" placeholder="Word 2" value="">
                                 </div>
                                 <div class="form-group">
                                     <label for="minpair__modal__create--phonetic1">Phonetic 2</label>
-                                    <input type="text" required class="form-control" id="minpair__modal__create--phonetic2" placeholder="Phonetic 2" value="sss">
+                                    <input type="text" required class="form-control" id="minpair__modal__create--phonetic2" placeholder="Phonetic 2" value="">
                                 </div>
                                 <div class="form-group">
                                     <label for="minpair__modal__create--phonetic1">Audio 2</label>
-                                    <input type="file" multiple required accept=".mp3" class="form-control" id="minpair__modal__create--audio2" >
+                                    <input type="file" accept="audio/*" multiple required accept=".mp3" class="form-control" id="minpair__modal__create--audio2" >
                                 </div>
                             </div>
                         </div>
