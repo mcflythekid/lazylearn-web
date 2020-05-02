@@ -77,11 +77,11 @@ Card();
                 
                 <button id="learnanswer__wrong" class="learnanswer btn btn-danger" style="display: none;">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    Forget
+                    Forget/Incorrect
                 </button>
 
                 <button data-quality="3" class="learnanswer learnanswer__right btn btn-warning" style="display: none;">
-                    Very Hard
+                    Difficult
                 </button>
 
                 <button data-quality="4" class="learnanswer learnanswer__right btn btn-info" style="display: none;">
