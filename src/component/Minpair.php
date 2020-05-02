@@ -106,6 +106,16 @@
 			});
         };
 
+        e.getLearn = (minpairId, callback, errCb)=>{
+            AppApi.async.get("/minpair/get-learn/" + minpairId).then((response)=>{
+                callback(response.data);
+            }).catch(err=>{
+				if (errCb) {
+					errCb(err);
+				}
+			});
+        };
+
         e.create = (word1, word2, phonetic1, phonetic2, language, audioFiles1, audioFiles2, callback)=>{
             AppApi.sync.post("/minpair/create", {
                 word1,

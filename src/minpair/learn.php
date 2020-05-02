@@ -13,9 +13,6 @@ top_private();
 Minpair();
 ?>
 
-    <audio class="audio" id="audio1"></audio>
-    <audio class="audio" id="audio2"></audio>
-
     <div class="row" id="learn">
         <div class="col-lg-6 col-lg-offset-3 col-xs-12">
 
@@ -80,22 +77,50 @@ Minpair();
         var minpair;
         var selectedWord;
         var count, correct, incorrect;
+        
+        var audioObjs1 = [];
+        var audioObjs2 = [];
+        var audios = [];
+        audios[1] = (audioObjs1);
+        audios[2] = (audioObjs2);
 		
 		var cardObj;
 		AppApi.sync.get('/card/get/' + cardId).then(res=>{
 			cardObj = res.data;
-		});
+        });
+        
+        const onPlay = ()=>{
+            $('.learndata__front--result').hide();
+            $('#learndata__front--data').text('');
+            $('.learnanswer__1_2').hide();
+        };
+
+        const onPlayEnded = ()=>{
+            $('.learnanswer__1_2').show();
+        };
 
         var reload = ()=>{
-            Minpair.get(minpairId, (object)=>{
+            Minpair.getLearn(minpairId, (object)=>{
+
+                object.left.forEach(item=>{
+                    var audioObj = new Audio(apiServer + "/file" + item.audioPath);
+                    audioObj.onplay = onPlay;
+                    audioObj.onended = onPlayEnded;
+                    audioObjs1.push(audioObj);
+                });
+                object.right.forEach(item=>{
+                    var audioObj = new Audio(apiServer + "/file" + item.audioPath);
+                    audioObj.onplay = onPlay;
+                    audioObj.onended = onPlayEnded;
+                    audioObjs2.push(audioObj);
+                });
+
                 count = correct = incorrect = 0;
-                minpair = object;
+                minpair = object.minpair;
                 var name = minpair.word1 + ' - ' + minpair.word2;
                 $('#appHeader').text(name);
                 document.title = name;
                 $('#appBreadcrumb1').text(name);
-                $('#audio1').attr('src', apiServer + "/file" + minpair.audioPath1);
-                $('#audio2').attr('src', apiServer + "/file" + minpair.audioPath2);
                 $('#learnanswer__1').text(minpair.phonetic1);
                 $('#learnanswer__2').text(minpair.phonetic2);
                 $('#learnanswer__play').show();
@@ -142,7 +167,12 @@ Minpair();
             setTimeout(next, 200);
         };
         var play = ()=>{
-            $('#audio' + selectedWord)[0].play();
+            if (!selectedWord){
+                return;
+            }
+            const selectedAudiosSide = audios[selectedWord];
+            const selectedAudioObj = selectedAudiosSide[Math.floor(Math.random() * selectedAudiosSide.length)];
+            selectedAudioObj.play();
         };
 		
         var drop = ()=>{
