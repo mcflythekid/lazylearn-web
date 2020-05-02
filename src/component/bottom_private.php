@@ -5,7 +5,7 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2018 Lazylearn</strong>
+            <strong>Copyright &copy; 2020 LazyLearn</strong>
         </footer>
 
         <!-- Control Sidebar -->
