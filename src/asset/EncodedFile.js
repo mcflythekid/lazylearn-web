@@ -3,6 +3,7 @@
  */
 var EncodedFile = ((e, FlashMessage)=>{
 
+    // Read one file
     e.read = ($el)=>{
         var deferred = $.Deferred();
         var files = $el.get(0).files;
@@ -24,6 +25,34 @@ var EncodedFile = ((e, FlashMessage)=>{
             deferred.resolve(undefined);
         }
         return deferred.promise();
+    };
+
+    e.readAll = ($el)=>{
+        const readOne = (file) => {
+            const deferred = $.Deferred();
+            const fileReader = new FileReader();
+            fileReader.onload = function(event) {
+                const data = event.target.result;
+                if (data == "data:"){
+                    deferred.resolve(undefined);
+                }
+                deferred.resolve({
+                    ext: file.name.replace(/^.*\./, ''),
+                    content: data.substring(data.indexOf(';base64,') + 8)
+                });
+            };
+            fileReader.readAsDataURL(file);
+            return deferred.promise();
+        };
+
+        const files = $el.get(0).files;
+        var results = [];
+        if (files) {
+            for(var i = 0; i < files.length; i++){
+                results.push(readOne(files[i]));
+            }
+        }
+        return Promise.all(results);
     };
 
     return e;
