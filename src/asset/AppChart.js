@@ -37,7 +37,7 @@ var AppChart = ((AppChart, Storage, AppApi)=>{
                 });
                 data.addColumn('string','Step name');
 
-                data.addColumn('number','New / Forgot cards');
+                data.addColumn('number','Timed-up cards');
                 //data.addColumn('number', timeup + ' cards today');
 
                 data.addColumn('number','Remembered cards');
