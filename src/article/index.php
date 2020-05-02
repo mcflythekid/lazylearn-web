@@ -12,15 +12,10 @@ Article();
 <div class="row u-mt-20">
     <div class="col-lg-12">
         <div id="article__create--wrapper">
-            <button class="btn btn-success" id="article__create--btn" type="submit">Create</button>
+            <button class="btn btn-info btn-flat" id="article__create--btn" type="submit">Create</button>
         </div>
 
         <table id="article__list"></table>
-        <ul id="context-menu" class="dropdown-menu">
-            <li data-item="delete"><a>Delete</a></li>
-            <li data-item="rename"><a>Rename</a></li>
-            <li data-item="edit"><a>Edit</a></li>
-        </ul>
 
     </div>
 </div>
@@ -68,46 +63,42 @@ Article();
                 title: 'Name',
                 sortable: true,
                 formatter: (o, row)=>{
-                    return '<a target="_blank" href="/article/view-redirect.php?id=' + row.id + '">' + o + '</a>';
+                    return '<a target="_blank" href="/article/view.php?id=' + row.id + '">' + o + '</a>';
                 }
             },
             {
-                width: 50,
+                width: 250,
                 formatter: (obj,row)=>{
-                    return '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
+                    return '<span class="article-menu">' + 
+                        '<button data-id="' + row.id + '" class="action-rename btn btn-info btn-flat">Rename</button>' +
+                        '<button data-id="' + row.id + '" class="action-edit btn btn-info btn-flat u-ml-5">Edit</button>' +
+                        '<button data-id="' + row.id + '" class="action-delete btn btn-danger btn-flat u-ml-5">Delete</button>' + 
+                    '</span>';
                 }
             },
-        ],
-        contextMenu: '#context-menu',
-        contextMenuButton: '.context-menu-button',
-        contextMenuAutoClickRow: true,
-        beforeContextMenuRow: function(e,row,buttonElement){
-            if (Application.isAdmin()){
-                $('#context-menu li[data-item="delete"]').show();
-            } else {
-                $('#context-menu li[data-item="delete"]').hide();
-            }
-            return true;
-        },
-        onContextMenuItem: function(row, $el) {
-            if ($el.data("item") == "delete") {
-                Article.delete(row.id, ()=>{
-                    refresh();
-                });
-            } else if ($el.data("item") == "rename") {
-                var newName = prompt("Please enter new name", row.name);
-                if (newName){
-                    AppApi.sync.post("/article/rename", {
-                        articleId: row.id,
-                        newName: newName
-                    }).then(refresh);
-                }
-            } else if ($el.data("item") == "edit") {
-                AppApi.sync.get("/article/get/" + row.id).then(res=>{
-                    Article.openEdit(res.data.name, res.data.content, res.data.url, row.id);
-                });
-            }
+        ]
+    });
+    $(document).on('click', 'span.article-menu button.action-rename', function(event){
+        const id = $(this).attr("data-id");
+        const newName = prompt("Please enter new name", "");
+        if (newName){
+            AppApi.sync.post("/article/rename", {
+                articleId: id,
+                newName: newName
+            }).then(refresh);
         }
+    });
+    $(document).on('click', 'span.article-menu button.action-edit', function(event){
+        const id = $(this).attr("data-id");
+        AppApi.sync.get("/article/get/" + id).then(res=>{
+            Article.openEdit(res.data.name, res.data.content, res.data.url, id);
+        });
+    });
+    $(document).on('click', 'span.article-menu button.action-delete', function(event){
+        const id = $(this).attr("data-id");
+        Article.delete(id, ()=>{
+            refresh();
+        });
     });
 
 </script>
