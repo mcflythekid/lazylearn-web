@@ -30,13 +30,6 @@ Article();
     $('#article__create--btn').click((event)=> {
         Article.openCreate();
     });
-	
-	$(document).on('click', 'a.act-send-to-deck', function(e){
-		Article.sendToDeck($(this).attr('data-article-id'), deckObj=>{
-			FlashMessage.success("Get success");
-			refresh();
-		});
-	});
 
     $('#article__list').bootstrapTable({
         classes: 'table table-hover table-bordered table-condensed table-responsive bg-white',
@@ -63,8 +56,13 @@ Article();
                 title: 'Name',
                 sortable: true,
                 formatter: (o, row)=>{
-                    return '<a target="_blank" href="/article/view.php?id=' + row.id + '">' + o + '</a>';
+                    return '<a href="/article/view.php?id=' + row.id + '">' + o + '</a>';
                 }
+            },
+            {
+                field: 'url',
+                title: 'URL',
+                sortable: true
             },
             {
                 field: 'createdDate',

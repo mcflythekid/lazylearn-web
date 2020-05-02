@@ -11,10 +11,8 @@ Article();
 
 <div class="row u-mt-20">
     <div class="col-lg-12">
+        <div id="article__create--wrapper"></div>
         <table id="article__list"></table>
-        <ul id="context-menu" class="dropdown-menu">
-            <li data-item="delete"><a>Delete</a></li>
-        </ul>
     </div>
 </div>
 
@@ -24,17 +22,6 @@ Article();
             silent: true
         });
     };
-
-    $('#article__create--btn').click((event)=> {
-        Article.openCreate();
-    });
-	
-	$(document).on('click', 'a.act-send-to-deck', function(e){
-		Article.sendToDeck($(this).attr('data-article-id'), deckObj=>{
-			FlashMessage.success("Get success");
-			refresh();
-		});
-	});
 
     $('#article__list').bootstrapTable({
         classes: 'table table-hover table-bordered table-condensed table-responsive bg-white',
@@ -46,8 +33,8 @@ Article();
         sidePagination: 'server',
         sortName: 'createdDate',
         sortOrder: 'desc',
-        pageSize: 20,
-        pageList: [20, 50, 100],
+        pageSize: 100,
+        pageList: [100, 150, 200],
         search: true,
         ajaxOptions: {
             headers: {
@@ -57,50 +44,54 @@ Article();
         pagination: true,
         columns: [
             {
-                field: 'user.fullName',
-                title: 'User',
-                sortable: true
-            },
-            {
                 field: 'name',
                 title: 'Name',
-                sortable: true
+                sortable: true,
+                formatter: (o, row)=>{
+                    return '<a href="/article/view.php?id=' + row.id + '">' + o + '</a>';
+                }
             },
             {
                 field: 'url',
                 title: 'URL',
-                sortable: true,
-                formatter: (obj,row)=>{
-                    return "<a target='_blank' href='" + obj + "' class=''>" + obj + "</a>";
-                }
+                sortable: true
             },
             {
-                width: 50,
-                formatter: ()=>{
-                    return '<button class="btn btn-sm context-menu-button pull-right"><span class="glyphicon glyphicon-menu-hamburger"></span></button>';
+                field: 'createdDate',
+                title: 'Created',
+                sortable: true
+            },
+            {
+                field: 'user.fullName',
+                title: 'User Name',
+                sortable: true
+            },
+            {
+                field: 'user.id',
+                title: 'User Id',
+                sortable: true
+            },
+            {
+                field: 'user.email',
+                title: 'User Email',
+                sortable: true
+            },
+            {
+                width: 70,
+                formatter: (obj,row)=>{
+                    return '<span class="article-menu">' + 
+                        '<button data-id="' + row.id + '" class="action-delete btn btn-danger btn-flat u-ml-5">Delete</button>' + 
+                    '</span>';
                 }
             },
-        ],
-        contextMenu: '#context-menu',
-        contextMenuButton: '.context-menu-button',
-        contextMenuAutoClickRow: true,
-        beforeContextMenuRow: function(e,row,buttonElement){
-            if (Application.isAdmin()){
-                $('#context-menu li[data-item="delete"]').show();
-            } else {
-                $('#context-menu li[data-item="delete"]').hide();
-            }
-            return true;
-        },
-        onContextMenuItem: function(row, $el) {
-             if ($el.data("item") == "delete") {
-                Article.delete(row.id, ()=>{
-                    refresh();
-                });
-            }
-        }
+        ]
     });
-
+    $(document).on('click', 'span.article-menu button.action-delete', function(event){
+        const id = $(this).attr("data-id");
+        Article.delete(id, ()=>{
+            refresh();
+        });
+    });
 </script>
 
 <?=bottom_private()?>
