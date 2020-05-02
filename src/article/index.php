@@ -67,6 +67,11 @@ Article();
                 }
             },
             {
+                field: 'createdDate',
+                title: 'Created',
+                sortable: true
+            },
+            {
                 width: 250,
                 formatter: (obj,row)=>{
                     return '<span class="article-menu">' + 
