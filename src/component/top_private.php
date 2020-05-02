@@ -146,14 +146,14 @@
                     <li class="header">Main</li>
                     <li><a href="/dashboard.php"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
                     <li><a href="/vocabulary"><i class="fa fa-language"></i> <span>Vocabulary</span></a></li>
-                    <li><a href="/minpair"><i class="fa fa-circle-o text-purple"></i> <span>Minpair</span></a></li>
-                    <li><a href="/article"><i class="fa fa-circle-o text-purple"></i> <span>Topic</span></a></li>
+                    <li><a href="/minpair"><i class="fa fa-circle-o text-aqua"></i> <span>Minpair</span></a></li>
+                    <li><a href="/article"><i class="fa fa-circle-o text-green"></i> <span>Topic</span></a></li>
                     
                     <li class="admin_menu header">Admin</li>
-                    <li class="admin_menu"><a href="/admin/user.php"><i class="fa fa-circle-o text-red"></i> User</a></li>
-                    <li class="admin_menu"><a href="/admin/panel.php"><i class="fa fa-circle-o text-yellow"></i> Setting</a></li>
-                    <li class="admin_menu"><a href="/article/admin.php"><i class="fa fa-circle-o text-green"></i> Topic</a></li>
-                    <li class="admin_menu"><a href="/minpair/admin.php"><i class="fa fa-circle-o text-aqua"></i> Minpair</a></li>
+                    <li class="admin_menu"><a href="/minpair/admin.php"><i class="fa fa-circle-o text-aqua"></i> Manage Minpair</a></li>
+                    <li class="admin_menu"><a href="/article/admin.php"><i class="fa fa-circle-o text-green"></i> Manage Topic</a></li>
+                    <li class="admin_menu"><a href="/admin/user.php"><i class="fa fa-circle-o text-red"></i> Manage User</a></li>
+                    <li class="admin_menu"><a href="/admin/panel.php"><i class="fa fa-circle-o text-yellow"></i> Advanced Settings</a></li>
                 </ul>
             </section>
             <!-- /.sidebar -->
