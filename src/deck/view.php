@@ -54,19 +54,19 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
 
     <div class="col-lg-12 deck-control">
         <div class="btn-group">
-            <button class="btn btn-success deck-action" data-action="learn">Lean</button>
-            <button class="btn btn-success deck-action" data-action="review">Review</button>
+            <button class="btn btn-flat btn-info deck-action" data-action="learn">Lean</button>
+            <button class="btn btn-flat btn-info deck-action" data-action="review">Review</button>
         </div>
         <div class="btn-group">
-            <button class="btn btn-info deck-action" data-action="parent" style="display: none;">Parent</button>
+            <button class="btn btn-flat btn-info deck-action" data-action="parent" style="display: none;">Parent</button>
         </div>
         <div class="btn-group">
-            <button class="btn btn-warning deck-action" data-action="edit">Edit</button>
-            <button class="btn btn-warning deck-action" data-action="archive">Archive</button>
-            <button class="btn btn-warning deck-action" data-action="unarchive">Unarchive</button>
+            <button class="btn btn-flat btn-info deck-action" data-action="edit">Edit</button>
+            <button class="btn btn-flat btn-info deck-action" data-action="archive">Archive</button>
+            <button class="btn btn-flat btn-info deck-action" data-action="unarchive">Unarchive</button>
         </div>
         <div class="btn-group">
-            <button class="btn btn-danger deck-action" data-action="delete">Delete</button>
+            <button class="btn btn-flat btn-danger deck-action" data-action="delete">Delete</button>
         </div>
     </div>
 
@@ -240,28 +240,23 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
             },
             {
                 field: 'sm2Ef',
-                title: 'E-F',
-                sortable: true,
+                title: 'Easy Score (1.3 - 4)',
+                sortable: true
             },
             {
                 field: 'step',
-                title: 'Step',
+                title: '#Deck',
                 sortable: true,
-            },
-            {
-                field: 'expiredDays',
-                title: 'Days',
-                sortable: false,
+                formatter: function(data){
+                    return data + 1;
+                },
             },
             {
                 align: 'center',
                 formatter: (obj, row)=>{
-                   if (deck.type == 'topic'){
-                       return '';
-                    }
                     return '<div class="btn-group">'+
-                        '<button data-vocabid="'+row.vocabId+'" data-cardid="'+row.id+'" class="btn btn-sm btn-success cardcmd__edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>'+
-                        '<button data-vocabid="'+row.vocabId+'" data-cardid="'+row.id+'" class="btn btn-sm btn-danger cardcmd__delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>'+
+                        '<button data-vocabid="'+row.vocabId+'" data-cardid="'+row.id+'" class="btn btn-flat btn-sm btn-info cardcmd__edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>'+
+                        '<button data-vocabid="'+row.vocabId+'" data-cardid="'+row.id+'" class="btn btn-flat btn-sm btn-danger cardcmd__delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>'+
                     '</div>';
                 },
                 width: '12%'
