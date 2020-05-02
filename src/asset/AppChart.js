@@ -37,10 +37,10 @@ var AppChart = ((AppChart, Storage, AppApi)=>{
                 });
                 data.addColumn('string','Step name');
 
-                data.addColumn('number','Expired');
+                data.addColumn('number','New / Forgot cards');
                 //data.addColumn('number', timeup + ' cards today');
 
-                data.addColumn('number','Pass');
+                data.addColumn('number','Remembered cards');
                 //data.addColumn('number', correct + ' cards learned');
 
                 data.addRows(r.data.length);
