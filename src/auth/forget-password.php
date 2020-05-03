@@ -12,10 +12,10 @@
         </p>
 		<form id="forget">
 		  <div class="form-group">
-			<label for="email"><?= $lang["registerpage.form.email.label"] ?></label>
-			<input type="text" required class="form-control" id="email" placeholder='<?= $lang["registerpage.form.email.holder"] ?>'>
+			<label for="email"><?= $lang["forgotpassword.form.email.label"] ?></label>
+			<input type="text" required class="form-control" id="email" placeholder='<?= $lang["forgotpassword.form.email.holder"] ?>'>
 		  </div>
-		  <button type="submit" class="btn btn-primary"><?= $lang["registerpage.form.btn.submit"] ?></button>
+		  <button type="submit" class="btn btn-primary"><?= $lang["forgotpassword.form.btn.submit"] ?></button>
 		</form>
 	</div>
 </div>
