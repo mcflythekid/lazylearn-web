@@ -42,7 +42,7 @@ top_public();
             })
         }
 
-        AppApi.async("/article/public/randoms").then(res=>{
+        AppApi.async("/article/public/randoms/" + slug).then(res=>{
             const arr = res.data;
             console.log(arr);
             arr.forEach(item=>{
