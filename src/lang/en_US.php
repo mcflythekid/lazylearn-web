@@ -234,4 +234,12 @@ $lang["page.vocabdeck.column.name"] = "Deck name";
 
 $lang["page.vocabdeck_view.btn.create"] = "Create vocabulary";
 $lang["page.vocabdeck_view.input.search.holder"] = "Search by sides";
+
+$lang["page.minpair.title"] = "Minimum pairs";
+$lang["page.minpair.header"] = "Minimum pairs";
+$lang["page.minpair.input.search.holder"] = "Search by words";
+$lang["page.minpair.btn.create"] = "Create new pair";
+$lang["page.minpair.column.language"] = "Language";
+$lang["page.minpair.column.word1"] = "Word 1";
+$lang["page.minpair.column.word2"] = "Word 2";
 ?>

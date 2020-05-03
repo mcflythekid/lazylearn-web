@@ -234,4 +234,12 @@ $lang["page.vocabdeck.column.name"] = "Tên gói";
 
 $lang["page.vocabdeck_view.btn.create"] = "Tạo từ mới";
 $lang["page.vocabdeck_view.input.search.holder"] = "Tìm kiếm theo nội dung";
+
+$lang["page.minpair.title"] = "Cặp từ";
+$lang["page.minpair.header"] = "Cặp từ";
+$lang["page.minpair.input.search.holder"] = "Tìm kiếm bằng từ";
+$lang["page.minpair.btn.create"] = "Tạo mới";
+$lang["page.minpair.column.language"] = "Ngôn ngữ";
+$lang["page.minpair.column.word1"] = "Từ 1";
+$lang["page.minpair.column.word2"] = "Từ 2";
 ?>

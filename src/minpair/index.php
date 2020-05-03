@@ -1,10 +1,10 @@
 <?php
 require_once '../core.php';
 require_once '../lang/core.php';
-$TITLE = ('Minpair');
-$HEADER = "Minpair";
+$TITLE = $lang["page.minpair.title"];
+$HEADER = $lang["page.minpair.header"];
 $PATHS = [
-    "Minpair"
+    $lang["page.minpair.header"]
 ];
 top_private();
 Minpair();
@@ -14,11 +14,10 @@ Minpair();
     <div class="col-lg-12">
 
         <div id="mminpair__create--wrapper">
-            <button class="btn btn-info btn-flat" id="mminpair__create--btn" type="submit">Create Minpair</button>
+            <button class="btn btn-info btn-flat" id="mminpair__create--btn" type="submit"><?= $lang["page.minpair.btn.create"] ?></button>
         </div>
 
         <table id="minpair__list"></table>
-
     </div>
 </div>
 
@@ -46,6 +45,7 @@ Minpair();
         cache: false,
         method: 'post',
         striped: false,
+        formatSearch: ()=> { return '<?= $lang["page.minpair.input.search.holder"] ?>' },
         toolbar: '#mminpair__create--wrapper',
         sidePagination: 'server',
         sortName: 'createdDate',
@@ -62,17 +62,17 @@ Minpair();
         columns: [
 			{
                 field: 'language',
-                title: 'Language',
+                title: '<?= $lang["page.minpair.column.language"] ?>',
                 sortable: true
             },
             {
                 field: 'word1',
-                title: 'Word 1',
+                title: '<?= $lang["page.minpair.column.word1"] ?>',
                 sortable: true
             },
             {
                 field: 'word2',
-                title: 'Word 2',
+                title: '<?= $lang["page.minpair.column.word2"] ?>',
                 sortable: true
             },
             {
