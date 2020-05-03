@@ -75,50 +75,50 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Edit vocabulary</span></h4>
+                    <h4 class="modal-title"><?= $lang["class.vocab.formupdate.title"] ?></span></h4>
                 </div>
                 <div class="modal-body">
                     <form id="vocab-edit-form">
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="vocab-edit-word">Word</label>
-                                    <input required class="form-control" id="vocab-edit-word" placeholder="Word">
+                                    <label for="vocab-edit-word"><?= $lang["class.vocab.form.input.word.label"] ?></label>
+                                    <input required class="form-control" id="vocab-edit-word" placeholder="<?= $lang["class.vocab.form.input.word.holder"] ?>">
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="vocab-edit-phonetic">Phonetic</label>
-                                    <input required class="form-control" id="vocab-edit-phonetic" placeholder="Phonetic">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <div class="form-group">
-                                    <label for="vocab-edit-phrase">Phrase</label>
-                                    <input class="form-control" id="vocab-edit-phrase" placeholder="Phrase">
-                                </div>
-                            </div>
-                            <div class="col-xs-6">
-                                <div class="form-group">
-                                    <label for="vocab-edit-personalconnection">Personal connection</label>
-                                    <input required class="form-control" id="vocab-edit-personalconnection" placeholder="Personal connection">
+                                    <label for="vocab-edit-phonetic"><?= $lang["class.vocab.form.input.phonetic.label"] ?></label>
+                                    <input required class="form-control" id="vocab-edit-phonetic" placeholder="<?= $lang["class.vocab.form.input.phonetic.holder"] ?>">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label>Old Image</label>
+                                    <label for="vocab-edit-phrase"><?= $lang["class.vocab.form.input.phrase.label"] ?></label>
+                                    <input class="form-control" id="vocab-edit-phrase" placeholder="<?= $lang["class.vocab.form.input.phrase.holder"] ?>">
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="vocab-edit-personalconnection"><?= $lang["class.vocab.form.input.connection.label"] ?></label>
+                                    <input required class="form-control" id="vocab-edit-personalconnection" placeholder="<?= $lang["class.vocab.form.input.connection.holder"] ?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label><?= $lang["class.vocab.formupdate.input.image_old.label"] ?></label>
                                     <img id="vocab-edit-image-old" style="max-height: 100px; display: block">
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label>Old Audio</label>
+                                    <label><?= $lang["class.vocab.formupdate.input.audio_old.label"] ?></label>
                                     <audio controls id="vocab-edit-audio-old" style="width: 100%; display: block">
-                                        Your browser does not support the audio element.
+                                        <?= $lang["class.vocab.form.input.audio_error.label"] ?>
                                     </audio>
                                 </div>
                             </div>
@@ -126,13 +126,13 @@
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="vocab-edit-image">New Image</label>
+                                    <label for="vocab-edit-image"><?= $lang["class.vocab.formupdate.input.image_new.label"] ?></label>
                                     <input type="file" accept="image/*" class="form-control" id="vocab-edit-image">
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="vocab-edit-audio">New Audio</label>
+                                    <label for="vocab-edit-audio"><?= $lang["class.vocab.formupdate.input.audio_new.label"] ?></label>
                                     <input type="file" accept="audio/*" class="form-control" id="vocab-edit-audio">
                                 </div>
                             </div>
@@ -140,8 +140,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" form="vocab-edit-form" class="btn btn-success">Save</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" form="vocab-edit-form" class="btn btn-success btn-flat"><?= $lang["class.vocab.formupdate.submit"] ?></button>
+                    <button type="button" class="btn btn-default btn-flat" data-dismiss="modal"><?= $lang["common.cancel"] ?></button>
                 </div>
             </div>
         </div>

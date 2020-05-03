@@ -205,9 +205,16 @@ $lang["class.vocab.form.input.phrase.label"] = "Phrase";
 $lang["class.vocab.form.input.phrase.holder"] = "Phrase";
 $lang["class.vocab.form.input.connection.label"] = "Connection";
 $lang["class.vocab.form.input.connection.holder"] = "Connection";
-$lang["class.vocab.form.input.audio.label"] = "Audio";
+$lang["class.vocab.form.input.audio.label"] = "Audio file";
 $lang["class.vocab.form.input.audio_error.label"] = "Your browser does not support the audio element.";
-$lang["class.vocab.form.input.image.label"] = "Image";
+$lang["class.vocab.form.input.image.label"] = "Image file";
 $lang["class.vocab.form.submit"] = "Create";
 $lang["class.vocab.form.crawl"] = "Quick crawl";
+
+$lang["class.vocab.formupdate.title"] = "Edit vocabulary";
+$lang["class.vocab.formupdate.input.audio_new.label"] = "New audio file";
+$lang["class.vocab.formupdate.input.audio_old.label"] = "Old audio file";
+$lang["class.vocab.formupdate.input.image_new.label"] = "New image file";
+$lang["class.vocab.formupdate.input.image_old.label"] = "Old image file";
+$lang["class.vocab.formupdate.submit"] = "Update";
 ?>
