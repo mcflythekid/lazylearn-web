@@ -174,4 +174,10 @@ $lang["class.deck.form.submit"] = "Sửa";
 
 $lang["class.card.form.title"] = "asdas";
 $lang["class.card.form.submit"] = "Submit";
+
+$lang["class.topic.form.title"] = "Tài liệu";
+$lang["class.topic.form.name"] = "Tên tài liệu";
+$lang["class.topic.form.content"] = "Nội dung";
+$lang["class.topic.form.url"] = "URL";
+$lang["class.topic.form.submit"] = "Hoàn tất";
 ?>

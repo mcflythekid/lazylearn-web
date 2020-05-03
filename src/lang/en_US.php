@@ -174,4 +174,10 @@ $lang["class.deck.form.submit"] = "Submit";
 
 $lang["class.card.form.title"] = "Edit card";
 $lang["class.card.form.submit"] = "Submit";
+
+$lang["class.topic.form.title"] = "Topic";
+$lang["class.topic.form.name"] = "Topic name";
+$lang["class.topic.form.content"] = "Content";
+$lang["class.topic.form.url"] = "URL";
+$lang["class.topic.form.submit"] = "Submit";
 ?>

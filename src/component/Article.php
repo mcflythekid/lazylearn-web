@@ -1,4 +1,6 @@
-<?php function Article(){ ?>
+<?php function Article(){ 
+    global $lang;
+?>
 
 <div id="article__modal__create" class="modal fade" role="dialog" tabindex='-1'>
     <div class="modal-dialog  modal-lg">
@@ -7,23 +9,23 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Create a Article</span></h4>
+                <h4 class="modal-title"><?= $lang["class.topic.form.title"] ?></span></h4>
             </div>
             <div class="modal-body">
                 <form id="article__modal__create--form">
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="form-group">
-                                <label for="article__modal__create--name">Name</label>
-                                <input type="text" value="" required class="form-control" id="article__modal__create--name" placeholder="Name">
+                                <label for="article__modal__create--name"><?= $lang["class.topic.form.name"] ?></label>
+                                <input type="text" value="" required class="form-control" id="article__modal__create--name" placeholder="<?= $lang["class.topic.form.name"] ?>">
                             </div>
                             <div class="form-group">
-                                <label for="article__modal__create--content">Content</label>
+                                <label for="article__modal__create--content"><?= $lang["class.topic.form.content"] ?></label>
                                 <div id="article__modal__create--content"></div>
                             </div>
                             <div class="form-group">
-                                <label for="article__modal__create--url">URL</label>
-                                <input type="text" value="" class="form-control" id="article__modal__create--url" placeholder="URL">
+                                <label for="article__modal__create--url"><?= $lang["class.topic.form.url"] ?></label>
+                                <input type="text" value="" class="form-control" id="article__modal__create--url" placeholder="<?= $lang["class.topic.form.url"] ?>">
                             </div>
                         </div>
                     </div>
@@ -31,8 +33,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="submit" form="article__modal__create--form" class="btn btn-success">Create</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" form="article__modal__create--form" class="btn btn-success btn-flat"><?= $lang["class.topic.form.submit"] ?></button>
+                <button type="button" class="btn btn-default btn-flat" data-dismiss="modal"><?= $lang["common.cancel"] ?></button>
             </div>
         </div>
 
