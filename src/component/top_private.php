@@ -195,7 +195,7 @@
                 <?php if(is_array($PATHS)) { ?>
                 <ol class="breadcrumb">
 
-                    <li><a href="/dashboard.php"><i class="fa fa-home"></i> Lazylearn</a></li>
+                    <li><a href="/dashboard.php"><i class="fa fa-home"></i> LazyLearn</a></li>
 
                     <?php foreach($PATHS as $key=>$path) { ?>
                         <?php if ($key < sizeof($PATHS) - 1){ ?>
