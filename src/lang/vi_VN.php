@@ -251,4 +251,8 @@ $lang["page.topic.input.search.holder"] = "Tìm theo tên và nội dung";
 $lang["page.topic.btn.create"] = "Tạo mới";
 $lang["page.topic.column.name"] = "Tên bài viết";
 $lang["page.topic.column.url"] = "URL";
+
+$lang["page.minpairlearn.command.begin"] = "Bắt đầu bài học";
+$lang["page.minpairlearn.tmpresult.correct"] = "CHÍNH XÁC";
+$lang["page.minpairlearn.tmpresult.incorrect"] = "CHƯA ĐÚNG";
 ?>

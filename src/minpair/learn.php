@@ -4,11 +4,11 @@ require '../lang/core.php';
 $minpairId = ''; if (isset($_GET['id'])) $minpairId = escape($_GET['id']);
 $cardId = ''; if (isset($_GET['cardid'])) $cardId = escape($_GET['cardid']);
 $learnType = ''; if (isset($_GET['type'])) $learnType = escape($_GET['type']);
-$TITLE = 'loading...';
-$HEADER = '<span id="appHeader">loading..</span>';
+$TITLE = $lang["common.loading"];
+$HEADER = '<span id="appHeader">' . $lang["common.loading"] . '</span>';
 $PATHS = [
-    ["/minpair", "Minpair"],
-    '<span id="appBreadcrumb1">loading..</span>'
+    ["/deck.php", $lang["page.deck.header"]],
+    '<span id="appBreadcrumb1">' . $lang["common.loading"] . '</span>'
 ];
 top_private();
 Minpair();
@@ -20,19 +20,19 @@ Minpair();
             <div class="row">
                 <div id="learnstatus">
                     <span class="pull-right">
-                    unanswered: <span class="learnstatus__count" id="learnstatus__count--unanswered">loading...</span>
-                    correct: <span class="learnstatus__count" id="learnstatus__count--correct">loading...</span>
-                    incorrect: <span class="learnstatus__count" id="learnstatus__count--incorrect">loading...</span>
+                    <?= $lang["page.basiclearn.label.unanswered"] ?>: <span class="learnstatus__count" id="learnstatus__count--unanswered"><?= $lang["common.loading"] ?></span>
+                    <?= $lang["page.basiclearn.label.correct"] ?>: <span class="learnstatus__count" id="learnstatus__count--correct"><?= $lang["common.loading"] ?></span>
+                    <?= $lang["page.basiclearn.label.incorrect"] ?>: <span class="learnstatus__count" id="learnstatus__count--incorrect"><?= $lang["common.loading"] ?></span>
                 </span>
                 </div>
             </div>
 
             <div class="row">
                 <div id="learncmd" class="btn-group btn-group-justified" role="group" aria-label="Command">
-                    <a class="btn btn-default btn-sm" role="button" id="learncmd__end" title="STOP">
+                    <a class="btn btn-default btn-sm" role="button" id="learncmd__end" title="<?= $lang["page.basiclearn.command.end"] ?>">
                         <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
                     </a>
-                    <a class="btn btn-default btn-sm admin_component_todo" style="display: none;" role="button" id="learncmd__drop" title="Delete">
+                    <a class="btn btn-default btn-sm admin_component_todo" style="display: none;" role="button" id="learncmd__drop" title="<?= $lang["page.basiclearn.command.delete"] ?>">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     </a>
                 </div>
@@ -41,8 +41,8 @@ Minpair();
             <div class="row">
                 <div id="learndata">
                     <div id="learndata__front">
-                        <div id="learndata__front--result-correct" class="learndata__front--result" style="display: none;">CORRECT</div>
-                        <div id="learndata__front--result-incorrect" class="learndata__front--result" style="display: none;">INCORRECT</div>
+                        <div id="learndata__front--result-correct" class="learndata__front--result" style="display: none;"><?= $lang["page.minpairlearn.tmpresult.correct"] ?></div>
+                        <div id="learndata__front--result-incorrect" class="learndata__front--result" style="display: none;"><?= $lang["page.minpairlearn.tmpresult.incorrect"] ?></div>
                         <div id="learndata__front--data"></div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@ Minpair();
                 <div id="learnanswer">
                     <button id="learnanswer__play" class="learnanswer btn btn-primary">
                         <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
-                        Start
+                        <?= $lang["page.minpairlearn.command.begin"] ?>
                     </button>
                     <button id="learnanswer__1" class="learnanswer__1_2 learnanswer btn btn-success" style="display: none;"></button>
                     <button id="learnanswer__2" class="learnanswer__1_2 learnanswer btn btn-success" style="display: none;"></button>

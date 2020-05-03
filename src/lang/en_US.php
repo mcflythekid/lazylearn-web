@@ -251,4 +251,8 @@ $lang["page.topic.input.search.holder"] = "Search by name & content";
 $lang["page.topic.btn.create"] = "Create new topic";
 $lang["page.topic.column.name"] = "Topic name";
 $lang["page.topic.column.url"] = "URL";
+
+$lang["page.minpairlearn.command.begin"] = "Start lession";
+$lang["page.minpairlearn.tmpresult.correct"] = "CORRECT";
+$lang["page.minpairlearn.tmpresult.incorrect"] = "INCORRECT";
 ?>
