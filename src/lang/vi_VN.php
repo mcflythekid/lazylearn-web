@@ -139,7 +139,7 @@ $lang["page.deck.column.expired_card"] = "Số card cần học";
 $lang["page.deck.column.created"] = "Ngày tạo";
 
 $lang["page.deckview.chart01.text"] = "Trạng thái";
-$lang["page.deckview.btn.parent"] = "Cha";
+$lang["page.deckview.btn.parent"] = "Dữ liệu gốc";
 $lang["page.deckview.btn.create"] = "Tạo thẻ";
 $lang["page.deckview.input.search.holder"] = "Tìm thẻ";
 $lang["page.deckview.column.front"] = "Mặt trước";

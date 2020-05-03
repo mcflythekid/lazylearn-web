@@ -139,7 +139,7 @@ $lang["page.deck.column.expired_card"] = "Timed-up cards";
 $lang["page.deck.column.created"] = "Created date";
 
 $lang["page.deckview.chart01.text"] = "Status";
-$lang["page.deckview.btn.parent"] = "Parent";
+$lang["page.deckview.btn.parent"] = "Parent data";
 $lang["page.deckview.btn.create"] = "Create card";
 $lang["page.deckview.input.search.holder"] = "Search card";
 $lang["page.deckview.column.front"] = "Front side";
