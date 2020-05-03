@@ -180,4 +180,19 @@ $lang["class.topic.form.name"] = "Tên tài liệu";
 $lang["class.topic.form.content"] = "Nội dung";
 $lang["class.topic.form.url"] = "URL";
 $lang["class.topic.form.submit"] = "Hoàn tất";
+
+$lang["class.minpair.form.title"] = "Tạo một cặp từ";
+$lang["class.minpair.form.input.word1.label"] = "Từ 1";
+$lang["class.minpair.form.input.word1.holder"] = "Từ 1";
+$lang["class.minpair.form.input.word2.label"] = "Từ 2";
+$lang["class.minpair.form.input.word2.holder"] = "Từ 2";
+$lang["class.minpair.form.input.phonetic1.label"] = "Phiên âm 1";
+$lang["class.minpair.form.input.phonetic1.holder"] = "Phiên âm 1";
+$lang["class.minpair.form.input.phonetic2.label"] = "Phiên âm 2";
+$lang["class.minpair.form.input.phonetic2.holder"] = "Phiên âm 2";
+$lang["class.minpair.form.input.audio1.label"] = "Audio 1";
+$lang["class.minpair.form.input.audio2.label"] = "Audio 2";
+$lang["class.minpair.form.input.language.label"] = "Ngôn ngữ";
+$lang["class.minpair.form.input.language.holder"] = "english, chinese, ...";
+$lang["class.minpair.form.submit"] = "Tạo ngay";
 ?>

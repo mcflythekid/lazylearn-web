@@ -1,4 +1,6 @@
-<?php function Minpair(){ ?>
+<?php function Minpair(){ 
+    global $lang;
+?>
 
     <div id="minpair__modal__create" class="modal fade" role="dialog" tabindex='-1'>
         <div class="modal-dialog">
@@ -7,40 +9,40 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Create a Minpair</span></h4>
+                    <h4 class="modal-title"><?= $lang["class.minpair.form.title"] ?></span></h4>
                 </div>
                 <div class="modal-body">
                     <form id="minpair__modal__create--form">
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="minpair__modal__create--word1">Word 1</label>
-                                    <input type="text" required class="form-control" id="minpair__modal__create--word1" placeholder="Word 1" value="">
+                                    <label for="minpair__modal__create--word1"><?= $lang["class.minpair.form.input.word1.label"] ?></label>
+                                    <input type="text" required class="form-control" id="minpair__modal__create--word1" placeholder="<?= $lang["class.minpair.form.input.word1.holder"] ?>" value="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="minpair__modal__create--phonetic1">Phonetic 1</label>
-                                    <input type="text" required class="form-control" id="minpair__modal__create--phonetic1" placeholder="Phonetic 1" value="">
+                                    <label for="minpair__modal__create--phonetic1"><?= $lang["class.minpair.form.input.phonetic1.label"] ?></label>
+                                    <input type="text" required class="form-control" id="minpair__modal__create--phonetic1" placeholder="<?= $lang["class.minpair.form.input.phonetic1.holder"] ?>" value="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="minpair__modal__create--phonetic1">Audio 1</label>
+                                    <label for="minpair__modal__create--phonetic1"><?= $lang["class.minpair.form.input.audio1.label"] ?></label>
                                     <input type="file" accept="audio/*" multiple required accept=".mp3" class="form-control" id="minpair__modal__create--audio1" >
                                 </div>
 								<div class="form-group">
-                                    <label for="minpair__modal__create--language">Language</label>
-                                    <input type="text" required class="form-control" id="minpair__modal__create--language" placeholder="english, chinese, ..." value="">
+                                    <label for="minpair__modal__create--language"><?= $lang["class.minpair.form.input.language.label"] ?></label>
+                                    <input type="text" required class="form-control" id="minpair__modal__create--language" placeholder="<?= $lang["class.minpair.form.input.language.holder"] ?>" value="">
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="minpair__modal__create--word1">Word 2</label>
-                                    <input type="text" required class="form-control" id="minpair__modal__create--word2" placeholder="Word 2" value="">
+                                    <label for="minpair__modal__create--word1"><?= $lang["class.minpair.form.input.word2.label"] ?></label>
+                                    <input type="text" required class="form-control" id="minpair__modal__create--word2" placeholder="<?= $lang["class.minpair.form.input.word2.holder"] ?>" value="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="minpair__modal__create--phonetic1">Phonetic 2</label>
-                                    <input type="text" required class="form-control" id="minpair__modal__create--phonetic2" placeholder="Phonetic 2" value="">
+                                    <label for="minpair__modal__create--phonetic1"><?= $lang["class.minpair.form.input.phonetic2.label"] ?></label>
+                                    <input type="text" required class="form-control" id="minpair__modal__create--phonetic2" placeholder="<?= $lang["class.minpair.form.input.phonetic2.holder"] ?>" value="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="minpair__modal__create--phonetic1">Audio 2</label>
+                                    <label for="minpair__modal__create--phonetic1"><?= $lang["class.minpair.form.input.audio2.label"] ?></label>
                                     <input type="file" accept="audio/*" multiple required accept=".mp3" class="form-control" id="minpair__modal__create--audio2" >
                                 </div>
                             </div>
@@ -48,8 +50,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" form="minpair__modal__create--form" class="btn btn-success">Create</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" form="minpair__modal__create--form" class="btn btn-success btn-flat"><?= $lang["class.minpair.form.submit"] ?></button>
+                    <button type="button" class="btn btn-default btn-flat" data-dismiss="modal"><?= $lang["common.cancel"] ?></button>
                 </div>
             </div>
 

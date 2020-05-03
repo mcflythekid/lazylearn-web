@@ -180,4 +180,19 @@ $lang["class.topic.form.name"] = "Topic name";
 $lang["class.topic.form.content"] = "Content";
 $lang["class.topic.form.url"] = "URL";
 $lang["class.topic.form.submit"] = "Submit";
+
+$lang["class.minpair.form.title"] = "Create a Minimal pair";
+$lang["class.minpair.form.input.word1.label"] = "Word 1";
+$lang["class.minpair.form.input.word1.holder"] = "Word 1";
+$lang["class.minpair.form.input.word2.label"] = "Word 2";
+$lang["class.minpair.form.input.word2.holder"] = "Word 2";
+$lang["class.minpair.form.input.phonetic1.label"] = "Phonetic 1";
+$lang["class.minpair.form.input.phonetic1.holder"] = "Phonetic 1";
+$lang["class.minpair.form.input.phonetic2.label"] = "Phonetic 2";
+$lang["class.minpair.form.input.phonetic2.holder"] = "Phonetic 2";
+$lang["class.minpair.form.input.audio1.label"] = "Audio 1";
+$lang["class.minpair.form.input.audio2.label"] = "Audio 2";
+$lang["class.minpair.form.input.language.label"] = "Language";
+$lang["class.minpair.form.input.language.holder"] = "english, chinese, ...";
+$lang["class.minpair.form.submit"] = "Create";
 ?>
