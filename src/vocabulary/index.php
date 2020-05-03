@@ -1,10 +1,10 @@
 <?php
 require_once '../core.php';
 require_once '../lang/core.php';
-$TITLE = 'Vocabulary';
-$HEADER = "Vocabulary";
+$TITLE = $lang["page.vocabdeck.title"];
+$HEADER = $lang["page.vocabdeck.header"];
 $PATHS = [
-    "Vocabulary"
+    $lang["page.vocabdeck.header"]
 ];
 top_private();
 Vocabdeck();
@@ -15,20 +15,14 @@ Vocabdeck();
         <div id="vocabdeck-create-form-wrapper">
             <form id="vocabdeck-create-form">
                 <div class="input-group" >
-                    <input type="text" class="form-control" id="vocabdeck-create-name" required placeholder="Vocabulary deck name...">
+                    <input type="text" class="form-control" id="vocabdeck-create-name" required placeholder="<?= $lang["page.vocabdeck.input.create.holder"] ?>">
                     <span class="input-group-btn">
-						<button class="btn btn-info btn-flat" type="submit">Create</button>
+						<button class="btn btn-info btn-flat" type="submit"><?= $lang["page.vocabdeck.btn.create"] ?></button>
 					</span>
                 </div>
             </form>
         </div>
         <table id="vocabdeck-list"></table>
-        <ul id="context-menu" class="dropdown-menu">
-            <li data-item="archive"><a>Archive</a></li>
-            <li data-item="unarchive"><a>Unarchive</a></li>
-            <li data-item="rename"><a>Rename</a></li>
-            <li data-item="delete"><a>Delete</a></li>
-        </ul>
     </div>
 </div>
 
@@ -54,6 +48,7 @@ Vocabdeck();
         method: 'post',
         striped: false,
         toolbar: '#vocabdeck-create-form-wrapper',
+        formatSearch: ()=> { return '<?= $lang["page.vocabdeck.input.search.holder"] ?>' },
         sidePagination: 'server',
         sortName: 'createdDate',
         sortOrder: 'desc',
@@ -69,7 +64,7 @@ Vocabdeck();
         columns: [
             {
                 field: 'name',
-                title: 'Name',
+                title: '<?= $lang["page.vocabdeck.column.name"] ?>',
                 sortable: true,
                 formatter: (obj,row)=>{
                     return '<a href="/vocabulary/view.php?id=' + row.id + '">' + obj+'</a>' +
@@ -78,17 +73,17 @@ Vocabdeck();
             },
             {
                 field: 'createdDate',
-                title: 'Created',
+                title: '<?= $lang["common.created_date"] ?>',
                 sortable: true
             },
             {
                 width: 250,
                 formatter: (obj,row)=>{
                     return '<span class="vocab-menu">' + 
-                        '<button data-id="' + row.id + '" class="action-rename btn btn-info btn-flat">Rename</button>' +
-                        (row.archived == 0 ? '<button data-id="' + row.id + '" class="action-archive btn btn-info btn-flat u-ml-5">Archive</button>' : '' ) +
-                        (row.archived == 1 ? '<button data-id="' + row.id + '" class="action-unarchive btn btn-info btn-flat u-ml-5">Unarchive</button>' : '' ) +
-                        '<button data-id="' + row.id + '" class="action-delete btn btn-danger btn-flat u-ml-5">Delete</button>' + 
+                        '<button data-id="' + row.id + '" class="action-rename btn btn-info btn-flat"><?= $lang["common.rename"] ?></button>' +
+                        (row.archived == 0 ? '<button data-id="' + row.id + '" class="action-archive btn btn-info btn-flat u-ml-5"><?= $lang["common.archive"] ?></button>' : '' ) +
+                        (row.archived == 1 ? '<button data-id="' + row.id + '" class="action-unarchive btn btn-info btn-flat u-ml-5"><?= $lang["common.unarchive"] ?></button>' : '' ) +
+                        '<button data-id="' + row.id + '" class="action-delete btn btn-danger btn-flat u-ml-5"><?= $lang["common.delete"] ?></button>' + 
                     '</span>';
                 }
             },

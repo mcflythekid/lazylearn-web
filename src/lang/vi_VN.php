@@ -9,6 +9,7 @@ $lang["common.review"] = "Ôn tập";
 $lang["common.rename"] = "Đổi tên";
 $lang["common.edit"] = "Sửa đổi";
 $lang["common.cancel"] = "Hủy";
+$lang["common.created_date"] = "Ngày tạo";
 
 $lang["title"] = "LazyLearn &mdash; Thẻ Flashcard Online";
 
@@ -223,4 +224,11 @@ $lang["class.vocabdeck.form.title"] = "Đổi tên gói từ vựng";
 $lang["class.vocabdeck.form.name.label"] = "Tên mới";
 $lang["class.vocabdeck.form.name.holder"] = "Tên mới";
 $lang["class.vocabdeck.form.submit"] = "Đổi tên";
+
+$lang["page.vocabdeck.title"] = "Gói từ vựng";
+$lang["page.vocabdeck.header"] = "Gói từ vựng";
+$lang["page.vocabdeck.input.create.holder"] = "Tên gói";
+$lang["page.vocabdeck.input.search.holder"] = "Tìm kiếm theo tên gói";
+$lang["page.vocabdeck.btn.create"] = "Tạo mới";
+$lang["page.vocabdeck.column.name"] = "Tên gói";
 ?>

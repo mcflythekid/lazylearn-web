@@ -9,6 +9,7 @@ $lang["common.review"] = "Review";
 $lang["common.rename"] = "Rename";
 $lang["common.edit"] = "Edit";
 $lang["common.cancel"] = "Cancel";
+$lang["common.created_date"] = "Created date";
 
 $lang["title"] = "LazyLearn &mdash; Flashcard Machine";
 
@@ -223,4 +224,11 @@ $lang["class.vocabdeck.form.title"] = "Edit vocab deck";
 $lang["class.vocabdeck.form.name.label"] = "New name";
 $lang["class.vocabdeck.form.name.holder"] = "New name";
 $lang["class.vocabdeck.form.submit"] = "Submit";
+
+$lang["page.vocabdeck.title"] = "Vocabulary decks";
+$lang["page.vocabdeck.header"] = "Vocabulary decks";
+$lang["page.vocabdeck.input.create.holder"] = "New deck name";
+$lang["page.vocabdeck.input.search.holder"] = "Search deck by name";
+$lang["page.vocabdeck.btn.create"] = "Create new deck";
+$lang["page.vocabdeck.column.name"] = "Deck name";
 ?>
