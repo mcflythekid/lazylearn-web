@@ -507,7 +507,7 @@ require_once "../lang/core.php";
 
   <script>
     $(document).on('click', 'li.lang', function(event){
-        event.preventDefault():
+        event.preventDefault();
         const lang = $(this).attr('data-lang');
         axios.get("/lang/change.php?lang=" + lang).finally(()=>{
           location.reload();
