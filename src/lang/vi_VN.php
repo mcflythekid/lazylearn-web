@@ -218,4 +218,9 @@ $lang["class.vocab.formupdate.input.image_old.label"] = "Hình ảnh cũ";
 $lang["class.vocab.formupdate.submit"] = "Chỉnh sửa";
 $lang["class.vocab.error.cannot_read_image"] = "Không thể đọc file hình ảnh";
 $lang["class.vocab.error.cannot_read_audio"] = "Không thể đọc file âm thanh";
+
+$lang["class.vocabdeck.form.title"] = "Đổi tên gói từ vựng";
+$lang["class.vocabdeck.form.name.label"] = "Tên mới";
+$lang["class.vocabdeck.form.name.holder"] = "Tên mới";
+$lang["class.vocabdeck.form.submit"] = "Đổi tên";
 ?>

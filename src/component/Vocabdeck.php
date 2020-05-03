@@ -1,24 +1,26 @@
-<?php function Vocabdeck(){ ?>
+<?php function Vocabdeck(){
+    global $lang;    
+?>
 
     <div id="vocabdeck-rename-modal" class="modal fade" role="dialog" tabindex='-1'>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Rename</span></h4>
+                    <h4 class="modal-title"><?= $lang["class.vocabdeck.form.title"] ?></span></h4>
                 </div>
                 <div class="modal-body">
                     <form id="vocabdeck-rename-form">
                         <div class="form-group">
-                            <label for="vocabdeck-rename-name">New name</label>
-                            <input required class="form-control" id="vocabdeck-rename-newname" placeholder="New name">
+                            <label for="vocabdeck-rename-name"><?= $lang["class.vocabdeck.form.name.label"] ?></label>
+                            <input required class="form-control" id="vocabdeck-rename-newname" placeholder="<?= $lang["class.vocabdeck.form.name.holder"] ?>">
 
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" form="vocabdeck-rename-form" class="btn btn-success">Rename</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" form="vocabdeck-rename-form" class="btn btn-success btn-flat"><?= $lang["class.vocabdeck.form.submit"] ?></button>
+                    <button type="button" class="btn btn-default btn-flat" data-dismiss="modal"><?= $lang["common.cancel"] ?></button>
                 </div>
             </div>
         </div>

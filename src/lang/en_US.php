@@ -218,4 +218,9 @@ $lang["class.vocab.formupdate.input.image_old.label"] = "Old image file";
 $lang["class.vocab.formupdate.submit"] = "Update";
 $lang["class.vocab.error.cannot_read_image"] = "Cannot read image files";
 $lang["class.vocab.error.cannot_read_audio"] = "Cannot read audio files";
+
+$lang["class.vocabdeck.form.title"] = "Edit vocab deck";
+$lang["class.vocabdeck.form.name.label"] = "New name";
+$lang["class.vocabdeck.form.name.holder"] = "New name";
+$lang["class.vocabdeck.form.submit"] = "Submit";
 ?>
