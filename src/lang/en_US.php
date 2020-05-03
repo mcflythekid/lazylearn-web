@@ -103,4 +103,15 @@ $lang["forgotpassword.text"] = "Please provide your email address, and then we w
 $lang["forgotpassword.form.email.label"] = "Email address";
 $lang["forgotpassword.form.email.holder"] = "Your email";
 $lang["forgotpassword.form.btn.submit"] = "Send request";
+
+$lang["layout.private.email_not_set"] = "[Email is not set]";
+$lang["layout.private.security"] = "Security";
+$lang["layout.private.change_password"] = "Change password";
+$lang["layout.private.logout"] = "Sign out";
+$lang["layout.private.menu.main.id"] = "Menu";
+$lang["layout.private.menu.main.lazy"] = "Lazy";
+$lang["layout.private.menu.main.deck"] = "Your Decks";
+$lang["layout.private.menu.main.vocab"] = "Vocabulary";
+$lang["layout.private.menu.main.minpair"] = "Minimal Pairs";
+$lang["layout.private.menu.main.topic"] = "Topic";
 ?>

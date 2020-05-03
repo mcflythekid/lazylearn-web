@@ -103,4 +103,15 @@ $lang["forgotpassword.text"] = "Vui lòng nhập email của bạn, sau đó ch�
 $lang["forgotpassword.form.email.label"] = "Địa chỉ email";
 $lang["forgotpassword.form.email.holder"] = "Email của bạn";
 $lang["forgotpassword.form.btn.submit"] = "Gởi yêu cầu";
+
+$lang["layout.private.email_not_set"] = "Địa chỉ email chưa đưuọc cập nhật";
+$lang["layout.private.security"] = "Bảo mật";
+$lang["layout.private.change_password"] = "Đổi mật khẩu";
+$lang["layout.private.logout"] = "Đăng xuất";
+$lang["layout.private.menu.main.id"] = "Menu";
+$lang["layout.private.menu.main.lazy"] = "Lazy";
+$lang["layout.private.menu.main.deck"] = "Bộ thẻ của bạn";
+$lang["layout.private.menu.main.vocab"] = "Từ vựng";
+$lang["layout.private.menu.main.minpair"] = "Cặp từ";
+$lang["layout.private.menu.main.topic"] = "Tài liệu của bạn";
 ?>

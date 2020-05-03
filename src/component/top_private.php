@@ -6,6 +6,7 @@
     global $ASSET;
     global $CTX;
     global $ENDPOINT;
+    global $lang;
     ?>
 <!DOCTYPE html>
 <html>
@@ -109,14 +110,14 @@
                                 <!-- User image -->
                                 <li class="user-header">
                                     <!-- <img src="/bower_components/admin-lte/dist/img/avatar04.png" class="img-circle" alt="User Image"> -->
-                                    <p id="app__user_email">[Email is not set]</p>
+                                    <p id="app__user_email"><?= $lang["layout.private.email_not_set"] ?></p>
                                 </li>
 
                                 <!-- Menu Body -->
                                 <li class="user-body">
                                     <div class="row">
                                         <div class="col-xs-4 text-center">
-                                            <a href="/auth/security.php">Security</a>
+                                            <a href="/auth/security.php"><?= $lang["layout.private.security"] ?></a>
                                         </div>
                                     </div>
                                     <!-- /.row -->
@@ -124,10 +125,10 @@
 
                                 <li class="user-footer">
                                     <div class="pull-left" id="app__user_changepassword">
-                                        <a href="/auth/change-password.php" class="btn btn-default btn-flat ">Change password</a>
+                                        <a href="/auth/change-password.php" class="btn btn-default btn-flat "><?= $lang["layout.private.change_password"] ?></a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" id="logout" class="btn btn-default btn-flat">Sign out</a>
+                                        <a href="#" id="logout" class="btn btn-default btn-flat"><?= $lang["layout.private.logout"] ?></a>
                                     </div>
                                 </li>
                             </ul>
@@ -143,12 +144,12 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
 
-                    <li class="header">Main</li>
-                    <li><a href="/dashboard.php"><i class="fa fa-home"></i> <span>Lazy</span></a></li>
-                    <li><a href="/deck.php"><i class="fa fa-bars"></i> <span>My Decks</span></a></li>
-                    <li><a href="/vocabulary"><i class="fa fa-language"></i> <span>Vocabulary</span></a></li>
-                    <li><a href="/minpair"><i class="fa fa-circle-o text-aqua"></i> <span>Minpair</span></a></li>
-                    <li><a href="/article"><i class="fa fa-circle-o text-green"></i> <span>Topic</span></a></li>
+                    <li class="header"><?= $lang["layout.private.menu.main.id"] ?></li>
+                    <li><a href="/dashboard.php"><i class="fa fa-home"></i> <span><?= $lang["layout.private.menu.main.lazy"] ?></span></a></li>
+                    <li><a href="/deck.php"><i class="fa fa-bars"></i> <span><?= $lang["layout.private.menu.main.deck"] ?></span></a></li>
+                    <li><a href="/vocabulary"><i class="fa fa-language"></i> <span><?= $lang["layout.private.menu.main.vocab"] ?></span></a></li>
+                    <li><a href="/minpair"><i class="fa fa-circle-o text-aqua"></i> <span><?= $lang["layout.private.menu.main.minpair"] ?></span></a></li>
+                    <li><a href="/article"><i class="fa fa-circle-o text-green"></i> <span><?= $lang["layout.private.menu.main.topic"] ?></span></a></li>
                     
                     <li class="admin_menu header">Admin</li>
                     <li class="admin_menu"><a href="/minpair/admin.php"><i class="fa fa-circle-o text-aqua"></i> Manage Minpair</a></li>
