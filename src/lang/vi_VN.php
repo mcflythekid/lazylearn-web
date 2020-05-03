@@ -231,4 +231,7 @@ $lang["page.vocabdeck.input.create.holder"] = "Tên gói";
 $lang["page.vocabdeck.input.search.holder"] = "Tìm kiếm theo tên gói";
 $lang["page.vocabdeck.btn.create"] = "Tạo mới";
 $lang["page.vocabdeck.column.name"] = "Tên gói";
+
+$lang["page.vocabdeck_view.btn.create"] = "Tạo từ mới";
+$lang["page.vocabdeck_view.input.search.holder"] = "Tìm kiếm theo nội dung";
 ?>

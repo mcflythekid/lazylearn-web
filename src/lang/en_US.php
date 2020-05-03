@@ -231,4 +231,7 @@ $lang["page.vocabdeck.input.create.holder"] = "New deck name";
 $lang["page.vocabdeck.input.search.holder"] = "Search deck by name";
 $lang["page.vocabdeck.btn.create"] = "Create new deck";
 $lang["page.vocabdeck.column.name"] = "Deck name";
+
+$lang["page.vocabdeck_view.btn.create"] = "Create vocabulary";
+$lang["page.vocabdeck_view.input.search.holder"] = "Search by sides";
 ?>

@@ -1,11 +1,11 @@
 <?php
 require_once '../core.php';
 require_once '../lang/core.php';
-$TITLE = 'loading...';
-$HEADER = '<span id="appHeader">loading..</span>';
+$TITLE = $lang["common.loading"];
+$HEADER = '<span id="appHeader">' . $lang["common.loading"] . '</span>';
 $PATHS = [
     ["/vocabdeck", "Vocabulary"],
-    '<span id="appBreadcrumb1">loading..</span>'
+    '<span id="appBreadcrumb1">' . $lang["common.loading"] . '</span>'
 ];
 top_private();
 Vocab();
@@ -16,15 +16,15 @@ $vocabdeckId = ''; if (isset($_GET['id'])) $vocabdeckId = escape($_GET['id']);
 <div class="row">
     <div class="col-lg-12">
         <div class="btn-group">
-            <button class="btn btn-success" id="vocabdeck-btn-create">Create vocabulary</button>
+            <button class="btn btn-info btn-flat" id="vocabdeck-btn-create"><?= $lang["page.vocabdeck_view.btn.create"] ?></button>
         </div>
         <div class="pull-right"><div class="btn-group">
-                <button class="btn btn-warning" id="vocabdeck-btn-rename">Rename</button>
-                <button class="btn btn-warning" id="vocabdeck-btn-archive">Archive</button>
-                <button class="btn btn-warning" id="vocabdeck-btn-unarchive">Unarchive</button>
+                <button class="btn btn-info btn-flat" id="vocabdeck-btn-rename"><?= $lang["common.rename"] ?></button>
+                <button class="btn btn-info btn-flat" id="vocabdeck-btn-archive"><?= $lang["common.archive"] ?></button>
+                <button class="btn btn-info btn-flat" id="vocabdeck-btn-unarchive"><?= $lang["common.unarchive"] ?></button>
             </div>
             <div class="btn-group">
-                <button class="btn btn-danger" id="vocabdeck-btn-delete">Delete</button>
+                <button class="btn btn-danger btn-flat" id="vocabdeck-btn-delete"><?= $lang["common.delete"] ?></button>
             </div>
         </div>
     </div>
@@ -91,6 +91,7 @@ $vocabdeckId = ''; if (isset($_GET['id'])) $vocabdeckId = escape($_GET['id']);
         sidePagination: 'server',
         sortName: 'createdDate',
         sortOrder: 'desc',
+        formatSearch: ()=> { return '<?= $lang["page.vocabdeck_view.input.search.holder"] ?>' },
         queryParams: (params)=>{
             params.vocabdeckId = vocabdeckId;
             return params;
