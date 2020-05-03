@@ -4,13 +4,6 @@ session_start();
 require_once '../core.php';
 require_once "../lang/core.php";
 
-$lang_file = "../lang/" . optimize_language() . ".php";
-$default_lang_file = "../lang/en_US.php";
-if (file_exists($lang_file)){
-  require_once $lang_file;
-} else {
-  require_once $default_lang_file;
-}
 
 ?>
 <!DOCTYPE html>
@@ -513,7 +506,8 @@ if (file_exists($lang_file)){
   <script src="<?=$ASSET?>/ContactForm.js"></script>
 
   <script>
-    $(document).on('click', '.lang', function(){
+    $(document).on('click', 'li.lang', function(event){
+        event.preventDefault():
         const lang = $(this).attr('data-lang');
         axios.get("/lang/change.php?lang=" + lang).finally(()=>{
           location.reload();

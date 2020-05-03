@@ -5,7 +5,19 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2020 LazyLearn</strong>
+            <div class="row">
+                <div class="col-lg-5">
+                    <strong>Copyright &copy; 2020 LazyLearn</strong>
+                </div>
+                <div>
+                    <div class="u-center pull-right u-mr-20">
+                        <a href="#" class="lang nounderline" data-lang="vi_VN"><img src="/lang/vi_VN.png">&nbsp;&nbsp;Tiếng Việt</a>
+                        <a href="#" class="lang nounderline u-ml-30" data-lang="vi_VN"><img src="/lang/en_US.png">&nbsp;&nbsp;English</a>
+                    </div>
+                </div>
+                
+
+            </div>
         </footer>
 
         <!-- Control Sidebar -->

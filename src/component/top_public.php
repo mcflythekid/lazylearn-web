@@ -43,6 +43,17 @@ function top_public($showMenu = true){
             js.src = "https://connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
+
+        /**
+         * Language change
+         */
+        $(document).on('click', 'a.lang', function(event){
+            event.preventDefault();
+            const lang = $(this).attr('data-lang');
+            axios.get("/lang/change.php?lang=" + lang).finally(()=>{
+            location.reload();
+            });
+        });
     </script>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">

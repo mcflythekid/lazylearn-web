@@ -167,7 +167,18 @@
             });
 			$(document).ready(()=>{
 				Application.privatePagesCheck();
-			});
+            });
+            
+            /**
+             * Language change
+             */
+            $(document).on('click', 'a.lang', function(event){
+                event.preventDefault();
+                const lang = $(this).attr('data-lang');
+                axios.get("/lang/change.php?lang=" + lang).finally(()=>{
+                location.reload();
+                });
+            });
         </script>
 
             <!-- Content Wrapper. Contains page content -->

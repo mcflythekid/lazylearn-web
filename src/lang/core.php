@@ -1,5 +1,13 @@
 <?php
 
+$lang_file = dirname(__FILE__) . "/" . optimize_language() . ".php";
+$default_lang_file = dirname(__FILE__) . "/lang/en_US.php";
+if (file_exists($lang_file)){
+  require_once $lang_file;
+} else {
+  require_once $default_lang_file;
+}
+
 // Function for basic field validation (present and neither empty nor only white space
 function IsNullOrEmptyString($str){
     return (!isset($str) || trim($str) === '');
