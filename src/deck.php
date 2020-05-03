@@ -1,8 +1,8 @@
 <?php
 require_once 'core.php';
 require_once 'lang/core.php';
-$TITLE = ('My Decks');
- $HEADER = "My Decks";
+$TITLE = ($lang["page.deck.title"]);
+$HEADER = $lang["page.deck.header"];
 
 top_private();
 
@@ -15,22 +15,15 @@ Deck();
         <div id="deck__create--wrapper">
             <form id="deck__create--form">
                 <div class="input-group" >
-                    <input type="text" class="form-control" id="deck__create--name" required placeholder="Deck name...">
+                    <input type="text" class="form-control" id="deck__create--name" required placeholder='<?= $lang["page.deck.input.create.holder"] ?>'>
                     <span class="input-group-btn">
-						<button class="btn btn-info btn-flat" type="submit">Create Deck</button>
+						<button class="btn btn-info btn-flat" type="submit"><?= $lang["page.deck.btn.create"] ?></button>
 					</span>
                 </div>
             </form>
         </div>
 
         <table id="deck__list"></table>
-        <ul id="context-menu" class="dropdown-menu">
-            <li data-item="archive"><a>Archive</a></li>
-            <li data-item="unarchive"><a>Unarchive</a></li>
-            <li data-item="edit"><a>Rename</a></li>
-            <li data-item="delete"><a>Delete</a></li>
-        </ul>
-
     </div>
 </div>
 
@@ -54,6 +47,7 @@ Deck();
         url: apiServer + "/deck/search",
         cache: false,
         method: 'post',
+        formatSearch: ()=> { return '<?= $lang["page.deck.input.search.holder"] ?>' },
         striped: false,
         toolbar: '#deck__create--wrapper',
         sidePagination: 'server',
@@ -71,7 +65,7 @@ Deck();
         columns: [
             {
                 field: 'name',
-                title: 'Name',
+                title: '<?= $lang["page.deck.column.name"] ?>',
                 sortable: true,
                 formatter: (obj,row)=>{
                     var archived =  (row.archived == 1 ? ' <span class="archived">Archived</span>' : '');
@@ -83,26 +77,24 @@ Deck();
             },
             {
                 width: 50,
-                title: 'Expired',
-                sortable: true,
+                title: '<?= $lang["page.deck.column.expired_card"] ?>',
+                sortable: false,
                 formatter: (obj, row)=>{
                     return "<span class='learnable-count' data-deckid='"+row.id+"'><span>";
                 }
             },
             {
                 field: 'createdDate',
-                title: 'Created',
+                title: '<?= $lang["page.deck.column.created"] ?>',
                 sortable: true
             },
             {
                 width: 50,
                 formatter: (obj,row)=>{
                     if (row.type == 'minpair'){
-                        return '<a data-deckid="' + row.id + '" class="btn btn-xs btn-flat btn-info pull-left learn-go" href="/minpair/learn-redirect.php?type=learn&id=' + row.id + '">loading...</a> ';
-                    } else if (row.type == 'topic'){
-                        return '<a data-deckid="' + row.id + '" class="btn btn-xs btn-flat btn-info pull-left learn-go" href="/article/learn-redirect.php?type=learn&id=' + row.id + '">loading...</a> ';
+                        return '<a data-deckid="' + row.id + '" class="btn btn-xs btn-flat btn-info pull-left learn-go" href="/minpair/learn-redirect.php?type=learn&id=' + row.id + '"><?= $lang["common.loading"] ?></a> ';
                     } else {
-                        return '<a data-deckid="' + row.id + '" class="btn btn-xs btn-flat btn-info pull-left learn-go" href="/deck/learn.php?type=learn&id=' + row.id + '">loading...</a> ';
+                        return '<a data-deckid="' + row.id + '" class="btn btn-xs btn-flat btn-info pull-left learn-go" href="/deck/learn.php?type=learn&id=' + row.id + '"><?= $lang["common.loading"] ?></a> ';
                     }
                 }
             },
@@ -111,10 +103,10 @@ Deck();
                 formatter: (obj,row)=>{
                     if (row.type == "default")
                         return '<span class="deck-menu">' + 
-                            '<button data-id="' + row.id + '" class="action-rename btn btn-xs btn-info btn-flat">Rename</button>' +
-                            (row.archived == 0 ? '<button data-id="' + row.id + '" class="action-archive btn btn-xs btn-info btn-flat u-ml-5">Archive</button>' : '' ) +
-                            (row.archived == 1 ? '<button data-id="' + row.id + '" class="action-unarchive btn btn-xs btn-info btn-flat u-ml-5">Unarchive</button>' : '' ) +
-                            '<button data-id="' + row.id + '" class="action-delete btn btn-xs btn-danger btn-flat u-ml-5">Delete</button>' + 
+                            '<button data-id="' + row.id + '" class="action-rename btn btn-xs btn-info btn-flat"><?= $lang["common.rename"] ?></button>' +
+                            (row.archived == 0 ? '<button data-id="' + row.id + '" class="action-archive btn btn-xs btn-info btn-flat u-ml-5"><?= $lang["common.archive"] ?></button>' : '' ) +
+                            (row.archived == 1 ? '<button data-id="' + row.id + '" class="action-unarchive btn btn-xs btn-info btn-flat u-ml-5"><?= $lang["common.unarchive"] ?></button>' : '' ) +
+                            '<button data-id="' + row.id + '" class="action-delete btn btn-xs btn-danger btn-flat u-ml-5"><?= $lang["common.delete"] ?></button>' + 
                         '</span>';
                     else
                         return '';
@@ -127,7 +119,7 @@ Deck();
                 var deckId = $el.attr('data-deckid');
                 AppApi.async.get("/learn/learnable-count/" + deckId).then(res=>{
                     if (res.data > 0){
-                        $el.text('Learn');
+                        $el.text('<?= $lang["page.deck.btn.learn"] ?>');
                         $('span.learnable-count[data-deckid="'+deckId+'"]').text(res.data);
                     } else {
                         $el.remove();

@@ -1,5 +1,12 @@
 <?php
 
+$lang["common.loading"] = "Loading...";
+$lang["common.delete"] = "Delete";
+$lang["common.archive"] = "Archive";
+$lang["common.unarchive"] = "Unarchive";
+$lang["common.learn"] = "Learn";
+$lang["common.rename"] = "Rename";
+
 $lang["title"] = "LazyLearn &mdash; Flashcard Machine";
 
 $lang["landing.head.home"] = "Home";
@@ -110,12 +117,22 @@ $lang["layout.private.change_password"] = "Change password";
 $lang["layout.private.logout"] = "Sign out";
 $lang["layout.private.menu.main.id"] = "Menu";
 $lang["layout.private.menu.main.lazy"] = "Lazy";
-$lang["layout.private.menu.main.deck"] = "Your Decks";
+$lang["layout.private.menu.main.deck"] = "My Decks";
 $lang["layout.private.menu.main.vocab"] = "Vocabulary";
 $lang["layout.private.menu.main.minpair"] = "Minimal Pairs";
 $lang["layout.private.menu.main.topic"] = "Topic";
 
 $lang["page.dashboard.chart01.name"] = "Status by deck";
 $lang["page.dashboard.btn.one_time_learn"] = "Click Here To Learn All";
-$lang["page.dashboard.btn.explore_deck"] = "Explore Your Decks";
+$lang["page.dashboard.btn.explore_deck"] = "Explore My Decks";
+
+$lang["page.deck.title"] = "My Decks";
+$lang["page.deck.header"] = "My Decks";
+$lang["page.deck.input.create.holder"] = "New deck name";
+$lang["page.deck.input.search.holder"] = "Search deck by name";
+$lang["page.deck.btn.create"] = "Create new deck";
+$lang["page.deck.btn.learn"] = "Learn now";
+$lang["page.deck.column.name"] = "Deck name";
+$lang["page.deck.column.expired_card"] = "Timed-up cards";
+$lang["page.deck.column.created"] = "Created date";
 ?>

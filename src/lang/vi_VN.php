@@ -1,5 +1,12 @@
 <?php
 
+$lang["common.loading"] = "Đang tải...";
+$lang["common.delete"] = "Xóa";
+$lang["common.archive"] = "Lưu trữ";
+$lang["common.unarchive"] = "Kích hoạt";
+$lang["common.learn"] = "Học";
+$lang["common.rename"] = "Đổi tên";
+
 $lang["title"] = "LazyLearn &mdash; Thẻ Flashcard Online";
 
 $lang["landing.head.home"] = "Trang chủ";
@@ -110,12 +117,22 @@ $lang["layout.private.change_password"] = "Đổi mật khẩu";
 $lang["layout.private.logout"] = "Đăng xuất";
 $lang["layout.private.menu.main.id"] = "Menu";
 $lang["layout.private.menu.main.lazy"] = "Lazy";
-$lang["layout.private.menu.main.deck"] = "Bộ thẻ của bạn";
+$lang["layout.private.menu.main.deck"] = "Bộ thẻ của tôi";
 $lang["layout.private.menu.main.vocab"] = "Từ vựng";
 $lang["layout.private.menu.main.minpair"] = "Cặp từ";
 $lang["layout.private.menu.main.topic"] = "Tài liệu của bạn";
 
 $lang["page.dashboard.chart01.name"] = "Trạng thái ngăn chứa";
 $lang["page.dashboard.btn.one_time_learn"] = "Bấm Vào Đây Để  Học Hết";
-$lang["page.dashboard.btn.explore_deck"] = "Khám Phá Bộ Thẻ Của Bạn";
+$lang["page.dashboard.btn.explore_deck"] = "Khám Phá Bộ Thẻ Của Tôi";
+
+$lang["page.deck.title"] = "Bộ thẻ của tôi";
+$lang["page.deck.header"] = "Bộ thẻ của tôi";
+$lang["page.deck.input.create.holder"] = "Tên bộ thẻ mới";
+$lang["page.deck.input.search.holder"] = "Tìm theo tên";
+$lang["page.deck.btn.create"] = "Tạo mới";
+$lang["page.deck.btn.learn"] = "Học ngay";
+$lang["page.deck.column.name"] = "Tên bộ thẻ";
+$lang["page.deck.column.expired_card"] = "Số card cần học";
+$lang["page.deck.column.created"] = "Ngày tạo";
 ?>
