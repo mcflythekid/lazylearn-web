@@ -74,4 +74,33 @@ $lang["landing.program.3.content"] = "";
 $lang["landing.program.3.x1"] = "";
 $lang["landing.program.3.x2"] = "";
 
+$lang["loginpage.title"] = "Đăng nhập";
+$lang["loginpage.text1"] = "Vui lòng đăng nhập để tiếp tục, hoặc bạn có thể ";
+$lang["loginpage.text2"] = "đăng ký";
+$lang["loginpage.form.email.label"] = "Địa chỉ email";
+$lang["loginpage.form.email.holder"] = "Email của bạn";
+$lang["loginpage.form.password.label"] = "Mật khẩu";
+$lang["loginpage.form.password.holder"] = "Vui lòng điền mật khẩu";
+$lang["loginpage.form.btn.submit"] = "Đăng Nhập";
+$lang["loginpage.form.btn.facebook"] = "Đăng nhập bằng Facebook";
+$lang["loginpage.form.btn.forgot"] = "Quên mật khẩu";
+
+$lang["layout.public.login"] = "Đăng nhập";
+$lang["layout.public.register"] = "Đăng ký";
+
+$lang["registerpage.title"] = "Đăng ký";
+$lang["registerpage.text1"] = "Tạo tài khoản miễn phí, hoặc";
+$lang["registerpage.text2"] = "đăng nhập";
+$lang["registerpage.form.email.label"] = "Địa chỉ email";
+$lang["registerpage.form.email.holder"] = "Email của bạn";
+$lang["registerpage.form.password.label"] = "Mật khẩu";
+$lang["registerpage.form.password.holder"] = "Vui lòng điền mật khẩu";
+$lang["registerpage.form.btn.submit"] = "Đăng Ký";
+$lang["registerpage.form.btn.facebook"] = "Đăng ký bằng Facebook";
+
+$lang["forgotpassword.title"] = " Quên mật khẩu";
+$lang["forgotpassword.text"] = "Vui lòng nhập email của bạn, sau đó chúng tôi sẽ gởi hướng dẫn vào địa chỉ email đó";
+$lang["forgotpassword.form.email.label"] = "Địa chỉ email";
+$lang["forgotpassword.form.email.holder"] = "Email của bạn";
+$lang["forgotpassword.form.btn.submit"] = "Gởi yêu cầu";
 ?>

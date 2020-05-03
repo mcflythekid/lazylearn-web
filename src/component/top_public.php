@@ -1,5 +1,6 @@
 <?php 
 function top_public($showMenu = true){
+    global $lang;
 ?>
 <!DOCTYPE html>
 <html>
@@ -71,8 +72,8 @@ function top_public($showMenu = true){
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <?php if ($showMenu) { ?>
-                    <li><a href="/auth/register.php"><strong>Register</strong></a></li>
-                    <li><a href="/auth/login.php"><strong>Login</strong></a></li>
+                    <li><a href="/auth/register.php"><strong><?= $lang["layout.public.register"] ?></strong></a></li>
+                    <li><a href="/auth/login.php"><strong><?= $lang["layout.public.login"] ?></strong></a></li>
                     <?php } ?>
 
                 </ul>

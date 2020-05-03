@@ -74,4 +74,33 @@ $lang["landing.program.3.content"] = "";
 $lang["landing.program.3.x1"] = "";
 $lang["landing.program.3.x2"] = "";
 
+$lang["loginpage.title"] = "Login";
+$lang["loginpage.text1"] = "Please login to continue. Or you can ";
+$lang["loginpage.text2"] = "create a free account";
+$lang["loginpage.form.email.label"] = "Email";
+$lang["loginpage.form.email.holder"] = "Your email";
+$lang["loginpage.form.password.label"] = "Password";
+$lang["loginpage.form.password.holder"] = "Your password";
+$lang["loginpage.form.btn.submit"] = "Login";
+$lang["loginpage.form.btn.facebook"] = "Login via Facebook";
+$lang["loginpage.form.btn.forgot"] = "Forgot password";
+
+$lang["layout.public.login"] = "Login";
+$lang["layout.public.register"] = "Register";
+
+$lang["registerpage.title"] = "Register";
+$lang["registerpage.text1"] = "Create your free account, or";
+$lang["registerpage.text2"] = "login";
+$lang["registerpage.form.email.label"] = "Email";
+$lang["registerpage.form.email.holder"] = "Your email";
+$lang["registerpage.form.password.label"] = "Password";
+$lang["registerpage.form.password.holder"] = "Your password";
+$lang["registerpage.form.btn.submit"] = "Login";
+$lang["registerpage.form.btn.facebook"] = "Register via Facebook";
+
+$lang["forgotpassword.title"] = "Forgot password";
+$lang["forgotpassword.text"] = "Please provide your email address, and then we will send you an instruction";
+$lang["forgotpassword.form.email.label"] = "Email address";
+$lang["forgotpassword.form.email.holder"] = "Your email";
+$lang["forgotpassword.form.btn.submit"] = "Send request";
 ?>
