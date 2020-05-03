@@ -114,4 +114,8 @@ $lang["layout.private.menu.main.deck"] = "Bộ thẻ của bạn";
 $lang["layout.private.menu.main.vocab"] = "Từ vựng";
 $lang["layout.private.menu.main.minpair"] = "Cặp từ";
 $lang["layout.private.menu.main.topic"] = "Tài liệu của bạn";
+
+$lang["page.dashboard.chart01.name"] = "Trạng thái ngăn chứa";
+$lang["page.dashboard.btn.one_time_learn"] = "Bấm Vào Đây Để  Học Hết";
+$lang["page.dashboard.btn.explore_deck"] = "Khám Phá Bộ Thẻ Của Bạn";
 ?>

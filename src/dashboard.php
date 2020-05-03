@@ -15,7 +15,7 @@ Deck();
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-target="#collapseOne" href="#" class="a-no-underline display-block">
-                        Status by deck
+                        <?= $lang["page.dashboard.chart01.name"] ?>
                     </a>
                 </h4>
             </div>
@@ -29,8 +29,12 @@ Deck();
 </div>
 
 <div class="u-center">
-    <a style="display: none;" id="one-time-learn" class="btn btn-flat btn-lg btn-info" href="/deck/learn.php?type=learn&id=all-deck">Click Here To Learn All</a>
-    <a style="display: none;" id="go-to-deck" class="btn btn-flat btn-lg btn-info" href="/deck.php">Explore Your Decks</a>
+    <a style="display: none;" id="one-time-learn" class="btn btn-flat btn-lg btn-info" href="/deck/learn.php?type=learn&id=all-deck">
+        <?= $lang["page.dashboard.btn.one_time_learn"] ?>
+    </a>
+    <a style="display: none;" id="go-to-deck" class="btn btn-flat btn-lg btn-info" href="/deck.php">
+        <?= $lang["page.dashboard.btn.explore_deck"] ?>
+    </a>
 </div>
 
 <script>

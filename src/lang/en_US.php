@@ -114,4 +114,8 @@ $lang["layout.private.menu.main.deck"] = "Your Decks";
 $lang["layout.private.menu.main.vocab"] = "Vocabulary";
 $lang["layout.private.menu.main.minpair"] = "Minimal Pairs";
 $lang["layout.private.menu.main.topic"] = "Topic";
+
+$lang["page.dashboard.chart01.name"] = "Status by deck";
+$lang["page.dashboard.btn.one_time_learn"] = "Click Here To Learn All";
+$lang["page.dashboard.btn.explore_deck"] = "Explore Your Decks";
 ?>
