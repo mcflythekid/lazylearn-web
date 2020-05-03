@@ -16,7 +16,7 @@ $lang["landing.first.signupform.email"] = "Địa Chỉ Email";
 $lang["landing.first.signupform.pass"] = "Mật Khẩu";
 $lang["landing.first.signupform.repass"] = "Nhập Lại Mật Khẩu";
 $lang["landing.first.signupform.submit"] = "Đăng ký";
-$lang["landing.first.signupform.fb"] = "facebook";
+$lang["landing.first.signupform.fb"] = "Đăng ký bằng FB";
 $lang["landing.first.signupform.msg.password_not_matched"] = "Mật khẩu không khớp";
 
 $lang["landing.first.contactform.title"] = "Liên Lạc";

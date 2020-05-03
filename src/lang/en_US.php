@@ -15,8 +15,8 @@ $lang["landing.first.signupform.title"] = "Sign Up";
 $lang["landing.first.signupform.email"] = "Email Address";
 $lang["landing.first.signupform.pass"] = "Password";
 $lang["landing.first.signupform.repass"] = "Re-type Password";
-$lang["landing.first.signupform.submit"] = "Sign up";
-$lang["landing.first.signupform.fb"] = "facebook";
+$lang["landing.first.signupform.submit"] = "Register";
+$lang["landing.first.signupform.fb"] = "Register via FB";
 $lang["landing.first.signupform.msg.password_not_matched"] = "Password does not matched";
 
 $lang["landing.first.contactform.title"] = "Message Us";
