@@ -1,5 +1,6 @@
 <?php
 require '../core.php';
+require '../lang/core.php';
 $articleId = ''; if (isset($_GET['id'])) $articleId = escape($_GET['id']);
 $cardId = ''; if (isset($_GET['cardid'])) $cardId = escape($_GET['cardid']);
 $learnType = ''; if (isset($_GET['type'])) $learnType = escape($_GET['type']);

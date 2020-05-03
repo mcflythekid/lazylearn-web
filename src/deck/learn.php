@@ -1,5 +1,6 @@
 <?php
 require '../core.php';
+require '../lang/core.php';
 $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
 $learnType = ''; if (isset($_GET['type'])) $learnType = escape($_GET['type']);
 $TITLE = 'loading...';

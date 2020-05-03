@@ -1,5 +1,6 @@
 <?php
 require_once '../core.php';
+require_once '../lang/core.php';
 $TITLE = 'loading...';
 $HEADER = '<span id="appHeader">loading..</span>';
 $PATHS = [

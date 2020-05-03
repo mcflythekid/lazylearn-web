@@ -1,5 +1,6 @@
 <?php
 	require '../core.php';
+	require '../lang/core.php';
 	$TITLE = 'Reset password';
 	top_public();
     $resetId = '';

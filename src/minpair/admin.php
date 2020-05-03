@@ -1,5 +1,6 @@
 <?php
 require_once '../core.php';
+require_once '../lang/core.php';
 $TITLE = ('Admin: Minpair');
 $HEADER = "Admin: Minpair";
 $PATHS = [
