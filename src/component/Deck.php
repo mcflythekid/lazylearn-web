@@ -21,8 +21,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="submit" form="deck__modal__edit--form" class="btn btn-success"><?= $lang["class.deck.form.submit"] ?></button>
-                <button type="button" class="btn btn-default" data-dismiss="modal"><?= $lang["common.cancel"] ?></button>
+                <button type="submit" form="deck__modal__edit--form" class="btn btn-success btn-flat"><?= $lang["class.deck.form.submit"] ?></button>
+                <button type="button" class="btn btn-default btn-flat" data-dismiss="modal"><?= $lang["common.cancel"] ?></button>
             </div>
         </div>
 

@@ -171,4 +171,7 @@ $lang["class.deck.form.title"] = "Sửa bộ thẻ";
 $lang["class.deck.form.email.label"] = "Tên mới";
 $lang["class.deck.form.email.holder"] = "Tên mới";
 $lang["class.deck.form.submit"] = "Sửa";
+
+$lang["class.card.form.title"] = "asdas";
+$lang["class.card.form.submit"] = "Submit";
 ?>

@@ -1,4 +1,6 @@
-<?php function Card(){ ?>
+<?php function Card(){ 
+    global $lang;    
+?>
 
 <div id="card__modal__edit" class="modal fade" role="dialog" tabindex='-1'>
     <div class="modal-dialog modal-lg">
@@ -7,7 +9,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Edit card</h4>
+                <h4 class="modal-title"><?= $lang["class.card.form.title"] ?></h4>
             </div>
             <div class="row">
                 <div class="col-xs-6">
@@ -18,8 +20,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="card__modal__edit--submit" class="btn btn-success">Change</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" id="card__modal__edit--submit" class="btn btn-success btn-flat"><?= $lang["class.card.form.submit"] ?></button>
+                <button type="button" class="btn btn-flat btn-default" data-dismiss="modal"><?= $lang["common.cancel"] ?></button>
             </div>
         </div>
 

@@ -171,4 +171,7 @@ $lang["class.deck.form.title"] = "Edit deck";
 $lang["class.deck.form.email.label"] = "New name";
 $lang["class.deck.form.email.holder"] = "New name";
 $lang["class.deck.form.submit"] = "Submit";
+
+$lang["class.card.form.title"] = "Edit card";
+$lang["class.card.form.submit"] = "Submit";
 ?>
