@@ -242,4 +242,11 @@ $lang["page.minpair.btn.create"] = "Create new pair";
 $lang["page.minpair.column.language"] = "Language";
 $lang["page.minpair.column.word1"] = "Word 1";
 $lang["page.minpair.column.word2"] = "Word 2";
+
+$lang["page.topic.title"] = "Topic";
+$lang["page.topic.header"] = "Topic";
+$lang["page.topic.input.search.holder"] = "Search by name & content";
+$lang["page.topic.btn.create"] = "Create new topic";
+$lang["page.topic.column.name"] = "Topic name";
+$lang["page.topic.column.url"] = "URL";
 ?>

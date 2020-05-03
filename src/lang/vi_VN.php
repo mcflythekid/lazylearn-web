@@ -242,4 +242,11 @@ $lang["page.minpair.btn.create"] = "Tạo mới";
 $lang["page.minpair.column.language"] = "Ngôn ngữ";
 $lang["page.minpair.column.word1"] = "Từ 1";
 $lang["page.minpair.column.word2"] = "Từ 2";
+
+$lang["page.topic.title"] = "Tài liệu";
+$lang["page.topic.header"] = "Tài liệu";
+$lang["page.topic.input.search.holder"] = "Tìm theo tên và nội dung";
+$lang["page.topic.btn.create"] = "Tạo mới";
+$lang["page.topic.column.name"] = "Tên bài viết";
+$lang["page.topic.column.url"] = "URL";
 ?>
