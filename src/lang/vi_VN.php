@@ -137,4 +137,13 @@ $lang["page.deck.btn.learn"] = "Học ngay";
 $lang["page.deck.column.name"] = "Tên bộ thẻ";
 $lang["page.deck.column.expired_card"] = "Số card cần học";
 $lang["page.deck.column.created"] = "Ngày tạo";
+
+$lang["page.deckview.chart01.text"] = "Trạng thái";
+$lang["page.deckview.btn.parent"] = "Cha";
+$lang["page.deckview.btn.create"] = "Tạo thẻ";
+$lang["page.deckview.input.search.holder"] = "Tìm thẻ";
+$lang["page.deckview.column.front"] = "Mặt trước";
+$lang["page.deckview.column.back"] = "Mặt sau";
+$lang["page.deckview.column.easy_score"] = "Độ dễ (1.3-4)";
+$lang["page.deckview.column.deck_id"] = "Tiến trình";
 ?>
