@@ -10,6 +10,8 @@ $lang["common.rename"] = "Rename";
 $lang["common.edit"] = "Edit";
 $lang["common.cancel"] = "Cancel";
 $lang["common.created_date"] = "Created date";
+$lang["common.delete_confirm"] = "Do you want to delete this one?";
+$lang["common.not_found"] = "Item not found";
 
 $lang["title"] = "LazyLearn &mdash; Flashcard Machine";
 

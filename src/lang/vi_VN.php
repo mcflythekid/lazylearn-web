@@ -10,6 +10,8 @@ $lang["common.rename"] = "Đổi tên";
 $lang["common.edit"] = "Sửa đổi";
 $lang["common.cancel"] = "Hủy";
 $lang["common.created_date"] = "Ngày tạo";
+$lang["common.delete_confirm"] = "Bạn có chắc muốn xóa?";
+$lang["common.not_found"] = "Không tìm thấy dữ liệu";
 
 $lang["title"] = "LazyLearn &mdash; Thẻ Flashcard Online";
 

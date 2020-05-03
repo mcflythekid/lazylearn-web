@@ -4,11 +4,11 @@ require '../lang/core.php';
 $articleId = ''; if (isset($_GET['id'])) $articleId = escape($_GET['id']);
 $cardId = ''; if (isset($_GET['cardid'])) $cardId = escape($_GET['cardid']);
 $learnType = ''; if (isset($_GET['type'])) $learnType = escape($_GET['type']);
-$TITLE = 'loading...';
-$HEADER = '<span id="appHeader">loading..</span>';
+$TITLE = $lang["common.loading"];
+$HEADER = '<span id="appHeader">' . $lang["common.loading"] . '</span>';
 $PATHS = [
-    ["/article", "Article"],
-    '<span id="appBreadcrumb1">loading..</span>'
+    ["/article", $lang["page.topic.header"]],
+    '<span id="appBreadcrumb1">' . $lang["common.loading"] . '</span>'
 ];
 top_private();
 Article();
@@ -22,7 +22,7 @@ Article();
 
     <div class="row u-mt-20" style="display: none;" id="art_submit">
         <div class="col-lg-12">
-            <button class="btn btn-flat btn-danger" id="delete">DELETE</button>
+            <button class="btn btn-flat btn-danger" id="delete"><?= $lang["common.delete"] ?></button>
         </div>
     </div>
 
@@ -49,13 +49,13 @@ Article();
                 document.title = article.name;
                 $('#appBreadcrumb1').text(article.name);
             }, err=>{
-				Dialog.fail("Article not found");
+				Dialog.fail('<?= $lang["common.not_found"] ?>');
 			});
         };
 
 
         $(document).on('click', '#art_submit #delete', function(){
-            Dialog.confirm('Are you sure to delete?', ()=>{
+            Dialog.confirm('<?= $lang["common.delete_confirm"] ?>', ()=>{
                 AppApi.sync.post("/article/delete/" + articleId).then(()=>{
                     window.location = '/article'
                 });

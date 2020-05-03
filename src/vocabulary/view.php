@@ -4,7 +4,7 @@ require_once '../lang/core.php';
 $TITLE = $lang["common.loading"];
 $HEADER = '<span id="appHeader">' . $lang["common.loading"] . '</span>';
 $PATHS = [
-    ["/vocabdeck", "Vocabulary"],
+    ["/vocabdeck", $lang["page.vocabdeck.header"]],
     '<span id="appBreadcrumb1">' . $lang["common.loading"] . '</span>'
 ];
 top_private();
