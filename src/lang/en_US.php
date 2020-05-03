@@ -195,4 +195,19 @@ $lang["class.minpair.form.input.audio2.label"] = "Audio 2";
 $lang["class.minpair.form.input.language.label"] = "Language";
 $lang["class.minpair.form.input.language.holder"] = "english, chinese, ...";
 $lang["class.minpair.form.submit"] = "Create";
+
+$lang["class.vocab.form.title"] = "Create vocabulary";
+$lang["class.vocab.form.input.word.label"] = "Word";
+$lang["class.vocab.form.input.word.holder"] = "Word";
+$lang["class.vocab.form.input.phonetic.label"] = "Phonetic";
+$lang["class.vocab.form.input.phonetic.holder"] = "Phonetic";
+$lang["class.vocab.form.input.phrase.label"] = "Phrase";
+$lang["class.vocab.form.input.phrase.holder"] = "Phrase";
+$lang["class.vocab.form.input.connection.label"] = "Connection";
+$lang["class.vocab.form.input.connection.holder"] = "Connection";
+$lang["class.vocab.form.input.audio.label"] = "Audio";
+$lang["class.vocab.form.input.audio_error.label"] = "Your browser does not support the audio element.";
+$lang["class.vocab.form.input.image.label"] = "Image";
+$lang["class.vocab.form.submit"] = "Create";
+$lang["class.vocab.form.crawl"] = "Quick crawl";
 ?>

@@ -1,46 +1,48 @@
-<?php function Vocab(){ ?>
+<?php function Vocab(){
+    global $lang;
+?>
 
     <div id="vocab-create-modal" class="modal fade" role="dialog" tabindex='-1'>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Create vocabulary</span></h4>
+                    <h4 class="modal-title"><?= $lang["class.vocab.form.title"] ?></span></h4>
                 </div>
                 <div class="modal-body">
                     <form id="vocab-create-form">
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="vocab-create-word">Word</label>
-                                    <input required class="form-control" id="vocab-create-word" placeholder="Word">
+                                    <label for="vocab-create-word"><?= $lang["class.vocab.form.input.word.label"] ?></label>
+                                    <input required class="form-control" id="vocab-create-word" placeholder="<?= $lang["class.vocab.form.input.word.holder"] ?>">
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="vocab-create-phonetic">Phonetic</label>
-                                    <input required class="form-control" id="vocab-create-phonetic" placeholder="Phonetic">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <div class="form-group">
-                                    <label for="vocab-create-phrase">Phrase</label>
-                                    <input class="form-control" id="vocab-create-phrase" placeholder="Phrase">
-                                </div>
-                            </div>
-                            <div class="col-xs-6">
-                                <div class="form-group">
-                                    <label for="vocab-create-personalconnection">Personal connection</label>
-                                    <input required class="form-control" id="vocab-create-personalconnection" placeholder="Personal connection">
+                                    <label for="vocab-create-phonetic"><?= $lang["class.vocab.form.input.phonetic.label"] ?></label>
+                                    <input required class="form-control" id="vocab-create-phonetic" placeholder="<?= $lang["class.vocab.form.input.phonetic.holder"] ?>">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="vocab-create-image">Image</label>
+                                    <label for="vocab-create-phrase"><?= $lang["class.vocab.form.input.phrase.label"] ?></label>
+                                    <input class="form-control" id="vocab-create-phrase" placeholder="<?= $lang["class.vocab.form.input.phrase.holder"] ?>">
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="vocab-create-personalconnection"><?= $lang["class.vocab.form.input.connection.label"] ?></label>
+                                    <input required class="form-control" id="vocab-create-personalconnection" placeholder="<?= $lang["class.vocab.form.input.connection.holder"] ?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="vocab-create-image"><?= $lang["class.vocab.form.input.image.label"] ?></label>
                                     <input type="file" accept="image/*" class="form-control" id="vocab-create-image">
                                     <input type="hidden"                                              id="vocab-create-image-encoded">
                                     <img style="max-height: 100px; display: block"                    id="vocab-create-image-preview">
@@ -48,11 +50,11 @@
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="vocab-create-audio">Audio</label>
+                                    <label for="vocab-create-audio"><?= $lang["class.vocab.form.input.audio.label"] ?></label>
                                     <input type="file" accept="audio/*" class="form-control" id="vocab-create-audio">
                                     <input type="hidden"                                              id="vocab-create-audio-encoded">
                                     <audio controls style="width: 100%; display: block"               id="vocab-create-audio-preview">
-                                        Your browser does not support the audio element.
+                                        <?= $lang["class.vocab.form.input.audio_error.label"] ?>
                                     </audio>
                                 </div>
                             </div>
@@ -60,9 +62,9 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button id="crawl" class="btn btn-info">Crawl</button>
-                    <button type="submit" form="vocab-create-form" class="btn btn-success">Create</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button id="crawl" class="btn btn-info btn-flat"><?= $lang["class.vocab.form.crawl"] ?></button>
+                    <button type="submit" form="vocab-create-form" class="btn btn-success btn-flat"><?= $lang["class.vocab.form.submit"] ?></button>
+                    <button type="button" class="btn btn-default btn-flat" data-dismiss="modal"><?= $lang["common.cancel"] ?></button>
                 </div>
             </div>
         </div>

@@ -195,4 +195,19 @@ $lang["class.minpair.form.input.audio2.label"] = "Audio 2";
 $lang["class.minpair.form.input.language.label"] = "Ngôn ngữ";
 $lang["class.minpair.form.input.language.holder"] = "english, chinese, ...";
 $lang["class.minpair.form.submit"] = "Tạo ngay";
+
+$lang["class.vocab.form.title"] = "Tạo từ vựng";
+$lang["class.vocab.form.input.word.label"] = "Từ vựng";
+$lang["class.vocab.form.input.word.holder"] = "Từ vựng";
+$lang["class.vocab.form.input.phonetic.label"] = "Phiên âm";
+$lang["class.vocab.form.input.phonetic.holder"] = "Phiêm âm";
+$lang["class.vocab.form.input.phrase.label"] = "Cụm từ";
+$lang["class.vocab.form.input.phrase.holder"] = "Cụm từ";
+$lang["class.vocab.form.input.connection.label"] = "Kết nối cá nhân";
+$lang["class.vocab.form.input.connection.holder"] = "Kết nối cá nhân";
+$lang["class.vocab.form.input.audio.label"] = "File âm thanh";
+$lang["class.vocab.form.input.audio_error.label"] = "Trình duyệt không hỗ trợ âm thanh.";
+$lang["class.vocab.form.input.image.label"] = "File hình ảnh";
+$lang["class.vocab.form.submit"] = "Tạo";
+$lang["class.vocab.form.crawl"] = "Lấy dữ liệu mẫu";
 ?>
