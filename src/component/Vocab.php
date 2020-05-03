@@ -316,7 +316,7 @@
                 console.log("Encoded image", res);
                 $("#vocab-create-image-encoded").val(JSON.stringify(res));
             }).catch(err=>{
-                FlashMessage.error("Cannot read image");
+                FlashMessage.error("<?= $lang["class.vocab.error.cannot_read_image"] ?>");
             });
 
             if (this.files && this.files[0]) {
@@ -332,7 +332,7 @@
                 console.log("Encoded audio", res);
                 $("#vocab-create-audio-encoded").val(JSON.stringify(res));
             }).catch(err=>{
-                FlashMessage.error("Cannot read audio");
+                FlashMessage.error("<?= $lang["class.vocab.error.cannot_read_audio"] ?>");
             });
 
             if (this.files && this.files[0]) {

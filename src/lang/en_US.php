@@ -210,11 +210,12 @@ $lang["class.vocab.form.input.audio_error.label"] = "Your browser does not suppo
 $lang["class.vocab.form.input.image.label"] = "Image file";
 $lang["class.vocab.form.submit"] = "Create";
 $lang["class.vocab.form.crawl"] = "Quick crawl";
-
 $lang["class.vocab.formupdate.title"] = "Edit vocabulary";
 $lang["class.vocab.formupdate.input.audio_new.label"] = "New audio file";
 $lang["class.vocab.formupdate.input.audio_old.label"] = "Old audio file";
 $lang["class.vocab.formupdate.input.image_new.label"] = "New image file";
 $lang["class.vocab.formupdate.input.image_old.label"] = "Old image file";
 $lang["class.vocab.formupdate.submit"] = "Update";
+$lang["class.vocab.error.cannot_read_image"] = "Cannot read image files";
+$lang["class.vocab.error.cannot_read_audio"] = "Cannot read audio files";
 ?>
