@@ -8,6 +8,7 @@ $lang["common.learn"] = "Học";
 $lang["common.review"] = "Ôn tập";
 $lang["common.rename"] = "Đổi tên";
 $lang["common.edit"] = "Sửa đổi";
+$lang["common.cancel"] = "Hủy";
 
 $lang["title"] = "LazyLearn &mdash; Thẻ Flashcard Online";
 
@@ -165,4 +166,9 @@ $lang["page.basiclearn.command.end"] = "Thoát";
 $lang["page.basiclearn.tmpresult.hesitate"] = "HƠI KHÓ";
 $lang["page.basiclearn.tmpresult.perfect"] = "ĐÃ BIẾT";
 $lang["page.basiclearn.tmpresult.incorrect"] = "KHÔNG BIẾT";
+
+$lang["class.deck.form.title"] = "Sửa bộ thẻ";
+$lang["class.deck.form.email.label"] = "Tên mới";
+$lang["class.deck.form.email.holder"] = "Tên mới";
+$lang["class.deck.form.submit"] = "Sửa";
 ?>

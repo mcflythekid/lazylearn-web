@@ -1,4 +1,6 @@
-<?php function Deck(){ ?>
+<?php function Deck(){ 
+    global $lang;
+?>
 
 <div id="deck__modal__edit" class="modal fade" role="dialog" tabindex='-1'>
     <div class="modal-dialog">
@@ -7,20 +9,20 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Edit deck <span id="deck__modal__edit--title"></span></h4>
+                <h4 class="modal-title"><?= $lang["class.deck.form.title"] ?><span id="deck__modal__edit--title"></span></h4>
             </div>
             <div class="modal-body">
                 <form id="deck__modal__edit--form">
                     <div class="form-group">
-                        <label for="deck__modal__edit--name">New name</label>
-                        <input type="text" required class="form-control" id="deck__modal__edit--newName" placeholder="New name">
+                        <label for="deck__modal__edit--name"><?= $lang["class.deck.form.email.label"] ?></label>
+                        <input type="text" required class="form-control" id="deck__modal__edit--newName" placeholder="<?= $lang["class.deck.form.email.holder"] ?>">
                         <input type="hidden" id="deck__modal__edit--id">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="submit" form="deck__modal__edit--form" class="btn btn-success">Rename</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" form="deck__modal__edit--form" class="btn btn-success"><?= $lang["class.deck.form.submit"] ?></button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?= $lang["common.cancel"] ?></button>
             </div>
         </div>
 

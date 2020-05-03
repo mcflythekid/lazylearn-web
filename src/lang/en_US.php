@@ -8,6 +8,7 @@ $lang["common.learn"] = "Learn";
 $lang["common.review"] = "Review";
 $lang["common.rename"] = "Rename";
 $lang["common.edit"] = "Edit";
+$lang["common.cancel"] = "Cancel";
 
 $lang["title"] = "LazyLearn &mdash; Flashcard Machine";
 
@@ -165,4 +166,9 @@ $lang["page.basiclearn.command.end"] = "End session";
 $lang["page.basiclearn.tmpresult.hesitate"] = "HESITATE";
 $lang["page.basiclearn.tmpresult.perfect"] = "PERFECT";
 $lang["page.basiclearn.tmpresult.incorrect"] = "INCORRECT";
+
+$lang["class.deck.form.title"] = "Edit deck";
+$lang["class.deck.form.email.label"] = "New name";
+$lang["class.deck.form.email.holder"] = "New name";
+$lang["class.deck.form.submit"] = "Submit";
 ?>
