@@ -270,4 +270,6 @@ $lang["page.reset_password.title"] = "Đặt lại mật khẩu";
 $lang["page.reset_password.guide"] = "Vui lòng đặt mật khẩu mới";
 $lang["page.reset_password.input.pass"] = "Mật khẩu mới";
 $lang["page.reset_password.btn.submit"] = "Xác nhận";
+
+$lang["page.blog.back"] = "Trở về trang chủ";
 ?>

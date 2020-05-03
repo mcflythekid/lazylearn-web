@@ -9,3 +9,6 @@ RewriteRule ^\.htaccess  [L,R=404]
 RewriteRule ^core\.php$  [L,R=404]
 RewriteRule ^package\.json$  [L,R=404]
 RewriteRule ^yarn\.lock$  [L,R=404]
+
+# topic
+RewriteRule ^blog/([a-zA-Z0-9_-]*)$ /article/blog.php?slug=$1

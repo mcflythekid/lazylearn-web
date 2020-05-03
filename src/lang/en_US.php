@@ -270,4 +270,6 @@ $lang["page.reset_password.title"] = "Change password";
 $lang["page.reset_password.guide"] = "Please set your new password";
 $lang["page.reset_password.input.pass"] = "New password";
 $lang["page.reset_password.btn.submit"] = "Confirm";
+
+$lang["page.blog.back"] = "Back to home page";
 ?>
