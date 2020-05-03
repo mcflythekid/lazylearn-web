@@ -255,4 +255,19 @@ $lang["page.topic.column.url"] = "URL";
 $lang["page.minpairlearn.command.begin"] = "Bắt đầu bài học";
 $lang["page.minpairlearn.tmpresult.correct"] = "CHÍNH XÁC";
 $lang["page.minpairlearn.tmpresult.incorrect"] = "CHƯA ĐÚNG";
+
+$lang["page.security.title"] = "Bảo mật";
+$lang["page.security.header"] = "Bảo mật";
+$lang["page.security.label.sessions"] = "Danh sách các phiên đăng nhập";
+$lang["page.security.btn.force_logout"] = "Thoát khỏi các thiết bị khác";
+
+$lang["page.change_password.title"] = "Đổi mật khẩu";
+$lang["page.change_password.input.pass1"] = "Mật khẩu mới";
+$lang["page.change_password.input.pass2"] = "Nhập lại mật khẩu mới";
+$lang["page.change_password.btn.submit"] = "Đổi ngay";
+
+$lang["page.reset_password.title"] = "Đặt lại mật khẩu";
+$lang["page.reset_password.guide"] = "Vui lòng đặt mật khẩu mới";
+$lang["page.reset_password.input.pass"] = "Mật khẩu mới";
+$lang["page.reset_password.btn.submit"] = "Xác nhận";
 ?>

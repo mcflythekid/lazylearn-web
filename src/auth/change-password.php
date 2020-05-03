@@ -1,10 +1,10 @@
 <?php
 require '../core.php';
 require '../lang/core.php';
-$TITLE = 'Change password';
-$HEADER = 'Change password';
+$TITLE = $lang["page.change_password.title"];
+$HEADER = $lang["page.change_password.header"];
 $PATHS = [
-    "Change password"
+    $lang["page.change_password.header"]
 ];
 top_private();
 ?>
@@ -13,14 +13,14 @@ top_private();
     <div class="col-lg-4 col-md-6 col-lg-offset-4 col-md-offset-3">
         <form id="change">
             <div class="form-group">
-                <label for="newRawPassword">New password</label>
-                <input type="password" required class="form-control" id="newRawPassword" placeholder="New password">
+                <label for="newRawPassword"><?= $lang["page.change_password.input.pass1"] ?></label>
+                <input type="password" required class="form-control" id="newRawPassword" placeholder="<?= $lang["page.change_password.input.pass1"] ?>">
             </div>
             <div class="form-group">
-                <label for="confirmNewRawPassword">Confirm new password</label>
-                <input type="password" required class="form-control" id="confirmNewRawPassword" placeholder="Confirm new password">
+                <label for="confirmNewRawPassword"><?= $lang["page.change_password.input.pass2"] ?></label>
+                <input type="password" required class="form-control" id="confirmNewRawPassword" placeholder="<?= $lang["page.change_password.input.pass2"] ?>">
             </div>
-          <button type="submit" class="btn btn-primary">Change</button>
+          <button type="submit" class="btn btn-primary"><?= $lang["page.change_password.btn.submit"] ?></button>
         </form>
     </div>
 </div>

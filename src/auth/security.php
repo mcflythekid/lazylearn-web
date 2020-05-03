@@ -1,18 +1,20 @@
 <?php
 require_once '../core.php';
 require_once '../lang/core.php';
-$TITLE = 'Security';
-$HEADER = 'Security';
+$TITLE = $lang["page.security.title"];
+$HEADER = $lang["page.security.header"];
 $PATHS = [
-    "Security"
+    $lang["page.security.header"]
 ];
 top_private();
 ?>
 
 <div class=" u-mt-20">
-    <h4>Where You're Logged In</h4>
-    <p id="sessions">Loading...</p>
-    <button class="btn btn-success" id="logout-all-session-btn">Log Out Of All Sessions</button>
+    <h4><?= $lang["page.security.label.sessions"] ?></h4>
+    
+    <button class="btn btn-info btn-flat" id="logout-all-session-btn"><?= $lang["page.security.btn.force_logout"] ?></button>
+
+    <p id="sessions"><?= $lang["common.loading"] ?></p>
 </div>
 
 <script>

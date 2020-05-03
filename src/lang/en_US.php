@@ -255,4 +255,19 @@ $lang["page.topic.column.url"] = "URL";
 $lang["page.minpairlearn.command.begin"] = "Start lession";
 $lang["page.minpairlearn.tmpresult.correct"] = "CORRECT";
 $lang["page.minpairlearn.tmpresult.incorrect"] = "INCORRECT";
+
+$lang["page.security.title"] = "Security";
+$lang["page.security.header"] = "Security";
+$lang["page.security.label.sessions"] = "Where You're Logged In";
+$lang["page.security.btn.force_logout"] = "Log Out Of All Sessions";
+
+$lang["page.change_password.title"] = "Change password";
+$lang["page.change_password.input.pass1"] = "New password";
+$lang["page.change_password.input.pass2"] = "Re-type new password";
+$lang["page.change_password.btn.submit"] = "Change";
+
+$lang["page.reset_password.title"] = "Change password";
+$lang["page.reset_password.guide"] = "Please set your new password";
+$lang["page.reset_password.input.pass"] = "New password";
+$lang["page.reset_password.btn.submit"] = "Confirm";
 ?>
