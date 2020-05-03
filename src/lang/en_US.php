@@ -5,7 +5,9 @@ $lang["common.delete"] = "Delete";
 $lang["common.archive"] = "Archive";
 $lang["common.unarchive"] = "Unarchive";
 $lang["common.learn"] = "Learn";
+$lang["common.review"] = "Review";
 $lang["common.rename"] = "Rename";
+$lang["common.edit"] = "Edit";
 
 $lang["title"] = "LazyLearn &mdash; Flashcard Machine";
 
@@ -135,4 +137,13 @@ $lang["page.deck.btn.learn"] = "Learn now";
 $lang["page.deck.column.name"] = "Deck name";
 $lang["page.deck.column.expired_card"] = "Timed-up cards";
 $lang["page.deck.column.created"] = "Created date";
+
+$lang["page.deckview.chart01.text"] = "Status";
+$lang["page.deckview.btn.parent"] = "Parent";
+$lang["page.deckview.btn.create"] = "Create card";
+$lang["page.deckview.input.search.holder"] = "Search card";
+$lang["page.deckview.column.front"] = "Front side";
+$lang["page.deckview.column.back"] = "Back side";
+$lang["page.deckview.column.easy_score"] = "Easy Score (1.3-4)";
+$lang["page.deckview.column.deck_id"] = "Deck order";
 ?>

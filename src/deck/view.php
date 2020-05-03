@@ -1,10 +1,10 @@
 <?php
 require_once '../core.php';
 require_once '../lang/core.php';
-$TITLE = 'loading...';
-$HEADER = '<span id="appHeader">loading..</span>';
+$TITLE = $lang["common.loading"];
+$HEADER = '<span id="appHeader">' . $lang["common.loading"] . '</span>';
 $PATHS = [
-    '<span id="appBreadcrumb1">loading..</span>'
+    '<span id="appBreadcrumb1">' . $lang["common.loading"] . '</span>'
 ];
 
 top_private();
@@ -21,7 +21,7 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-target="#collapseOne" href="#" class="a-no-underline display-block">
-                        Learning Status
+                        <?= $lang["page.deckview.chart01.text"] ?>
                     </a>
                 </h4>
             </div>
@@ -47,7 +47,9 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
         </div>
     </div>
     <div class="col-lg-1">
-        <button type="submit" id="cardcreate__submit" class="btn btn-success pull-right">Create</button>
+        <button type="submit" id="cardcreate__submit" class="btn btn-info btn-flat pull-right">
+            <?= $lang["page.deckview.btn.create"] ?>
+        </button>
     </div>
 </div>
 
@@ -55,19 +57,19 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
 
     <div class="col-lg-12 deck-control">
         <div class="btn-group">
-            <button class="btn btn-flat btn-info deck-action" data-action="learn">Lean</button>
-            <button class="btn btn-flat btn-info deck-action" data-action="review">Review</button>
+            <button class="btn btn-flat btn-info deck-action" data-action="learn"><?= $lang["common.learn"] ?></button>
+            <button class="btn btn-flat btn-info deck-action" data-action="review"><?= $lang["common.review"] ?></button>
         </div>
         <div class="btn-group">
-            <button class="btn btn-flat btn-info deck-action" data-action="parent" style="display: none;">Parent</button>
+            <button class="btn btn-flat btn-info deck-action" data-action="parent" style="display: none;"><?= $lang["page.deckview.btn.parent"] ?></button>
         </div>
         <div class="btn-group">
-            <button class="btn btn-flat btn-info deck-action" data-action="edit">Edit</button>
-            <button class="btn btn-flat btn-info deck-action" data-action="archive">Archive</button>
-            <button class="btn btn-flat btn-info deck-action" data-action="unarchive">Unarchive</button>
+            <button class="btn btn-flat btn-info deck-action" data-action="edit"><?= $lang["common.rename"] ?></button>
+            <button class="btn btn-flat btn-info deck-action" data-action="archive"><?= $lang["common.archive"] ?></button>
+            <button class="btn btn-flat btn-info deck-action" data-action="unarchive"><?= $lang["common.unarchive"] ?></button>
         </div>
         <div class="btn-group">
-            <button class="btn btn-flat btn-danger deck-action" data-action="delete">Delete</button>
+            <button class="btn btn-flat btn-danger deck-action" data-action="delete"><?= $lang["common.delete"] ?></button>
         </div>
     </div>
 
@@ -205,6 +207,7 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
         cache: false,
         method: 'post',
         striped: false,
+        formatSearch: ()=> { return '<?= $lang["page.deckview.input.search.holder"] ?>' },
         sidePagination: 'server',
         sortName: 'createdDate',
         sortOrder: 'desc',
@@ -223,7 +226,7 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
         columns: [
             {
                 field: 'front',
-                title: 'Front',
+                title: '<?= $lang["page.deckview.column.front"] ?>',
                 sortable: true,
                 formatter: (obj)=>{
                     return obj;
@@ -232,7 +235,7 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
             },
             {
                 field: 'back',
-                title: 'Back',
+                title: '<?= $lang["page.deckview.column.back"] ?>',
                 sortable: true,
                 formatter: (obj)=>{
                     return obj;
@@ -241,12 +244,12 @@ $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
             },
             {
                 field: 'sm2Ef',
-                title: 'Easy Score (1.3 - 4)',
+                title: '<?= $lang["page.deckview.column.easy_score"] ?>',
                 sortable: true
             },
             {
                 field: 'step',
-                title: '#Deck',
+                title: '<?= $lang["page.deckview.column.deck_id"] ?>',
                 sortable: true,
                 formatter: function(data){
                     return data + 1;

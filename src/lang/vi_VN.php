@@ -5,7 +5,9 @@ $lang["common.delete"] = "Xóa";
 $lang["common.archive"] = "Lưu trữ";
 $lang["common.unarchive"] = "Kích hoạt";
 $lang["common.learn"] = "Học";
+$lang["common.review"] = "Ôn tập";
 $lang["common.rename"] = "Đổi tên";
+$lang["common.edit"] = "Sửa đổi";
 
 $lang["title"] = "LazyLearn &mdash; Thẻ Flashcard Online";
 
