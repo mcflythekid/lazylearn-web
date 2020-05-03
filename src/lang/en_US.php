@@ -146,4 +146,23 @@ $lang["page.deckview.column.front"] = "Front side";
 $lang["page.deckview.column.back"] = "Back side";
 $lang["page.deckview.column.easy_score"] = "Easy Score (1.3-4)";
 $lang["page.deckview.column.deck_id"] = "Deck order";
+
+$lang["page.basiclearn.label.unanswered"] = "Unanswered";
+$lang["page.basiclearn.label.correct"] = "Correct";
+$lang["page.basiclearn.label.incorrect"] = "Incorect";
+$lang["page.basiclearn.response.show"] = "Show answer";
+$lang["page.basiclearn.response.forget"] = "I don't know";
+$lang["page.basiclearn.response.difficult"] = "Difficult";
+$lang["page.basiclearn.response.hesitate"] = "Hesitate";
+$lang["page.basiclearn.response.perfect"] = "Perfect";
+$lang["page.basiclearn.command.next"] = "Next card";
+$lang["page.basiclearn.command.previous"] = "Previous card";
+$lang["page.basiclearn.command.shuffle"] = "Shuffle cards";
+$lang["page.basiclearn.command.reverse"] = "Reverse sides";
+$lang["page.basiclearn.command.edit"] = "Edit card";
+$lang["page.basiclearn.command.delete"] = "Delete card";
+$lang["page.basiclearn.command.end"] = "End session";
+$lang["page.basiclearn.tmpresult.hesitate"] = "HESITATE";
+$lang["page.basiclearn.tmpresult.perfect"] = "PERFECT";
+$lang["page.basiclearn.tmpresult.incorrect"] = "INCORRECT";
 ?>

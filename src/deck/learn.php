@@ -3,11 +3,12 @@ require '../core.php';
 require '../lang/core.php';
 $deckId = ''; if (isset($_GET['id'])) $deckId = escape($_GET['id']);
 $learnType = ''; if (isset($_GET['type'])) $learnType = escape($_GET['type']);
-$TITLE = 'loading...';
-$HEADER = '<span id="appHeader">loading..</span>';
+
+$TITLE = $lang["common.loading"];
+$HEADER = '<span id="appHeader">' . $lang["common.loading"] . '</span>';
 $PATHS = [
-    ["/deck/view.php?id=" . $deckId, '<span id="appBreadcrumb1">loading..</span>'],
-    ucfirst($learnType)
+    ["/deck/view.php?id=" . $deckId, '<span id="appBreadcrumb1">' . $lang["common.loading"] . '</span>'],
+    ucfirst($lang["common." . $learnType])
 ];
 top_private();
 Vocab();
@@ -20,47 +21,58 @@ Card();
 
         <div class="row">
             <div id="learnstatus">
-                <span id="learnstatus__position" class="pull-left">loading...</span>
+                <span id="learnstatus__position" class="pull-left"><?= $lang["common.loading"] ?></span>
                 <span class="pull-right">
-                    unanswered: <span class="learnstatus__count" id="learnstatus__count--unanswered">loading...</span>
-                    correct: <span class="learnstatus__count" id="learnstatus__count--correct">loading...</span>
-                    incorrect: <span class="learnstatus__count" id="learnstatus__count--incorrect">loading...</span>
+                    <?= $lang["page.basiclearn.label.unanswered"] ?>:
+                    <span class="learnstatus__count" id="learnstatus__count--unanswered">
+                        <?= $lang["common.loading"] ?>
+                    </span>
+                    <?= $lang["page.basiclearn.label.correct"] ?>:
+                    <span class="learnstatus__count" id="learnstatus__count--correct">
+                        <?= $lang["common.loading"] ?>
+                    </span>
+                    <?= $lang["page.basiclearn.label.incorrect"] ?>:
+                    <span class="learnstatus__count" id="learnstatus__count--incorrect">
+                        <?= $lang["common.loading"] ?>
+                    </span>
                 </span>
             </div>
         </div>
 
         <div class="row">
             <div id="learncmd" class="btn-group btn-group-justified" role="group" aria-label="Command">
-                <a class="btn btn-default btn-sm" role="button" id="learncmd__back" title="Previous">
+
+                <a class="btn btn-default btn-sm" role="button" id="learncmd__back" title='<?= $lang["page.basiclearn.command.previous"] ?>'>
                     <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-default btn-sm" role="button" id="learncmd__next" title="Next">
+                <a class="btn btn-default btn-sm" role="button" id="learncmd__next" title='<?= $lang["page.basiclearn.command.next"] ?>'>
                     <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-default btn-sm" role="button" id="learncmd__shuffle" title="Shuffle">
+                <a class="btn btn-default btn-sm" role="button" id="learncmd__shuffle" title='<?= $lang["page.basiclearn.command.shuffle"] ?>'>
                     <span class="glyphicon glyphicon-random" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-default btn-sm" role="button" id="learncmd__reverse" title="Reverse sides">
+                <a class="btn btn-default btn-sm" role="button" id="learncmd__reverse" title='<?= $lang["page.basiclearn.command.reverse"] ?>'>
                     <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-default btn-sm" role="button" id="learncmd__edit" title="Edit card">
+                <a class="btn btn-default btn-sm" role="button" id="learncmd__edit" title='<?= $lang["page.basiclearn.command.edit"] ?>'>
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-default btn-sm" role="button" id="learncmd__delete" title="Delete card">
+                <a class="btn btn-default btn-sm" role="button" id="learncmd__delete" title='<?= $lang["page.basiclearn.command.delete"] ?>'>
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-default btn-sm" role="button" id="learncmd__end" title="End session">
+                <a class="btn btn-default btn-sm" role="button" id="learncmd__end" title='<?= $lang["page.basiclearn.command.end"] ?>'>
                     <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
                 </a>
+
             </div>
         </div>
 
         <div class="row">
             <div id="learndata">
                 <div id="learndata__front">
-                    <div id="learndata__front--result-correct-4" class="learndata__front--result" style="display: none;">HESITATE</div>
-                    <div id="learndata__front--result-correct-5" class="learndata__front--result" style="display: none;">PERFECT</div>
-                    <div id="learndata__front--result-incorrect" class="learndata__front--result" style="display: none;">INCORRECT</div>
+                    <div id="learndata__front--result-correct-4" class="learndata__front--result" style="display: none;"><?= $lang["page.basiclearn.tmpresult.hesitate"] ?></div>
+                    <div id="learndata__front--result-correct-5" class="learndata__front--result" style="display: none;"><?= $lang["page.basiclearn.tmpresult.perfect"] ?></div>
+                    <div id="learndata__front--result-incorrect" class="learndata__front--result" style="display: none;"><?= $lang["page.basiclearn.tmpresult.incorrect"] ?></div>
                     <div id="learndata__front--data"></div>
                 </div>
                 <div id="learndata__back">
@@ -73,25 +85,25 @@ Card();
             <div id="learnanswer">
                 <button id="learnanswer__flip" class="learnanswer btn btn-primary" style="display: none;">
                     <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                    Show answer
+                    <?= $lang["page.basiclearn.response.show"] ?>
                 </button>
                 
                 <button id="learnanswer__wrong" class="learnanswer btn btn-danger" style="display: none;">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    Forget/Incorrect
+                    <?= $lang["page.basiclearn.response.forget"] ?>
                 </button>
 
                 <button data-quality="3" class="learnanswer learnanswer__right btn btn-warning" style="display: none;">
-                    Difficult
+                    <?= $lang["page.basiclearn.response.difficult"] ?>
                 </button>
 
                 <button data-quality="4" class="learnanswer learnanswer__right btn btn-info" style="display: none;">
-                    Hesitate
+                    <?= $lang["page.basiclearn.response.hesitate"] ?>
                 </button>
 
                 <button data-quality="5" class="learnanswer learnanswer__right btn btn-success" style="display: none;">
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    Perfect
+                    <?= $lang["page.basiclearn.response.perfect"] ?>
                 </button>
             </div>
         </div>

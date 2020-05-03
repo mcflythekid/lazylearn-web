@@ -146,4 +146,23 @@ $lang["page.deckview.column.front"] = "Mặt trước";
 $lang["page.deckview.column.back"] = "Mặt sau";
 $lang["page.deckview.column.easy_score"] = "Độ dễ (1.3-4)";
 $lang["page.deckview.column.deck_id"] = "Tiến trình";
+
+$lang["page.basiclearn.label.unanswered"] = "Chưa trả lời";
+$lang["page.basiclearn.label.correct"] = "Đúng";
+$lang["page.basiclearn.label.incorrect"] = "Sai";
+$lang["page.basiclearn.response.show"] = "Hiện đáp án";
+$lang["page.basiclearn.response.forget"] = "Tôi không biết";
+$lang["page.basiclearn.response.difficult"] = "Khó";
+$lang["page.basiclearn.response.hesitate"] = "Hơi khó";
+$lang["page.basiclearn.response.perfect"] = "Đã biết";
+$lang["page.basiclearn.command.next"] = "Thẻ tiếp theo";
+$lang["page.basiclearn.command.previous"] = "Thẻ trước";
+$lang["page.basiclearn.command.shuffle"] = "Trộn thẻ";
+$lang["page.basiclearn.command.reverse"] = "Đảo mặt";
+$lang["page.basiclearn.command.edit"] = "Sửa thẻ này";
+$lang["page.basiclearn.command.delete"] = "Xóa thẻ này";
+$lang["page.basiclearn.command.end"] = "Thoát";
+$lang["page.basiclearn.tmpresult.hesitate"] = "HƠI KHÓ";
+$lang["page.basiclearn.tmpresult.perfect"] = "ĐÃ BIẾT";
+$lang["page.basiclearn.tmpresult.incorrect"] = "KHÔNG BIẾT";
 ?>
