@@ -166,7 +166,7 @@
                     FlashMessage.error('Word is required');
                     return;
                 }
-                AppApi.sync.get("/vocab/get-oxford/" + word).then((response)=>{
+                AppApi.sync.get("/vocab/get-vocab-data/" + word).then((response)=>{
                     const data = response.data;
                     e.resetCreateForm();
                     $('#vocab-create-word').val(data.word);
