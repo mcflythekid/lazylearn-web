@@ -130,6 +130,7 @@
                                     <label for="vocab-edit-image"><?= $lang["class.vocab.formupdate.input.image_new.label"] ?></label>
                                     <input type="file" accept="image/*" class="form-control" id="vocab-edit-image">
                                     <input type="text" class="form-control" id="vocab-edit-image-paste" placeholder="<?= $lang["class.vocab.formall.input.paste_image.holder"] ?>">
+                                    <input type="hidden"                                              id="vocab-edit-image-encoded">
                                     <img style="max-height: 100px; display: block"                    id="vocab-edit-image-preview">
                                 </div>
                             </div>
@@ -198,7 +199,7 @@
                         !$('#vocab-create-image-encoded').val()
                         || !$('#vocab-create-audio-encoded').val()
                     ) {
-                        FlashMessage.error("Check your audio / image!");
+                        FlashMessage.error("<?= $lang["class.vocab.error.require_audio_image"] ?>");
                         return;
                     }
 
@@ -233,7 +234,7 @@
                     $('#vocab-edit-form').off().submit((e)=>{
                         e.preventDefault();
                         Promise.all([
-                            EncodedFile.read($('#vocab-edit-image')),
+                            //EncodedFile.read($('#vocab-edit-image')), // removeable
                             EncodedFile.read($('#vocab-edit-audio'))
                         ]).then((encodedFiles)=>{
                             edit(
@@ -242,7 +243,7 @@
                                 $('#vocab-edit-phonetic').val().trim(),
                                 $('#vocab-edit-personalconnection').val().trim(),
                                 $('#vocab-edit-phrase').val().trim(),
-                                encodedFiles[0],
+                                JSON.parse($('#vocab-edit-image-encoded').val()),
                                 encodedFiles[1],
                                 (editData)=>{
                                     if (successCallback) successCallback(editData);
@@ -296,7 +297,7 @@
 
             e.delete = (vocabId, callback, closeDialogCallback)=>{
 
-                Dialog.confirm("This vocab and all card belong to it will be deleted?", ()=> {
+                Dialog.confirm("<?= $lang["common.delete_confirm.childs"] ?>", ()=> {
                     AppApi.sync.post("/vocab/delete/" + vocabId).then((res) => {
                         if (callback) callback(res.data);
                     });
@@ -338,6 +339,13 @@
             }
         });
         $("#vocab-edit-image").change(function(){
+            EncodedFile.read($(this)).then(res=>{
+                console.log("Encoded image", res);
+                $("#vocab-edit-image-encoded").val(JSON.stringify(res));
+            }).catch(err=>{
+                FlashMessage.error("<?= $lang["class.vocab.error.cannot_read_image"] ?>");
+            });
+
             if (this.files && this.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
@@ -366,19 +374,19 @@
         document.getElementById('vocab-create-image-paste').onpaste = function (event) {
             // use event.originalEvent.clipboard for newer chrome versions
             var items = (event.clipboardData  || event.originalEvent.clipboardData).items;
-            console.log(JSON.stringify(items)); // will give you the mime types
+            //console.log(JSON.stringify(items)); // will give you the mime types
             // find pasted image among pasted items
             var blob = null;
             for (var i = 0; i < items.length; i++) {
                 if (items[i].type.indexOf("image") === 0) {
-                blob = items[i].getAsFile();
+                    blob = items[i].getAsFile();
                 }
             }
             // load image if there is a pasted image
             if (blob !== null) {
                 var reader = new FileReader();
                 reader.onload = function(event) {
-                    //console.log(event.target.result); // data url!
+                    console.log(event.target.result); // data url!
                     document.getElementById("vocab-create-image-preview").src = event.target.result;
                     $("#vocab-create-image-encoded").val(JSON.stringify(EncodedFile.fromBase64Image(event.target.result)));
                 };
@@ -403,7 +411,7 @@
             if (blob !== null) {
                 var reader = new FileReader();
                 reader.onload = function(event) {
-                    //console.log(event.target.result); // data url!
+                    console.log(event.target.result); // data url!
                     document.getElementById("vocab-edit-image-preview").src = event.target.result;
                     $("#vocab-edit-image-encoded").val(JSON.stringify(EncodedFile.fromBase64Image(event.target.result)));
                 };

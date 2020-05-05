@@ -11,6 +11,7 @@ $lang["common.edit"] = "Sửa đổi";
 $lang["common.cancel"] = "Hủy";
 $lang["common.created_date"] = "Ngày tạo";
 $lang["common.delete_confirm"] = "Bạn có chắc muốn xóa?";
+$lang["common.delete_confirm.childs"] = "Bạn có chắc muốn xóa dữ liệu này và toàn bộ dữ liệu con?";
 $lang["common.not_found"] = "Không tìm thấy dữ liệu";
 
 $lang["title"] = "LazyLearn &mdash; Thẻ Flashcard Online";
@@ -223,6 +224,7 @@ $lang["class.vocab.formall.input.paste_image.holder"] = "Dán hình ảnh vào �
 $lang["class.vocab.error.clipbard_image_not_found"] = "Clipboard không có hình";
 $lang["class.vocab.error.cannot_read_image"] = "Không thể đọc file hình ảnh";
 $lang["class.vocab.error.cannot_read_audio"] = "Không thể đọc file âm thanh";
+$lang["class.vocab.error.require_audio_image"] = "Thiếu hình ảnh hoặc âm thanh";
 
 $lang["class.vocabdeck.form.title"] = "Đổi tên gói từ vựng";
 $lang["class.vocabdeck.form.name.label"] = "Tên mới";

@@ -11,6 +11,7 @@ $lang["common.edit"] = "Edit";
 $lang["common.cancel"] = "Cancel";
 $lang["common.created_date"] = "Created date";
 $lang["common.delete_confirm"] = "Do you want to delete this one?";
+$lang["common.delete_confirm.childs"] = "Do you want to delete this one and all it childs?";
 $lang["common.not_found"] = "Item not found";
 
 $lang["title"] = "LazyLearn &mdash; Flashcard Machine";
@@ -223,6 +224,7 @@ $lang["class.vocab.formall.input.paste_image.holder"] = "Paste image here";
 $lang["class.vocab.error.clipbard_image_not_found"] = "Clipboard doesn't contain image";
 $lang["class.vocab.error.cannot_read_image"] = "Cannot read image files";
 $lang["class.vocab.error.cannot_read_audio"] = "Cannot read audio files";
+$lang["class.vocab.error.require_audio_image"] = "Image/Audio is missing";
 
 $lang["class.vocabdeck.form.title"] = "Edit vocab deck";
 $lang["class.vocabdeck.form.name.label"] = "New name";
