@@ -219,6 +219,8 @@ $lang["class.vocab.formupdate.input.audio_old.label"] = "File âm thanh cũ";
 $lang["class.vocab.formupdate.input.image_new.label"] = "Hình ảnh mới";
 $lang["class.vocab.formupdate.input.image_old.label"] = "Hình ảnh cũ";
 $lang["class.vocab.formupdate.submit"] = "Chỉnh sửa";
+$lang["class.vocab.formall.input.paste_image.holder"] = "Dán hình ảnh vào đây";
+$lang["class.vocab.error.clipbard_image_not_found"] = "Clipboard không có hình";
 $lang["class.vocab.error.cannot_read_image"] = "Không thể đọc file hình ảnh";
 $lang["class.vocab.error.cannot_read_audio"] = "Không thể đọc file âm thanh";
 

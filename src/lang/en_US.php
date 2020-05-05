@@ -219,6 +219,8 @@ $lang["class.vocab.formupdate.input.audio_old.label"] = "Old audio file";
 $lang["class.vocab.formupdate.input.image_new.label"] = "New image file";
 $lang["class.vocab.formupdate.input.image_old.label"] = "Old image file";
 $lang["class.vocab.formupdate.submit"] = "Update";
+$lang["class.vocab.formall.input.paste_image.holder"] = "Paste image here";
+$lang["class.vocab.error.clipbard_image_not_found"] = "Clipboard doesn't contain image";
 $lang["class.vocab.error.cannot_read_image"] = "Cannot read image files";
 $lang["class.vocab.error.cannot_read_audio"] = "Cannot read audio files";
 

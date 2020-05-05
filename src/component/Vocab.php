@@ -44,6 +44,7 @@
                                 <div class="form-group">
                                     <label for="vocab-create-image"><?= $lang["class.vocab.form.input.image.label"] ?></label>
                                     <input type="file" accept="image/*" class="form-control" id="vocab-create-image">
+                                    <input type="text" class="form-control" id="vocab-create-image-paste" placeholder="<?= $lang["class.vocab.formall.input.paste_image.holder"] ?>">
                                     <input type="hidden"                                              id="vocab-create-image-encoded">
                                     <img style="max-height: 100px; display: block"                    id="vocab-create-image-preview">
                                 </div>
@@ -128,6 +129,8 @@
                                 <div class="form-group">
                                     <label for="vocab-edit-image"><?= $lang["class.vocab.formupdate.input.image_new.label"] ?></label>
                                     <input type="file" accept="image/*" class="form-control" id="vocab-edit-image">
+                                    <input type="text" class="form-control" id="vocab-edit-image-paste" placeholder="<?= $lang["class.vocab.formall.input.paste_image.holder"] ?>">
+                                    <img style="max-height: 100px; display: block"                    id="vocab-edit-image-preview">
                                 </div>
                             </div>
                             <div class="col-xs-6">
@@ -157,6 +160,12 @@
                 $('#vocab-create-audio-preview').attr('src', '');
                 $('#vocab-create-image-encoded').val('');
                 $('#vocab-create-image-preview').attr('src', '');
+            };
+
+            e.resetEditForm = ()=>{
+                $('#vocab-edit-form').get(0).reset();
+                $('#vocab-edit-image-encoded').val('');
+                $('#vocab-edit-image-preview').attr('src', '');
             };
 
 
@@ -211,6 +220,7 @@
             };
 
             e.openEdit = (vocabId, successCallback, oncloseCallback)=>{
+                e.resetEditForm();
                 get(vocabId, (vocab)=>{
                     $('#vocab-edit-form').get(0).reset();
                     $('#vocab-edit-word').val(vocab.word);
@@ -327,6 +337,15 @@
                 reader.readAsDataURL(this.files[0]); // convert to base64 string
             }
         });
+        $("#vocab-edit-image").change(function(){
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#vocab-edit-image-preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(this.files[0]); // convert to base64 string
+            }
+        });
         $("#vocab-create-audio").change(function(){
             EncodedFile.read($(this)).then(res=>{
                 console.log("Encoded audio", res);
@@ -344,6 +363,56 @@
             }
         });
 
+        document.getElementById('vocab-create-image-paste').onpaste = function (event) {
+            // use event.originalEvent.clipboard for newer chrome versions
+            var items = (event.clipboardData  || event.originalEvent.clipboardData).items;
+            console.log(JSON.stringify(items)); // will give you the mime types
+            // find pasted image among pasted items
+            var blob = null;
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].type.indexOf("image") === 0) {
+                blob = items[i].getAsFile();
+                }
+            }
+            // load image if there is a pasted image
+            if (blob !== null) {
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    //console.log(event.target.result); // data url!
+                    document.getElementById("vocab-create-image-preview").src = event.target.result;
+                    $("#vocab-create-image-encoded").val(JSON.stringify(EncodedFile.fromBase64Image(event.target.result)));
+                };
+                reader.readAsDataURL(blob);
+            } else {
+                event.preventDefault();
+                FlashMessage.error("<?= $lang["class.vocab.error.clipbard_image_not_found"] ?>");
+            }
+        }
+        document.getElementById('vocab-edit-image-paste').onpaste = function (event) {
+            // use event.originalEvent.clipboard for newer chrome versions
+            var items = (event.clipboardData  || event.originalEvent.clipboardData).items;
+            console.log(JSON.stringify(items)); // will give you the mime types
+            // find pasted image among pasted items
+            var blob = null;
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].type.indexOf("image") === 0) {
+                blob = items[i].getAsFile();
+                }
+            }
+            // load image if there is a pasted image
+            if (blob !== null) {
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    //console.log(event.target.result); // data url!
+                    document.getElementById("vocab-edit-image-preview").src = event.target.result;
+                    $("#vocab-edit-image-encoded").val(JSON.stringify(EncodedFile.fromBase64Image(event.target.result)));
+                };
+                reader.readAsDataURL(blob);
+            } else {
+                event.preventDefault();
+                FlashMessage.error("<?= $lang["class.vocab.error.clipbard_image_not_found"] ?>");
+            }
+        }
 
     </script>
 

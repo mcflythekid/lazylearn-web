@@ -55,5 +55,28 @@ var EncodedFile = ((e, FlashMessage)=>{
         return Promise.all(results);
     };
 
+    const getExtFromBase64 = encoded =>{
+        var result = null;
+        
+        if (typeof encoded !== 'string') {
+            return result;
+        }
+        
+        var mime = encoded.match(/data:([a-zA-Z0-9]+\/[a-zA-Z0-9-.+]+).*,.*/);
+        
+        if (mime && mime.length) {
+            result = mime[1];
+        }
+        
+        return result;
+    };
+
+    e.fromBase64Image = encoded=>{
+        return {
+            ext: getExtFromBase64(encoded),
+            content: encoded.substring(encoded.indexOf(';base64,') + 8)
+        }
+    };
+
     return e;
 })({}, FlashMessage);
