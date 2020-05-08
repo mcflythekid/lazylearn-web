@@ -233,6 +233,12 @@
 
                     $('#vocab-edit-form').off().submit((e)=>{
                         e.preventDefault();
+                        const newImageJsonString = $('#vocab-edit-image-encoded').val();
+                        const newImageJsonObject = null;
+                        if (newImageJsonString){
+                            newImageJsonObject = JSON.parse(newImageJsonString);
+                        }
+
                         Promise.all([
                             //EncodedFile.read($('#vocab-edit-image')), // removeable
                             EncodedFile.read($('#vocab-edit-audio'))
@@ -243,7 +249,7 @@
                                 $('#vocab-edit-phonetic').val().trim(),
                                 $('#vocab-edit-personalconnection').val().trim(),
                                 $('#vocab-edit-phrase').val().trim(),
-                                JSON.parse($('#vocab-edit-image-encoded').val()),
+                                newImageJsonObject,
                                 encodedFiles[1],
                                 (editData)=>{
                                     if (successCallback) successCallback(editData);
