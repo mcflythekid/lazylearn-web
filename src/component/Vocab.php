@@ -184,7 +184,7 @@
                     $('#vocab-create-phrase').val(data.phrase);
 
                     $('#vocab-create-audio-encoded').val(JSON.stringify({  ext: "mp3", content: data.audio64 }));
-                    $('#vocab-create-audio-preview').attr('src', data.audio);
+                    $('#vocab-create-audio-preview').attr('src', 'data:audio/mp3;base64,' + data.audio64);
 
                 });
                 
