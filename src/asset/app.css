@@ -55,9 +55,18 @@ a.nounderline:link {
 /***********************************************************************/
 /***********************************************************************/
 /***********************************************************************/
+.learn_center{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #learndata{
     margin-bottom: 10px;
     border:1px solid #cecece;
+    background-color: white;
 }
 #learndata img{
     max-width:100%;

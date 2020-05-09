@@ -42,25 +42,25 @@ Card();
         <div class="row">
             <div id="learncmd" class="btn-group btn-group-justified" role="group" aria-label="Command">
 
-                <a class="btn btn-default btn-sm" role="button" id="learncmd__back" title='<?= $lang["page.basiclearn.command.previous"] ?>'>
+                <a class="btn btn-default btn-sm btn-flat" role="button" id="learncmd__back" title='<?= $lang["page.basiclearn.command.previous"] ?>'>
                     <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-default btn-sm" role="button" id="learncmd__next" title='<?= $lang["page.basiclearn.command.next"] ?>'>
+                <a class="btn btn-default btn-sm btn-flat" role="button" id="learncmd__next" title='<?= $lang["page.basiclearn.command.next"] ?>'>
                     <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-default btn-sm" role="button" id="learncmd__shuffle" title='<?= $lang["page.basiclearn.command.shuffle"] ?>'>
+                <a class="btn btn-default btn-sm btn-flat" role="button" id="learncmd__shuffle" title='<?= $lang["page.basiclearn.command.shuffle"] ?>'>
                     <span class="glyphicon glyphicon-random" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-default btn-sm" role="button" id="learncmd__reverse" title='<?= $lang["page.basiclearn.command.reverse"] ?>'>
+                <a class="btn btn-default btn-sm btn-flat" role="button" id="learncmd__reverse" title='<?= $lang["page.basiclearn.command.reverse"] ?>'>
                     <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-default btn-sm" role="button" id="learncmd__edit" title='<?= $lang["page.basiclearn.command.edit"] ?>'>
+                <a class="btn btn-default btn-sm btn-flat" role="button" id="learncmd__edit" title='<?= $lang["page.basiclearn.command.edit"] ?>'>
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-default btn-sm" role="button" id="learncmd__delete" title='<?= $lang["page.basiclearn.command.delete"] ?>'>
+                <a class="btn btn-default btn-sm btn-flat" role="button" id="learncmd__delete" title='<?= $lang["page.basiclearn.command.delete"] ?>'>
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                 </a>
-                <a class="btn btn-default btn-sm" role="button" id="learncmd__end" title='<?= $lang["page.basiclearn.command.end"] ?>'>
+                <a class="btn btn-default btn-sm btn-flat" role="button" id="learncmd__end" title='<?= $lang["page.basiclearn.command.end"] ?>'>
                     <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
                 </a>
 
@@ -69,13 +69,13 @@ Card();
 
         <div class="row">
             <div id="learndata">
-                <div id="learndata__front">
+                <div id="learndata__front" class="learn_center">
                     <div id="learndata__front--result-correct-4" class="learndata__front--result" style="display: none;"><?= $lang["page.basiclearn.tmpresult.hesitate"] ?></div>
                     <div id="learndata__front--result-correct-5" class="learndata__front--result" style="display: none;"><?= $lang["page.basiclearn.tmpresult.perfect"] ?></div>
                     <div id="learndata__front--result-incorrect" class="learndata__front--result" style="display: none;"><?= $lang["page.basiclearn.tmpresult.incorrect"] ?></div>
                     <div id="learndata__front--data"></div>
                 </div>
-                <div id="learndata__back">
+                <div id="learndata__back" class="learn_center">
                     <div id="learndata__back--data"></div>
                 </div>
             </div>
@@ -83,25 +83,25 @@ Card();
 
         <div class="row">
             <div id="learnanswer">
-                <button id="learnanswer__flip" class="learnanswer btn btn-primary" style="display: none;">
+                <button id="learnanswer__flip" class="learnanswer btn btn-primary btn-flat" style="display: none;">
                     <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                     <?= $lang["page.basiclearn.response.show"] ?>
                 </button>
                 
-                <button id="learnanswer__wrong" class="learnanswer btn btn-danger" style="display: none;">
+                <button id="learnanswer__wrong" class="learnanswer btn btn-danger btn-flat" style="display: none;">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                     <?= $lang["page.basiclearn.response.forget"] ?>
                 </button>
 
-                <button data-quality="3" class="learnanswer learnanswer__right btn btn-warning" style="display: none;">
+                <button data-quality="3" class="learnanswer learnanswer__right btn btn-warning btn-flat" style="display: none;">
                     <?= $lang["page.basiclearn.response.difficult"] ?>
                 </button>
 
-                <button data-quality="4" class="learnanswer learnanswer__right btn btn-info" style="display: none;">
+                <button data-quality="4" class="learnanswer learnanswer__right btn btn-info btn-flat" style="display: none;">
                     <?= $lang["page.basiclearn.response.hesitate"] ?>
                 </button>
 
-                <button data-quality="5" class="learnanswer learnanswer__right btn btn-success" style="display: none;">
+                <button data-quality="5" class="learnanswer learnanswer__right btn btn-success btn-flat" style="display: none;">
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                     <?= $lang["page.basiclearn.response.perfect"] ?>
                 </button>
