@@ -198,7 +198,7 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
             if(event.keyCode == 39 && !isEditing ) { // Right
                 event.preventDefault();
                 if (e.isTyping){
-                    FlashMessage.info("<?= $lang["page.basiclearn.hotkey.back.blocked"] ?>");
+                    FlashMessage.info("<?= $lang["page.basiclearn.hotkey.next.blocked"] ?>");
                     return;
                 }
                 if (arr[arrIndex].answered || isFlipped) {

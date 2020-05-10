@@ -82,6 +82,7 @@ a.nounderline:link {
     min-height:150px;
     position: relative;
     border-bottom: 1px solid #e2edeb;
+    font-size: 24px;
 }
 .learndata__front--result{
     position: absolute;
@@ -102,6 +103,7 @@ a.nounderline:link {
 }
 #learndata__back{
     min-height:150px;
+    font-size: 24px;
 }
 #learndata__front--data, #learndata__back--data{
     padding: 5px;
