@@ -84,11 +84,6 @@ Deck();
                 }
             },
             {
-                field: 'createdDate',
-                title: '<?= $lang["page.deck.column.created"] ?>',
-                sortable: true
-            },
-            {
                 width: 50,
                 formatter: (obj,row)=>{
                     if (row.type == 'minpair'){
@@ -97,6 +92,11 @@ Deck();
                         return '<a data-deckid="' + row.id + '" class="btn btn-xs btn-flat btn-info pull-left learn-go" href="/deck/learn.php?type=learn&id=' + row.id + '"><?= $lang["common.loading"] ?></a> ';
                     }
                 }
+            },
+            {
+                field: 'createdDate',
+                title: '<?= $lang["page.deck.column.created"] ?>',
+                sortable: true
             },
             {
                 width: 250,

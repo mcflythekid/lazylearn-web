@@ -134,6 +134,31 @@ Card();
 
 <script>
 
+const isTypeableString = html=>{
+    if (!html){ // Blank
+        return false;
+    }
+    if (html.includes("<img") || html.includes("<audio")){
+        return false;
+    }
+    var text = $(html)[0] ? $(html)[0].textContent : "";
+
+    if (!text){ // Blank
+        return false;
+    }
+    text = text.trim();
+    if(text.indexOf("\n")!=-1){// New line
+        return false;
+    }
+    if (!/^[\x00-\x7F]*$/.test(text)){ // None ASCII
+        return false;
+    }
+
+    return true;
+}
+
+//alert(isTypeableString("<a>cc á</a>"));
+
 var AnswerList = ((e)=>{
     var promises = [];
     e.push = promise => {
@@ -152,19 +177,30 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
     var deckObject;
     
     e.isTyping = defaultTypingStatus;
+    e.isTypeable = null;
     e.onChangeTyping = isTyping=>{
         e.isTyping = isTyping;
         ask(arrIndex);
     };
+    
+    const getCorrectAnswerHtml = ()=>{
+        return isReverse ? arr[arrIndex].front : arr[arrIndex].back;
+    };
+
     e.onSubmitTyping = answer=>{
-        const correctAnswer = isReverse ? arr[arrIndex].front : arr[arrIndex].back;
-        const correctText = $(correctAnswer)[0].textContent;
+        const correctAnswer = getCorrectAnswerHtml();
+        const correctText = $(correctAnswer)[0].textContent.trim();
+        debugger;
         if (correctText == answer){
-            FlashMessage.info('<?= $lang["common.correct"] ?>');
-            right(5);
+            $('#learndata__front--result-correct-5').show();
+            flip();
+            setTimeout(()=>{
+                right(5);
+            }, 666);
         } else {
-            FlashMessage.info('<?= $lang["common.incorrect"] ?>');
-            wrong();
+            flip();
+            $('#learndata__front--result-incorrect').show();
+            setTimeout(wrong, 666);
         }
     };
 
@@ -191,7 +227,7 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
             if(event.keyCode == 38 && !isEditing ) {event.preventDefault(); right(5);} // Up
             if(event.keyCode == 37 && !isEditing ) { // Left
                 event.preventDefault();
-                if (e.isTyping){
+                if (e.isTyping && e.isTypeable){
                     FlashMessage.info("<?= $lang["page.basiclearn.hotkey.back.blocked"] ?>");
                     return;
                 }
@@ -199,7 +235,7 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
             }
             if(event.keyCode == 39 && !isEditing ) { // Right
                 event.preventDefault();
-                if (e.isTyping){
+                if (e.isTyping && e.isTypeable){
                     FlashMessage.info("<?= $lang["page.basiclearn.hotkey.next.blocked"] ?>");
                     return;
                 }
@@ -284,7 +320,14 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
                 $('#learndata__front--result-incorrect').show();
             }
         } else {
-            if (e.isTyping){
+            const correctAnswer = getCorrectAnswerHtml();
+            if (isTypeableString(correctAnswer)){
+                e.isTypeable = true;
+            } else {
+                e.isTypeable = false;
+            }
+
+            if (e.isTyping && e.isTypeable){
                 $('#learnanswer__typing').show();
                 $('#learnanswer__typing input').focus();
             } else {
@@ -419,8 +462,11 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
         $('#learndata__back--data').removeClass('hidden');
         $('#learnanswer__flip').hide();
         $('#learnanswer__typing').hide();
-        $('.learnanswer__right').show();
-        $('#learnanswer__wrong').show();
+        
+        if (!e.isTyping && !e.isTypeable){
+            $('.learnanswer__right').show();
+            $('#learnanswer__wrong').show();
+        }
     };
 
     var right = (quality)=>{
