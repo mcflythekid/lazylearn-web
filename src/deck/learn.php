@@ -120,7 +120,7 @@ Card();
         </div>
         <div class="clearfix"></div>
         <div class="row u-unselectable">
-            <div class="checkbox pull-right">
+            <div class="checkbox pull-right u-mr-20">
                 <label>
                     <input required type="checkbox" id="toggle-type">
                     <?= $lang["page.basiclearn.typing.checkbox"] ?>
