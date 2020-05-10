@@ -243,16 +243,16 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
             if(event.keyCode == 37 && !isEditing ) { // Left
                 event.preventDefault();
                 if (e.isTyping && e.isTypeable){
-                    FlashMessage.info("<?= $lang["page.basiclearn.hotkey.back.blocked"] ?>");
-                    return;
+                    //FlashMessage.info("<?= $lang["page.basiclearn.hotkey.back.blocked"] ?>");
+                    //return;
                 }
                 back();
             }
             if(event.keyCode == 39 && !isEditing ) { // Right
                 event.preventDefault();
                 if (e.isTyping && e.isTypeable){
-                    FlashMessage.info("<?= $lang["page.basiclearn.hotkey.next.blocked"] ?>");
-                    return;
+                    //FlashMessage.info("<?= $lang["page.basiclearn.hotkey.next.blocked"] ?>");
+                    //return;
                 }
                 if (arr[arrIndex].answered || isFlipped) {
                     next();
