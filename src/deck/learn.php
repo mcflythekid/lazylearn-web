@@ -107,7 +107,7 @@ Card();
                 <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
                     <form id="learnanswer__typing" style="display: none;">
                         <div class="input-group input-group-sm">
-                            <input type="text" class="form-control" required placeholder="<?= $lang["page.basiclearn.typing.input.holder"] ?>">
+                            <input type="text" class="form-control" autocapitalize=off required placeholder="<?= $lang["page.basiclearn.typing.input.holder"] ?>">
                             <span class="input-group-btn">
                             <button type="submit" class="btn btn-info btn-flat">
                                 <?= $lang["page.basiclearn.typing.submit"] ?>
