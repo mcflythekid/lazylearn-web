@@ -190,7 +190,6 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
     e.onSubmitTyping = answer=>{
         const correctAnswer = getCorrectAnswerHtml();
         const correctText = $(correctAnswer)[0].textContent.trim();
-        debugger;
         if (correctText == answer){
             $('#learndata__front--result-correct-5').show();
             flip();
@@ -319,9 +318,14 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
             } else {
                 $('#learndata__front--result-incorrect').show();
             }
+
+            if (e.isTyping && e.isTypeable){
+                $('#learnanswer__typing').hide();
+            }
         } else {
             const correctAnswer = getCorrectAnswerHtml();
-            if (isTypeableString(correctAnswer)){
+
+            if (e.isTyping && isTypeableString(correctAnswer)){
                 e.isTypeable = true;
             } else {
                 e.isTypeable = false;
