@@ -53,8 +53,8 @@ Deck();
         sidePagination: 'server',
         sortName: 'createdDate',
         sortOrder: 'desc',
-        pageSize: 20,
-        pageList: [20, 50, 100],
+        pageSize: 50,
+        pageList: [50, 100, 200],
         search: true,
         ajaxOptions: {
             headers: {
