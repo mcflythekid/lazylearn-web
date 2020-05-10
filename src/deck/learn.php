@@ -249,7 +249,11 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
     var end = ()=>{
         HoldOn.open();
         AnswerList.waitAll().then(()=>{
-            window.location = Constant.deckUrl;
+            var latest = document.referrer;
+            if (!latest){
+                latest = Constant.deckUrl;
+            }
+            window.location = latest;
         });
     };
 
