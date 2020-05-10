@@ -160,8 +160,10 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
         const correctAnswer = isReverse ? arr[arrIndex].front : arr[arrIndex].back;
         const correctText = $(correctAnswer)[0].textContent;
         if (correctText == answer){
+            FlashMessage.info('<?= $lang["common.correct"] ?>');
             right(5);
         } else {
+            FlashMessage.info('<?= $lang["common.incorrect"] ?>');
             wrong();
         }
     };

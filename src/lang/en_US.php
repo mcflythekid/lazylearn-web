@@ -13,6 +13,8 @@ $lang["common.created_date"] = "Created date";
 $lang["common.delete_confirm"] = "Do you want to delete this one?";
 $lang["common.delete_confirm.childs"] = "Do you want to delete this one and all it childs?";
 $lang["common.not_found"] = "Item not found";
+$lang["common.correct"] = "Correct";
+$lang["common.incorrect"] = "Incorrect";
 
 $lang["title"] = "LazyLearn &mdash; Flashcard Machine";
 

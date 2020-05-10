@@ -13,6 +13,8 @@ $lang["common.created_date"] = "Ngày tạo";
 $lang["common.delete_confirm"] = "Bạn có chắc muốn xóa?";
 $lang["common.delete_confirm.childs"] = "Bạn có chắc muốn xóa dữ liệu này và toàn bộ dữ liệu con?";
 $lang["common.not_found"] = "Không tìm thấy dữ liệu";
+$lang["common.correct"] = "Đúng";
+$lang["common.incorrect"] = "Sai";
 
 $lang["title"] = "LazyLearn &mdash; Thẻ Flashcard Online";
 
