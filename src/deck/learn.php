@@ -253,11 +253,13 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
                 if (e.isTyping && e.isTypeable){
                     //FlashMessage.info("<?= $lang["page.basiclearn.hotkey.next.blocked"] ?>");
                     //return;
-                }
-                if (arr[arrIndex].answered || isFlipped) {
                     next();
                 } else {
-                    flip();
+                    if (arr[arrIndex].answered || isFlipped) {
+                        next();
+                    } else {
+                        flip();
+                    }
                 }
             }
         });
