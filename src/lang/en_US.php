@@ -170,6 +170,14 @@ $lang["page.basiclearn.command.end"] = "End session";
 $lang["page.basiclearn.tmpresult.hesitate"] = "HESITATE";
 $lang["page.basiclearn.tmpresult.perfect"] = "PERFECT";
 $lang["page.basiclearn.tmpresult.incorrect"] = "INCORRECT";
+$lang["page.basiclearn.typing.checkbox"] = "Answer by typing";
+$lang["page.basiclearn.typing.input.holder"] = "Type your answer here";
+$lang["page.basiclearn.typing.submit"] = "Answer";
+$lang["page.basiclearn.command.reverse.origin.dispatched"] = "Cards ain't reversed";
+$lang["page.basiclearn.command.reverse.reversed.dispatched"] = "Cards are reversed";
+$lang["page.basiclearn.command.shuffled.dispatched"] = "Cards shuffled";
+$lang["page.basiclearn.hotkey.back.blocked"] = "BACK command is disabled in typing mode";
+$lang["page.basiclearn.hotkey.next.blocked"] = "NEXT command is disabled in typing mode";
 
 $lang["class.deck.form.title"] = "Edit deck";
 $lang["class.deck.form.email.label"] = "New name";

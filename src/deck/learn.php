@@ -83,29 +83,50 @@ Card();
 
         <div class="row">
             <div id="learnanswer">
-                <button id="learnanswer__flip" class="learnanswer btn btn-primary btn-flat" style="display: none;">
-                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                    <?= $lang["page.basiclearn.response.show"] ?>
-                </button>
-                
-                <button id="learnanswer__wrong" class="learnanswer btn btn-danger btn-flat" style="display: none;">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    <?= $lang["page.basiclearn.response.forget"] ?>
-                </button>
+                <div>
+                    <button id="learnanswer__flip" class="learnanswer btn btn-primary btn-flat" style="display: none;">
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                        <?= $lang["page.basiclearn.response.show"] ?>
+                    </button>
+                    <button id="learnanswer__wrong" class="learnanswer btn btn-danger btn-flat" style="display: none;">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        <?= $lang["page.basiclearn.response.forget"] ?>
+                    </button>
+                    <button data-quality="3" class="learnanswer learnanswer__right btn btn-warning btn-flat" style="display: none;">
+                        <?= $lang["page.basiclearn.response.difficult"] ?>
+                    </button>
+                    <button data-quality="4" class="learnanswer learnanswer__right btn btn-info btn-flat" style="display: none;">
+                        <?= $lang["page.basiclearn.response.hesitate"] ?>
+                    </button>
+                    <button data-quality="5" class="learnanswer learnanswer__right btn btn-success btn-flat" style="display: none;">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        <?= $lang["page.basiclearn.response.perfect"] ?>
+                    </button>
+                </div>
 
-                <button data-quality="3" class="learnanswer learnanswer__right btn btn-warning btn-flat" style="display: none;">
-                    <?= $lang["page.basiclearn.response.difficult"] ?>
-                </button>
-
-                <button data-quality="4" class="learnanswer learnanswer__right btn btn-info btn-flat" style="display: none;">
-                    <?= $lang["page.basiclearn.response.hesitate"] ?>
-                </button>
-
-                <button data-quality="5" class="learnanswer learnanswer__right btn btn-success btn-flat" style="display: none;">
-                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    <?= $lang["page.basiclearn.response.perfect"] ?>
-                </button>
+                <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+                    <form id="learnanswer__typing" style="display: none;">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" required placeholder="<?= $lang["page.basiclearn.typing.input.holder"] ?>">
+                            <span class="input-group-btn">
+                            <button type="submit" class="btn btn-info btn-flat">
+                                <?= $lang["page.basiclearn.typing.submit"] ?>
+                            </button>
+                            </span>
+                        </div>
+                    </form>
+                <div>     
             </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row u-unselectable">
+            <div class="checkbox pull-right">
+                <label>
+                    <input required type="checkbox" id="toggle-type">
+                    <?= $lang["page.basiclearn.typing.checkbox"] ?>
+                </label>
+            </div>
+            <div class="clearfix"></div>
         </div>
 
     </div>
@@ -124,10 +145,26 @@ var AnswerList = ((e)=>{
     return e;
 })({});
 
+const defaultTypingStatus = false;
 
 var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
     var deckId, learnType, arr, arrIndex, arrLength, isReverse, isEditing, isFlipped;
     var deckObject;
+    
+    e.isTyping = defaultTypingStatus;
+    e.onChangeTyping = isTyping=>{
+        e.isTyping = isTyping;
+        ask(arrIndex);
+    };
+    e.onSubmitTyping = answer=>{
+        const correctAnswer = isReverse ? arr[arrIndex].front : arr[arrIndex].back;
+        const correctText = $(correctAnswer)[0].textContent;
+        if (correctText == answer){
+            right(5);
+        } else {
+            wrong();
+        }
+    };
 
     e.str = ()=>{
         return{
@@ -150,9 +187,20 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
         $(document).on('keydown', function(event){
             if(event.keyCode == 40 && !isEditing ) {event.preventDefault(); wrong();} // Down
             if(event.keyCode == 38 && !isEditing ) {event.preventDefault(); right(5);} // Up
-            if(event.keyCode == 37 && !isEditing ) {event.preventDefault(); back();} // Left
+            if(event.keyCode == 37 && !isEditing ) { // Left
+                event.preventDefault();
+                if (e.isTyping){
+                    FlashMessage.info("<?= $lang["page.basiclearn.hotkey.back.blocked"] ?>");
+                    return;
+                }
+                back();
+            }
             if(event.keyCode == 39 && !isEditing ) { // Right
                 event.preventDefault();
+                if (e.isTyping){
+                    FlashMessage.info("<?= $lang["page.basiclearn.hotkey.back.blocked"] ?>");
+                    return;
+                }
                 if (arr[arrIndex].answered || isFlipped) {
                     next();
                 } else {
@@ -234,7 +282,14 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
                 $('#learndata__front--result-incorrect').show();
             }
         } else {
-            $('#learnanswer__flip').show();
+            if (e.isTyping){
+                $('#learnanswer__typing').show();
+                $('#learnanswer__typing input').focus();
+            } else {
+                $('#learnanswer__typing').hide();
+                $('#learnanswer__flip').show();
+            }
+            
         }
         
         if (!isReverse){
@@ -354,12 +409,14 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
         $('#learndata').effect('pulsate', {}, 60, ()=>{
             ask(arrIndex);
         });
+        FlashMessage.info("<?= $lang["page.basiclearn.command.shuffled.dispatched"] ?>");
     };
 
     var flip = ()=>{
         isFlipped = true;
         $('#learndata__back--data').removeClass('hidden');
         $('#learnanswer__flip').hide();
+        $('#learnanswer__typing').hide();
         $('.learnanswer__right').show();
         $('#learnanswer__wrong').show();
     };
@@ -398,6 +455,12 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
         $('#learndata').effect('highlight', {}, 60, ()=>{
             ask(arrIndex);
         });
+        if (isReverse){
+            FlashMessage.info("<?= $lang["page.basiclearn.command.reverse.reversed.dispatched"] ?>");
+        } else {
+            FlashMessage.info("<?= $lang["page.basiclearn.command.reverse.origin.dispatched"] ?>");
+        }
+        
     };
 
     var refreshCount =()=>{
@@ -456,6 +519,21 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
     return e;
 })({}, AppApi, FlashMessage, Dialog, Card, Deck);
 $learn.init();
+
+$("#toggle-type").prop('checked', defaultTypingStatus);
+$("#toggle-type")[0].addEventListener('change', (event) => {
+    if (event.target.checked) {
+        $learn.onChangeTyping(true);
+    } else {
+        $learn.onChangeTyping(false);
+    }
+});
+$("#learnanswer__typing").submit(function(event){
+    event.preventDefault();
+    const answer = $("#learnanswer__typing input").val();
+    $("#learnanswer__typing input").val("");
+    $learn.onSubmitTyping(answer);
+});
 </script>
 
 <?=bottom_private()?>

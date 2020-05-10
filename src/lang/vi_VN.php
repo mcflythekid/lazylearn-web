@@ -170,6 +170,14 @@ $lang["page.basiclearn.command.end"] = "Thoát";
 $lang["page.basiclearn.tmpresult.hesitate"] = "HƠI KHÓ";
 $lang["page.basiclearn.tmpresult.perfect"] = "ĐÃ BIẾT";
 $lang["page.basiclearn.tmpresult.incorrect"] = "KHÔNG BIẾT";
+$lang["page.basiclearn.typing.checkbox"] = "Trả lời bằng cách gõ chữ";
+$lang["page.basiclearn.typing.input.holder"] = "Gõ câu trả lời vào đây";
+$lang["page.basiclearn.typing.submit"] = "Trả lời";
+$lang["page.basiclearn.command.reverse.origin.dispatched"] = "Thẻ không bị đảo ngược";
+$lang["page.basiclearn.command.reverse.reversed.dispatched"] = "Đã đảo mặt";
+$lang["page.basiclearn.command.shuffled.dispatched"] = "Đã trộn thẻ";
+$lang["page.basiclearn.hotkey.back.blocked"] = "Phím tắt THẺ TRƯỚC bị vô hiệu hóa khi gõ chữ";
+$lang["page.basiclearn.hotkey.next.blocked"] = "Phím tắt THẺ KẾ bị vô hiệu hóa khi gõ chữ";
 
 $lang["class.deck.form.title"] = "Sửa bộ thẻ";
 $lang["class.deck.form.email.label"] = "Tên mới";
