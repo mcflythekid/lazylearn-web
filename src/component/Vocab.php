@@ -60,6 +60,16 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="vocab-create-audiohint">Audio Hint (Optional)</label>
+                                    <input class="form-control" id="vocab-create-audiohint" placeholder="Audio Hint">
+                                </div>
+                            </div>
+                        </div>                         
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -141,6 +151,16 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="vocab-edit-audiohint">Audio Hint (Optional)</label>
+                                    <input class="form-control" id="vocab-edit-audiohint" placeholder="Audio Hint">
+                                </div>
+                            </div>
+                        </div>                        
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -211,6 +231,7 @@
                         $('#vocab-create-phrase').val().trim(),
                         JSON.parse($('#vocab-create-image-encoded').val()),
                         JSON.parse($('#vocab-create-audio-encoded').val()),
+                        $('#vocab-create-audiohint').val().trim(),
                         ()=>{
                             $('#vocab-create-modal').modal('hide');
                             if (callback) callback();
@@ -228,6 +249,7 @@
                     $('#vocab-edit-phonetic').val(vocab.phonetic);
                     $('#vocab-edit-personalconnection').val(vocab.personalConnection);
                     $('#vocab-edit-phrase').val(vocab.phrase);
+                    $('#vocab-edit-audiohint').val(vocab.audioHint);
                     $('#vocab-edit-audio-old').attr('src', AppApi.fileServer + vocab.audioPath);
                     $('#vocab-edit-image-old').attr('src', AppApi.fileServer + vocab.imagePath);
 
@@ -251,6 +273,7 @@
                                 $('#vocab-edit-phrase').val().trim(),
                                 newImageJsonObject,
                                 encodedFiles[1],
+                                $('#vocab-edit-audiohint').val().trim(),
                                 (editData)=>{
                                     if (successCallback) successCallback(editData);
                                     $('#vocab-edit-modal').modal('hide');
@@ -265,7 +288,7 @@
                 });
             };
 
-            var create = (vocabdeckId, word, phonetic, personalConnection, phrase, encodedImage, encodedAudio, callback)=>{
+            var create = (vocabdeckId, word, phonetic, personalConnection, phrase, encodedImage, encodedAudio, audioHint, callback)=>{
                 AppApi.sync.post("/vocab/create", {
                     vocabdeckId: vocabdeckId,
                     word: word,
@@ -273,13 +296,14 @@
                     personalConnection: personalConnection,
                     phrase: phrase,
                     encodedImage: encodedImage,
-                    encodedAudio: encodedAudio
+                    encodedAudio: encodedAudio,
+                    audioHint: audioHint
                 }).then((response)=>{
                     if (callback) callback();
                 });
             };
 
-            var edit = (vocabId, word, phonetic, personalConnection, phrase, encodedImage, encodedAudio, callback)=>{
+            var edit = (vocabId, word, phonetic, personalConnection, phrase, encodedImage, encodedAudio, audioHint, callback)=>{
                 AppApi.sync.post("/vocab/edit", {
                     vocabId: vocabId,
                     word: word,
@@ -287,7 +311,8 @@
                     personalConnection: personalConnection,
                     phrase: phrase,
                     encodedImage: encodedImage,
-                    encodedAudio: encodedAudio
+                    encodedAudio: encodedAudio,
+                    audioHint: audioHint
                 }).then((response)=>{
                     if (callback) callback(response.data);
                 });
