@@ -65,8 +65,8 @@
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="vocab-create-audiohint">Audio Hint (Optional)</label>
-                                    <input class="form-control" id="vocab-create-audiohint" placeholder="Audio Hint">
+                                    <label for="vocab-create-audiohint"><?= $lang["class.vocab.form.input.audiohint.label"] ?></label>
+                                    <input class="form-control" id="vocab-create-audiohint" placeholder="<?= $lang["class.vocab.form.input.audiohint.holder"] ?>">
                                 </div>
                             </div>
                         </div>                         
@@ -156,8 +156,8 @@
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <label for="vocab-edit-audiohint">Audio Hint (Optional)</label>
-                                    <input class="form-control" id="vocab-edit-audiohint" placeholder="Audio Hint">
+                                    <label for="vocab-edit-audiohint"><?= $lang["class.vocab.form.input.audiohint.label"] ?></label>
+                                    <input class="form-control" id="vocab-edit-audiohint" placeholder="<?= $lang["class.vocab.form.input.audiohint.holder"] ?>">
                                 </div>
                             </div>
                         </div>                        
