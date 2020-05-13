@@ -20,7 +20,7 @@ top_private();
                 <label for="confirmNewRawPassword"><?= $lang["page.change_password.input.pass2"] ?></label>
                 <input type="password" required class="form-control" id="confirmNewRawPassword" placeholder="<?= $lang["page.change_password.input.pass2"] ?>">
             </div>
-          <button type="submit" class="btn btn-primary"><?= $lang["page.change_password.btn.submit"] ?></button>
+          <button type="submit" class="btn btn-primary btn-flat"><?= $lang["page.change_password.btn.submit"] ?></button>
         </form>
     </div>
 </div>
