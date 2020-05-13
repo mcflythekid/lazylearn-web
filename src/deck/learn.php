@@ -380,7 +380,7 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
     };
 
     var edit = ()=>{
-        if (deckObject.vocabdeckId){
+        if (arr[arrIndex].vocabId){
             editAsVocab();
         } else {
             editAsCard();
@@ -411,7 +411,7 @@ var $learn = ((e, AppApi, FlashMessage, Dialog, Card, Deck)=>{
     };
 
     var delete_ = ()=>{
-        if (deckObject.vocabdeckId){
+        if (arr[arrIndex].vocabId){
             deleteAsVocab();
         } else {
             deleteAsCard();
