@@ -134,7 +134,6 @@ $lang["layout.private.menu.main.topic"] = "Tài liệu của bạn";
 $lang["page.dashboard.chart01.name"] = "Trạng thái ngăn chứa";
 $lang["page.dashboard.btn.one_time_learn"] = "Học Hết";
 $lang["page.dashboard.btn.today_one_time_learn"] = "Học 1 lần 1 ngày";
-$lang["page.dashboard.btn.today_one_time_learn"] = "Học 1 lần 1 ngày";
 $lang["page.dashboard.btn.today_one_time_learn.done"] = "Học 1 lần 1 ngày đã xong ✓";
 $lang["page.dashboard.btn.explore_deck"] = "Khám Phá Bộ Thẻ Của Tôi";
 
@@ -189,8 +188,8 @@ $lang["class.deck.form.email.label"] = "Tên mới";
 $lang["class.deck.form.email.holder"] = "Tên mới";
 $lang["class.deck.form.submit"] = "Sửa";
 
-$lang["class.card.form.title"] = "asdas";
-$lang["class.card.form.submit"] = "Submit";
+$lang["class.card.form.title"] = "Sửa thẻ";
+$lang["class.card.form.submit"] = "Xong";
 
 $lang["class.topic.form.title"] = "Tài liệu";
 $lang["class.topic.form.name"] = "Tên tài liệu";
