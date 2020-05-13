@@ -122,7 +122,7 @@ $lang["forgotpassword.form.btn.submit"] = "Gởi yêu cầu";
 
 $lang["layout.private.email_not_set"] = "Địa chỉ email chưa đưuọc cập nhật";
 $lang["layout.private.security"] = "Bảo mật";
-$lang["layout.private.change_password"] = "Đổi mật khẩu";
+$lang["layout.private.change_password"] = "Cấu hình";
 $lang["layout.private.logout"] = "Đăng xuất";
 $lang["layout.private.menu.main.id"] = "Menu";
 $lang["layout.private.menu.main.lazy"] = "Lazy";
@@ -277,10 +277,10 @@ $lang["page.security.header"] = "Bảo mật";
 $lang["page.security.label.sessions"] = "Danh sách các phiên đăng nhập";
 $lang["page.security.btn.force_logout"] = "Thoát khỏi các thiết bị khác";
 
-$lang["page.change_password.title"] = "Đổi mật khẩu";
+$lang["page.change_password.title"] = "Cấu hình";
 $lang["page.change_password.input.pass1"] = "Mật khẩu mới";
 $lang["page.change_password.input.pass2"] = "Nhập lại mật khẩu mới";
-$lang["page.change_password.btn.submit"] = "Đổi ngay";
+$lang["page.change_password.btn.submit"] = "Đổi mật khẩu";
 
 $lang["page.reset_password.title"] = "Đặt lại mật khẩu";
 $lang["page.reset_password.guide"] = "Vui lòng đặt mật khẩu mới";

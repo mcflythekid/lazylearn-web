@@ -122,7 +122,7 @@ $lang["forgotpassword.form.btn.submit"] = "Send request";
 
 $lang["layout.private.email_not_set"] = "[Email is not set]";
 $lang["layout.private.security"] = "Security";
-$lang["layout.private.change_password"] = "Change password";
+$lang["layout.private.change_password"] = "Settings";
 $lang["layout.private.logout"] = "Sign out";
 $lang["layout.private.menu.main.id"] = "Menu";
 $lang["layout.private.menu.main.lazy"] = "Lazy";
@@ -277,10 +277,10 @@ $lang["page.security.header"] = "Security";
 $lang["page.security.label.sessions"] = "Where You're Logged In";
 $lang["page.security.btn.force_logout"] = "Log Out Of All Sessions";
 
-$lang["page.change_password.title"] = "Change password";
+$lang["page.change_password.title"] = "Settings";
 $lang["page.change_password.input.pass1"] = "New password";
 $lang["page.change_password.input.pass2"] = "Re-type new password";
-$lang["page.change_password.btn.submit"] = "Change";
+$lang["page.change_password.btn.submit"] = "Change password";
 
 $lang["page.reset_password.title"] = "Change password";
 $lang["page.reset_password.guide"] = "Please set your new password";
