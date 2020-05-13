@@ -132,7 +132,9 @@ $lang["layout.private.menu.main.minpair"] = "Minimal Pairs";
 $lang["layout.private.menu.main.topic"] = "Topic";
 
 $lang["page.dashboard.chart01.name"] = "Status by deck";
-$lang["page.dashboard.btn.one_time_learn"] = "Click Here To Learn All";
+$lang["page.dashboard.btn.one_time_learn"] = "Learn All Cards";
+$lang["page.dashboard.btn.today_one_time_learn"] = "Learn 1-Times-Today";
+$lang["page.dashboard.btn.today_one_time_learn.done"] = "1-Times-Today is completed ✓";
 $lang["page.dashboard.btn.explore_deck"] = "Explore My Decks";
 
 $lang["page.deck.title"] = "My Decks";
