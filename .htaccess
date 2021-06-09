@@ -11,7 +11,7 @@ RewriteRule ^core\.php$  [L,R=404]
 RewriteRule ^_env\.php$  [L,R=404]
 RewriteRule ^_env\.php\.sample$  [L,R=404]
 RewriteRule ^package\.json$  [L,R=404]
-RewriteRule ^yarn\.lock$  [L,R=404]
+RewriteRule ^package\-lock\.json$  [L,R=404]
 RewriteRule ^install\.sh$  [L,R=404]
 
 # topic
