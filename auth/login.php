@@ -23,10 +23,10 @@
 		  <a class="btn btn-warning" href="forget-password.php"><?= $lang["loginpage.form.btn.forgot"] ?></a>
 		</form>
 
-        <button id="login-facebook-btn" class="btn btn-primary u-mt-15">
+        <!-- <button id="login-facebook-btn" class="btn btn-primary u-mt-15">
             <i class="fa fa-facebook-official u-mr-5" aria-hidden="true"></i>
-            <?= $lang["loginpage.form.btn.facebook"] ?>
-        </button>
+            <?= //$lang["loginpage.form.btn.facebook"] ?>
+        </button> -->
 
 	</div>
 </div>
