@@ -22,10 +22,10 @@
 		  <button type="submit" class="btn btn-primary"><?= $lang["registerpage.form.btn.submit"] ?></button>
 		</form>
 
-        <!-- <button id="login-facebook-btn" class="btn btn-primary u-mt-15">
-            <i class="fa fa-facebook-official" aria-hidden="true"></i>
-            <!-- <?= //$lang["registerpage.form.btn.facebook"] ?> -->
-        </button> -->
+        <!-- <button id="login-facebook-btn" class="btn btn-primary u-mt-15">-->
+            <!-- <i class="fa fa-facebook-official" aria-hidden="true"></i> -->
+           <!-- <?= $lang["registerpage.form.btn.facebook"] ?> -->
+        <!-- </button> -->
 	</div>
 </div>
 
