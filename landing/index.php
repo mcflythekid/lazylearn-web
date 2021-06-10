@@ -143,10 +143,10 @@ require_once "../lang/core.php";
                     </div>
                     <div class="form-group">
                       <input type="submit" class="btn btn-primary btn-pill" value='<?= $lang["landing.first.signupform.submit"] ?>'>
-                      <button class="facebook-login btn btn-primary btn-pill">
+                      <!-- <button class="facebook-login btn btn-primary btn-pill">
                         <i class="fa fa-facebook-official" aria-hidden="true"></i>
                         <?= $lang["landing.first.signupform.fb"] ?>
-                      </button>
+                      </button> -->
                     </div>
                   </form>
 
