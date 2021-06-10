@@ -24,7 +24,7 @@
 
         <!-- <button id="login-facebook-btn" class="btn btn-primary u-mt-15">
             <i class="fa fa-facebook-official" aria-hidden="true"></i>
-            <?= //$lang["registerpage.form.btn.facebook"] ?>
+            <!-- <?= //$lang["registerpage.form.btn.facebook"] ?> -->
         </button> -->
 	</div>
 </div>
